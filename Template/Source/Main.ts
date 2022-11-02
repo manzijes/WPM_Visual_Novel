@@ -19,8 +19,8 @@ namespace Template {
   };
 
   export let locations = {
-    beachDay: {
-      name: "Beach Day",
+    classroomDay: {
+      name: "classroom day",
       background: "",
       foreground: ""
     }
@@ -31,7 +31,13 @@ namespace Template {
       name: ""
     },
     protagonist: {
-      name: ""
+      name: "Protagonist",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        angry: "../Images/Characters/Protagonist/protagonist-neutral.png",
+        happy: "",
+        upset: ""
+      }
     },
     aisaka: {
       name: "Aisaka",
@@ -51,7 +57,8 @@ namespace Template {
   window.addEventListener("load", start);
   function start(_event: Event): void {
     let scenes: ƒS.Scenes = [
-      { scene: Scene, name: "Scene" }
+      { scene: Scene, name: "Scene" },
+      { scene: exampleScene, name: "example"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
