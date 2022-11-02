@@ -15,37 +15,49 @@ namespace Template {
   export let sound = {
     // themes
     // SFX
-    drop: "../Audio/drop.mp3"
+    drop: "../Audio/SFX/drop.mp3"
   };
 
   export let locations = {
     classroomDay: {
-      name: "classroom day",
-      background: "",
+      name: "classroomDay",
+      background: "../Images/Backgrounds/classroom-day.jpg",
+      foreground: ""
+    },
+    classroomNight: {
+      name: "classroomNight",
+      background: "../Images/Backgrounds/classroom-night.jpg",
+      foreground: ""
+    },
+    schoolOutsideDay: {
+      name: "schoolOutsideDay",
+      background: "../Images/Backgrounds/school-outside-day.jpg",
       foreground: ""
     }
   };
 
   export let characters = {
-    narrator: {
-      name: ""
-    },
     protagonist: {
       name: "Protagonist",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        angry: "../Images/Characters/Protagonist/protagonist-neutral.png",
-        happy: "",
-        upset: ""
+        angry: "../Images/Characters/Protagonist/protagonist-angry.png",
+        happy: "../Images/Characters/Protagonist/protagonist-happy.png",
+        sad: "../Images/Characters/Protagonist/protagonist-sad.png",
+        neutral: "../Images/Characters/Protagonist/protagonist-neutral.png",
+        scared: "../Images/Characters/Protagonist/protagonist-scared.png",
+        mean: "../Images/Characters/Protagonist/protagonist-mean.png"
       }
     },
-    aisaka: {
-      name: "Aisaka",
+    kira: {
+      name: "Kira",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        angry: "../Images/Characters/",
-        happy: "",
-        upset: ""
+        angry: "../Images/Characters/Kira/kira-angry.png",
+        happy: "../Images/Characters/Kira/kira-happy.png",
+        sad: "../Images/Characters/Kira/kira-sad.png",
+        neutral: "../Images/Characters/Kira/kira-neutral.png",
+        scared: "../Images/Characters/Kira/protagonist-scared.png"
       }
     }
   };
@@ -57,8 +69,8 @@ namespace Template {
   window.addEventListener("load", start);
   function start(_event: Event): void {
     let scenes: ƒS.Scenes = [
-      { scene: Scene, name: "Scene" },
-      { scene: exampleScene, name: "example"}
+      // { scene: Scene, name: "Scene" },
+      { scene: exampleScene, name: "exampleScene"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
