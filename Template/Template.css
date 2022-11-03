@@ -45,6 +45,8 @@ canvas {
 
 speech {
   width: 80%;
+  max-width: 1024px;
+  max-height: 150px;
   height: auto;
   position: absolute;
   left:0;
@@ -53,16 +55,17 @@ speech {
   margin-right: auto;
   background-color: white; 
   padding: 20px 40px;
-  bottom: 50px;
-  border-radius: 5px;
+  bottom: 0;
+  overflow-y: scroll;
 }
 
 speech content {
   width: 100%;
   height: auto;
-  padding: 20px 40px;
 }
 
 name{
   text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
 }

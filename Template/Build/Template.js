@@ -92,10 +92,10 @@ var Template;
             }
         };
         Template.ƒS.Speech.hide();
-        await Template.ƒS.Location.show(Template.locations.classroomDay);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(65, 100));
-        await Template.ƒS.Speech.tell(Template.characters.protagonist, text.Protagonist.T0001);
+        await Template.ƒS.Location.show(Template.locations.schoolOutsideDay);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(30, 88));
         await Template.ƒS.update(2);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, text.Protagonist.T0001);
         let dialogoptions = {
             iSayYes: "Yes",
             iSayOk: "Okay",
@@ -109,16 +109,24 @@ var Template;
         let pickedMaybe;
         switch (dialogoptionsElement) {
             case dialogoptions.iSayYes:
+                pickedYes = true;
+                console.log(pickedYes);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, "Ja");
                 break;
             case dialogoptions.iSayNo:
+                pickedNo = true;
+                console.log(pickedNo);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, "Nein");
                 break;
             case dialogoptions.iSayOk:
+                pickedOkay = true;
+                console.log(pickedOkay);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, "Okay");
                 break;
             case dialogoptions.iSayMaybe:
-                await Template.ƒS.Speech.tell(Template.characters.protagonist, "Vielleicht");
+                pickedMaybe = true;
+                console.log(pickedMaybe);
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,");
                 break;
         }
     }
