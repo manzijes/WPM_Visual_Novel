@@ -70,7 +70,7 @@ namespace Template {
   function start(_event: Event): void {
     let scenes: ƒS.Scenes = [
       // { scene: Scene, name: "Scene" },
-      { scene: exampleScene, name: "exampleScene"}
+      { scene: firstScene, name: "firstScene"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

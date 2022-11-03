@@ -1,6 +1,6 @@
 namespace Template {
-    export async function exampleScene(): ƒS.SceneReturn {
-        console.log("example scene");
+    export async function firstScene(): ƒS.SceneReturn {
+        console.log("first scene");
         let text = {
             Protagonist: {
                 T0001: "Hallo",
@@ -10,7 +10,7 @@ namespace Template {
         };
 
         ƒS.Speech.hide();
-        await ƒS.Location.show(locations.schoolOutsideDay);
+        await ƒS.Location.show(locations.classroomDay);
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(30, 101));
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
