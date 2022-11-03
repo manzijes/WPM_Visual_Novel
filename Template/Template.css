@@ -2,7 +2,7 @@ scene {
   width: 1280px;
   height: 720px;
   display: inline-block;
-  position: absolute; 
+  position: absolute;
 }
 
 dialog[type=splash] {
@@ -16,11 +16,13 @@ dialog[type=splash] {
   cursor: pointer;
   text-align: center;
 }
+
 dialog[type=splash]>img#FudgeStoryLogo {
   width: 100%;
 }
 
-html, body {
+html,
+body {
   width: 100vw;
   height: 100vh;
   margin: 0px;
@@ -47,15 +49,17 @@ speech {
   height: 10vh;
 }
 
-speech name{
+speech name {
   font-weight: bold;
-  color:lightblue;
+  color: lightblue;
   font-variant: small-caps;
   font-size: 18px;
   margin: 10px;
+  display: block;
 }
 
-speech content{
-  font-size:20px;
-  margin: 20px;
+speech content {
+  font-size: 20px;
+  margin: 10px;
+  display: block;
 }
