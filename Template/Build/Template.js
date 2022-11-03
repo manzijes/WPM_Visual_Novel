@@ -29,7 +29,7 @@ var Template;
         },
         schoolOutsideDay: {
             name: "schoolOutsideDay",
-            background: "Images/Backgrounds/school-outside-day.jpg",
+            background: "Images/Backgrounds/apocalypse.png",
             foreground: ""
         }
     };
@@ -93,8 +93,8 @@ var Template;
         };
         Template.ƒS.Speech.hide();
         await Template.ƒS.Location.show(Template.locations.schoolOutsideDay);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(30, 88));
-        await Template.ƒS.update(2);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(30, 101));
+        await Template.ƒS.update(1);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, text.Protagonist.T0001);
         let dialogoptions = {
             iSayYes: "Yes",

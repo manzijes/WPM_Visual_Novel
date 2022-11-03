@@ -31,7 +31,7 @@ namespace Template {
     },
     schoolOutsideDay: {
       name: "schoolOutsideDay",
-      background: "Images/Backgrounds/school-outside-day.jpg",
+      background: "Images/Backgrounds/apocalypse.png",
       foreground: ""
     }
   };
