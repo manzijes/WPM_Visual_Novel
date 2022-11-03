@@ -66,7 +66,7 @@ var Template;
             name: "???"
         },
         protagonist: {
-            name: "Protagonist",
+            name: "Du",
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
                 angry: "Images/Characters/Protagonist/protagonist-angry.png",

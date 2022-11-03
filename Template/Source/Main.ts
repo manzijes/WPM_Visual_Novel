@@ -69,7 +69,7 @@ namespace Template {
       name: "???"
     },
     protagonist: {
-      name: "Protagonist",
+      name: "Du",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         angry: "Images/Characters/Protagonist/protagonist-angry.png",
