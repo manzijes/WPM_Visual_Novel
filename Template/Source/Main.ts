@@ -37,6 +37,9 @@ namespace Template {
   };
 
   export let characters = {
+    narrator: {
+      name: "Narrator"
+    },
     protagonist: {
       name: "Protagonist",
       origin: ƒS.ORIGIN.BOTTOMCENTER,

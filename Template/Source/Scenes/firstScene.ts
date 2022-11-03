@@ -3,7 +3,7 @@ namespace Template {
         console.log("first scene");
         let text = {
             Protagonist: {
-                T0001: "Hallo",
+                T0001: "Das beste am Schultag ist die Mittagspause... Kein Lehrer scheucht dich über den Sportplatz oder zwingt dich, an der Tafel Matheaufgaben zu lösen. Ich kann mich entspannen und lesen, die Stimmen der anderen verschmelzen zu einem Rauschen im Hintergrund. Himmlisch!",
                 T0002: "Hello",
                 T0003: "Anderer Text"
             }
