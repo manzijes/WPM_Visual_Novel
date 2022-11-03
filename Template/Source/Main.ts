@@ -19,19 +19,44 @@ namespace Template {
   };
 
   export let locations = {
-    classroomDay: {
-      name: "classroomDay",
+    gardenDoor: {
+      name: "GardenDoor",
       background: "Images/Backgrounds/Garden/garden1.png",
       foreground: ""
     },
-    classroomNight: {
-      name: "classroomNight",
-      background: "Images/Backgrounds/classroom-night.jpg",
+    gardenPath: {
+      name: "GardenPath",
+      background: "Images/Backgrounds/Garden/garden2.png",
+      foreground: ""
+    },
+    gardenSwing: {
+      name: "GardenSwing",
+      background: "Images/Backgrounds/Garden/garden3.png",
+      foreground: ""
+    },
+    gardenHouse: {
+      name: "GardenHouse",
+      background: "Images/Backgrounds/Garden/garden4.png",
+      foreground: ""
+    },
+    gardenBridge: {
+      name: "GardenBridge",
+      background: "Images/Backgrounds/Garden/garden5.png",
+      foreground: ""
+    },
+    gardenTable: {
+      name: "GardenTable",
+      background: "Images/Backgrounds/Garden/garden6.png",
+      foreground: ""
+    },
+    gardenGreenhouse: {
+      name: "GardenGreenhouse",
+      background: "Images/Backgrounds/Garden/garden7.png",
       foreground: ""
     },
     schoolOutsideDay: {
       name: "schoolOutsideDay",
-      background: "Images/Backgrounds/apocalypse.png",
+      background: "Images/Backgrounds/school-outside-twilight.jpg",
       foreground: ""
     }
   };

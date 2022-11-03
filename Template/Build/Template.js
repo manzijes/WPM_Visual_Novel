@@ -17,19 +17,44 @@ var Template;
         drop: "../Audio/SFX/drop.mp3"
     };
     Template.locations = {
-        classroomDay: {
-            name: "classroomDay",
+        gardenDoor: {
+            name: "GardenDoor",
             background: "Images/Backgrounds/Garden/garden1.png",
             foreground: ""
         },
-        classroomNight: {
-            name: "classroomNight",
-            background: "Images/Backgrounds/classroom-night.jpg",
+        gardenPath: {
+            name: "GardenPath",
+            background: "Images/Backgrounds/Garden/garden2.png",
+            foreground: ""
+        },
+        gardenSwing: {
+            name: "GardenSwing",
+            background: "Images/Backgrounds/Garden/garden3.png",
+            foreground: ""
+        },
+        gardenHouse: {
+            name: "GardenHouse",
+            background: "Images/Backgrounds/Garden/garden4.png",
+            foreground: ""
+        },
+        gardenBridge: {
+            name: "GardenBridge",
+            background: "Images/Backgrounds/Garden/garden5.png",
+            foreground: ""
+        },
+        gardenTable: {
+            name: "GardenTable",
+            background: "Images/Backgrounds/Garden/garden6.png",
+            foreground: ""
+        },
+        gardenGreenhouse: {
+            name: "GardenGreenhouse",
+            background: "Images/Backgrounds/Garden/garden7.png",
             foreground: ""
         },
         schoolOutsideDay: {
             name: "schoolOutsideDay",
-            background: "Images/Backgrounds/apocalypse.png",
+            background: "Images/Backgrounds/school-outside-twilight.jpg",
             foreground: ""
         }
     };
@@ -103,18 +128,18 @@ var Template;
             }
         };
         Template.ƒS.Speech.hide();
-        await Template.ƒS.Location.show(Template.locations.classroomDay);
+        await Template.ƒS.Location.show(Template.locations.schoolOutsideDay);
         await Template.ƒS.update(2);
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(30, 100));
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 100));
         await Template.ƒS.update(1);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happy, Template.ƒS.positionPercent(30, 100));
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happy, Template.ƒS.positionPercent(25, 100));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
         let dialogoptions = {
-            iSayYes: "Yes",
+            iSayYes: "Ich sage ja. Daher wird pickedMe true werden.",
             iSayOk: "Okay",
             iSayNo: "No",
             iSayMaybe: "Maybe"

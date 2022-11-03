@@ -17,23 +17,23 @@ namespace Template {
         };
 
         ƒS.Speech.hide();
-        await ƒS.Location.show(locations.classroomDay);
+        await ƒS.Location.show(locations.schoolOutsideDay);
 
         await ƒS.update(2);
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
 
-        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(30, 100));
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 100));
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0001);
 
         await ƒS.Character.hide(characters.protagonist);
-        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.happy, ƒS.positionPercent(30, 100));
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.happy, ƒS.positionPercent(25, 100));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0002);
 
 
         let dialogoptions = {
-            iSayYes: "Yes",
+            iSayYes: "Ich sage ja. Daher wird pickedMe true werden.",
             iSayOk: "Okay",
             iSayNo: "No",
             iSayMaybe: "Maybe"

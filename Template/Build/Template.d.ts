@@ -12,12 +12,37 @@ declare namespace Template {
         drop: string;
     };
     let locations: {
-        classroomDay: {
+        gardenDoor: {
             name: string;
             background: string;
             foreground: string;
         };
-        classroomNight: {
+        gardenPath: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        gardenSwing: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        gardenHouse: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        gardenBridge: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        gardenTable: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        gardenGreenhouse: {
             name: string;
             background: string;
             foreground: string;
