@@ -21,17 +21,17 @@ namespace Template {
   export let locations = {
     classroomDay: {
       name: "classroomDay",
-      background: "../Images/Backgrounds/classroom-day.jpg",
+      background: "Images/Backgrounds/classroom-day.jpg",
       foreground: ""
     },
     classroomNight: {
       name: "classroomNight",
-      background: "../Images/Backgrounds/classroom-night.jpg",
+      background: "Images/Backgrounds/classroom-night.jpg",
       foreground: ""
     },
     schoolOutsideDay: {
       name: "schoolOutsideDay",
-      background: "../Images/Backgrounds/school-outside-day.jpg",
+      background: "Images/Backgrounds/school-outside-day.jpg",
       foreground: ""
     }
   };
@@ -41,12 +41,12 @@ namespace Template {
       name: "Protagonist",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        angry: "../Images/Characters/Protagonist/protagonist-angry.png",
-        happy: "../Images/Characters/Protagonist/protagonist-happy.png",
-        sad: "../Images/Characters/Protagonist/protagonist-sad.png",
-        neutral: "../Images/Characters/Protagonist/protagonist-neutral.png",
-        scared: "../Images/Characters/Protagonist/protagonist-scared.png",
-        mean: "../Images/Characters/Protagonist/protagonist-mean.png"
+        angry: "Images/Characters/Protagonist/protagonist-angry.png",
+        happy: "Images/Characters/Protagonist/protagonist-happy.png",
+        sad: "Images/Characters/Protagonist/protagonist-sad.png",
+        neutral: "Images/Characters/Protagonist/protagonist-neutral.png",
+        scared: "Images/Characters/Protagonist/protagonist-scared.png",
+        mean: "Images/Characters/Protagonist/protagonist-mean.png"
       }
     },
     kira: {

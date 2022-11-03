@@ -14,35 +14,47 @@ var Template;
     Template.sound = {
         // themes
         // SFX
-        drop: "../Audio/drop.mp3"
+        drop: "../Audio/SFX/drop.mp3"
     };
     Template.locations = {
         classroomDay: {
-            name: "classroom day",
-            background: "",
+            name: "classroomDay",
+            background: "Images/Backgrounds/classroom-day.jpg",
+            foreground: ""
+        },
+        classroomNight: {
+            name: "classroomNight",
+            background: "Images/Backgrounds/classroom-night.jpg",
+            foreground: ""
+        },
+        schoolOutsideDay: {
+            name: "schoolOutsideDay",
+            background: "Images/Backgrounds/school-outside-day.jpg",
             foreground: ""
         }
     };
     Template.characters = {
-        narrator: {
-            name: ""
-        },
         protagonist: {
             name: "Protagonist",
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                angry: "../Images/Characters/Protagonist/protagonist-neutral.png",
-                happy: "",
-                upset: ""
+                angry: "Images/Characters/Protagonist/protagonist-angry.png",
+                happy: "Images/Characters/Protagonist/protagonist-happy.png",
+                sad: "Images/Characters/Protagonist/protagonist-sad.png",
+                neutral: "Images/Characters/Protagonist/protagonist-neutral.png",
+                scared: "Images/Characters/Protagonist/protagonist-scared.png",
+                mean: "Images/Characters/Protagonist/protagonist-mean.png"
             }
         },
-        aisaka: {
-            name: "Aisaka",
+        kira: {
+            name: "Kira",
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                angry: "../Images/Characters/",
-                happy: "",
-                upset: ""
+                angry: "../Images/Characters/Kira/kira-angry.png",
+                happy: "../Images/Characters/Kira/kira-happy.png",
+                sad: "../Images/Characters/Kira/kira-sad.png",
+                neutral: "../Images/Characters/Kira/kira-neutral.png",
+                scared: "../Images/Characters/Kira/protagonist-scared.png"
             }
         }
     };
@@ -52,8 +64,8 @@ var Template;
     window.addEventListener("load", start);
     function start(_event) {
         let scenes = [
-            { scene: Template.Scene, name: "Scene" },
-            { scene: Template.exampleScene, name: "example" }
+            // { scene: Scene, name: "Scene" },
+            { scene: Template.exampleScene, name: "exampleScene" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -81,9 +93,34 @@ var Template;
         };
         Template.ƒS.Speech.hide();
         await Template.ƒS.Location.show(Template.locations.classroomDay);
-        await Template.ƒS.update();
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.angry, Template.ƒS.positionPercent(100, 70));
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(65, 100));
         await Template.ƒS.Speech.tell(Template.characters.protagonist, text.Protagonist.T0001);
+        await Template.ƒS.update(2);
+        let dialogoptions = {
+            iSayYes: "Yes",
+            iSayOk: "Okay",
+            iSayNo: "No",
+            iSayMaybe: "Maybe"
+        };
+        let dialogoptionsElement = await Template.ƒS.Menu.getInput(dialogoptions, "dialogoptions");
+        let pickedYes;
+        let pickedOkay;
+        let pickedNo;
+        let pickedMaybe;
+        switch (dialogoptionsElement) {
+            case dialogoptions.iSayYes:
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, "Ja");
+                break;
+            case dialogoptions.iSayNo:
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, "Nein");
+                break;
+            case dialogoptions.iSayOk:
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, "Okay");
+                break;
+            case dialogoptions.iSayMaybe:
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, "Vielleicht");
+                break;
+        }
     }
     Template.exampleScene = exampleScene;
 })(Template || (Template = {}));

@@ -17,27 +17,39 @@ declare namespace Template {
             background: string;
             foreground: string;
         };
+        classroomNight: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        schoolOutsideDay: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
     };
     let characters: {
-        narrator: {
-            name: string;
-        };
         protagonist: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
                 angry: string;
                 happy: string;
-                upset: string;
+                sad: string;
+                neutral: string;
+                scared: string;
+                mean: string;
             };
         };
-        aisaka: {
+        kira: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
                 angry: string;
                 happy: string;
-                upset: string;
+                sad: string;
+                neutral: string;
+                scared: string;
             };
         };
     };
