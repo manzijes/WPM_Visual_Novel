@@ -29,6 +29,12 @@ declare namespace Template {
         };
     };
     let characters: {
+        narrator: {
+            name: string;
+        };
+        stranger: {
+            name: string;
+        };
         protagonist: {
             name: string;
             origin: ƒ.ORIGIN2D;
@@ -61,5 +67,5 @@ declare namespace Template {
     function Scene(): ƒS.SceneReturn;
 }
 declare namespace Template {
-    function exampleScene(): ƒS.SceneReturn;
+    function firstScene(): ƒS.SceneReturn;
 }

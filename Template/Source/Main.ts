@@ -21,7 +21,7 @@ namespace Template {
   export let locations = {
     classroomDay: {
       name: "classroomDay",
-      background: "Images/Backgrounds/classroom-day.jpg",
+      background: "Images/Backgrounds/Garden/garden1.png",
       foreground: ""
     },
     classroomNight: {
@@ -39,6 +39,9 @@ namespace Template {
   export let characters = {
     narrator: {
       name: "Narrator"
+    },
+    stranger: {
+      name: "???"
     },
     protagonist: {
       name: "Protagonist",

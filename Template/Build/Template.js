@@ -19,7 +19,7 @@ var Template;
     Template.locations = {
         classroomDay: {
             name: "classroomDay",
-            background: "Images/Backgrounds/classroom-day.jpg",
+            background: "Images/Backgrounds/Garden/garden1.png",
             foreground: ""
         },
         classroomNight: {
@@ -34,6 +34,12 @@ var Template;
         }
     };
     Template.characters = {
+        narrator: {
+            name: "Narrator"
+        },
+        stranger: {
+            name: "???"
+        },
         protagonist: {
             name: "Protagonist",
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
@@ -65,7 +71,7 @@ var Template;
     function start(_event) {
         let scenes = [
             // { scene: Scene, name: "Scene" },
-            { scene: Template.exampleScene, name: "exampleScene" }
+            { scene: Template.firstScene, name: "firstScene" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -82,20 +88,31 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    async function exampleScene() {
-        console.log("example scene");
-        let text = {
+    async function firstScene() {
+        console.log("first scene");
+        let narratorText = {
+            Narrator: {
+                T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und tankst etwas Vitamin D."
+            }
+        };
+        let protagonistText = {
             Protagonist: {
-                T0001: "Hallo",
-                T0002: "Hello",
+                T0001: "Das beste am Schultag ist die Mittagspause... Kein Lehrer scheucht dich über den Sportplatz oder zwingt dich, an der Tafel Matheaufgaben zu lösen.",
+                T0002: "Ich kann mich entspannen und lesen, die Stimmen der anderen verschmelzen zu einem Rauschen im Hintergrund. Himmlisch!",
                 T0003: "Anderer Text"
             }
         };
         Template.ƒS.Speech.hide();
-        await Template.ƒS.Location.show(Template.locations.schoolOutsideDay);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(30, 101));
+        await Template.ƒS.Location.show(Template.locations.classroomDay);
+        await Template.ƒS.update(2);
+        await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(30, 100));
         await Template.ƒS.update(1);
-        await Template.ƒS.Speech.tell(Template.characters.protagonist, text.Protagonist.T0001);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happy, Template.ƒS.positionPercent(30, 100));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
         let dialogoptions = {
             iSayYes: "Yes",
             iSayOk: "Okay",
@@ -130,6 +147,6 @@ var Template;
                 break;
         }
     }
-    Template.exampleScene = exampleScene;
+    Template.firstScene = firstScene;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

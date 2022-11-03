@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Quicksand-Regular";
+  src: url("Fonts/Quicksand/Quicksand-Regular.ttf");
+  font-display: swap;
+}
+
 scene {
   width: 1280px;
   height: 720px;
@@ -19,6 +25,7 @@ dialog[type=splash] {
 
 dialog[type=splash]>img#FudgeStoryLogo {
   width: 100%;
+  max-width: 400px;
 }
 
 html,
@@ -30,6 +37,7 @@ body {
   font-size: 18px;
   background-color: #161b22;
   overflow: hidden;
+  font-family: "Quicksand-Regular";
 }
 
 canvas {
@@ -46,7 +54,8 @@ speech {
   background-color: rgba(11, 14, 19, 0.9);
   border-radius: 15px;
   width: 90%;
-  height: 10vh;
+  min-height: 102.8px;
+  /* height: 10vh; */
 }
 
 speech name {
@@ -62,4 +71,31 @@ speech content {
   font-size: 20px;
   margin: 10px;
   display: block;
+}
+
+dialog.dialogoptions {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 15px;
+  background-color: rgb(255, 255, 255, 0.6);
+  border-radius: 15px;
+  border: none;
+
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+dialog.dialogoptions button {
+  background-color: rgba(11, 14, 19, 0.6);
+  border-radius: 15px;
+  padding: 10px;
+  color: white;
+  border: none;
+}
+
+dialog.dialogoptions button:hover {
+  cursor: pointer;
+  background-color: rgba(11, 14, 19, 0.8);
 }
