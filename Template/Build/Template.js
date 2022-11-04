@@ -81,11 +81,11 @@ var Template;
             name: "Kira",
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                angry: "../Images/Characters/Kira/kira-angry.png",
-                happy: "../Images/Characters/Kira/kira-happy.png",
-                sad: "../Images/Characters/Kira/kira-sad.png",
-                neutral: "../Images/Characters/Kira/kira-neutral.png",
-                scared: "../Images/Characters/Kira/protagonist-scared.png"
+                angry: "Images/Characters/Kira/kira-angry.png",
+                happy: "Images/Characters/Kira/kira-happy.png",
+                sad: "Images/Characters/Kira/kira-sad.png",
+                neutral: "Images/Characters/Kira/kira-neutral.png",
+                scared: "Images/Characters/Kira/protagonist-scared.png"
             }
         }
     };
@@ -117,13 +117,14 @@ var Template;
         console.log("first scene");
         let strangerText = {
             Stranger: {
-                T0001: "Entschuldigung!"
+                T0001: "Entschuldigung!",
+                T0002: "Es tut mir leid, falls ich dich störe, aber ich brauche deine Hilfe."
             }
         };
         let narratorText = {
             Narrator: {
                 T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und tankst etwas Vitamin D.",
-                T0002: "Du schaust auf und erblickst eine Mitschülerin. Sie kommt dir bekannt vor."
+                T0002: "Du drehst dich um und erblickst eine Mitschülerin. Sie kommt dir bekannt vor."
             }
         };
         let protagonistText = {
@@ -153,6 +154,9 @@ var Template;
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0002);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.stranger, strangerText.Stranger.T0002);
         // Praktikum Session zu Dialog Options 
         // let dialogoptions = {
         //     iSayYes: "Ich sage ja. Daher wird pickedMe true werden.",

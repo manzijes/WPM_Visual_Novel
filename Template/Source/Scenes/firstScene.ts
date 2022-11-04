@@ -4,14 +4,15 @@ namespace Template {
 
         let strangerText = {
             Stranger: {
-                T0001: "Entschuldigung!"
+                T0001: "Entschuldigung!",
+                T0002: "Es tut mir leid, falls ich dich störe, aber ich brauche deine Hilfe."
             }
         };
         
         let narratorText = {
             Narrator: {
                 T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und tankst etwas Vitamin D.",
-                T0002: "Du schaust auf und erblickst eine Mitschülerin. Sie kommt dir bekannt vor."
+                T0002: "Du drehst dich um und erblickst eine Mitschülerin. Sie kommt dir bekannt vor."
             }
         };
         
@@ -49,6 +50,10 @@ namespace Template {
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0002);
+
+        await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.stranger, strangerText.Stranger.T0002);
 
         // Praktikum Session zu Dialog Options 
 

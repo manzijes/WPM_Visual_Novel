@@ -84,11 +84,11 @@ namespace Template {
       name: "Kira",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        angry: "../Images/Characters/Kira/kira-angry.png",
-        happy: "../Images/Characters/Kira/kira-happy.png",
-        sad: "../Images/Characters/Kira/kira-sad.png",
-        neutral: "../Images/Characters/Kira/kira-neutral.png",
-        scared: "../Images/Characters/Kira/protagonist-scared.png"
+        angry: "Images/Characters/Kira/kira-angry.png",
+        happy: "Images/Characters/Kira/kira-happy.png",
+        sad: "Images/Characters/Kira/kira-sad.png",
+        neutral: "Images/Characters/Kira/kira-neutral.png",
+        scared: "Images/Characters/Kira/protagonist-scared.png"
       }
     }
   };
