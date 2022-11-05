@@ -71,6 +71,7 @@ var Template;
             pose: {
                 angry: "Images/Characters/Protagonist/protagonist-angry.png",
                 happy: "Images/Characters/Protagonist/protagonist-happy.png",
+                happyEyesClosed: "Images/Characters/Protagonist/protagonist-happy-2.png",
                 sad: "Images/Characters/Protagonist/protagonist-sad.png",
                 neutral: "Images/Characters/Protagonist/protagonist-neutral.png",
                 scared: "Images/Characters/Protagonist/protagonist-scared.png",
@@ -118,20 +119,20 @@ var Template;
         let strangerText = {
             Stranger: {
                 T0001: "Entschuldigung!",
-                T0002: "Es tut mir leid, falls ich dich störe, aber ich brauche deine Hilfe."
+                T0002: "Es tut mir leid, falls ich dich störe, aber ich brauche deine Hilfe. Du bist die Schulsprecherin, richtig?"
             }
         };
         let narratorText = {
             Narrator: {
-                T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und tankst etwas Vitamin D.",
-                T0002: "Du drehst dich um und erblickst eine Mitschülerin. Sie kommt dir bekannt vor."
+                T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und erfreust dich an der Nachmittagssonne.",
+                T0002: "Du drehst dich um und erblickst ein Mädchen, das dir bekannt vorkommt. Sie geht nicht in deine Klasse, also woher...?"
             }
         };
         let protagonistText = {
             Protagonist: {
                 T0001: "Das beste am Schultag ist die Mittagspause... Kein Lehrer scheucht dich über den Sportplatz oder zwingt dich, an der Tafel Matheaufgaben zu lösen.",
                 T0002: "Ich kann mich entspannen und lesen, die Stimmen der anderen verschmelzen zu einem Rauschen im Hintergrund. Himmlisch!",
-                T0003: "Nanu? Redet da jemand mit mir?"
+                T0003: "Nanu? Spricht da jemand mit mir?"
             }
         };
         Template.ƒS.Speech.hide();
@@ -142,8 +143,8 @@ var Template;
         await Template.ƒS.update(1);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happy, Template.ƒS.positionPercent(25, 97));
-        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happyEyesClosed, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.25);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.stranger, strangerText.Stranger.T0001);

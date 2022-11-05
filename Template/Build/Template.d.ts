@@ -66,6 +66,7 @@ declare namespace Template {
             pose: {
                 angry: string;
                 happy: string;
+                happyEyesClosed: string;
                 sad: string;
                 neutral: string;
                 scared: string;

@@ -74,6 +74,7 @@ namespace Template {
       pose: {
         angry: "Images/Characters/Protagonist/protagonist-angry.png",
         happy: "Images/Characters/Protagonist/protagonist-happy.png",
+        happyEyesClosed: "Images/Characters/Protagonist/protagonist-happy-2.png",
         sad: "Images/Characters/Protagonist/protagonist-sad.png",
         neutral: "Images/Characters/Protagonist/protagonist-neutral.png",
         scared: "Images/Characters/Protagonist/protagonist-scared.png",
