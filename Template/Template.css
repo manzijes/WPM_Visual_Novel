@@ -4,6 +4,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Handwriting";
+  src: url("Fonts/IndieFlower/IndieFlower-Regular.ttf");
+  font-display: swap;
+}
+
 scene {
   width: 1280px;
   height: 720px;

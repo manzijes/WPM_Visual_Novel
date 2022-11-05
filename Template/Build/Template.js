@@ -97,7 +97,7 @@ var Template;
     function start(_event) {
         let scenes = [
             // { scene: Scene, name: "Scene" },
-            { scene: Template.firstScene, name: "firstScene" }
+            { scene: Template.secondScene, name: "secondScene" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -194,5 +194,25 @@ var Template;
         //     }
     }
     Template.firstScene = firstScene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function secondScene() {
+        console.log("first scene");
+        let protagonistText = {
+            Protagonist: {
+                T0001: "Ich werde das ganz systematisch angehen... Wer hat Zugang zum Theaterraum? Das sind meine Verdächtigen.",
+                T0002: "Da wäre zunächst Kira. Kira kümmert sich um die Kostüme. Aber wieso sollte sie mich um Hilfe bitten, wenn sie selbst die Täterin ist?",
+                T0003: "Dann gibt es da noch Eliseo."
+            }
+        };
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.Location.show(Template.locations.schoolOutsideDay);
+        await Template.ƒS.update(2);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update();
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+    }
+    Template.secondScene = secondScene;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

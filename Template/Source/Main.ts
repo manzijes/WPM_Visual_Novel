@@ -102,7 +102,7 @@ namespace Template {
   function start(_event: Event): void {
     let scenes: ƒS.Scenes = [
       // { scene: Scene, name: "Scene" },
-      { scene: firstScene, name: "firstScene"}
+      { scene: secondScene, name: "secondScene"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
@@ -111,4 +111,5 @@ namespace Template {
     // start the sequence
     ƒS.Progress.go(scenes);
   }
+  
 }

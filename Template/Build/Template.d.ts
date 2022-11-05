@@ -95,3 +95,6 @@ declare namespace Template {
 declare namespace Template {
     function firstScene(): ƒS.SceneReturn;
 }
+declare namespace Template {
+    function secondScene(): ƒS.SceneReturn;
+}
