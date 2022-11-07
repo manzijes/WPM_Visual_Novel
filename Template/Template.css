@@ -10,6 +10,10 @@
   font-display: swap;
 }
 
+*{
+  cursor: pointer;
+}
+
 scene {
   width: 1280px;
   height: 720px;
@@ -41,7 +45,7 @@ body {
   margin: 0px;
   padding: 0px;
   font-size: 18px;
-  background-color: #161b22;
+  background-color: #161b22 !important;
   overflow: hidden;
   font-family: "Quicksand-Regular";
 }
@@ -71,6 +75,10 @@ speech name {
   font-size: 18px;
   margin: 10px;
   display: block;
+}
+
+.Narrator name{
+  color: lightcoral;
 }
 
 speech content {
@@ -104,4 +112,47 @@ dialog.dialogoptions button {
 dialog.dialogoptions button:hover {
   cursor: pointer;
   background-color: rgba(11, 14, 19, 0.8);
+}
+
+dialog.menuInGame {
+  position: absolute;
+  left: auto;
+  right: 0;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  border: none;
+  background: none;
+  gap: 15px;
+}
+
+dialog.menuInGame button {
+  border-radius: 15px;
+  padding: 3px 6px;
+  border: 5px solid white;
+}
+
+dialog.menuInGame button.active{
+  border: 5px solid lightcoral;
+}
+
+dialog.menuInGame button.active#toggleSound{
+  text-decoration: line-through;
+}
+
+@media (max-width: 768px){
+  *, speech content, speech name{
+    font-size: 14px;
+  }
+  speech{
+    min-height: 83px; 
+    height: 83px;
+  }
+  speech content, speech name{
+    margin: 0;
+  }
+  .suspects{
+    margin-left: 110px !important;
+    margin-right: 110px !important;
+  }
 }

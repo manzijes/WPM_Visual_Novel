@@ -25,12 +25,17 @@ namespace Template {
         };
 
         ƒS.Speech.hide();
-        await ƒS.Location.show(locations.schoolOutsideDay);
 
+        ƒS.Sound.play(sound.schoolBell, 0.15, false); 
+        ƒS.Sound.fade(sound.mainMusic, 0.07, 0.1, true); 
+
+        await ƒS.Location.show(locations.schoolOutsideDay);
         await ƒS.update(2);
+
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+        ƒS.Sound.play(sound.birds, 0.2, false); 
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0001);
 
@@ -49,9 +54,10 @@ namespace Template {
 
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.update(0.5);
-        await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0002);
 
         await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0002);
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.stranger, strangerText.Stranger.T0002);
 

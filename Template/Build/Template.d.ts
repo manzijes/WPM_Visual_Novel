@@ -9,7 +9,10 @@ declare namespace Template {
         };
     };
     let sound: {
+        mainMusic: string;
+        birds: string;
         drop: string;
+        schoolBell: string;
     };
     let locations: {
         gardenDoor: {
@@ -93,8 +96,29 @@ declare namespace Template {
     function Scene(): ƒS.SceneReturn;
 }
 declare namespace Template {
-    function firstScene(): ƒS.SceneReturn;
+    let volume: number;
+    let volumeBeforeMute: number;
+    function incrementSound(): void;
+    function decrementSound(): void;
+    function toggleSound(): void;
+    let menuInGame: {
+        save: string;
+        load: string;
+        credits: string;
+        shortcuts: string;
+        toggleSound: string;
+        turnUpVolume: string;
+        turnDownVolume: string;
+        toggleSuspects: string;
+    };
+    let gameMenu: ƒS.Menu;
+    function showSuspects(): void;
+    function showCredits(): void;
+    function showShortcuts(): void;
+    let menu: boolean;
+    function buttonFunctionalities(_option: string): Promise<void>;
+    function hndKeyPress(_event: KeyboardEvent): Promise<void>;
 }
 declare namespace Template {
-    function secondScene(): ƒS.SceneReturn;
+    function firstScene(): ƒS.SceneReturn;
 }

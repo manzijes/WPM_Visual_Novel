@@ -12,9 +12,13 @@ var Template;
         }
     };
     Template.sound = {
-        // themes
+        // music
+        mainMusic: "Audio/Music/inspiration.mp3",
+        // ambiance
+        birds: "Audio/Ambiance/springBirds.wav",
         // SFX
-        drop: "../Audio/SFX/drop.mp3"
+        drop: "Audio/SFX/drop.mp3",
+        schoolBell: "Audio/SFX/schoolBell.wav"
     };
     Template.locations = {
         gardenDoor: {
@@ -95,9 +99,11 @@ var Template;
     };
     window.addEventListener("load", start);
     function start(_event) {
+        //Menü
+        Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
             // { scene: Scene, name: "Scene" },
-            { scene: Template.secondScene, name: "secondScene" }
+            { scene: Template.firstScene, name: "firstScene" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -111,6 +117,154 @@ var Template;
         console.log("FudgeStory Template Scene starting");
     }
     Template.Scene = Scene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    //  MENU - Audio functions
+    Template.volume = 1.0;
+    Template.volumeBeforeMute = 1.0;
+    function incrementSound() {
+        if (Template.volume >= 100)
+            return;
+        Template.volume += 0.2;
+        Template.ƒS.Sound.setMasterVolume(Template.volume);
+    }
+    Template.incrementSound = incrementSound;
+    function decrementSound() {
+        if (Template.volume <= 0)
+            return;
+        Template.volume -= 0.2;
+        Template.ƒS.Sound.setMasterVolume(Template.volume);
+    }
+    Template.decrementSound = decrementSound;
+    function toggleSound() {
+        let toggleSound = document.getElementById("toggleSound");
+        toggleSound.classList.toggle("active");
+        if (Template.volume > 0) {
+            Template.volumeBeforeMute = Template.volume;
+            Template.volume = 0;
+            Template.ƒS.Sound.setMasterVolume(Template.volume);
+        }
+        else {
+            Template.ƒS.Sound.setMasterVolume(Template.volumeBeforeMute);
+            Template.volume = Template.volumeBeforeMute;
+        }
+    }
+    Template.toggleSound = toggleSound;
+    // MENU
+    Template.menuInGame = {
+        save: "speichern",
+        load: "laden",
+        credits: "credits",
+        shortcuts: "shortcuts",
+        toggleSound: "sound",
+        turnUpVolume: "+",
+        turnDownVolume: "-",
+        toggleSuspects: "notes"
+    };
+    function showSuspects() {
+        let toggleSuspects = document.getElementById("toggleSuspects");
+        toggleSuspects.classList.toggle("active");
+        var element = document.getElementById("suspects");
+        element.classList.toggle("hidden");
+    }
+    Template.showSuspects = showSuspects;
+    function showCredits() {
+        Template.ƒS.Text.setClass("credits");
+        let credits = "<h1>CREDITS</h1>";
+        Template.ƒS.Text.print(credits);
+    }
+    Template.showCredits = showCredits;
+    ;
+    function showShortcuts() {
+        Template.ƒS.Text.setClass("shortcuts");
+        let shortcuts = "<h1>SHORTCUTS</h1>\
+        <table>\
+          <tr>\
+            <td>Menu (open/ close)</td>\
+            <td>m</td>\
+          </tr>\
+          <tr>\
+            <td>Full-screen Windows</td>\
+            <td>f11</td>\
+          </tr>\
+          <tr>\
+            <td>Full-screen Mac</td>\
+            <td>Ctrl - Cmd – F </td>\
+          </tr>\
+          <tr>\
+            <td>Save</td>\
+            <td>f8</td>\
+          </tr>\
+          <tr>\
+            <td>Load</td>\
+            <td>f9</td>\
+          </tr>\
+        </table>\
+        ";
+        Template.ƒS.Text.print(shortcuts);
+    }
+    Template.showShortcuts = showShortcuts;
+    ;
+    // true = offen; false = geschlossen
+    Template.menu = true;
+    async function buttonFunctionalities(_option) {
+        console.log(_option);
+        switch (_option) {
+            case Template.menuInGame.save:
+                await Template.ƒS.Progress.save();
+                break;
+            case Template.menuInGame.load:
+                await Template.ƒS.Progress.load();
+                break;
+            case Template.menuInGame.credits:
+                showCredits();
+                break;
+            case Template.menuInGame.shortcuts:
+                showShortcuts();
+                break;
+            case Template.menuInGame.toggleSound:
+                toggleSound();
+                break;
+            case Template.menuInGame.turnUpVolume:
+                incrementSound();
+                break;
+            case Template.menuInGame.turnDownVolume:
+                decrementSound();
+                break;
+            case Template.menuInGame.toggleSuspects:
+                showSuspects();
+                break;
+        }
+    }
+    Template.buttonFunctionalities = buttonFunctionalities;
+    // Shortcuts
+    document.addEventListener("keydown", hndKeyPress);
+    async function hndKeyPress(_event) {
+        switch (_event.code) {
+            case Template.ƒ.KEYBOARD_CODE.F8:
+                console.log("Save");
+                await Template.ƒS.Progress.save();
+                break;
+            case Template.ƒ.KEYBOARD_CODE.F9:
+                console.log("Load");
+                await Template.ƒS.Progress.load();
+                break;
+            case Template.ƒ.KEYBOARD_CODE.M:
+                if (Template.menu) {
+                    console.log("Schließen");
+                    Template.gameMenu.close();
+                    Template.menu = false;
+                }
+                else {
+                    console.log("Öffnen");
+                    Template.gameMenu.open();
+                    Template.menu = true;
+                }
+                break;
+        }
+    }
+    Template.hndKeyPress = hndKeyPress;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -136,10 +290,13 @@ var Template;
             }
         };
         Template.ƒS.Speech.hide();
+        Template.ƒS.Sound.play(Template.sound.schoolBell, 0.15, false);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.07, 0.1, true);
         await Template.ƒS.Location.show(Template.locations.schoolOutsideDay);
         await Template.ƒS.update(2);
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        Template.ƒS.Sound.play(Template.sound.birds, 0.2, false);
         await Template.ƒS.update(1);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
@@ -154,8 +311,9 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0002);
         await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0002);
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.stranger, strangerText.Stranger.T0002);
         // Praktikum Session zu Dialog Options 
@@ -194,25 +352,5 @@ var Template;
         //     }
     }
     Template.firstScene = firstScene;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    async function secondScene() {
-        console.log("first scene");
-        let protagonistText = {
-            Protagonist: {
-                T0001: "Ich werde das ganz systematisch angehen... Wer hat Zugang zum Theaterraum? Das sind meine Verdächtigen.",
-                T0002: "Da wäre zunächst Kira. Kira kümmert sich um die Kostüme. Aber wieso sollte sie mich um Hilfe bitten, wenn sie selbst die Täterin ist?",
-                T0003: "Dann gibt es da noch Eliseo."
-            }
-        };
-        Template.ƒS.Speech.hide();
-        await Template.ƒS.Location.show(Template.locations.schoolOutsideDay);
-        await Template.ƒS.update(2);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
-        await Template.ƒS.update();
-        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
-    }
-    Template.secondScene = secondScene;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

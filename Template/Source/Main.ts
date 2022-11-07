@@ -13,9 +13,13 @@ namespace Template {
     };
 
   export let sound = {
-    // themes
+    // music
+    mainMusic: "Audio/Music/inspiration.mp3",
+    // ambiance
+    birds: "Audio/Ambiance/springBirds.wav",
     // SFX
-    drop: "../Audio/SFX/drop.mp3"
+    drop: "Audio/SFX/drop.mp3",
+    schoolBell: "Audio/SFX/schoolBell.wav"
   };
 
   export let locations = {
@@ -100,9 +104,13 @@ namespace Template {
 
   window.addEventListener("load", start);
   function start(_event: Event): void {
+
+    //Menü
+    gameMenu = ƒS.Menu.create(menuInGame, buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
+
     let scenes: ƒS.Scenes = [
       // { scene: Scene, name: "Scene" },
-      { scene: secondScene, name: "secondScene"}
+      { scene: firstScene, name: "firstScene"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
