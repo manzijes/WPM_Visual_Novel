@@ -35,7 +35,7 @@ namespace Template {
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-        ƒS.Sound.play(sound.birds, 0.2, false); 
+        ƒS.Sound.play(sound.birds, 0.2, true); 
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0001);
 

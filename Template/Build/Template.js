@@ -296,7 +296,7 @@ var Template;
         await Template.ƒS.update(2);
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
-        Template.ƒS.Sound.play(Template.sound.birds, 0.2, false);
+        Template.ƒS.Sound.play(Template.sound.birds, 0.2, true);
         await Template.ƒS.update(1);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
