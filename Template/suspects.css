@@ -1,3 +1,10 @@
+#toggleSuspects{
+    visibility: hidden;
+    opacity: 0;
+    margin-top: 30px;
+    transition: all 0.3s;
+}
+
 .hidden{
     opacity: 0;
     visibility: hidden;
@@ -28,8 +35,34 @@
 }
 
 .portrait-wrapper img{
+    border-radius: 15px;
+}
+
+.suspects .solas img, .suspects .eliseo img, .suspects .lucia img{
+    filter: brightness(0%);
+}
+
+.portrait{
     border: 2px solid white;
     border-radius: 15px;
+}
+
+.portrait p {
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    z-index: 1;
+    font-size: 1.75rem;
+    background-color: rgb(0, 0, 0, 0.4);
+    border-radius: 15px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* text-transform: uppercase; */
+    height: 100%;
 }
 
 .portrait:before,
@@ -45,6 +78,7 @@ background-color: rgba(255, 255, 255, .3);
     top: -10px;
     left: 0;
     right: 0;
+    z-index: 4;
 }
 .suspects {
     margin: auto;

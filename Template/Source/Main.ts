@@ -19,7 +19,8 @@ namespace Template {
     birds: "Audio/Ambiance/springBirds.wav",
     // SFX
     drop: "Audio/SFX/drop.mp3",
-    schoolBell: "Audio/SFX/schoolBell.wav"
+    schoolBell: "Audio/SFX/schoolBell.wav",
+    sparkle: "Audio/SFX/sparkle.mp3"
   };
 
   export let locations = {
@@ -93,7 +94,7 @@ namespace Template {
         happy: "Images/Characters/Kira/kira-happy.png",
         sad: "Images/Characters/Kira/kira-sad.png",
         neutral: "Images/Characters/Kira/kira-neutral.png",
-        scared: "Images/Characters/Kira/protagonist-scared.png"
+        scared: "Images/Characters/Kira/kira-scared.png"
       }
     }
   };

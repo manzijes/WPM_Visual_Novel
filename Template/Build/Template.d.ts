@@ -13,6 +13,7 @@ declare namespace Template {
         birds: string;
         drop: string;
         schoolBell: string;
+        sparkle: string;
     };
     let locations: {
         gardenDoor: {
