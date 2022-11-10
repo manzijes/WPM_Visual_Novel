@@ -41,14 +41,14 @@ namespace Template {
         
         let protagonistText = {
             Protagonist: {
-                T0001: "Das beste am Schultag ist die Mittagspause... Kein Lehrer scheucht dich über den Sportplatz oder zwingt dich, an der Tafel Matheaufgaben zu lösen.",
+                T0001: "Das beste am Schultag ist die Pause... Kein Lehrer scheucht dich über den Sportplatz oder zwingt dich, an der Tafel Matheaufgaben zu lösen.",
                 T0002: "Ich kann mich entspannen und lesen, die Stimmen der anderen verschmelzen zu einem Rauschen im Hintergrund. Himmlisch!",
                 T0003: "Nanu? Spricht da jemand mit mir?",
                 T0004: "Stellvertretende Schulsprecherin, wenn man es genau nimmt. Was gibt’s denn?",
                 T0005: "Der Theaterclub, natürlich. Jetzt weiß ich wieder, woher ich dich kenne. Du bist Kira, oder?",
                 T0006: "Wie meinst du das?",
                 T0007: "Das klingt in der Tat seltsam. Aber wieso kommst du damit zu mir?",
-                T0008: "Weißt du, der Schülerrat ist eigentlich keine Detektei... Egal. Natürlich helfe ich dir, das gehört zu meinen Pflichten dazu. Du siehst selber nicht allzu hohl aus, hast du bereits Verdächtige?",
+                T0008: "Weißt du, der Schülerrat ist eigentlich keine Detektei... Egal. Natürlich helfe ich dir, das gehört zu meinen Pflichten dazu. Du siehst selber ganz helle aus, hast du bereits Verdächtige?",
                 T0009: "In Ordnung. Ich begleite dich zu der Probe heute und nehme die drei mal unter die Lupe.",
                 T0010: "Komisch. Was für einen Grund sollte jemand haben, eine Theateraufführung zu sabotieren? Naja, das finde ich bald heraus... Am besten, ich mache mir Notizen wie ein richtiger Ermittler.",
                 T0011: "Perfekt! Wenn ich gut organisiert bin, dann ist die Sache im Handumdrehen gegessen."
@@ -60,7 +60,7 @@ namespace Template {
         ƒS.Sound.play(sound.schoolBell, 0.15, false); 
         ƒS.Sound.fade(sound.mainMusic, 0.07, 0.1, true); 
 
-        await ƒS.Location.show(locations.schoolOutsideDay);
+        await ƒS.Location.show(locations.schoolOutsideTwilight);
         await ƒS.update(2);
 
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
@@ -116,7 +116,7 @@ namespace Template {
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.update(0.5);
 
-        await ƒS.Character.show(characters.kira, characters.kira.pose.happy, ƒS.positionPercent(75, 97));
+        await ƒS.Character.show(characters.kira, characters.kira.pose.smiling, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0001);
         await ƒS.update(0.5);
@@ -135,7 +135,7 @@ namespace Template {
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.update(0.5);
 
-        await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
+        await ƒS.Character.show(characters.kira, characters.kira.pose.unsure, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0002);
 

@@ -16,42 +16,12 @@ declare namespace Template {
         sparkle: string;
     };
     let locations: {
-        gardenDoor: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
-        gardenPath: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
-        gardenSwing: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
-        gardenHouse: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
-        gardenBridge: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
-        gardenTable: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
-        gardenGreenhouse: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
         schoolOutsideDay: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        schoolOutsideTwilight: {
             name: string;
             background: string;
             foreground: string;
@@ -86,6 +56,8 @@ declare namespace Template {
                 sad: string;
                 neutral: string;
                 scared: string;
+                unsure: string;
+                smiling: string;
             };
         };
     };

@@ -24,43 +24,13 @@ namespace Template {
   };
 
   export let locations = {
-    gardenDoor: {
-      name: "GardenDoor",
-      background: "Images/Backgrounds/Garden/garden1.png",
-      foreground: ""
-    },
-    gardenPath: {
-      name: "GardenPath",
-      background: "Images/Backgrounds/Garden/garden2.png",
-      foreground: ""
-    },
-    gardenSwing: {
-      name: "GardenSwing",
-      background: "Images/Backgrounds/Garden/garden3.png",
-      foreground: ""
-    },
-    gardenHouse: {
-      name: "GardenHouse",
-      background: "Images/Backgrounds/Garden/garden4.png",
-      foreground: ""
-    },
-    gardenBridge: {
-      name: "GardenBridge",
-      background: "Images/Backgrounds/Garden/garden5.png",
-      foreground: ""
-    },
-    gardenTable: {
-      name: "GardenTable",
-      background: "Images/Backgrounds/Garden/garden6.png",
-      foreground: ""
-    },
-    gardenGreenhouse: {
-      name: "GardenGreenhouse",
-      background: "Images/Backgrounds/Garden/garden7.png",
-      foreground: ""
-    },
     schoolOutsideDay: {
       name: "schoolOutsideDay",
+      background: "Images/Backgrounds/school-outside-day.jpg",
+      foreground: ""
+    },
+    schoolOutsideTwilight: {
+      name: "schoolOutsideTwilight",
       background: "Images/Backgrounds/school-outside-twilight.jpg",
       foreground: ""
     }
@@ -94,7 +64,9 @@ namespace Template {
         happy: "Images/Characters/Kira/kira-happy.png",
         sad: "Images/Characters/Kira/kira-sad.png",
         neutral: "Images/Characters/Kira/kira-neutral.png",
-        scared: "Images/Characters/Kira/kira-scared.png"
+        scared: "Images/Characters/Kira/kira-scared.png",
+        unsure: "Images/Characters/Kira/kira-unsure.png",
+        smiling: "Images/Characters/Kira/kira-smiling.png"
       }
     }
   };
