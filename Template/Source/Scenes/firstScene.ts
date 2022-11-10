@@ -7,6 +7,7 @@ namespace Template {
             ƒS.Sound.play(sound.sparkle, 0.2, false); 
             let toggleSuspects = document.getElementById("toggleSuspects");
             toggleSuspects.style.cssText = "visibility: visible; opacity: 1;";
+            notesCreated = true;
         }
 
         let strangerText = {

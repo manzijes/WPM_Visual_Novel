@@ -74,9 +74,13 @@ declare namespace Template {
     function incrementSound(): void;
     function decrementSound(): void;
     function toggleSound(): void;
+    function showSuspects(): void;
+    function showCredits(): void;
+    function showShortcuts(): void;
     let menuInGame: {
         save: string;
         load: string;
+        close: string;
         credits: string;
         shortcuts: string;
         toggleSound: string;
@@ -85,10 +89,8 @@ declare namespace Template {
         toggleSuspects: string;
     };
     let gameMenu: ƒS.Menu;
-    function showSuspects(): void;
-    function showCredits(): void;
-    function showShortcuts(): void;
-    let menu: boolean;
+    let menuOpen: boolean;
+    let notesCreated: boolean;
     function buttonFunctionalities(_option: string): Promise<void>;
     function hndKeyPress(_event: KeyboardEvent): Promise<void>;
 }

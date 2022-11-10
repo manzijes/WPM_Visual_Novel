@@ -22,32 +22,16 @@ namespace Template {
     export function toggleSound(): void {
         let toggleSound = document.getElementById("toggleSound");
         toggleSound.classList.toggle("active");
-        if (volume > 0){
+        if (volume > 0) {
             volumeBeforeMute = volume;
             volume = 0;
             ƒS.Sound.setMasterVolume(volume);
         }
-        else{
+        else {
             ƒS.Sound.setMasterVolume(volumeBeforeMute);
             volume = volumeBeforeMute;
         }
     }
-
-    // MENU
-
-    export let menuInGame = {
-        save: "speichern",
-        load: "laden",
-        credits: "credits",
-        shortcuts: "shortcuts",
-        toggleSound: "sound",
-        turnUpVolume: "+",
-        turnDownVolume: "-",
-        toggleSuspects: "notes"
-    };
-
-
-    export let gameMenu: ƒS.Menu;
 
     export function showSuspects(): void {
         let toggleSuspects = document.getElementById("toggleSuspects");
@@ -89,13 +73,34 @@ namespace Template {
             <td>Load</td>\
             <td>f9</td>\
           </tr>\
+          <tr>\
+          <td>Notes</td>\
+          <td>S</td>\
+        </tr>\
         </table>\
         ";
         ƒS.Text.print(shortcuts);
     };
 
+    // MENU
+
+    export let menuInGame = {
+        save: "Save",
+        load: "Load",
+        close: "Close",
+        credits: "Credits",
+        shortcuts: "Shortcuts",
+        toggleSound: "Sound",
+        turnUpVolume: "+",
+        turnDownVolume: "-",
+        toggleSuspects: "Notes"
+    };
+
+    export let gameMenu: ƒS.Menu;
+
     // true = offen; false = geschlossen
-    export let menu: boolean = true;
+    export let menuOpen: boolean = true;
+    export let notesCreated: boolean = false;
 
     export async function buttonFunctionalities(_option: string): Promise<void> {
         console.log(_option);
@@ -106,15 +111,19 @@ namespace Template {
             case menuInGame.load:
                 await ƒS.Progress.load();
                 break;
+            case menuInGame.close:
+                gameMenu.close();
+                menuOpen = false;
+                break;
             case menuInGame.credits:
                 showCredits();
                 break;
             case menuInGame.shortcuts:
                 showShortcuts();
                 break;
-                case menuInGame.toggleSound:
-                    toggleSound();
-                    break;
+            case menuInGame.toggleSound:
+                toggleSound();
+                break;
             case menuInGame.turnUpVolume:
                 incrementSound();
                 break;
@@ -124,7 +133,7 @@ namespace Template {
             case menuInGame.toggleSuspects:
                 showSuspects();
                 break;
-                
+
 
         }
     }
@@ -142,16 +151,22 @@ namespace Template {
                 console.log("Load");
                 await ƒS.Progress.load();
                 break;
+            case ƒ.KEYBOARD_CODE.S:
+                if(notesCreated){
+                    console.log("Suspects");
+                    showSuspects();
+                }
+                break;
             case ƒ.KEYBOARD_CODE.M:
-                if (menu) {
+                if (menuOpen) {
                     console.log("Schließen");
                     gameMenu.close();
-                    menu = false;
+                    menuOpen = false;
                 }
                 else {
                     console.log("Öffnen");
                     gameMenu.open();
-                    menu = true;
+                    menuOpen = true;
                 }
                 break;
         }

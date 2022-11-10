@@ -124,17 +124,6 @@ var Template;
         }
     }
     Template.toggleSound = toggleSound;
-    // MENU
-    Template.menuInGame = {
-        save: "speichern",
-        load: "laden",
-        credits: "credits",
-        shortcuts: "shortcuts",
-        toggleSound: "sound",
-        turnUpVolume: "+",
-        turnDownVolume: "-",
-        toggleSuspects: "notes"
-    };
     function showSuspects() {
         let toggleSuspects = document.getElementById("toggleSuspects");
         toggleSuspects.classList.toggle("active");
@@ -173,14 +162,31 @@ var Template;
             <td>Load</td>\
             <td>f9</td>\
           </tr>\
+          <tr>\
+          <td>Notes</td>\
+          <td>S</td>\
+        </tr>\
         </table>\
         ";
         Template.ƒS.Text.print(shortcuts);
     }
     Template.showShortcuts = showShortcuts;
     ;
+    // MENU
+    Template.menuInGame = {
+        save: "Save",
+        load: "Load",
+        close: "Close",
+        credits: "Credits",
+        shortcuts: "Shortcuts",
+        toggleSound: "Sound",
+        turnUpVolume: "+",
+        turnDownVolume: "-",
+        toggleSuspects: "Notes"
+    };
     // true = offen; false = geschlossen
-    Template.menu = true;
+    Template.menuOpen = true;
+    Template.notesCreated = false;
     async function buttonFunctionalities(_option) {
         console.log(_option);
         switch (_option) {
@@ -189,6 +195,10 @@ var Template;
                 break;
             case Template.menuInGame.load:
                 await Template.ƒS.Progress.load();
+                break;
+            case Template.menuInGame.close:
+                Template.gameMenu.close();
+                Template.menuOpen = false;
                 break;
             case Template.menuInGame.credits:
                 showCredits();
@@ -223,16 +233,22 @@ var Template;
                 console.log("Load");
                 await Template.ƒS.Progress.load();
                 break;
+            case Template.ƒ.KEYBOARD_CODE.S:
+                if (Template.notesCreated) {
+                    console.log("Suspects");
+                    showSuspects();
+                }
+                break;
             case Template.ƒ.KEYBOARD_CODE.M:
-                if (Template.menu) {
+                if (Template.menuOpen) {
                     console.log("Schließen");
                     Template.gameMenu.close();
-                    Template.menu = false;
+                    Template.menuOpen = false;
                 }
                 else {
                     console.log("Öffnen");
                     Template.gameMenu.open();
-                    Template.menu = true;
+                    Template.menuOpen = true;
                 }
                 break;
         }
@@ -247,6 +263,7 @@ var Template;
             Template.ƒS.Sound.play(Template.sound.sparkle, 0.2, false);
             let toggleSuspects = document.getElementById("toggleSuspects");
             toggleSuspects.style.cssText = "visibility: visible; opacity: 1;";
+            Template.notesCreated = true;
         }
         let strangerText = {
             Stranger: {

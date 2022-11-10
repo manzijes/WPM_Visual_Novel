@@ -72,7 +72,7 @@ namespace Template {
   };
 
   export let dataForSave = {
-    nameProtagonist: ""
+    nameProtagonist: "",
     };
 
   window.addEventListener("load", start);
