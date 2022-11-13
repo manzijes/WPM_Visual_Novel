@@ -1,14 +1,5 @@
 namespace Template {
     export async function firstScene(): ƒS.SceneReturn {
-        
-        console.log("first scene");
-
-        function revealNotesInMenu() {
-            ƒS.Sound.play(sound.sparkle, 0.2, false); 
-            let toggleSuspects = document.getElementById("toggleSuspects");
-            toggleSuspects.style.cssText = "visibility: visible; opacity: 1;";
-            notesCreated = true;
-        }
 
         let strangerText = {
             Stranger: {
@@ -195,8 +186,6 @@ namespace Template {
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0010);
-        
-        setTimeout(revealNotesInMenu, 1000);
 
         await ƒS.update(2.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0011);
