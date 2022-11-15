@@ -60,10 +60,33 @@ declare namespace Template {
                 smiling: string;
             };
         };
+        lucia: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                neutral: string;
+                sad: string;
+                smiling: string;
+                surprised: string;
+                unsure: string;
+                upset: string;
+            };
+        };
     };
     let dataForSave: {
         nameProtagonist: string;
+        toggleSuspectsButton: boolean;
+        solasPortrait: boolean;
+        solasMotive: boolean;
+        solasOpportunity: boolean;
+        eliseoPortrait: boolean;
+        eliseoMotive: boolean;
+        eliseoOpportunity: boolean;
+        luciaPortrait: boolean;
+        luciaMotive: boolean;
+        luciaOpportunity: boolean;
     };
+    function updateNotes(): void;
 }
 declare namespace Template {
     function Scene(): ƒS.SceneReturn;

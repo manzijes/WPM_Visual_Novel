@@ -1,10 +1,15 @@
 namespace Template {
     export async function firstScene(): ƒS.SceneReturn {
 
+        function revealNotes() {
+            ƒS.Sound.play(sound.sparkle, 0.15, false); 
+            dataForSave.toggleSuspectsButton = true;
+        }
+
         let strangerText = {
             Stranger: {
                 T0001: "Entschuldigung!",
-                T0002: "Es tut mir leid, falls ich dich störe, aber ich brauche deine Hilfe. Du bist die Schulsprecherin, richtig?",
+                T0002: "Es tut mir leid, falls ich dich störe, aber ich brauche deine Hilfe. Du bist Schulsprecherin, richtig?",
                 T0003: "Ich weiß nicht, wie ich es erklären soll, aber... Ich glaube, jemand sabotiert den Theaterclub.",
             }
         };
@@ -22,7 +27,8 @@ namespace Template {
                 T0001: "Ja, das stimmt.",
                 T0001_2: "Wir stecken gerade mitten in den Proben für die nächste Aufführung. Aber seit ein paar Tagen läuft alles schief.",
                 T0002: "Zum Beispiel letztens. Da verschwanden alle Skripte aus unserem Clubraum. Oder gestern, da fanden wir plötzlich eines der Kostüme im Müll. Es war total zerschnitten! Jemand hat es auf uns abgesehen, denkst du nicht?",
-                T0003: "Der Schulsprecher selbst ist Mitglied im Theaterclub. Es ist besser, wenn sich ein Außenstehender damit beschäftigt. Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch. Also, was sagst du?",
+                T0003: "Ich hätte mich eigentlich an den ersten Schulsprecher gewandt, aber er ist selbst ein Mitglied. Es ist besser, wenn sich ein Außenstehender damit beschäftigt.",
+                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch. Also, was sagst du?",
                 T0004: "Ehm... Es hatten soweit ich weiß nur drei Schüler freien Zugang zum Theaterraum und damit Gelegenheit zu der Sabotage...",
                 T0004_2: "Zunächst Solas. Er näht die Kostüme.",
                 T0004_3: "Dann ist da Eliseo, der Schulsprecher. Er spielt die männliche Hauptrolle.",
@@ -37,7 +43,7 @@ namespace Template {
                 T0002: "Ich kann mich entspannen und lesen, die Stimmen der anderen verschmelzen zu einem Rauschen im Hintergrund. Himmlisch!",
                 T0003: "Nanu? Spricht da jemand mit mir?",
                 T0004: "Stellvertretende Schulsprecherin, wenn man es genau nimmt. Was gibt’s denn?",
-                T0005: "Der Theaterclub, natürlich. Jetzt weiß ich wieder, woher ich dich kenne. Du bist Kira, oder?",
+                T0005: "Natürlich. Jetzt weiß ich, woher ich dich kenne. Du bist Kira, die Leiterin des Theaterclubs.",
                 T0006: "Wie meinst du das?",
                 T0007: "Das klingt in der Tat seltsam. Aber wieso kommst du damit zu mir?",
                 T0008: "Weißt du, der Schülerrat ist eigentlich keine Detektei... Egal. Natürlich helfe ich dir, das gehört zu meinen Pflichten dazu. Du siehst selber ganz helle aus, hast du bereits Verdächtige?",
@@ -144,6 +150,8 @@ namespace Template {
         await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003);
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_2);
 
         await ƒS.Character.hide(characters.kira);
         await ƒS.update(0.5);
@@ -186,6 +194,9 @@ namespace Template {
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0010);
+
+        revealNotes();
+        updateNotes();
 
         await ƒS.update(2.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0011);

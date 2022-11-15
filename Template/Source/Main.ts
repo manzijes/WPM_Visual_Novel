@@ -68,12 +68,48 @@ namespace Template {
         unsure: "Images/Characters/Kira/kira-unsure.png",
         smiling: "Images/Characters/Kira/kira-smiling.png"
       }
+    },
+    lucia: {
+      name: "Lucia",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        neutral: "Images/Characters/Lucia/lucia-neutral.png",
+        sad: "Images/Characters/Lucia/lucia-sad.png",
+        smiling: "Images/Characters/Lucia/lucia-smiling.png",
+        surprised: "Images/Characters/Lucia/lucia-surprised.png",
+        unsure: "Images/Characters/Lucia/lucia-unsure.png",
+        upset: "Images/Characters/Lucia/lucia-upset.png",
+      }
     }
   };
 
   export let dataForSave = {
     nameProtagonist: "",
+
+    // visibility of buttons in menu
+    toggleSuspectsButton: false,
+
+    // visibility of elements in notes window
+    solasPortrait: false,
+    solasMotive: false,
+    solasOpportunity: false,
+
+    eliseoPortrait: false,
+    eliseoMotive: false,
+    eliseoOpportunity: false,
+
+    luciaPortrait: false,
+    luciaMotive: false,
+    luciaOpportunity: false,
     };
+
+  export function updateNotes() {
+    if(dataForSave.toggleSuspectsButton == true){
+      let toggleSuspects = document.getElementById("toggleSuspects");
+      toggleSuspects.style.visibility = "visible";
+      toggleSuspects.style.opacity = "1";
+    }
+  }
 
   window.addEventListener("load", start);
   function start(_event: Event): void {
