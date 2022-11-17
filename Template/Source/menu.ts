@@ -87,7 +87,7 @@ namespace Template {
     export let menuInGame = {
         save: "Save",
         load: "Load",
-        close: "Close",
+        // close: "Close",
         credits: "Credits",
         shortcuts: "Shortcuts",
         toggleSound: "Sound",
@@ -111,10 +111,10 @@ namespace Template {
             case menuInGame.load:
                 await ƒS.Progress.load();
                 break;
-            case menuInGame.close:
-                gameMenu.close();
-                menuOpen = false;
-                break;
+            // case menuInGame.close:
+            //     gameMenu.close();
+            //     menuOpen = false;
+            //     break;
             case menuInGame.credits:
                 showCredits();
                 break;
@@ -171,6 +171,5 @@ namespace Template {
                 break;
         }
     }
-
 
 }

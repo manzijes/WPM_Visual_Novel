@@ -83,6 +83,24 @@ namespace Template {
     }
   };
 
+  export function updateNotes() {
+    if(dataForSave.toggleSuspectsButton == true){
+      ƒS.Sound.play(sound.sparkle, 0.15, false); 
+      let toggleSuspects = document.getElementById("toggleSuspects");
+      toggleSuspects.style.visibility = "visible";
+      toggleSuspects.style.opacity = "1";
+    }
+  }
+
+  export function animation(): ƒS.AnimationDefinition {
+    return {
+      start: { translation: ƒS.positions.bottomleft, rotation: -20, scaling: new ƒS.Position(0.5, 1.5) },
+      end: { translation: ƒS.positions.bottomright, rotation: 20, scaling: new ƒS.Position(1.5, 0.5)},
+      duration: 1,
+      playmode: ƒS.ANIMATION_PLAYMODE.LOOP
+    };
+  }
+
   export let dataForSave = {
     nameProtagonist: "",
 
@@ -103,14 +121,6 @@ namespace Template {
     luciaOpportunity: false,
     };
 
-  export function updateNotes() {
-    if(dataForSave.toggleSuspectsButton == true){
-      let toggleSuspects = document.getElementById("toggleSuspects");
-      toggleSuspects.style.visibility = "visible";
-      toggleSuspects.style.opacity = "1";
-    }
-  }
-
   window.addEventListener("load", start);
   function start(_event: Event): void {
 
@@ -119,7 +129,8 @@ namespace Template {
 
     let scenes: ƒS.Scenes = [
       // { scene: Scene, name: "Scene" },
-      { scene: firstScene, name: "firstScene"}
+      // { scene: firstScene, name: "firstScene"},
+      { scene: animationExampleScene, name: "animationExampleScene"},
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

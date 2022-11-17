@@ -3,7 +3,7 @@
     visibility: hidden;
 
     margin-top: 30px;
-    transition: all 0.3s;
+    transition: all 0.4s;
 }
 
 .hidden{
@@ -47,7 +47,7 @@
 }
 
 .suspects .solas img, .suspects .eliseo img, .suspects .lucia img{
-    /* filter: brightness(0%); */
+    filter: brightness(0%);
 }
 
 .portrait{
@@ -69,8 +69,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* text-transform: uppercase; */
-    /* height: 100%; */
+    height: 100%;
 }
 
 .portrait:before,

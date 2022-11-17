@@ -79,6 +79,24 @@ var Template;
             }
         }
     };
+    function updateNotes() {
+        if (Template.dataForSave.toggleSuspectsButton == true) {
+            Template.ƒS.Sound.play(Template.sound.sparkle, 0.15, false);
+            let toggleSuspects = document.getElementById("toggleSuspects");
+            toggleSuspects.style.visibility = "visible";
+            toggleSuspects.style.opacity = "1";
+        }
+    }
+    Template.updateNotes = updateNotes;
+    function animation() {
+        return {
+            start: { translation: Template.ƒS.positions.bottomleft, rotation: -20, scaling: new Template.ƒS.Position(0.5, 1.5) },
+            end: { translation: Template.ƒS.positions.bottomright, rotation: 20, scaling: new Template.ƒS.Position(1.5, 0.5) },
+            duration: 1,
+            playmode: Template.ƒS.ANIMATION_PLAYMODE.LOOP
+        };
+    }
+    Template.animation = animation;
     Template.dataForSave = {
         nameProtagonist: "",
         // visibility of buttons in menu
@@ -94,21 +112,14 @@ var Template;
         luciaMotive: false,
         luciaOpportunity: false,
     };
-    function updateNotes() {
-        if (Template.dataForSave.toggleSuspectsButton == true) {
-            let toggleSuspects = document.getElementById("toggleSuspects");
-            toggleSuspects.style.visibility = "visible";
-            toggleSuspects.style.opacity = "1";
-        }
-    }
-    Template.updateNotes = updateNotes;
     window.addEventListener("load", start);
     function start(_event) {
         //Menü
         Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
             // { scene: Scene, name: "Scene" },
-            { scene: Template.firstScene, name: "firstScene" }
+            // { scene: firstScene, name: "firstScene"},
+            { scene: Template.animationExampleScene, name: "animationExampleScene" },
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -208,7 +219,7 @@ var Template;
     Template.menuInGame = {
         save: "Save",
         load: "Load",
-        close: "Close",
+        // close: "Close",
         credits: "Credits",
         shortcuts: "Shortcuts",
         toggleSound: "Sound",
@@ -228,10 +239,10 @@ var Template;
             case Template.menuInGame.load:
                 await Template.ƒS.Progress.load();
                 break;
-            case Template.menuInGame.close:
-                Template.gameMenu.close();
-                Template.menuOpen = false;
-                break;
+            // case menuInGame.close:
+            //     gameMenu.close();
+            //     menuOpen = false;
+            //     break;
             case Template.menuInGame.credits:
                 showCredits();
                 break;
@@ -289,9 +300,16 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
+    async function animationExampleScene() {
+        await Template.ƒS.Character.animate(Template.characters.protagonist, Template.characters.protagonist.pose.happy, Template.animation());
+        await Template.ƒS.update();
+    }
+    Template.animationExampleScene = animationExampleScene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     async function firstScene() {
         function revealNotes() {
-            Template.ƒS.Sound.play(Template.sound.sparkle, 0.15, false);
             Template.dataForSave.toggleSuspectsButton = true;
         }
         let strangerText = {
@@ -314,7 +332,7 @@ var Template;
                 T0001_2: "Wir stecken gerade mitten in den Proben für die nächste Aufführung. Aber seit ein paar Tagen läuft alles schief.",
                 T0002: "Zum Beispiel letztens. Da verschwanden alle Skripte aus unserem Clubraum. Oder gestern, da fanden wir plötzlich eines der Kostüme im Müll. Es war total zerschnitten! Jemand hat es auf uns abgesehen, denkst du nicht?",
                 T0003: "Ich hätte mich eigentlich an den ersten Schulsprecher gewandt, aber er ist selbst ein Mitglied. Es ist besser, wenn sich ein Außenstehender damit beschäftigt.",
-                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch. Also, was sagst du?",
+                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch und auf der Ziellinie zur Jahrgangsbesten bist du auch. Also, was sagst du?",
                 T0004: "Ehm... Es hatten soweit ich weiß nur drei Schüler freien Zugang zum Theaterraum und damit Gelegenheit zu der Sabotage...",
                 T0004_2: "Zunächst Solas. Er näht die Kostüme.",
                 T0004_3: "Dann ist da Eliseo, der Schulsprecher. Er spielt die männliche Hauptrolle.",

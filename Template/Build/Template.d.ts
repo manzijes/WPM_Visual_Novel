@@ -73,6 +73,8 @@ declare namespace Template {
             };
         };
     };
+    function updateNotes(): void;
+    function animation(): ƒS.AnimationDefinition;
     let dataForSave: {
         nameProtagonist: string;
         toggleSuspectsButton: boolean;
@@ -86,7 +88,6 @@ declare namespace Template {
         luciaMotive: boolean;
         luciaOpportunity: boolean;
     };
-    function updateNotes(): void;
 }
 declare namespace Template {
     function Scene(): ƒS.SceneReturn;
@@ -103,7 +104,6 @@ declare namespace Template {
     let menuInGame: {
         save: string;
         load: string;
-        close: string;
         credits: string;
         shortcuts: string;
         toggleSound: string;
@@ -116,6 +116,9 @@ declare namespace Template {
     let notesCreated: boolean;
     function buttonFunctionalities(_option: string): Promise<void>;
     function hndKeyPress(_event: KeyboardEvent): Promise<void>;
+}
+declare namespace Template {
+    function animationExampleScene(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function firstScene(): ƒS.SceneReturn;

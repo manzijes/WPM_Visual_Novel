@@ -2,7 +2,6 @@ namespace Template {
     export async function firstScene(): ƒS.SceneReturn {
 
         function revealNotes() {
-            ƒS.Sound.play(sound.sparkle, 0.15, false); 
             dataForSave.toggleSuspectsButton = true;
         }
 
@@ -28,7 +27,7 @@ namespace Template {
                 T0001_2: "Wir stecken gerade mitten in den Proben für die nächste Aufführung. Aber seit ein paar Tagen läuft alles schief.",
                 T0002: "Zum Beispiel letztens. Da verschwanden alle Skripte aus unserem Clubraum. Oder gestern, da fanden wir plötzlich eines der Kostüme im Müll. Es war total zerschnitten! Jemand hat es auf uns abgesehen, denkst du nicht?",
                 T0003: "Ich hätte mich eigentlich an den ersten Schulsprecher gewandt, aber er ist selbst ein Mitglied. Es ist besser, wenn sich ein Außenstehender damit beschäftigt.",
-                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch. Also, was sagst du?",
+                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch und auf der Ziellinie zur Jahrgangsbesten bist du auch. Also, was sagst du?",
                 T0004: "Ehm... Es hatten soweit ich weiß nur drei Schüler freien Zugang zum Theaterraum und damit Gelegenheit zu der Sabotage...",
                 T0004_2: "Zunächst Solas. Er näht die Kostüme.",
                 T0004_3: "Dann ist da Eliseo, der Schulsprecher. Er spielt die männliche Hauptrolle.",
