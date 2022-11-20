@@ -46,7 +46,7 @@
     border-radius: 15px;
 }
 
-.suspects .solas img, .suspects .eliseo img, .suspects .lucia img{
+.suspects .solas img, .suspects .atlas img, .suspects .lucia img{
     filter: brightness(0%);
 }
 

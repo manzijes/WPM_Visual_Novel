@@ -112,9 +112,9 @@ namespace Template {
     solasMotive: false,
     solasOpportunity: false,
 
-    eliseoPortrait: false,
-    eliseoMotive: false,
-    eliseoOpportunity: false,
+    atlasPortrait: false,
+    atlasMotive: false,
+    atlasOpportunity: false,
 
     luciaPortrait: false,
     luciaMotive: false,
