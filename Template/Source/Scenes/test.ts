@@ -55,8 +55,8 @@ namespace Template {
             let switchImg = document.getElementById("switch");
             switchImg.remove();
             ƒS.Sound.play(sound.switch, 1, false); 
-            // ƒS.Sound.fade(sound.spookyMusic, 0, 3);
-            // ƒS.Sound.fade(sound.mainMusic, 1, 3, true); 
+            ƒS.Sound.fade(sound.spookyMusic, 0, 4.5);
+            ƒS.Sound.fade(sound.mainMusic, 1, 5, true); 
             await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
             setLights("turnOnLights");
             await ƒS.update(0.5);
@@ -73,8 +73,10 @@ namespace Template {
         let protagonistText = {
             Protagonist: {
                 T0001: "Test.",
-                T0002: "Jemand hat das Licht ausgeschaltet. Warte kurz, an meinem Schlüsselbund hängt eine kleine Taschenlampe. Ich suche gleich den Lichtschalter.",
-                T0003: "Gefunden!"
+                T0002: "Jemand hat das Licht ausgeschaltet. Warte kurz, an meinem Schlüsselbund hängt eine kleine Taschenlampe. Ich suche gleich einen Lichtschalter.",
+                T0003: "Gefunden!",
+                T0004: "Sieh mal, da ist etwas an der Tür.",
+                T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Vor der Tür gibt es einen zweiten Lichtschalter, das war also ganz einfach."
             }
         };
 

@@ -602,8 +602,8 @@ var Template;
             let switchImg = document.getElementById("switch");
             switchImg.remove();
             Template.ƒS.Sound.play(Template.sound.switch, 1, false);
-            // ƒS.Sound.fade(sound.spookyMusic, 0, 3);
-            // ƒS.Sound.fade(sound.mainMusic, 1, 3, true); 
+            Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0, 4.5);
+            Template.ƒS.Sound.fade(Template.sound.mainMusic, 1, 5, true);
             await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
             setLights("turnOnLights");
             await Template.ƒS.update(0.5);
@@ -618,8 +618,10 @@ var Template;
         let protagonistText = {
             Protagonist: {
                 T0001: "Test.",
-                T0002: "Jemand hat das Licht ausgeschaltet. Warte kurz, an meinem Schlüsselbund hängt eine kleine Taschenlampe. Ich suche gleich den Lichtschalter.",
-                T0003: "Gefunden!"
+                T0002: "Jemand hat das Licht ausgeschaltet. Warte kurz, an meinem Schlüsselbund hängt eine kleine Taschenlampe. Ich suche gleich einen Lichtschalter.",
+                T0003: "Gefunden!",
+                T0004: "Sieh mal, da ist etwas an der Tür.",
+                T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Vor der Tür gibt es einen zweiten Lichtschalter, das war also ganz einfach."
             }
         };
         let kiraText = {
