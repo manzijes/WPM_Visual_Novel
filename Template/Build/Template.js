@@ -14,12 +14,16 @@ var Template;
     Template.sound = {
         // music
         mainMusic: "Audio/Music/inspiration.mp3",
+        spookyMusic: "Audio/Music/nightmare.mp3",
         // ambiance
         birds: "Audio/Ambiance/springBirds.wav",
         // SFX
         drop: "Audio/SFX/drop.mp3",
         schoolBell: "Audio/SFX/schoolBell.wav",
-        sparkle: "Audio/SFX/sparkle.mp3"
+        sparkle: "Audio/SFX/sparkle.mp3",
+        pageflip: "Audio/SFX/pageflip.wav",
+        switch: "Audio/SFX/switch.wav",
+        flashlight: "Audio/SFX/flashlight.wav"
     };
     Template.locations = {
         schoolOutsideDay: {
@@ -40,6 +44,13 @@ var Template;
         classroomDay: {
             name: "classroomDay",
             background: "Images/Backgrounds/classroom-day.jpg",
+            foreground: ""
+        }
+    };
+    Template.chapterCovers = {
+        chapterOne: {
+            name: "chapterOne",
+            background: "Images/Backgrounds/Kapitel/Kapitel1.png",
             foreground: ""
         }
     };
@@ -90,29 +101,8 @@ var Template;
             }
         }
     };
-    // // control light off scene
-    // export function setLights(action: String) {
-    //   let htmlInDom = document.querySelector("html");
-    //   switch (action){
-    //     case "turnOffLights":
-    //       htmlInDom.classList.add("dark");
-    //       break;
-    //     case "turnOnLights":
-    //       htmlInDom.classList.remove("dark");
-    //       break;
-    //     case "turnOnFlashlight":
-    //       htmlInDom.classList.add("flashlight");
-    //       break;
-    //     case "turnOffFlashlight":
-    //       htmlInDom.classList.remove("flashlight");
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // }
     function updateNotes() {
         if (Template.dataForSave.toggleSuspectsButton == true) {
-            Template.ƒS.Sound.play(Template.sound.sparkle, 0.15, false);
             let toggleSuspects = document.getElementById("toggleSuspects");
             toggleSuspects.style.visibility = "visible";
             toggleSuspects.style.opacity = "1";
@@ -149,7 +139,8 @@ var Template;
         Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
             // { scene: Scene, name: "Scene" },
-            // { scene: firstScene, name: "firstScene"}
+            // { scene: firstScene, name: "firstScene"},
+            { scene: Template.coverChapterOne, name: "chapterOne" },
             { scene: Template.test, name: "test" }
         ];
         let uiElement = document.querySelector("[type=interface]");
@@ -339,6 +330,25 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
+    async function coverChapterOne() {
+        Template.dataForSave.toggleSuspectsButton = true;
+        Template.updateNotes();
+        let narratorText = {
+            Narrator: {
+                T0001: "Klicke weiter, um fortzufahren."
+            }
+        };
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 1, 0.1, true);
+        await Template.ƒS.Location.show(Template.chapterCovers.chapterOne);
+        await Template.ƒS.update(2);
+        await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
+        await Template.ƒS.update(0.5);
+        Template.ƒS.Sound.play(Template.sound.pageflip, 0.5, false);
+    }
+    Template.coverChapterOne = coverChapterOne;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     async function firstScene() {
         function revealNotes() {
             Template.dataForSave.toggleSuspectsButton = true;
@@ -387,8 +397,8 @@ var Template;
             }
         };
         Template.ƒS.Speech.hide();
-        Template.ƒS.Sound.play(Template.sound.schoolBell, 0.15, false);
-        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.07, 0.1, true);
+        Template.ƒS.Sound.play(Template.sound.schoolBell, 0.5, false);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 1, 0.1, true);
         await Template.ƒS.Location.show(Template.locations.schoolOutsideTwilight);
         await Template.ƒS.update(2);
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
@@ -494,11 +504,15 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0010);
         revealNotes();
         Template.updateNotes();
+        Template.ƒS.Sound.play(Template.sound.sparkle, 0.5, false);
         await Template.ƒS.update(2.5);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happyEyesClosed, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0011);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0);
         // Praktikum Session zu Dialog Options 
         // let dialogoptions = {
         //     iSayYes: "Ich sage ja. Daher wird pickedMe true werden.",
@@ -544,15 +558,19 @@ var Template;
             let htmlInDom = document.querySelector("html");
             switch (action) {
                 case "turnOffLights":
+                    Template.ƒS.Sound.play(Template.sound.switch, 1.5, false);
                     htmlInDom.classList.add("dark");
                     break;
                 case "turnOnLights":
+                    Template.ƒS.Sound.play(Template.sound.switch, 1.5, false);
                     htmlInDom.classList.remove("dark");
                     break;
                 case "turnOnFlashlight":
+                    Template.ƒS.Sound.play(Template.sound.flashlight, 1, false);
                     htmlInDom.classList.add("flashlight");
                     break;
                 case "turnOffFlashlight":
+                    Template.ƒS.Sound.play(Template.sound.flashlight, 1, false);
                     htmlInDom.classList.remove("flashlight");
                     break;
                 default:
@@ -560,22 +578,32 @@ var Template;
             }
         }
         function updateFlashlight(e) {
-            var x = e.clientX || e.touches[0].clientX;
-            var y = e.clientY || e.touches[0].clientY;
+            let x = e.clientX || e.touches[0].clientX;
+            let y = e.clientY || e.touches[0].clientY;
             document.documentElement.style.setProperty('--cursorX', x + 'px');
             document.documentElement.style.setProperty('--cursorY', y + 'px');
         }
         document.addEventListener('mousemove', updateFlashlight);
         document.addEventListener('touchmove', updateFlashlight);
         function addSwitchToScene() {
+            // set classes for possible positions of switch
+            let classes = new Array('bottomRight', 'bottomLeft', 'bottomCenter');
+            let length = classes.length;
             let img = document.createElement("img");
             img.src = "../Images/switch.png";
             img.id = "switch";
+            // assign random class (therefore position)
+            img.classList.add(classes[Math.floor(Math.random() * length)]);
             let src = document.getElementById("scene");
             src.appendChild(img);
             img.addEventListener('click', clickSwitch);
         }
         async function clickSwitch() {
+            let switchImg = document.getElementById("switch");
+            switchImg.remove();
+            Template.ƒS.Sound.play(Template.sound.switch, 1, false);
+            // ƒS.Sound.fade(sound.spookyMusic, 0, 3);
+            // ƒS.Sound.fade(sound.mainMusic, 1, 3, true); 
             await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
             setLights("turnOnLights");
             await Template.ƒS.update(0.5);
@@ -606,13 +634,15 @@ var Template;
             }
         };
         await Template.ƒS.Location.show(Template.locations.classroomDay);
-        await Template.ƒS.update(2);
+        await Template.ƒS.update(1.5);
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
         await Template.ƒS.update(0.5);
         setLights("turnOffLights");
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3);
+        Template.ƒS.Sound.fade(Template.sound.spookyMusic, 1, 2.5, true);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(1.5);

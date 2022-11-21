@@ -54,8 +54,8 @@ namespace Template {
 
         ƒS.Speech.hide();
 
-        ƒS.Sound.play(sound.schoolBell, 0.15, false); 
-        ƒS.Sound.fade(sound.mainMusic, 0.07, 0.1, true); 
+        ƒS.Sound.play(sound.schoolBell, 0.5, false); 
+        ƒS.Sound.fade(sound.mainMusic, 1, 0.1, true); 
 
         await ƒS.Location.show(locations.schoolOutsideTwilight);
         await ƒS.update(2);
@@ -196,12 +196,17 @@ namespace Template {
 
         revealNotes();
         updateNotes();
+        ƒS.Sound.play(sound.sparkle, 0.5, false); 
 
         await ƒS.update(2.5);
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.happyEyesClosed, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0011);
+
+        await ƒS.Character.hide(characters.protagonist);
+        ƒS.Speech.hide();
+        await ƒS.update(0);
 
         
         // Praktikum Session zu Dialog Options 

@@ -15,12 +15,16 @@ namespace Template {
   export let sound = {
     // music
     mainMusic: "Audio/Music/inspiration.mp3",
+    spookyMusic: "Audio/Music/nightmare.mp3",
     // ambiance
     birds: "Audio/Ambiance/springBirds.wav",
     // SFX
     drop: "Audio/SFX/drop.mp3",
     schoolBell: "Audio/SFX/schoolBell.wav",
-    sparkle: "Audio/SFX/sparkle.mp3"
+    sparkle: "Audio/SFX/sparkle.mp3",
+    pageflip: "Audio/SFX/pageflip.wav",
+    switch: "Audio/SFX/switch.wav",
+    flashlight: "Audio/SFX/flashlight.wav"
   };
 
   export let locations = {
@@ -45,6 +49,14 @@ namespace Template {
       foreground: ""
     }
   };
+
+  export let chapterCovers = {
+    chapterOne: {
+      name: "chapterOne",
+      background: "Images/Backgrounds/Kapitel/Kapitel1.png",
+      foreground: ""
+    }
+  }
 
   export let characters = {
     narrator: {
@@ -94,30 +106,8 @@ namespace Template {
     }
   };
 
-  // // control light off scene
-  // export function setLights(action: String) {
-  //   let htmlInDom = document.querySelector("html");
-  //   switch (action){
-  //     case "turnOffLights":
-  //       htmlInDom.classList.add("dark");
-  //       break;
-  //     case "turnOnLights":
-  //       htmlInDom.classList.remove("dark");
-  //       break;
-  //     case "turnOnFlashlight":
-  //       htmlInDom.classList.add("flashlight");
-  //       break;
-  //     case "turnOffFlashlight":
-  //       htmlInDom.classList.remove("flashlight");
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }
-
   export function updateNotes() {
     if(dataForSave.toggleSuspectsButton == true){
-      ƒS.Sound.play(sound.sparkle, 0.15, false); 
       let toggleSuspects = document.getElementById("toggleSuspects");
       toggleSuspects.style.visibility = "visible";
       toggleSuspects.style.opacity = "1";
@@ -161,7 +151,8 @@ namespace Template {
 
     let scenes: ƒS.Scenes = [
       // { scene: Scene, name: "Scene" },
-      // { scene: firstScene, name: "firstScene"}
+      // { scene: firstScene, name: "firstScene"},
+      { scene: coverChapterOne, name: "chapterOne"},
       { scene: test, name: "test"}
     ];
 

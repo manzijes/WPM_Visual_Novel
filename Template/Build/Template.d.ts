@@ -10,10 +10,14 @@ declare namespace Template {
     };
     let sound: {
         mainMusic: string;
+        spookyMusic: string;
         birds: string;
         drop: string;
         schoolBell: string;
         sparkle: string;
+        pageflip: string;
+        switch: string;
+        flashlight: string;
     };
     let locations: {
         schoolOutsideDay: {
@@ -32,6 +36,13 @@ declare namespace Template {
             foreground: string;
         };
         classroomDay: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+    };
+    let chapterCovers: {
+        chapterOne: {
             name: string;
             background: string;
             foreground: string;
@@ -130,6 +141,9 @@ declare namespace Template {
 }
 declare namespace Template {
     function animationExampleScene(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function coverChapterOne(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function firstScene(): ƒS.SceneReturn;

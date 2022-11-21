@@ -6,15 +6,19 @@ namespace Template {
             let htmlInDom = document.querySelector("html");
             switch (action){
             case "turnOffLights":
+                ƒS.Sound.play(sound.switch, 1.5, false); 
                 htmlInDom.classList.add("dark");
                 break;
             case "turnOnLights":
+                ƒS.Sound.play(sound.switch, 1.5, false); 
                 htmlInDom.classList.remove("dark");
                 break;
             case "turnOnFlashlight":
+                ƒS.Sound.play(sound.flashlight, 1, false); 
                 htmlInDom.classList.add("flashlight");
                 break;
             case "turnOffFlashlight":
+                ƒS.Sound.play(sound.flashlight, 1, false); 
                 htmlInDom.classList.remove("flashlight");
                 break;
             default:
@@ -23,8 +27,8 @@ namespace Template {
         }
 
         function updateFlashlight(e: any) {
-            var x = e.clientX || e.touches[0].clientX
-            var y = e.clientY || e.touches[0].clientY
+            let x = e.clientX || e.touches[0].clientX
+            let y = e.clientY || e.touches[0].clientY
     
             document.documentElement.style.setProperty('--cursorX', x + 'px')
             document.documentElement.style.setProperty('--cursorY', y + 'px')
@@ -33,15 +37,26 @@ namespace Template {
         document.addEventListener('touchmove', updateFlashlight);
 
         function addSwitchToScene() {
+            // set classes for possible positions of switch
+            let classes = new Array ('bottomRight', 'bottomLeft', 'bottomCenter');
+            let length = classes.length;
+
             let img = document.createElement("img");
             img.src = "../Images/switch.png";
             img.id = "switch";
+            // assign random class (therefore position)
+            img.classList.add( classes[ Math.floor (Math.random() * length) ] );
             let src = document.getElementById("scene");
             src.appendChild(img);
             img.addEventListener('click', clickSwitch);
         }
 
-        async function clickSwitch(){
+        async function clickSwitch() {
+            let switchImg = document.getElementById("switch");
+            switchImg.remove();
+            ƒS.Sound.play(sound.switch, 1, false); 
+            // ƒS.Sound.fade(sound.spookyMusic, 0, 3);
+            // ƒS.Sound.fade(sound.mainMusic, 1, 3, true); 
             await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
             setLights("turnOnLights");
             await ƒS.update(0.5);
@@ -75,9 +90,9 @@ namespace Template {
                 T0001: "Kira und du bleiben allein im Theaterraum zurück."
             }
         };
-        
+
         await ƒS.Location.show(locations.classroomDay);
-        await ƒS.update(2);
+        await ƒS.update(1.5);
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
@@ -86,6 +101,8 @@ namespace Template {
 
         await ƒS.update(0.5);
         setLights("turnOffLights");
+        ƒS.Sound.fade(sound.mainMusic, 0, 3);
+        ƒS.Sound.fade(sound.spookyMusic, 1, 2.5, true); 
         await ƒS.Character.hide(characters.protagonist);
         ƒS.Speech.hide();
 

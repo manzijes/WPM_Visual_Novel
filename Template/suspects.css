@@ -25,6 +25,11 @@
 
 .suspects{
     font-family: "Handwriting";
+    z-index: 988888;
+}
+
+.suspects *{
+    color: white;
 }
 
 .line-through{
@@ -73,7 +78,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
 }
 
 .portrait:before,

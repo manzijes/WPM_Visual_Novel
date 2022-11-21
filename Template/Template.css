@@ -81,7 +81,9 @@ canvas {
 speech {
   position: absolute;
   bottom: 3%;
-  left: 60px;
+  left: 0;
+  margin: auto;
+  right: 0;
   padding: 10px;
   color: white;
   background-color: rgba(11, 14, 19, 0.8);
@@ -184,7 +186,7 @@ dialog.menuInGame button {
 } */
 
 dialog.menuInGame button.active{
-  border: 4px solid lightcoral;
+  border: 2px solid lightcoral;
 }
 
 dialog.menuInGame button.active#toggleSound{
@@ -193,8 +195,19 @@ dialog.menuInGame button.active#toggleSound{
 
 img#switch {
   position: absolute;
+}
+
+img#switch.bottomRight{
   right: 9vw;
   bottom: 15.5vw;
+}
+img#switch.bottomCenter{
+  right: 41.5vw;
+  bottom: 24vw;
+}
+img#switch.bottomLeft{
+  left: 18.8vw;
+  bottom: 22vw;
 }
 
 @media (max-width: 768px){
