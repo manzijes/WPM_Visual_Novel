@@ -26,6 +26,16 @@ declare namespace Template {
             background: string;
             foreground: string;
         };
+        corridorDay: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        classroomDay: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
     };
     let characters: {
         narrator: {
@@ -45,6 +55,7 @@ declare namespace Template {
                 neutral: string;
                 scared: string;
                 mean: string;
+                surprised: string;
             };
         };
         kira: {
@@ -81,9 +92,9 @@ declare namespace Template {
         solasPortrait: boolean;
         solasMotive: boolean;
         solasOpportunity: boolean;
-        eliseoPortrait: boolean;
-        eliseoMotive: boolean;
-        eliseoOpportunity: boolean;
+        atlasPortrait: boolean;
+        atlasMotive: boolean;
+        atlasOpportunity: boolean;
         luciaPortrait: boolean;
         luciaMotive: boolean;
         luciaOpportunity: boolean;
@@ -122,4 +133,7 @@ declare namespace Template {
 }
 declare namespace Template {
     function firstScene(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function test(): ƒS.SceneReturn;
 }

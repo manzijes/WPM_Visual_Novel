@@ -27,9 +27,9 @@ namespace Template {
                 T0001_2: "Wir stecken gerade mitten in den Proben für die nächste Aufführung. Aber seit ein paar Tagen läuft alles schief.",
                 T0002: "Zum Beispiel letztens. Da verschwanden alle Skripte aus unserem Clubraum. Oder gestern, da fanden wir plötzlich eines der Kostüme im Müll. Es war total zerschnitten! Jemand hat es auf uns abgesehen, denkst du nicht?",
                 T0003: "Ich hätte mich eigentlich an den ersten Schulsprecher gewandt, aber er ist selbst ein Mitglied. Es ist besser, wenn sich ein Außenstehender damit beschäftigt.",
-                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch und auf der Ziellinie zur Jahrgangsbesten bist du auch. Also, was sagst du?",
+                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch... Und auf der Ziellinie zur Jahrgangsbesten bist du auch. Also, was sagst du?",
                 T0004: "Ehm... Es hatten soweit ich weiß nur drei Schüler freien Zugang zum Theaterraum und damit Gelegenheit zu der Sabotage...",
-                T0004_2: "Zunächst Solas. Er näht die Kostüme.",
+                T0004_2: "Zunächst Solas. Er ist der Autor des Stücks.",
                 T0004_3: "Dann ist da Atlas, der Schulsprecher. Er spielt die männliche Hauptrolle.",
                 T0004_4: "Und zuletzt gibt es noch Lucia. Sie kümmert sich um die Technik.",
                 T0005: "Vielen Dank! Dann sehe ich dich dort."
@@ -76,7 +76,7 @@ namespace Template {
         await ƒS.Speech.tell(characters.stranger, strangerText.Stranger.T0001);
 
         await ƒS.Character.hide(characters.protagonist);
-        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.surprised, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
 
@@ -125,7 +125,7 @@ namespace Template {
         await ƒS.Character.hide(characters.kira);
         await ƒS.update(0.5);
 
-        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.surprised, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0006);
 
@@ -198,6 +198,9 @@ namespace Template {
         updateNotes();
 
         await ƒS.update(2.5);
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.happyEyesClosed, ƒS.positionPercent(25, 97));
+        await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0011);
 
         

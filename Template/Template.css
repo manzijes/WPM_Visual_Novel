@@ -69,6 +69,10 @@ body {
   font-family: "Quicksand-Regular";
 }
 
+p, div, span, h1, h2, h3, h4, h5, h6{
+  color: #161b22;
+}
+
 canvas {
   width: 100%;
   height: 100%;
@@ -84,9 +88,14 @@ speech {
   border-radius: 15px;
   width: 90%;
   min-height: 102.8px;
+  z-index: 888888;
   /* height: 10vh; */
 
   visibility: hidden;
+}
+
+.dark speech {
+  border: 1px solid whitesmoke;
 }
 
 speech name {
@@ -106,6 +115,18 @@ speech content {
   font-size: 20px;
   margin: 10px;
   display: block;
+}
+
+dialog{
+  padding: 20px;
+  border-color: bisque;
+}
+dialog h1, dialog h2, dialog h3{
+  margin-bottom: 20px;
+}
+
+dialog td + td {
+  padding-left: 15px;
 }
 
 dialog.dialogoptions {
@@ -145,11 +166,12 @@ dialog.menuInGame {
   border: none;
   background: none;
   gap: 15px;
+  z-index: 99999999999999;
 }
 
 dialog.menuInGame button {
   padding: 6px 10px;
-  border: 4px solid white;
+  border: 2px solid white;
   background-color: #161b22;
   transition: all 0.4s;
   color: white;
@@ -169,7 +191,11 @@ dialog.menuInGame button.active#toggleSound{
   text-decoration: line-through;
 }
 
-
+img#switch {
+  position: absolute;
+  right: 9vw;
+  bottom: 15.5vw;
+}
 
 @media (max-width: 768px){
   *, speech content, speech name{

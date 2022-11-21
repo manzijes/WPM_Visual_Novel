@@ -51,10 +51,10 @@ namespace Template {
     export function showShortcuts(): void {
         ƒS.Text.setClass("shortcuts");
         let shortcuts =
-            "<h1>SHORTCUTS</h1>\
+        "<h1>Shortcuts</h1>\
         <table>\
           <tr>\
-            <td>Menu (open/ close)</td>\
+            <td>Menu (open/close)</td>\
             <td>m</td>\
           </tr>\
           <tr>\
@@ -74,8 +74,8 @@ namespace Template {
             <td>f9</td>\
           </tr>\
           <tr>\
-          <td>Notes</td>\
-          <td>S</td>\
+            <td>Notes</td>\
+            <td>S</td>\
         </tr>\
         </table>\
         ";

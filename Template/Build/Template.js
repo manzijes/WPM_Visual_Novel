@@ -31,6 +31,16 @@ var Template;
             name: "schoolOutsideTwilight",
             background: "Images/Backgrounds/school-outside-twilight.jpg",
             foreground: ""
+        },
+        corridorDay: {
+            name: "corridorDay",
+            background: "Images/Backgrounds/corridor-day.jpg",
+            foreground: ""
+        },
+        classroomDay: {
+            name: "classroomDay",
+            background: "Images/Backgrounds/classroom-day.jpg",
+            foreground: ""
         }
     };
     Template.characters = {
@@ -50,7 +60,8 @@ var Template;
                 sad: "Images/Characters/Protagonist/protagonist-sad.png",
                 neutral: "Images/Characters/Protagonist/protagonist-neutral.png",
                 scared: "Images/Characters/Protagonist/protagonist-scared.png",
-                mean: "Images/Characters/Protagonist/protagonist-mean.png"
+                mean: "Images/Characters/Protagonist/protagonist-mean.png",
+                surprised: "Images/Characters/Protagonist/protagonist-surprised.png"
             }
         },
         kira: {
@@ -79,6 +90,26 @@ var Template;
             }
         }
     };
+    // // control light off scene
+    // export function setLights(action: String) {
+    //   let htmlInDom = document.querySelector("html");
+    //   switch (action){
+    //     case "turnOffLights":
+    //       htmlInDom.classList.add("dark");
+    //       break;
+    //     case "turnOnLights":
+    //       htmlInDom.classList.remove("dark");
+    //       break;
+    //     case "turnOnFlashlight":
+    //       htmlInDom.classList.add("flashlight");
+    //       break;
+    //     case "turnOffFlashlight":
+    //       htmlInDom.classList.remove("flashlight");
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // }
     function updateNotes() {
         if (Template.dataForSave.toggleSuspectsButton == true) {
             Template.ƒS.Sound.play(Template.sound.sparkle, 0.15, false);
@@ -105,9 +136,9 @@ var Template;
         solasPortrait: false,
         solasMotive: false,
         solasOpportunity: false,
-        eliseoPortrait: false,
-        eliseoMotive: false,
-        eliseoOpportunity: false,
+        atlasPortrait: false,
+        atlasMotive: false,
+        atlasOpportunity: false,
         luciaPortrait: false,
         luciaMotive: false,
         luciaOpportunity: false,
@@ -118,8 +149,8 @@ var Template;
         Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
             // { scene: Scene, name: "Scene" },
-            // { scene: firstScene, name: "firstScene"},
-            { scene: Template.animationExampleScene, name: "animationExampleScene" },
+            // { scene: firstScene, name: "firstScene"}
+            { scene: Template.test, name: "test" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -183,10 +214,10 @@ var Template;
     ;
     function showShortcuts() {
         Template.ƒS.Text.setClass("shortcuts");
-        let shortcuts = "<h1>SHORTCUTS</h1>\
+        let shortcuts = "<h1>Shortcuts</h1>\
         <table>\
           <tr>\
-            <td>Menu (open/ close)</td>\
+            <td>Menu (open/close)</td>\
             <td>m</td>\
           </tr>\
           <tr>\
@@ -206,8 +237,8 @@ var Template;
             <td>f9</td>\
           </tr>\
           <tr>\
-          <td>Notes</td>\
-          <td>S</td>\
+            <td>Notes</td>\
+            <td>S</td>\
         </tr>\
         </table>\
         ";
@@ -332,10 +363,10 @@ var Template;
                 T0001_2: "Wir stecken gerade mitten in den Proben für die nächste Aufführung. Aber seit ein paar Tagen läuft alles schief.",
                 T0002: "Zum Beispiel letztens. Da verschwanden alle Skripte aus unserem Clubraum. Oder gestern, da fanden wir plötzlich eines der Kostüme im Müll. Es war total zerschnitten! Jemand hat es auf uns abgesehen, denkst du nicht?",
                 T0003: "Ich hätte mich eigentlich an den ersten Schulsprecher gewandt, aber er ist selbst ein Mitglied. Es ist besser, wenn sich ein Außenstehender damit beschäftigt.",
-                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch und auf der Ziellinie zur Jahrgangsbesten bist du auch. Also, was sagst du?",
+                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch... Und auf der Ziellinie zur Jahrgangsbesten bist du auch. Also, was sagst du?",
                 T0004: "Ehm... Es hatten soweit ich weiß nur drei Schüler freien Zugang zum Theaterraum und damit Gelegenheit zu der Sabotage...",
-                T0004_2: "Zunächst Solas. Er näht die Kostüme.",
-                T0004_3: "Dann ist da Eliseo, der Schulsprecher. Er spielt die männliche Hauptrolle.",
+                T0004_2: "Zunächst Solas. Er ist der Autor des Stücks.",
+                T0004_3: "Dann ist da Atlas, der Schulsprecher. Er spielt die männliche Hauptrolle.",
                 T0004_4: "Und zuletzt gibt es noch Lucia. Sie kümmert sich um die Technik.",
                 T0005: "Vielen Dank! Dann sehe ich dich dort."
             }
@@ -372,7 +403,7 @@ var Template;
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.stranger, strangerText.Stranger.T0001);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.surprised, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
@@ -409,7 +440,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0001_2);
         await Template.ƒS.Character.hide(Template.characters.kira);
         await Template.ƒS.update(0.5);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.surprised, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0006);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
@@ -464,6 +495,9 @@ var Template;
         revealNotes();
         Template.updateNotes();
         await Template.ƒS.update(2.5);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happyEyesClosed, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0011);
         // Praktikum Session zu Dialog Options 
         // let dialogoptions = {
@@ -501,5 +535,94 @@ var Template;
         //     }
     }
     Template.firstScene = firstScene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function test() {
+        // control light off scene
+        function setLights(action) {
+            let htmlInDom = document.querySelector("html");
+            switch (action) {
+                case "turnOffLights":
+                    htmlInDom.classList.add("dark");
+                    break;
+                case "turnOnLights":
+                    htmlInDom.classList.remove("dark");
+                    break;
+                case "turnOnFlashlight":
+                    htmlInDom.classList.add("flashlight");
+                    break;
+                case "turnOffFlashlight":
+                    htmlInDom.classList.remove("flashlight");
+                    break;
+                default:
+                    break;
+            }
+        }
+        function updateFlashlight(e) {
+            var x = e.clientX || e.touches[0].clientX;
+            var y = e.clientY || e.touches[0].clientY;
+            document.documentElement.style.setProperty('--cursorX', x + 'px');
+            document.documentElement.style.setProperty('--cursorY', y + 'px');
+        }
+        document.addEventListener('mousemove', updateFlashlight);
+        document.addEventListener('touchmove', updateFlashlight);
+        function addSwitchToScene() {
+            let img = document.createElement("img");
+            img.src = "../Images/switch.png";
+            img.id = "switch";
+            let src = document.getElementById("scene");
+            src.appendChild(img);
+            img.addEventListener('click', clickSwitch);
+        }
+        async function clickSwitch() {
+            await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+            setLights("turnOnLights");
+            await Template.ƒS.update(0.5);
+            await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
+            await Template.ƒS.Character.hide(Template.characters.protagonist);
+            await Template.ƒS.update(0.5);
+            await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.scared, Template.ƒS.positionPercent(75, 97));
+            await Template.ƒS.update(0.5);
+            await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0002);
+            await Template.ƒS.update(0.5);
+        }
+        let protagonistText = {
+            Protagonist: {
+                T0001: "Test.",
+                T0002: "Jemand hat das Licht ausgeschaltet. Warte kurz, an meinem Schlüsselbund hängt eine kleine Taschenlampe. Ich suche gleich den Lichtschalter.",
+                T0003: "Gefunden!"
+            }
+        };
+        let kiraText = {
+            Kira: {
+                T0001: "Holy Moly! Was ist passiert?",
+                T0002: "Puh. Das hat mich ganz schön erschreckt..."
+            }
+        };
+        let narratorText = {
+            Narrator: {
+                T0001: "Kira und du bleiben allein im Theaterraum zurück."
+            }
+        };
+        await Template.ƒS.Location.show(Template.locations.classroomDay);
+        await Template.ƒS.update(2);
+        await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+        await Template.ƒS.update(0.5);
+        setLights("turnOffLights");
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(1.5);
+        addSwitchToScene();
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0001);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
+        await Template.ƒS.update(0.5);
+        setLights("turnOnFlashlight");
+    }
+    Template.test = test;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

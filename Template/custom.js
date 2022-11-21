@@ -1,9 +1,15 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
     console.log("jQuery integrated");
 
-    $( "#toggleSuspects" ).attr("data-tooltip", "Hier siehst du deinen Ermittlungsstand.");
-    $( "#save" ).attr("data-tooltip", "Hier kannst du deinen Spielstand speichern.");
+    // function updateFlashlight(e) {
+    //     var x = e.clientX || e.touches[0].clientX
+    //     var y = e.clientY || e.touches[0].clientY
 
+    //     document.documentElement.style.setProperty('--cursorX', x + 'px')
+    //     document.documentElement.style.setProperty('--cursorY', y + 'px')
+    // }
 
+    // document.addEventListener('mousemove', updateFlashlight);
+    // document.addEventListener('touchmove', updateFlashlight);
 });

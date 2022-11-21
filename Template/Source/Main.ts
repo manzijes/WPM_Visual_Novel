@@ -33,6 +33,16 @@ namespace Template {
       name: "schoolOutsideTwilight",
       background: "Images/Backgrounds/school-outside-twilight.jpg",
       foreground: ""
+    },
+    corridorDay: {
+      name: "corridorDay",
+      background: "Images/Backgrounds/corridor-day.jpg",
+      foreground: ""
+    },
+    classroomDay: {
+      name: "classroomDay",
+      background: "Images/Backgrounds/classroom-day.jpg",
+      foreground: ""
     }
   };
 
@@ -53,7 +63,8 @@ namespace Template {
         sad: "Images/Characters/Protagonist/protagonist-sad.png",
         neutral: "Images/Characters/Protagonist/protagonist-neutral.png",
         scared: "Images/Characters/Protagonist/protagonist-scared.png",
-        mean: "Images/Characters/Protagonist/protagonist-mean.png"
+        mean: "Images/Characters/Protagonist/protagonist-mean.png",
+        surprised: "Images/Characters/Protagonist/protagonist-surprised.png"
       }
     },
     kira: {
@@ -82,6 +93,27 @@ namespace Template {
       }
     }
   };
+
+  // // control light off scene
+  // export function setLights(action: String) {
+  //   let htmlInDom = document.querySelector("html");
+  //   switch (action){
+  //     case "turnOffLights":
+  //       htmlInDom.classList.add("dark");
+  //       break;
+  //     case "turnOnLights":
+  //       htmlInDom.classList.remove("dark");
+  //       break;
+  //     case "turnOnFlashlight":
+  //       htmlInDom.classList.add("flashlight");
+  //       break;
+  //     case "turnOffFlashlight":
+  //       htmlInDom.classList.remove("flashlight");
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 
   export function updateNotes() {
     if(dataForSave.toggleSuspectsButton == true){
@@ -129,8 +161,8 @@ namespace Template {
 
     let scenes: ƒS.Scenes = [
       // { scene: Scene, name: "Scene" },
-      // { scene: firstScene, name: "firstScene"},
-      { scene: animationExampleScene, name: "animationExampleScene"},
+      // { scene: firstScene, name: "firstScene"}
+      { scene: test, name: "test"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

@@ -19,6 +19,10 @@
     user-select: none;
 }
 
+.d-none{
+    display: none;
+}
+
 .suspects{
     font-family: "Handwriting";
 }
