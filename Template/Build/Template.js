@@ -504,7 +504,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0010);
         revealNotes();
         Template.updateNotes();
-        Template.ƒS.Sound.play(Template.sound.sparkle, 0.5, false);
+        Template.ƒS.Sound.play(Template.sound.sparkle, 1, false);
         await Template.ƒS.update(2.5);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happyEyesClosed, Template.ƒS.positionPercent(25, 97));
@@ -590,7 +590,7 @@ var Template;
             let classes = new Array('bottomRight', 'bottomLeft', 'bottomCenter');
             let length = classes.length;
             let img = document.createElement("img");
-            img.src = "../Images/switch.png";
+            img.src = "https://github.com/manzijes/WPM_Visual_Novel/blob/main/Template/Images/switch.png?raw=true";
             img.id = "switch";
             // assign random class (therefore position)
             img.classList.add(classes[Math.floor(Math.random() * length)]);

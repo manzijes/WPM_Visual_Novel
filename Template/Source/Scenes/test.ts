@@ -42,7 +42,7 @@ namespace Template {
             let length = classes.length;
 
             let img = document.createElement("img");
-            img.src = "../Images/switch.png";
+            img.src = "https://github.com/manzijes/WPM_Visual_Novel/blob/main/Template/Images/switch.png?raw=true";
             img.id = "switch";
             // assign random class (therefore position)
             img.classList.add( classes[ Math.floor (Math.random() * length) ] );

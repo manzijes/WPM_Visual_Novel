@@ -23,11 +23,6 @@
     display: none;
 }
 
-.suspects{
-    font-family: "Handwriting";
-    z-index: 988888;
-}
-
 .suspects *{
     color: white;
 }
@@ -41,7 +36,7 @@
     flex-direction: row;
     justify-content: start;
     align-items: start;
-    gap: 15px;
+    gap: 30px;
     color: white;
     padding: 0 !important;
     position: relative;
@@ -73,11 +68,13 @@
     z-index: 1;
     font-size: 1.75rem;
     background-color: rgb(0, 0, 0, 0.4);
-    border-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 5px;
 }
 
 .portrait:before,
@@ -96,6 +93,8 @@ background-color: rgba(255, 255, 255, .3);
     z-index: 4;
 }
 .suspects {
+    font-family: "Handwriting";
+    z-index: 988888;
     margin: auto;
     position: absolute;
     top: 0;
@@ -110,11 +109,15 @@ background-color: rgba(255, 255, 255, .3);
     justify-content: center;
     background: #161b22;
     height: fit-content;
-    padding: 15px;
+    padding: 30px;
     border-radius: 15px;
     max-width: 900px;
     max-height: 100%;
     border: 2px solid white;
+}
+
+.motive {
+    padding-right: 15px;
 }
 
 .suspects:before {

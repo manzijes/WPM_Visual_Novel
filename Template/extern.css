@@ -22,7 +22,7 @@
   .dark.flashlight::before{
     transition: all 0.4s;
     background: radial-gradient(
-      circle 4vmax at var(--cursorX) var(--cursorY),
+      circle 3vmax at var(--cursorX) var(--cursorY),
       rgba(0,0,0,0) 0%,
       /* rgba(0,0,0,.5) 80%, */
       rgba(0,0,0,1) 100%

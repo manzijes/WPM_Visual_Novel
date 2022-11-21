@@ -196,7 +196,7 @@ namespace Template {
 
         revealNotes();
         updateNotes();
-        ƒS.Sound.play(sound.sparkle, 0.5, false); 
+        ƒS.Sound.play(sound.sparkle, 1, false); 
 
         await ƒS.update(2.5);
         await ƒS.Character.hide(characters.protagonist);
