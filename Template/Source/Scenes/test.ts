@@ -1,7 +1,7 @@
 namespace Template {
     export async function test(): ƒS.SceneReturn {
 
-          // control light off scene
+          // control lights in scene
         function setLights(action: String) {
             let htmlInDom = document.querySelector("html");
             switch (action){
@@ -27,38 +27,44 @@ namespace Template {
         }
 
         function updateFlashlight(e: any) {
+            // get current cursor position
             let x = e.clientX || e.touches[0].clientX
             let y = e.clientY || e.touches[0].clientY
-    
+            // set as position of flashlight with css
             document.documentElement.style.setProperty('--cursorX', x + 'px')
             document.documentElement.style.setProperty('--cursorY', y + 'px')
         }
+        // call updateFlashlight on mouse movement
         document.addEventListener('mousemove', updateFlashlight);
         document.addEventListener('touchmove', updateFlashlight);
 
         function addSwitchToScene() {
             // set classes for possible positions of switch
-            let classes = new Array ('bottomRight', 'bottomLeft', 'bottomCenter');
+            let classes = new Array ('bottomRight', 'bottomLeft', 'centerLeft', 'centerRight');
             let length = classes.length;
-
+            // create switch img
             let img = document.createElement("img");
             img.src = "https://github.com/manzijes/WPM_Visual_Novel/blob/main/Template/Images/switch.png?raw=true";
             img.id = "switch";
             // assign random class (therefore position)
             img.classList.add( classes[ Math.floor (Math.random() * length) ] );
+            // add switch img to scene
             let src = document.getElementById("scene");
             src.appendChild(img);
             img.addEventListener('click', clickSwitch);
         }
 
+        // how to proceed when player finds light switch
         async function clickSwitch() {
+            // remove switch image
             let switchImg = document.getElementById("switch");
             switchImg.remove();
+
             ƒS.Sound.play(sound.switch, 1, false); 
-            ƒS.Sound.fade(sound.spookyMusic, 0, 4.5);
-            ƒS.Sound.fade(sound.mainMusic, 1, 5, true); 
             await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+            
             setLights("turnOnLights");
+            
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
             await ƒS.Character.hide(characters.protagonist);
@@ -68,6 +74,9 @@ namespace Template {
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0002);
             await ƒS.update(0.5);
+            // change spooky music to normal theme
+            ƒS.Sound.fade(sound.spookyMusic, 0, 6);
+            ƒS.Sound.fade(sound.mainMusic, 1, 5, true); 
         }
 
         let protagonistText = {
@@ -94,7 +103,7 @@ namespace Template {
         };
 
         await ƒS.Location.show(locations.classroomDay);
-        await ƒS.update(1.5);
+        await ƒS.update(1);
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
@@ -104,7 +113,7 @@ namespace Template {
         await ƒS.update(0.5);
         setLights("turnOffLights");
         ƒS.Sound.fade(sound.mainMusic, 0, 3);
-        ƒS.Sound.fade(sound.spookyMusic, 1, 2.5, true); 
+        ƒS.Sound.fade(sound.spookyMusic, 1.1, 2.5, true); 
         await ƒS.Character.hide(characters.protagonist);
         ƒS.Speech.hide();
 

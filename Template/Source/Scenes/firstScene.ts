@@ -26,8 +26,10 @@ namespace Template {
                 T0001: "Ja, das stimmt.",
                 T0001_2: "Wir stecken gerade mitten in den Proben für die nächste Aufführung. Aber seit ein paar Tagen läuft alles schief.",
                 T0002: "Zum Beispiel letztens. Da verschwanden alle Skripte aus unserem Clubraum. Oder gestern, da fanden wir plötzlich eines der Kostüme im Müll. Es war total zerschnitten! Jemand hat es auf uns abgesehen, denkst du nicht?",
-                T0003: "Ich hätte mich eigentlich an den ersten Schulsprecher gewandt, aber er ist selbst ein Mitglied. Es ist besser, wenn sich ein Außenstehender damit beschäftigt.",
-                T0003_2: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch... Und auf der Ziellinie zur Jahrgangsbesten bist du auch. Also, was sagst du?",
+                T0003_a: "Eigentlich wäre ich damit zum ersten Schulsprecher gegangen, aber er gehört selbst zum Theaterclub. Es ist besser, wenn sich ein Außenstehender damit beschäftigt.",
+                T0003_b: "Hah, du bist ja drollig. Eigentlich wäre ich damit zum ersten Schulsprecher gegangen, aber er gehört selbst zum Theaterclub. Es ist besser, wenn sich ein Außenstehender damit beschäftigt.",
+                // T0003_2: "Eigentlich wäre ich damit zum ersten Schulsprecher gegangen, aber er gehört selbst zum Theaterclub. Es ist besser, wenn sich ein Außenstehender damit beschäftigt.",
+                T0003_3: "Ich weiß zufällig, dass du nicht auf den Kopf gefallen bist. Immer, wenn ich dich sehe, steckt deine Nase in einem Buch... Und auf der Ziellinie zur Jahrgangsbesten bist du auch. Also, was sagst du?",
                 T0004: "Ehm... Es hatten soweit ich weiß nur drei Schüler freien Zugang zum Theaterraum und damit Gelegenheit zu der Sabotage...",
                 T0004_2: "Zunächst Solas. Er ist der Autor des Stücks.",
                 T0004_3: "Dann ist da Atlas, der Schulsprecher. Er spielt die männliche Hauptrolle.",
@@ -44,12 +46,24 @@ namespace Template {
                 T0004: "Stellvertretende Schulsprecherin, wenn man es genau nimmt. Was gibt’s denn?",
                 T0005: "Natürlich. Jetzt weiß ich, woher ich dich kenne. Du bist Kira, die Leiterin des Theaterclubs.",
                 T0006: "Wie meinst du das?",
-                T0007: "Das klingt in der Tat seltsam. Aber wieso kommst du damit zu mir?",
-                T0008: "Weißt du, der Schülerrat ist eigentlich keine Detektei... Egal. Natürlich helfe ich dir, das gehört zu meinen Pflichten dazu. Du siehst selber ganz helle aus, hast du bereits Verdächtige?",
+                T0007_a: "Das klingt in der Tat seltsam. Aber wieso kommst du damit zu mir?",
+                T0007_b: "Ein Geist war das jedenfalls nicht... Aber wieso kommst du damit zu mir?",
+                T0008_a: "Weißt du, der Schülerrat ist eigentlich keine Detektei... Egal. Natürlich helfe ich dir, das gehört zu meinen Pflichten dazu. Du siehst selber ganz helle aus, hast du bereits Verdächtige?",
+                T0008_b: "Ich bin dabei! Zu einem guten Mystery sage ich nicht nein. Du siehst selber ganz helle aus, hast du bereits Verdächtige?",
                 T0009: "In Ordnung. Ich begleite dich zu der Probe heute und nehme die drei mal unter die Lupe.",
                 T0010: "Komisch. Was für einen Grund sollte jemand haben, eine Theateraufführung zu sabotieren? Naja, das finde ich bald heraus... Am besten, ich mache mir Notizen wie ein richtiger Ermittler.",
                 T0011: "Perfekt! Wenn ich gut organisiert bin, dann ist die Sache im Handumdrehen gegessen."
             }
+        };
+
+        let dialogoptions = {
+            iSayA: "Das klingt in der Tat seltsam.",
+            iSayB: "Ein Geist war das jedenfalls nicht..."
+        };
+
+        let dialogoptions2 = {
+            iSayA: "Weißt du, der Schülerrat ist eigentlich keine Detektei... Egal.",
+            iSayB: "Ich bin dabei!"
         };
 
         ƒS.Speech.hide();
@@ -136,31 +150,62 @@ namespace Template {
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0002);
 
+        let dialogoptionsElement = await ƒS.Menu.getInput(dialogoptions, "dialogoptions");
+
+        await ƒS.Character.hide(characters.kira);
+        await ƒS.update();
+
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+        await ƒS.update(0.5);
+
+        switch (dialogoptionsElement) {
+            case dialogoptions.iSayA:
+                await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0007_a);
+                await ƒS.Character.hide(characters.protagonist);
+                await ƒS.update(0.5);
+                await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
+                await ƒS.update(0.5);
+                await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_a);
+                await ƒS.update(0.5);
+                break;
+            case dialogoptions.iSayB:
+                await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0007_b);
+                await ƒS.Character.hide(characters.protagonist);
+                await ƒS.update(0.5);
+                await ƒS.Character.show(characters.kira, characters.kira.pose.smiling, ƒS.positionPercent(75, 97));
+                await ƒS.update(0.5);
+                await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_b);
+                await ƒS.update(0.5);
+                await ƒS.Character.hide(characters.kira);
+                await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
+                await ƒS.update(0.5);
+                break;
+        }
+
+        // await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_2);
+        // await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_3);
+
+        let dialogoptionsElement2 = await ƒS.Menu.getInput(dialogoptions2, "dialogoptions");
+
         await ƒS.Character.hide(characters.kira);
         await ƒS.update(0.5);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
-        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0007);
-
-        await ƒS.Character.hide(characters.protagonist);
-        await ƒS.update(0.5);
-
-        await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
-        await ƒS.update(0.5);
-        await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003);
-        await ƒS.update(0.5);
-        await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_2);
-
-        await ƒS.Character.hide(characters.kira);
-        await ƒS.update(0.5);
-
-        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-        await ƒS.update(0.5);
-        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0008);
-
-        await ƒS.Character.hide(characters.protagonist);
-        await ƒS.update(0.5);
+        
+        switch (dialogoptionsElement2) {
+            case dialogoptions2.iSayA:
+                await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0008_a);
+                await ƒS.Character.hide(characters.protagonist);
+                await ƒS.update(0.5);
+                break;
+            case dialogoptions2.iSayB:
+                await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0008_b);
+                await ƒS.Character.hide(characters.protagonist);
+                await ƒS.update(0.5);
+                break;
+        }
 
         await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
@@ -204,50 +249,19 @@ namespace Template {
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0011);
 
-        await ƒS.Character.hide(characters.protagonist);
-        ƒS.Speech.hide();
-        await ƒS.update(0);
-
-        
-        // Praktikum Session zu Dialog Options 
-
-        // let dialogoptions = {
-        //     iSayYes: "Ich sage ja. Daher wird pickedMe true werden.",
-        //     iSayOk: "Okay",
-        //     iSayNo: "No",
-        //     iSayMaybe: "Maybe"
-        // };
-
-        // let dialogoptionsElement = await ƒS.Menu.getInput(dialogoptions, "dialogoptions");
-
-        // let pickedYes: boolean;
-        // let pickedOkay: boolean;
-        // let pickedNo: boolean;
-        // let pickedMaybe: boolean;
-
-        // switch (dialogoptionsElement) {
-        //     case dialogoptions.iSayYes:
-        //         pickedYes = true;
-        //         console.log(pickedYes);
-        //         await ƒS.Speech.tell(characters.protagonist, "Ja");
-        //         break;
-        //     case dialogoptions.iSayNo:
-        //         pickedNo = true;
-        //         console.log(pickedNo);
-        //         await ƒS.Speech.tell(characters.protagonist, "Nein");
-        //         break;
-        //     case dialogoptions.iSayOk:
-        //         pickedOkay = true;
-        //         console.log(pickedOkay);
-        //         await ƒS.Speech.tell(characters.protagonist, "Okay");
-        //         break;
-        //     case dialogoptions.iSayMaybe:
-        //         pickedMaybe = true;
-        //         console.log(pickedMaybe);
-        //         await ƒS.Speech.tell(characters.protagonist, "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,");
-        //         break;
-        //     }
-
+        ƒS.Text.setClass("hint");
+        let hintNotes =
+        "<h1>Notes</h1>\
+        <div>\
+          <p>\
+            Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin!\
+          </p>\
+          <p>\
+            Du kannst es ab jetzt im Menü unter 'Notes' einblenden.\
+          </p>\
+        </div>\
+        ";
+        ƒS.Text.print(hintNotes);
 
     }
 }

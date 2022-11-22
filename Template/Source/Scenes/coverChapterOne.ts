@@ -6,13 +6,13 @@ namespace Template {
 
         let narratorText = {
             Narrator: {
-                T0001: "Klicke weiter, um fortzufahren."
+                T0001: "Klicke, um fortzufahren."
             }
         };
 
         ƒS.Sound.fade(sound.mainMusic, 1, 0.1, true); 
         await ƒS.Location.show(chapterCovers.chapterOne);
-        await ƒS.update(2);
+        await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
         await ƒS.update(0.5);

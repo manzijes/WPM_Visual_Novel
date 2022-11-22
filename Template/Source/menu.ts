@@ -42,14 +42,14 @@ namespace Template {
     }
 
     export function showCredits(): void {
-        ƒS.Text.setClass("credits");
+        ƒS.Text.setClass("credits hint");
         let credits =
-            "<h1>CREDITS</h1>";
+            "<h1>Credits</h1>";
         ƒS.Text.print(credits);
     };
 
     export function showShortcuts(): void {
-        ƒS.Text.setClass("shortcuts");
+        ƒS.Text.setClass("shortcuts hint");
         let shortcuts =
         "<h1>Shortcuts</h1>\
         <table>\

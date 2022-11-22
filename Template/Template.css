@@ -11,19 +11,15 @@
 }
 
 *{
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
-/* snow animation by codeconvey https://codepen.io/codeconvey/pen/xRzQay */
-
-/* .particle {
-  color: #fff;
-  font-size: 1em;
-  font-family: Arial;
-  text-shadow: 0 0 1px #000;
+:root{
+  /* --primary: #CEAB93; */
+  --primary: #161b22;
+  --secondary: #C0D8C0;
+  --tertiary: #9E7676;
 }
-
-@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.particle{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.particle:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.particle:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.particle:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.particle:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.particle:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.particle:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.particle:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.particle:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.particle:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.particle:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s} */
 
 
 body.glitter{
@@ -38,6 +34,10 @@ scene {
   height: 720px;
   display: inline-block;
   position: absolute;
+}
+
+.cover{
+  width: 100%;
 }
 
 dialog[type=splash] {
@@ -55,6 +55,12 @@ dialog[type=splash] {
 dialog[type=splash]>img#FudgeStoryLogo {
   width: 100%;
   max-width: 400px;
+  position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
 }
 
 html,
@@ -64,7 +70,7 @@ body {
   margin: 0px;
   padding: 0px;
   font-size: 18px;
-  background-color: #161b22 !important;
+  background-color: var(--primary) !important;
   overflow: hidden;
   font-family: "Quicksand-Regular";
 }
@@ -80,7 +86,7 @@ canvas {
 
 speech {
   position: absolute;
-  bottom: 3%;
+  bottom: 2.9%;
   left: 0;
   margin: auto;
   right: 0;
@@ -119,6 +125,28 @@ speech content {
   display: block;
 }
 
+/* no focus outline */
+*:focus {
+  outline: unset !important;
+  box-shadow: none !important;
+}
+
+dialog.hint {
+  border-radius: 0.25rem;
+  background: var(--tertiary);
+  border-color: white;
+  color: white;
+}
+dialog.hint * {
+  color: white;
+}
+dialog.hint p:last-of-type {
+  margin-bottom: 0;
+}
+dialog.hint p:not(.hint p:last-of-type) {
+  margin-bottom: 5px;
+}
+
 dialog{
   padding: 20px;
   border-color: bisque;
@@ -132,30 +160,37 @@ dialog td + td {
 }
 
 dialog.dialogoptions {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
+
   gap: 15px;
-  background-color: rgb(255, 255, 255, 0.6);
+  background-color: rgb(255, 255, 255, 0.5);
   border-radius: 15px;
   border: none;
 
   margin: auto;
-  position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
 }
 
 dialog.dialogoptions button {
-  background-color: rgba(11, 14, 19, 0.6);
+  background-color: var(--tertiary);
   border-radius: 15px;
   padding: 10px 15px;
   color: white;
   border: none;
+  display: block;
+  margin: auto;
+  left: 0;
+  right: 0;
+  border: 2px solid white;
+  width: 100%;
 }
 
 dialog.dialogoptions button:hover {
   cursor: pointer;
   background-color: rgba(11, 14, 19, 0.8);
+}
+
+dialog.dialogoptions button:not(.dialogoptions button:first-of-type) {
+  margin-top: 20px;
 }
 
 dialog.menuInGame {
@@ -169,12 +204,13 @@ dialog.menuInGame {
   background: none;
   gap: 15px;
   z-index: 99999999999999;
+  padding: 15px;
 }
 
 dialog.menuInGame button {
   padding: 6px 10px;
   border: 2px solid white;
-  background-color: #161b22;
+  background-color: var(--tertiary);
   transition: all 0.4s;
   color: white;
   border-radius: 0.25rem;
@@ -185,8 +221,10 @@ dialog.menuInGame button {
   color: white;
 } */
 
-dialog.menuInGame button.active{
-  border: 2px solid lightcoral;
+dialog.menuInGame button.active, dialog.menuInGame button:hover{
+  /* border: 2px solid lightcoral; */
+  color: var(--tertiary);
+  background-color: whitesmoke;
 }
 
 dialog.menuInGame button.active#toggleSound{
@@ -198,17 +236,24 @@ img#switch {
 }
 
 img#switch.bottomRight{
-  right: 9vw;
-  bottom: 15.5vw;
-}
-img#switch.bottomCenter{
-  left: 17.5vw;
-  bottom: 17vw;
+  right: 14%;
+  bottom: 28.5%;
 }
 img#switch.bottomLeft{
-  left: 18.8vw;
-  bottom: 22vw;
+  left: 14%;
+  bottom: 32%;
+  transform: skew(0deg, -11deg);
 }
+img#switch.centerLeft{
+  left: 19%;
+  bottom: 50%;
+}
+img#switch.centerRight{
+  right: 0.7%;
+  bottom: 65%;
+}
+
+
 
 @media (max-width: 768px){
   *, speech content, speech name{

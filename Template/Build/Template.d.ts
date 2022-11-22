@@ -2,7 +2,12 @@ declare namespace Template {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
     let transition: {
-        puzzle: {
+        fizzle: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        waves: {
             duration: number;
             alpha: string;
             edge: number;

@@ -5,13 +5,18 @@ namespace Template {
   console.log("FudgeStory template starting");
 
   export let transition = {
-      puzzle: {
-        duration: 1,
-        alpha: "",
-        edge: 1
+      fizzle: {
+        duration: 1.5,
+        alpha: "FreeTransitions/Others/005.jpg",
+        edge: 2
+      },
+      waves: {
+        duration: 2,
+        alpha: "FreeTransitions/WipesAndOther/9.jpg",
+        edge: 2
       }
     };
-
+    
   export let sound = {
     // music
     mainMusic: "Audio/Music/inspiration.mp3",
@@ -150,7 +155,6 @@ namespace Template {
     gameMenu = ƒS.Menu.create(menuInGame, buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
 
     let scenes: ƒS.Scenes = [
-      // { scene: Scene, name: "Scene" },
       // { scene: firstScene, name: "firstScene"},
       { scene: coverChapterOne, name: "chapterOne"},
       { scene: test, name: "test"}
