@@ -192,9 +192,9 @@ var Template;
         //Menü
         Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
-            // { scene: firstScene, name: "firstScene"},
-            { scene: Template.coverChapterOne, name: "chapterOne" },
-            { scene: Template.test, name: "test" }
+            { scene: Template.firstScene, name: "firstScene" }
+            // { scene: coverChapterOne, name: "chapterOne"},
+            // { scene: test, name: "test"}
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -541,7 +541,6 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0002);
         let dialogoptionsElement = await Template.ƒS.Menu.getInput(dialogoptions, "dialogoptions");
         await Template.ƒS.Character.hide(Template.characters.kira);
-        await Template.ƒS.update();
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         switch (dialogoptionsElement) {
@@ -571,7 +570,6 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0003_3);
         let dialogoptionsElement2 = await Template.ƒS.Menu.getInput(dialogoptions2, "dialogoptions");
         await Template.ƒS.Character.hide(Template.characters.kira);
-        await Template.ƒS.update(0.5);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         switch (dialogoptionsElement2) {

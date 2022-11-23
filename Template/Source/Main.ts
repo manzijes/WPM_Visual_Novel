@@ -203,9 +203,9 @@ namespace Template {
     gameMenu = ƒS.Menu.create(menuInGame, buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
 
     let scenes: ƒS.Scenes = [
-      // { scene: firstScene, name: "firstScene"},
-      { scene: coverChapterOne, name: "chapterOne"},
-      { scene: test, name: "test"}
+      { scene: firstScene, name: "firstScene"}
+      // { scene: coverChapterOne, name: "chapterOne"},
+      // { scene: test, name: "test"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");

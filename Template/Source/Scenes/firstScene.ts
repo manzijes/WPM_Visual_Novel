@@ -158,7 +158,6 @@ namespace Template {
         let dialogoptionsElement = await ƒS.Menu.getInput(dialogoptions, "dialogoptions");
 
         await ƒS.Character.hide(characters.kira);
-        await ƒS.update();
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
@@ -193,7 +192,6 @@ namespace Template {
         let dialogoptionsElement2 = await ƒS.Menu.getInput(dialogoptions2, "dialogoptions");
 
         await ƒS.Character.hide(characters.kira);
-        await ƒS.update(0.5);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
