@@ -21,6 +21,7 @@ namespace Template {
     // music
     mainMusic: "Audio/Music/inspiration.mp3",
     spookyMusic: "Audio/Music/nightmare.mp3",
+    splashMusic: "Audio/Music/hillofwind.mp3",
     // ambiance
     birds: "Audio/Ambiance/springBirds.wav",
     // SFX
@@ -56,11 +57,16 @@ namespace Template {
   };
 
   export let chapterCovers = {
-    chapterOne: {
-      name: "chapterOne",
+    chapterSimple: {
+      name: "chapterSimple",
       background: "Images/Backgrounds/Kapitel/Kapitel1.png",
       foreground: ""
-    }
+    },
+    chapter: {
+      name: "chapterOne",
+      background: "Images/Backgrounds/Kapitel/chapter.png",
+      foreground: ""
+    },
   }
 
   export let characters = {
@@ -119,6 +125,48 @@ namespace Template {
     }
   }
 
+  export function removeFallingLeaves() {
+    let leaves = document.getElementById("leaves");
+    leaves.remove();
+  }
+
+  export function addFallingLeaves() {
+    let scene = document.getElementById("scene");
+    let div = document.createElement("div");
+    div.id = "leaves";
+    for (let index = 0; index < 15; index++) {
+      let i = document.createElement("i");
+      div.appendChild(i);
+    }
+    scene.appendChild(div);
+  }
+
+  // create chapter cover text
+  export function createText(givenheadline: string, giventext1: string, giventext2: string, givenid: string) {
+    let scene = document.getElementById("scene");
+    // create div
+    let div = document.createElement("div");
+    div.classList.add("coverDialog");
+    div.id = givenid;
+    // create headline, append to div
+    let headline = document.createElement("h1");
+    let headlineContent = document.createTextNode(givenheadline);
+    headline.appendChild(headlineContent);
+    div.appendChild(headline);
+    // create text, append to div
+    let ptag1 = document.createElement("p");
+    let text1 = document.createTextNode(giventext1);
+    ptag1.appendChild(text1);
+    div.appendChild(ptag1);
+    let ptag2 = document.createElement("p");
+    let text2 = document.createTextNode(giventext2);
+    ptag2.appendChild(text2);
+    div.appendChild(ptag2);
+    // append div to scene
+    scene.appendChild(div); 
+}
+
+  // animation tutorial
   export function animation(): ƒS.AnimationDefinition {
     return {
       start: { translation: ƒS.positions.bottomleft, rotation: -20, scaling: new ƒS.Position(0.5, 1.5) },
@@ -150,7 +198,7 @@ namespace Template {
 
   window.addEventListener("load", start);
   function start(_event: Event): void {
-
+    ƒS.Sound.play(sound.splashMusic, 1, true); 
     //Menü
     gameMenu = ƒS.Menu.create(menuInGame, buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
 
@@ -165,6 +213,7 @@ namespace Template {
 
     // start the sequence
     ƒS.Progress.go(scenes);
+
   }
   
 }

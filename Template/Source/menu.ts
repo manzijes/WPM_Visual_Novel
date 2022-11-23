@@ -44,7 +44,14 @@ namespace Template {
     export function showCredits(): void {
         ƒS.Text.setClass("credits hint");
         let credits =
-            "<h1>Credits</h1>";
+            "<h1>Credits</h1>\
+            <table>\
+            <tr>\
+                <td>Falling Leaves CSS</td>\
+                <td>Aaron Griffin, https://codepen.io/uurrnn/pen/WNLVdN</td>\
+            </tr>\
+            </table>\
+          ";
         ƒS.Text.print(credits);
     };
 

@@ -20,6 +20,7 @@ var Template;
         // music
         mainMusic: "Audio/Music/inspiration.mp3",
         spookyMusic: "Audio/Music/nightmare.mp3",
+        splashMusic: "Audio/Music/hillofwind.mp3",
         // ambiance
         birds: "Audio/Ambiance/springBirds.wav",
         // SFX
@@ -53,11 +54,16 @@ var Template;
         }
     };
     Template.chapterCovers = {
-        chapterOne: {
-            name: "chapterOne",
+        chapterSimple: {
+            name: "chapterSimple",
             background: "Images/Backgrounds/Kapitel/Kapitel1.png",
             foreground: ""
-        }
+        },
+        chapter: {
+            name: "chapterOne",
+            background: "Images/Backgrounds/Kapitel/chapter.png",
+            foreground: ""
+        },
     };
     Template.characters = {
         narrator: {
@@ -114,6 +120,48 @@ var Template;
         }
     }
     Template.updateNotes = updateNotes;
+    function removeFallingLeaves() {
+        let leaves = document.getElementById("leaves");
+        leaves.remove();
+    }
+    Template.removeFallingLeaves = removeFallingLeaves;
+    function addFallingLeaves() {
+        let scene = document.getElementById("scene");
+        let div = document.createElement("div");
+        div.id = "leaves";
+        for (let index = 0; index < 15; index++) {
+            let i = document.createElement("i");
+            div.appendChild(i);
+        }
+        scene.appendChild(div);
+    }
+    Template.addFallingLeaves = addFallingLeaves;
+    // create chapter cover text
+    function createText(givenheadline, giventext1, giventext2, givenid) {
+        let scene = document.getElementById("scene");
+        // create div
+        let div = document.createElement("div");
+        div.classList.add("coverDialog");
+        div.id = givenid;
+        // create headline, append to div
+        let headline = document.createElement("h1");
+        let headlineContent = document.createTextNode(givenheadline);
+        headline.appendChild(headlineContent);
+        div.appendChild(headline);
+        // create text, append to div
+        let ptag1 = document.createElement("p");
+        let text1 = document.createTextNode(giventext1);
+        ptag1.appendChild(text1);
+        div.appendChild(ptag1);
+        let ptag2 = document.createElement("p");
+        let text2 = document.createTextNode(giventext2);
+        ptag2.appendChild(text2);
+        div.appendChild(ptag2);
+        // append div to scene
+        scene.appendChild(div);
+    }
+    Template.createText = createText;
+    // animation tutorial
     function animation() {
         return {
             start: { translation: Template.ƒS.positions.bottomleft, rotation: -20, scaling: new Template.ƒS.Position(0.5, 1.5) },
@@ -140,6 +188,7 @@ var Template;
     };
     window.addEventListener("load", start);
     function start(_event) {
+        Template.ƒS.Sound.play(Template.sound.splashMusic, 1, true);
         //Menü
         Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
@@ -202,7 +251,14 @@ var Template;
     Template.showSuspects = showSuspects;
     function showCredits() {
         Template.ƒS.Text.setClass("credits hint");
-        let credits = "<h1>Credits</h1>";
+        let credits = "<h1>Credits</h1>\
+            <table>\
+            <tr>\
+                <td>Falling Leaves CSS</td>\
+                <td>Aaron Griffin, https://codepen.io/uurrnn/pen/WNLVdN</td>\
+            </tr>\
+            </table>\
+          ";
         Template.ƒS.Text.print(credits);
     }
     Template.showCredits = showCredits;
@@ -336,17 +392,23 @@ var Template;
 (function (Template) {
     async function coverChapterOne() {
         Template.dataForSave.toggleSuspectsButton = true;
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.updateNotes();
+        Template.addFallingLeaves();
         let narratorText = {
             Narrator: {
                 T0001: "Klicke, um fortzufahren."
             }
         };
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 1, 0.1, true);
-        await Template.ƒS.Location.show(Template.chapterCovers.chapterOne);
+        await Template.ƒS.Location.show(Template.chapterCovers.chapter);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        Template.createText("Kapitel 1: Motive", "Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen hinzugefügt.", "Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!", "ch1");
+        // await new Promise(resolve => setTimeout(resolve, 1600));
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
-        await Template.ƒS.update(0.5);
+        let ch1 = document.getElementById("ch1");
+        ch1.remove();
+        Template.removeFallingLeaves();
         Template.ƒS.Sound.play(Template.sound.pageflip, 0.5, false);
     }
     Template.coverChapterOne = coverChapterOne;
@@ -368,7 +430,8 @@ var Template;
             Narrator: {
                 T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und erfreust dich an der Nachmittagssonne.",
                 T0002: "Du drehst dich um und erblickst ein Mädchen, das dir bekannt vorkommt. Sie geht nicht in deine Klasse, also woher...?",
-                T0003: "Du schaust zu, wie Kira im Schulgebäude verschwindet."
+                T0003: "Du schaust zu, wie Kira im Schulgebäude verschwindet.",
+                T0004: "Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin! Du kannst es ab jetzt im Menü unter 'Notes' einblenden."
             }
         };
         let kiraText = {
@@ -412,14 +475,16 @@ var Template;
             iSayA: "Weißt du, der Schülerrat ist eigentlich keine Detektei... Egal.",
             iSayB: "Ich bin dabei!"
         };
+        Template.addFallingLeaves();
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Speech.hide();
-        Template.ƒS.Sound.play(Template.sound.schoolBell, 0.5, false);
+        Template.ƒS.Sound.play(Template.sound.schoolBell, 1, false);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 1, 0.1, true);
         await Template.ƒS.Location.show(Template.locations.schoolOutsideTwilight);
         await Template.ƒS.update(2);
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
-        Template.ƒS.Sound.play(Template.sound.birds, 0.2, true);
+        Template.ƒS.Sound.play(Template.sound.birds, 2, true);
         await Template.ƒS.update(1);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
@@ -502,8 +567,7 @@ var Template;
                 await Template.ƒS.update(0.5);
                 break;
         }
-        // await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_2);
-        // await ƒS.update(0.5);
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0003_3);
         let dialogoptionsElement2 = await Template.ƒS.Menu.getInput(dialogoptions2, "dialogoptions");
         await Template.ƒS.Character.hide(Template.characters.kira);
@@ -513,15 +577,13 @@ var Template;
         switch (dialogoptionsElement2) {
             case dialogoptions2.iSayA:
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0008_a);
-                await Template.ƒS.Character.hide(Template.characters.protagonist);
-                await Template.ƒS.update(0.5);
                 break;
             case dialogoptions2.iSayB:
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0008_b);
-                await Template.ƒS.Character.hide(Template.characters.protagonist);
-                await Template.ƒS.update(0.5);
                 break;
         }
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.neutral, Template.ƒS.positionPercent(75, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0004);
@@ -550,23 +612,17 @@ var Template;
         revealNotes();
         Template.updateNotes();
         Template.ƒS.Sound.play(Template.sound.sparkle, 1, false);
-        await Template.ƒS.update(2.5);
+        await Template.ƒS.update(2);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happyEyesClosed, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0011);
-        Template.ƒS.Text.setClass("hint");
-        let hintNotes = "<h1>Notes</h1>\
-        <div>\
-          <p>\
-            Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin!\
-          </p>\
-          <p>\
-            Du kannst es ab jetzt im Menü unter 'Notes' einblenden.\
-          </p>\
-        </div>\
-        ";
-        Template.ƒS.Text.print(hintNotes);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0004);
+        Template.removeFallingLeaves();
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 5, true);
     }
     Template.firstScene = firstScene;
 })(Template || (Template = {}));

@@ -16,6 +16,7 @@ declare namespace Template {
     let sound: {
         mainMusic: string;
         spookyMusic: string;
+        splashMusic: string;
         birds: string;
         drop: string;
         schoolBell: string;
@@ -47,7 +48,12 @@ declare namespace Template {
         };
     };
     let chapterCovers: {
-        chapterOne: {
+        chapterSimple: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        chapter: {
             name: string;
             background: string;
             foreground: string;
@@ -101,6 +107,9 @@ declare namespace Template {
         };
     };
     function updateNotes(): void;
+    function removeFallingLeaves(): void;
+    function addFallingLeaves(): void;
+    function createText(givenheadline: string, giventext1: string, giventext2: string, givenid: string): void;
     function animation(): ƒS.AnimationDefinition;
     let dataForSave: {
         nameProtagonist: string;

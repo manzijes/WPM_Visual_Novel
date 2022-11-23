@@ -17,7 +17,8 @@ namespace Template {
             Narrator: {
                 T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und erfreust dich an der Nachmittagssonne.",
                 T0002: "Du drehst dich um und erblickst ein Mädchen, das dir bekannt vorkommt. Sie geht nicht in deine Klasse, also woher...?",
-                T0003: "Du schaust zu, wie Kira im Schulgebäude verschwindet."
+                T0003: "Du schaust zu, wie Kira im Schulgebäude verschwindet.",
+                T0004: "Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin! Du kannst es ab jetzt im Menü unter 'Notes' einblenden."
             }
         };
 
@@ -66,9 +67,13 @@ namespace Template {
             iSayB: "Ich bin dabei!"
         };
 
+        addFallingLeaves();
+
+        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true); 
+
         ƒS.Speech.hide();
 
-        ƒS.Sound.play(sound.schoolBell, 0.5, false); 
+        ƒS.Sound.play(sound.schoolBell, 1, false); 
         ƒS.Sound.fade(sound.mainMusic, 1, 0.1, true); 
 
         await ƒS.Location.show(locations.schoolOutsideTwilight);
@@ -77,7 +82,7 @@ namespace Template {
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-        ƒS.Sound.play(sound.birds, 0.2, true); 
+        ƒS.Sound.play(sound.birds, 2, true); 
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0001);
 
@@ -182,8 +187,7 @@ namespace Template {
                 break;
         }
 
-        // await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_2);
-        // await ƒS.update(0.5);
+        await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_3);
 
         let dialogoptionsElement2 = await ƒS.Menu.getInput(dialogoptions2, "dialogoptions");
@@ -197,15 +201,14 @@ namespace Template {
         switch (dialogoptionsElement2) {
             case dialogoptions2.iSayA:
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0008_a);
-                await ƒS.Character.hide(characters.protagonist);
-                await ƒS.update(0.5);
                 break;
             case dialogoptions2.iSayB:
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0008_b);
-                await ƒS.Character.hide(characters.protagonist);
-                await ƒS.update(0.5);
                 break;
         }
+
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.update(0.5);
 
         await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
@@ -243,25 +246,20 @@ namespace Template {
         updateNotes();
         ƒS.Sound.play(sound.sparkle, 1, false); 
 
-        await ƒS.update(2.5);
+        await ƒS.update(2);
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.happyEyesClosed, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0011);
 
-        ƒS.Text.setClass("hint");
-        let hintNotes =
-        "<h1>Notes</h1>\
-        <div>\
-          <p>\
-            Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin!\
-          </p>\
-          <p>\
-            Du kannst es ab jetzt im Menü unter 'Notes' einblenden.\
-          </p>\
-        </div>\
-        ";
-        ƒS.Text.print(hintNotes);
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.update(0.5);
+        ƒS.Speech.hide();
+
+        await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0004);
+
+        removeFallingLeaves();
+        ƒS.Sound.fade(sound.mainMusic, 0, 5, true); 
 
     }
 }
