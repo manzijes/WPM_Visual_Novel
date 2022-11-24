@@ -257,7 +257,8 @@ namespace Template {
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0004);
 
         removeFallingLeaves();
-        ƒS.Sound.fade(sound.mainMusic, 0, 5, true); 
+        ƒS.Sound.fade(sound.mainMusic, 0, 3, true); 
+        ƒS.Sound.fade(sound.birds, 0, 3, true); 
 
     }
 }

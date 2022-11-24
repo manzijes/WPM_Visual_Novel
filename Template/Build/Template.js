@@ -188,13 +188,12 @@ var Template;
     };
     window.addEventListener("load", start);
     function start(_event) {
-        Template.ƒS.Sound.play(Template.sound.splashMusic, 1, true);
         //Menü
         Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
-            { scene: Template.firstScene, name: "firstScene" }
+            // { scene: firstScene, name: "firstScene"}
             // { scene: coverChapterOne, name: "chapterOne"},
-            // { scene: test, name: "test"}
+            { scene: Template.test, name: "test" }
         ];
         let uiElement = document.querySelector("[type=interface]");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, uiElement);
@@ -620,7 +619,8 @@ var Template;
         Template.ƒS.Speech.hide();
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0004);
         Template.removeFallingLeaves();
-        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 5, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3, true);
+        Template.ƒS.Sound.fade(Template.sound.birds, 0, 3, true);
     }
     Template.firstScene = firstScene;
 })(Template || (Template = {}));

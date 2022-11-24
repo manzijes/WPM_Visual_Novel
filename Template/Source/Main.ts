@@ -198,14 +198,13 @@ namespace Template {
 
   window.addEventListener("load", start);
   function start(_event: Event): void {
-    ƒS.Sound.play(sound.splashMusic, 1, true); 
     //Menü
     gameMenu = ƒS.Menu.create(menuInGame, buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
 
     let scenes: ƒS.Scenes = [
-      { scene: firstScene, name: "firstScene"}
+      // { scene: firstScene, name: "firstScene"}
       // { scene: coverChapterOne, name: "chapterOne"},
-      // { scene: test, name: "test"}
+      { scene: test, name: "test"}
     ];
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
