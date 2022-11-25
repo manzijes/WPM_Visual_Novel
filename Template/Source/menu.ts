@@ -123,21 +123,27 @@ namespace Template {
             //     menuOpen = false;
             //     break;
             case menuInGame.credits:
+                ƒS.Sound.play(sound.select, 2, false); 
                 showCredits();
                 break;
             case menuInGame.shortcuts:
+                ƒS.Sound.play(sound.select, 2, false); 
                 showShortcuts();
                 break;
             case menuInGame.toggleSound:
+                ƒS.Sound.play(sound.select, 2, false); 
                 toggleSound();
                 break;
             case menuInGame.turnUpVolume:
+                ƒS.Sound.play(sound.select, 2, false); 
                 incrementSound();
                 break;
             case menuInGame.turnDownVolume:
+                ƒS.Sound.play(sound.select, 2, false); 
                 decrementSound();
                 break;
             case menuInGame.toggleSuspects:
+                ƒS.Sound.play(sound.select, 2, false); 
                 showSuspects();
                 break;
 

@@ -1,10 +1,6 @@
 namespace Template {
     export async function firstScene(): ƒS.SceneReturn {
 
-        function revealNotes() {
-            dataForSave.toggleSuspectsButton = true;
-        }
-
         let strangerText = {
             Stranger: {
                 T0001: "Entschuldigung!",
@@ -69,12 +65,10 @@ namespace Template {
 
         addFallingLeaves();
 
-        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true); 
-
         ƒS.Speech.hide();
 
-        ƒS.Sound.play(sound.schoolBell, 1, false); 
-        ƒS.Sound.fade(sound.mainMusic, 1, 0.1, true); 
+        ƒS.Sound.play(sound.schoolBell, 0.5, false); 
+        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true); 
 
         await ƒS.Location.show(locations.schoolOutsideTwilight);
         await ƒS.update(2);
@@ -82,7 +76,7 @@ namespace Template {
         await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-        ƒS.Sound.play(sound.birds, 2, true); 
+        ƒS.Sound.play(sound.birds, 0.5, true); 
         await ƒS.update(1);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0001);
 
@@ -156,9 +150,9 @@ namespace Template {
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0002);
 
         let dialogoptionsElement = await ƒS.Menu.getInput(dialogoptions, "dialogoptions");
+        ƒS.Sound.play(sound.selectDialog, 1.5, false); 
 
         await ƒS.Character.hide(characters.kira);
-
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
 
@@ -190,6 +184,7 @@ namespace Template {
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003_3);
 
         let dialogoptionsElement2 = await ƒS.Menu.getInput(dialogoptions2, "dialogoptions");
+        ƒS.Sound.play(sound.selectDialog, 1.5, false); 
 
         await ƒS.Character.hide(characters.kira);
 
@@ -242,7 +237,7 @@ namespace Template {
 
         revealNotes();
         updateNotes();
-        ƒS.Sound.play(sound.sparkle, 1, false); 
+        ƒS.Sound.play(sound.sparkle, 0.5, false); 
 
         await ƒS.update(2);
         await ƒS.Character.hide(characters.protagonist);

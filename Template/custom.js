@@ -2,14 +2,8 @@ $(document).ready(function () {
 
     console.log("jQuery integrated");
 
-    // function updateFlashlight(e) {
-    //     var x = e.clientX || e.touches[0].clientX
-    //     var y = e.clientY || e.touches[0].clientY
+    $("button").click(function() {
+        alert( "Handler for .click() called." );
+      });
 
-    //     document.documentElement.style.setProperty('--cursorX', x + 'px')
-    //     document.documentElement.style.setProperty('--cursorY', y + 'px')
-    // }
-
-    // document.addEventListener('mousemove', updateFlashlight);
-    // document.addEventListener('touchmove', updateFlashlight);
 });

@@ -24,6 +24,11 @@ declare namespace Template {
         pageflip: string;
         switch: string;
         flashlight: string;
+        select: string;
+        selectDialog: string;
+        typing: string;
+        femalegasp: string;
+        shutter: string;
     };
     let locations: {
         schoolOutsideDay: {
@@ -93,6 +98,18 @@ declare namespace Template {
                 smiling: string;
             };
         };
+        atlas: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                angry: string;
+                happy: string;
+                sad: string;
+                neutral: string;
+                scared: string;
+                playful: string;
+            };
+        };
         lucia: {
             name: string;
             origin: ƒ.ORIGIN2D;
@@ -106,6 +123,8 @@ declare namespace Template {
             };
         };
     };
+    function simulateCameraFlash(): Promise<void>;
+    function revealNotes(): void;
     function updateNotes(): void;
     function removeFallingLeaves(): void;
     function addFallingLeaves(): void;
@@ -161,6 +180,9 @@ declare namespace Template {
 }
 declare namespace Template {
     function firstScene(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function motive(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function test(): ƒS.SceneReturn;

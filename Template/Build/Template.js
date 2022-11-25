@@ -29,7 +29,12 @@ var Template;
         sparkle: "Audio/SFX/sparkle.mp3",
         pageflip: "Audio/SFX/pageflip.wav",
         switch: "Audio/SFX/switch.wav",
-        flashlight: "Audio/SFX/flashlight.wav"
+        flashlight: "Audio/SFX/flashlight.wav",
+        select: "Audio/SFX/select.wav",
+        selectDialog: "Audio/SFX/selectdialog.wav",
+        typing: "Audio/SFX/phone.wav",
+        femalegasp: "Audio/SFX/femalegasp.mp3",
+        shutter: "Audio/SFX/shutter.mp3"
     };
     Template.locations = {
         schoolOutsideDay: {
@@ -99,6 +104,18 @@ var Template;
                 smiling: "Images/Characters/Kira/kira-smiling.png"
             }
         },
+        atlas: {
+            name: "Atlas",
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                angry: "Images/Characters/Atlas/atlas-angry-2.png",
+                happy: "Images/Characters/Atlas/atlas-happy-2.png",
+                sad: "Images/Characters/Atlas/atlas-sad.png",
+                neutral: "Images/Characters/Atlas/atlas-neutral.png",
+                scared: "Images/Characters/Atlas/atlas-scared.png",
+                playful: "Images/Characters/Atlas/atlas-playful.png"
+            }
+        },
         lucia: {
             name: "Lucia",
             origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
@@ -112,11 +129,42 @@ var Template;
             }
         }
     };
+    async function simulateCameraFlash() {
+        let shutter = document.getElementById("shutter");
+        shutter.classList.add("on");
+        Template.ƒS.Sound.play(Template.sound.shutter, 0.5, false);
+        setTimeout(function () {
+            shutter.classList.remove('on');
+        }, 30 * 2 + 45);
+    }
+    Template.simulateCameraFlash = simulateCameraFlash;
+    function revealNotes() {
+        Template.dataForSave.toggleSuspectsButton = true;
+    }
+    Template.revealNotes = revealNotes;
     function updateNotes() {
         if (Template.dataForSave.toggleSuspectsButton == true) {
             let toggleSuspects = document.getElementById("toggleSuspects");
             toggleSuspects.style.visibility = "visible";
             toggleSuspects.style.opacity = "1";
+        }
+        // Portraits
+        if (Template.dataForSave.atlasPortrait == true) {
+            let atlasPortrait = document.getElementById("atlasPortrait");
+            atlasPortrait.style.filter = "unset";
+        }
+        if (Template.dataForSave.solasPortrait == true) {
+            let atlasPortrait = document.getElementById("solasPortrait");
+            atlasPortrait.style.filter = "unset";
+        }
+        if (Template.dataForSave.luciaPortrait == true) {
+            let atlasPortrait = document.getElementById("luciaPortrait");
+            atlasPortrait.style.filter = "unset";
+        }
+        // Motives
+        if (Template.dataForSave.solasMotive == true) {
+            let solasMotive = document.getElementById("solasMotive");
+            solasMotive.classList.remove("hidden");
         }
     }
     Template.updateNotes = updateNotes;
@@ -171,6 +219,11 @@ var Template;
         };
     }
     Template.animation = animation;
+    // let speechInDom = document.getElementById("speech");
+    // speechInDom.addEventListener("change", listenSpeechChange);
+    // function listenSpeechChange() {
+    //   console.log("speaking");
+    // }
     Template.dataForSave = {
         nameProtagonist: "",
         // visibility of buttons in menu
@@ -192,7 +245,8 @@ var Template;
         Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
             // { scene: firstScene, name: "firstScene"}
-            // { scene: coverChapterOne, name: "chapterOne"},
+            { scene: Template.coverChapterOne, name: "chapterOne" },
+            { scene: Template.motive, name: "motive" },
             { scene: Template.test, name: "test" }
         ];
         let uiElement = document.querySelector("[type=interface]");
@@ -325,21 +379,27 @@ var Template;
             //     menuOpen = false;
             //     break;
             case Template.menuInGame.credits:
+                Template.ƒS.Sound.play(Template.sound.select, 2, false);
                 showCredits();
                 break;
             case Template.menuInGame.shortcuts:
+                Template.ƒS.Sound.play(Template.sound.select, 2, false);
                 showShortcuts();
                 break;
             case Template.menuInGame.toggleSound:
+                Template.ƒS.Sound.play(Template.sound.select, 2, false);
                 toggleSound();
                 break;
             case Template.menuInGame.turnUpVolume:
+                Template.ƒS.Sound.play(Template.sound.select, 2, false);
                 incrementSound();
                 break;
             case Template.menuInGame.turnDownVolume:
+                Template.ƒS.Sound.play(Template.sound.select, 2, false);
                 decrementSound();
                 break;
             case Template.menuInGame.toggleSuspects:
+                Template.ƒS.Sound.play(Template.sound.select, 2, false);
                 showSuspects();
                 break;
         }
@@ -390,6 +450,7 @@ var Template;
 var Template;
 (function (Template) {
     async function coverChapterOne() {
+        Template.updateNotes();
         Template.dataForSave.toggleSuspectsButton = true;
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.updateNotes();
@@ -399,7 +460,7 @@ var Template;
                 T0001: "Klicke, um fortzufahren."
             }
         };
-        Template.ƒS.Sound.fade(Template.sound.mainMusic, 1, 0.1, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         await Template.ƒS.Location.show(Template.chapterCovers.chapter);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
         Template.createText("Kapitel 1: Motive", "Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen hinzugefügt.", "Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!", "ch1");
@@ -415,9 +476,6 @@ var Template;
 var Template;
 (function (Template) {
     async function firstScene() {
-        function revealNotes() {
-            Template.dataForSave.toggleSuspectsButton = true;
-        }
         let strangerText = {
             Stranger: {
                 T0001: "Entschuldigung!",
@@ -475,15 +533,14 @@ var Template;
             iSayB: "Ich bin dabei!"
         };
         Template.addFallingLeaves();
-        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Speech.hide();
-        Template.ƒS.Sound.play(Template.sound.schoolBell, 1, false);
-        Template.ƒS.Sound.fade(Template.sound.mainMusic, 1, 0.1, true);
+        Template.ƒS.Sound.play(Template.sound.schoolBell, 0.5, false);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         await Template.ƒS.Location.show(Template.locations.schoolOutsideTwilight);
         await Template.ƒS.update(2);
         await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
-        Template.ƒS.Sound.play(Template.sound.birds, 2, true);
+        Template.ƒS.Sound.play(Template.sound.birds, 0.5, true);
         await Template.ƒS.update(1);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
@@ -539,6 +596,7 @@ var Template;
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0002);
         let dialogoptionsElement = await Template.ƒS.Menu.getInput(dialogoptions, "dialogoptions");
+        Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
         await Template.ƒS.Character.hide(Template.characters.kira);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
@@ -568,6 +626,7 @@ var Template;
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0003_3);
         let dialogoptionsElement2 = await Template.ƒS.Menu.getInput(dialogoptions2, "dialogoptions");
+        Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
         await Template.ƒS.Character.hide(Template.characters.kira);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
@@ -606,9 +665,9 @@ var Template;
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0010);
-        revealNotes();
+        Template.revealNotes();
         Template.updateNotes();
-        Template.ƒS.Sound.play(Template.sound.sparkle, 1, false);
+        Template.ƒS.Sound.play(Template.sound.sparkle, 0.5, false);
         await Template.ƒS.update(2);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.happyEyesClosed, Template.ƒS.positionPercent(25, 97));
@@ -626,7 +685,231 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
+    async function motive() {
+        Template.updateNotes();
+        let narratorText = {
+            Narrator: {
+                T0001: "Du triffst pünkltich bei der Probe des Theaterclubs ein. Neben den anderen Mitgliedern sind auch deine Verdächtigen anwesend.",
+                T0002: "Mit wem möchtest du sprechen?",
+                T0003: "Schnell ein Foto für die Notes..."
+            }
+        };
+        let atlasText = {
+            Atlas: {
+                T0001: "... ?",
+                T0002: "Nur, dass solche amateurhaften Sabotageversuche das Theaterstück nicht stoppen werden.",
+                T0003: "Nein, ich bin sehr beschäftigt. Ich bin Jahrgangsbester und Schulsprecher, wie du vielleicht weißt. Obendrein bin ich Mitglied in mehreren AGs. Der Theaterclub, der Schach-Club, der Kalligraphie-Club... Meinst du wirklich, ich habe Zeit für solche Kindereien?",
+                T0004_a: "Na dann kannst du dir jetzt ein Bild machen.",
+                T0004_b: "Kusch doch nicht gleich. Gute Ermittler sollten etwas mehr Rückrat zeigen.",
+                T0004_2: "Soll ich dir sagen, was ich denke? Verschwundene Skripte, ein zerstörtes Kostüm... Ich glaube, bei dieser vermeintlichen Sabotage handelt es sich um einen bescheuerten Streich.",
+                T0004_3: "Es sei denn...",
+                T0005_a: "Ist das deine Strategie? Du suchst nach Lösungen bei deinen Verdächtigen? Vielleicht solltest du selbst anfangen nachzudenken.",
+                T0005_b: "Es sei denn, du selbst hast die Sabotage inszeniert, um dich wichtig zu machen. Naja, wir werden bald sehen, wie viel heiße Luft in deinem Kopf ist...",
+                T0006: "Hm... Da wir schon reden, möchte ich dir doch noch einen Hinweis geben.",
+                T0006_2: "Bitte erzähle nicht herum, dass du das von mir hast. Mir ist mein guter Ruf sehr wichtig. Du verstehst das sicher, so von Schulsprecher zu Stellvertreterin.",
+                T0007_1: "Solas macht sich wohl in letzter Zeit viel Druck. Es ist das erste Mal, dass die Schule ein Theaterstück genehmigt hat, das von einem Schüler geschrieben wurde. Normalerweise führt der Theaterclub nur Klassiker auf.",
+                T0007_2: "Solas möchte unbedingt, dass alles perfekt läuft. Das Stück ist sein Meisterwerk, so etwas verstehen nur Künstler. Aber er hatte keine Zeit mehr, das Skript zu überarbeiten. Wenn nun jedoch die Premiere verschoben werden müsste...",
+                T0007_3: "Du verstehst, worauf ich hinaus will, ja?",
+                T0008_a: "Und du bist überraschend scharfzüngig. Na dann, viel Erfolg.",
+                T0008_b: "Das kann ja nur schiefgehen..."
+            }
+        };
+        let protagonistToAtlas = {
+            Protagonist: {
+                T0001: "Hallo, ich höre mich nur ein wenig um. Jemand hat es wohl auf den Theaterclub abgesehen und möchte eure Aufführung verhindern. Weißt du etwas darüber?",
+                T0003: "Dann hast du nichts damit zu tun?",
+                T0004_a: "Ich kenne deinen Terminkalender nicht.",
+                T0004_b: "Sorry, ich wollte dich nicht anklagen.",
+                T0005_a: "Es sei denn... was? Hast du einen Verdacht?",
+                T0005_b: "Spucks aus, du Angeber.",
+                T0006: "Wars das?",
+                T0007: "Ich höre?",
+                T0008_a: "Das war überraschend hilfreich. Ich danke dir.",
+                T0008_b: "Pff... Alles klar. Und tschüss."
+            }
+        };
+        let startTalk = {
+            withAtlas: "Atlas",
+            withSolas: "Solas",
+            withLucia: "Lucia"
+        };
+        let dialogoptions = {
+            iSayA: "Ich kenne deinen Terminkalender nicht.",
+            iSayB: "Sorry, ich wollte dich nicht anklagen."
+        };
+        let dialogoptions2 = {
+            iSayA: "Es sei denn... was? Hast du einen Verdacht?",
+            iSayB: "Spucks aus, du Angeber."
+        };
+        let dialogoptions3 = {
+            iSayA: "Das war überraschend hilfreich. Ich danke dir.",
+            iSayB: "Pff... Alles klar. Und tschüss."
+        };
+        await Template.ƒS.Location.show(Template.locations.classroomDay);
+        await Template.ƒS.update(2);
+        await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0001);
+        await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0002);
+        let loopCount = 0;
+        let loopLength = Object.keys(startTalk).length;
+        while (loopCount < loopLength) {
+            if (loopCount > 0) {
+                await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0002);
+            }
+            let startTalkElement = await Template.ƒS.Menu.getInput(startTalk, "dialogoptions");
+            Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+            switch (startTalkElement) {
+                case startTalk.withAtlas:
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.narrator, narratorText.Narrator.T0003);
+                    await Template.ƒS.update(0.5);
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    Template.simulateCameraFlash();
+                    Template.dataForSave.atlasPortrait = true;
+                    Template.updateNotes();
+                    await Template.ƒS.update(0.2);
+                    await Template.ƒS.Character.hide(Template.characters.atlas);
+                    await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.angry, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.hide(Template.characters.atlas);
+                    await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.update(1);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0001);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.hide(Template.characters.atlas);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToAtlas.Protagonist.T0001);
+                    await Template.ƒS.Character.hide(Template.characters.protagonist);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0002);
+                    await Template.ƒS.Character.hide(Template.characters.atlas);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToAtlas.Protagonist.T0003);
+                    await Template.ƒS.Character.hide(Template.characters.protagonist);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0003);
+                    let dialogoptionsElement = await Template.ƒS.Menu.getInput(dialogoptions, "dialogoptions");
+                    Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+                    switch (dialogoptionsElement) {
+                        case dialogoptions.iSayA:
+                            await Template.ƒS.Character.hide(Template.characters.atlas);
+                            await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.playful, Template.ƒS.positionPercent(75, 97));
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_a);
+                            await Template.ƒS.update(0.5);
+                            break;
+                        case dialogoptions.iSayB:
+                            await Template.ƒS.Character.hide(Template.characters.atlas);
+                            await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.angry, Template.ƒS.positionPercent(75, 97));
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_b);
+                            await Template.ƒS.update(0.5);
+                    }
+                    await Template.ƒS.Character.hide(Template.characters.atlas);
+                    await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_2);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_3);
+                    let dialogoptionsElement2 = await Template.ƒS.Menu.getInput(dialogoptions2, "dialogoptions");
+                    Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+                    await Template.ƒS.update(0.5);
+                    switch (dialogoptionsElement2) {
+                        case dialogoptions2.iSayA:
+                            await Template.ƒS.Character.hide(Template.characters.atlas);
+                            await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.playful, Template.ƒS.positionPercent(75, 97));
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0005_a);
+                            await Template.ƒS.update(0.5);
+                            break;
+                        case dialogoptions2.iSayB:
+                            await Template.ƒS.Character.hide(Template.characters.atlas);
+                            await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0005_b);
+                            await Template.ƒS.update(0.5);
+                    }
+                    await Template.ƒS.Character.hide(Template.characters.atlas);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.angry, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToAtlas.Protagonist.T0006);
+                    await Template.ƒS.Character.hide(Template.characters.protagonist);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.happy, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0006);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.hide(Template.characters.atlas);
+                    await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0006_2);
+                    await Template.ƒS.Character.hide(Template.characters.atlas);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.surprised, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToAtlas.Protagonist.T0007);
+                    await Template.ƒS.Character.hide(Template.characters.protagonist);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0007_1);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0007_2);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0007_3);
+                    await Template.ƒS.update(0.5);
+                    Template.dataForSave.solasMotive = true;
+                    Template.updateNotes();
+                    let dialogoptionsElement3 = await Template.ƒS.Menu.getInput(dialogoptions3, "dialogoptions");
+                    Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+                    switch (dialogoptionsElement3) {
+                        case dialogoptions3.iSayA:
+                            await Template.ƒS.Character.hide(Template.characters.atlas);
+                            await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.playful, Template.ƒS.positionPercent(75, 97));
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0008_a);
+                            await Template.ƒS.update(0.5);
+                            break;
+                        case dialogoptions3.iSayB:
+                            await Template.ƒS.Character.hide(Template.characters.atlas);
+                            await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.angry, Template.ƒS.positionPercent(75, 97));
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0008_b);
+                            await Template.ƒS.update(0.5);
+                    }
+                    Template.ƒS.Speech.hide();
+                    await Template.ƒS.Character.hide(Template.characters.atlas);
+                    await Template.ƒS.update(0.5);
+                    delete startTalk.withAtlas;
+                    break;
+                case startTalk.withSolas:
+                    delete startTalk.withSolas;
+                    break;
+                case startTalk.withLucia:
+                    // go to library with her
+                    // go back to classroom after
+                    delete startTalk.withLucia;
+                    break;
+            }
+            loopCount++;
+        }
+    }
+    Template.motive = motive;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     async function test() {
+        Template.updateNotes();
         // control lights in scene
         function setLights(action) {
             let htmlInDom = document.querySelector("html");
@@ -662,6 +945,7 @@ var Template;
         // call updateFlashlight on mouse movement
         document.addEventListener('mousemove', updateFlashlight);
         document.addEventListener('touchmove', updateFlashlight);
+        // add switch img to scene AFTER lights are out, so player doesn't know where it is
         function addSwitchToScene() {
             // set classes for possible positions of switch
             let classes = new Array('bottomRight', 'bottomLeft', 'centerLeft', 'centerRight');
@@ -695,7 +979,7 @@ var Template;
             await Template.ƒS.update(0.5);
             // change spooky music to normal theme
             Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0, 6);
-            Template.ƒS.Sound.fade(Template.sound.mainMusic, 1, 5, true);
+            Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 5, true);
         }
         let protagonistText = {
             Protagonist: {
@@ -726,11 +1010,13 @@ var Template;
         await Template.ƒS.update(0.5);
         setLights("turnOffLights");
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3);
-        Template.ƒS.Sound.fade(Template.sound.spookyMusic, 1.1, 2.5, true);
+        Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0.5, 2.5, true);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(1.5);
         addSwitchToScene();
+        await new Promise(resolve => setTimeout(resolve, 200));
+        Template.ƒS.Sound.play(Template.sound.femalegasp, 1.5, false);
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0001);
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);

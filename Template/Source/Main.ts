@@ -30,7 +30,12 @@ namespace Template {
     sparkle: "Audio/SFX/sparkle.mp3",
     pageflip: "Audio/SFX/pageflip.wav",
     switch: "Audio/SFX/switch.wav",
-    flashlight: "Audio/SFX/flashlight.wav"
+    flashlight: "Audio/SFX/flashlight.wav",
+    select: "Audio/SFX/select.wav",
+    selectDialog: "Audio/SFX/selectdialog.wav",
+    typing: "Audio/SFX/phone.wav",
+    femalegasp: "Audio/SFX/femalegasp.mp3",
+    shutter: "Audio/SFX/shutter.mp3"
   };
 
   export let locations = {
@@ -103,6 +108,18 @@ namespace Template {
         smiling: "Images/Characters/Kira/kira-smiling.png"
       }
     },
+    atlas: {
+      name: "Atlas",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        angry: "Images/Characters/Atlas/atlas-angry-2.png",
+        happy: "Images/Characters/Atlas/atlas-happy-2.png",
+        sad: "Images/Characters/Atlas/atlas-sad.png",
+        neutral: "Images/Characters/Atlas/atlas-neutral.png",
+        scared: "Images/Characters/Atlas/atlas-scared.png",
+        playful: "Images/Characters/Atlas/atlas-playful.png"
+      }
+    },
     lucia: {
       name: "Lucia",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
@@ -117,11 +134,42 @@ namespace Template {
     }
   };
 
+  export async function simulateCameraFlash() {
+    let shutter = document.getElementById("shutter");
+    shutter.classList.add("on");
+    ƒS.Sound.play(sound.shutter, 0.5, false); 
+    setTimeout(function() {
+      shutter.classList.remove('on');
+    }, 30*2+45);
+  }
+
+  export function revealNotes() {
+    dataForSave.toggleSuspectsButton = true;
+}
+
   export function updateNotes() {
     if(dataForSave.toggleSuspectsButton == true){
       let toggleSuspects = document.getElementById("toggleSuspects");
       toggleSuspects.style.visibility = "visible";
       toggleSuspects.style.opacity = "1";
+    }
+    // Portraits
+    if(dataForSave.atlasPortrait == true){
+      let atlasPortrait =  document.getElementById("atlasPortrait");
+      atlasPortrait.style.filter = "unset";
+    }
+    if(dataForSave.solasPortrait == true){
+      let atlasPortrait =  document.getElementById("solasPortrait");
+      atlasPortrait.style.filter = "unset";
+    }
+    if(dataForSave.luciaPortrait == true){
+      let atlasPortrait =  document.getElementById("luciaPortrait");
+      atlasPortrait.style.filter = "unset";
+    }
+    // Motives
+    if(dataForSave.solasMotive == true){
+      let solasMotive =  document.getElementById("solasMotive");
+      solasMotive.classList.remove("hidden");
     }
   }
 
@@ -176,6 +224,13 @@ namespace Template {
     };
   }
 
+  // let speechInDom = document.getElementById("speech");
+  // speechInDom.addEventListener("change", listenSpeechChange);
+
+  // function listenSpeechChange() {
+  //   console.log("speaking");
+  // }
+
   export let dataForSave = {
     nameProtagonist: "",
 
@@ -203,7 +258,8 @@ namespace Template {
 
     let scenes: ƒS.Scenes = [
       // { scene: firstScene, name: "firstScene"}
-      // { scene: coverChapterOne, name: "chapterOne"},
+      { scene: coverChapterOne, name: "chapterOne"},
+      { scene: motive, name: "motive"},
       { scene: test, name: "test"}
     ];
 

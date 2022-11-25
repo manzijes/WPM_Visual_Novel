@@ -1,6 +1,8 @@
 namespace Template {
     export async function coverChapterOne(): ƒS.SceneReturn {
 
+        updateNotes();
+
         dataForSave.toggleSuspectsButton = true;
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true); 
         updateNotes();
@@ -13,7 +15,7 @@ namespace Template {
             }
         };
 
-        ƒS.Sound.fade(sound.mainMusic, 1, 0.1, true); 
+        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true); 
         await ƒS.Location.show(chapterCovers.chapter);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 

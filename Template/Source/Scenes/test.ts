@@ -1,6 +1,8 @@
 namespace Template {
     export async function test(): ƒS.SceneReturn {
 
+        updateNotes();
+
           // control lights in scene
         function setLights(action: String) {
             let htmlInDom = document.querySelector("html");
@@ -38,6 +40,7 @@ namespace Template {
         document.addEventListener('mousemove', updateFlashlight);
         document.addEventListener('touchmove', updateFlashlight);
 
+        // add switch img to scene AFTER lights are out, so player doesn't know where it is
         function addSwitchToScene() {
             // set classes for possible positions of switch
             let classes = new Array ('bottomRight', 'bottomLeft', 'centerLeft', 'centerRight');
@@ -76,7 +79,7 @@ namespace Template {
             await ƒS.update(0.5);
             // change spooky music to normal theme
             ƒS.Sound.fade(sound.spookyMusic, 0, 6);
-            ƒS.Sound.fade(sound.mainMusic, 1, 5, true); 
+            ƒS.Sound.fade(sound.mainMusic, 0.5, 5, true); 
         }
 
         let protagonistText = {
@@ -112,13 +115,17 @@ namespace Template {
 
         await ƒS.update(0.5);
         setLights("turnOffLights");
+        
         ƒS.Sound.fade(sound.mainMusic, 0, 3);
-        ƒS.Sound.fade(sound.spookyMusic, 1.1, 2.5, true); 
+        ƒS.Sound.fade(sound.spookyMusic, 0.5, 2.5, true); 
         await ƒS.Character.hide(characters.protagonist);
         ƒS.Speech.hide();
 
         await ƒS.update(1.5);
         addSwitchToScene();
+
+        await new Promise(resolve => setTimeout(resolve, 200));
+        ƒS.Sound.play(sound.femalegasp, 1.5, false); 
 
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0001);
         await ƒS.update(0.5);
