@@ -383,132 +383,142 @@ namespace Template {
 
                 // CASE Talk To Solas
                 case startTalk.withSolas:
-                    // await ƒS.update(0.5);
-                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    // showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
 
-                    // await ƒS.update(0.5);
-                    // await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
-                    // await ƒS.update(0.5);
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
+                    await ƒS.update(0.5);
 
-                    // await new Promise(resolve => setTimeout(resolve, 500));
-                    // simulateCameraFlash();
-                    // dataForSave.solasPortrait = true;
-                    // updateNotes();
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    simulateCameraFlash();
+                    dataForSave.solasPortrait = true;
+                    updateNotes();
 
-                    // await ƒS.update(0.2);
-                    // await ƒS.Character.hide(characters.solas);
-                    // await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
-                    // await ƒS.update(0.5);
-                    // await ƒS.Character.hide(characters.solas);
-                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    // await ƒS.update(1);
-                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0001);
-                    // await ƒS.update(0.5);
+                    await ƒS.update(0.2);
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    await ƒS.update(1);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0001);
+                    await ƒS.update(0.5);
 
-                    // hideSolasMeter();
-                    // await ƒS.Character.hide(characters.solas);
-                    // await ƒS.update(0.5);
+                    hideSolasMeter();
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
 
-                    // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-                    // await ƒS.update(0.5);
-                    // await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0001);
-                    // await ƒS.Character.hide(characters.protagonist);
-                    // await ƒS.update(0.5);
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0001);
+                    await ƒS.Character.hide(characters.protagonist);
+                    await ƒS.update(0.5);
 
-                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    // showSolasMeter();
-                    // await ƒS.update(0.5);
-                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0002);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0002);
 
-                    // hideSolasMeter();
-                    // await ƒS.Character.hide(characters.solas);
-                    // await ƒS.update(0.5);
+                    hideSolasMeter();
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
 
-                    // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-                    // await ƒS.update(0.5);
-                    // await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0002);
-                    // await ƒS.Character.hide(characters.protagonist);
-                    // await ƒS.update(0.5);
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0002);
+                    await ƒS.Character.hide(characters.protagonist);
+                    await ƒS.update(0.5);
 
-                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    // showSolasMeter();
-                    // await ƒS.update(0.5);
-                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0003);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0003);
 
-                    // hideSolasMeter();
-                    // await ƒS.Character.hide(characters.solas);
-                    // await ƒS.update(0.5);
+                    hideSolasMeter();
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
 
-                    // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-                    // await ƒS.update(0.5);
-                    // await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0003);
-                    // await ƒS.Character.hide(characters.protagonist);
-                    // await ƒS.update(0.5);
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0003);
+                    await ƒS.Character.hide(characters.protagonist);
+                    await ƒS.update(0.5);
 
-                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    // showSolasMeter();
-                    // await ƒS.update(0.5);
-                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0004);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0004);
 
-                    // let optionsSolasHonestElement = await ƒS.Menu.getInput(optionsSolasHonest, "dialogoptions");
-                    // ƒS.Sound.play(sound.selectDialog, 1.5, false);
-                    // await ƒS.update(0.5);
+                    let optionsSolasHonestElement = await ƒS.Menu.getInput(optionsSolasHonest, "dialogoptions");
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
+                    await ƒS.update(0.5);
 
-                    // switch (optionsSolasHonestElement) {
-                    //     case optionsSolasHonest.bad:
-                    //         await ƒS.Character.hide(characters.solas);
-                    //         await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    //         dataForSave.solasScore -= 10;
-                    //         await ƒS.update(0.5);
-                    //         await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_bad);
-                    //         await ƒS.update(0.5);
-                    //         break;
-                    //     case optionsSolasHonest.good:
-                    //         dataForSave.solasScore += 10;
-                    //         await ƒS.update(0.5);
-                    //         await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_good);
-                    //         await ƒS.update(0.5);
-                    //         break;
-                    // }
+                    switch (optionsSolasHonestElement) {
+                        case optionsSolasHonest.bad:
+                            await ƒS.Character.hide(characters.solas);
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                            dataForSave.solasScore -= 10;
+                            await ƒS.update(0.5);
+                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_bad);
+                            await ƒS.update(0.5);
+                            break;
+                        case optionsSolasHonest.good:
+                            dataForSave.solasScore += 10;
+                            await ƒS.update(0.5);
+                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_good);
+                            await ƒS.update(0.5);
+                            break;
+                    }
 
-                    // hideSolasMeter();
-                    // await ƒS.Character.hide(characters.solas);
-                    // await ƒS.update(0.5);
+                    hideSolasMeter();
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
 
-                    // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-                    // await ƒS.update(0.5);
-                    // await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0005);
-                    // await ƒS.Character.hide(characters.protagonist);
-                    // await ƒS.update(0.5);
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0005);
+                    await ƒS.Character.hide(characters.protagonist);
+                    await ƒS.update(0.5);
 
-                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    // showSolasMeter();
-                    // await ƒS.update(0.5);
-                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0006);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0006);
 
-                    // ƒS.Speech.clear();
+                    ƒS.Speech.clear();
 
                     let diaryPage: string = '\
                         <div class="content">\
                             <div class="chatcontainer">\
-                                <p>Hello. How are you today?</p>\
+                                <p class="chatname">Lucia:</p>\
+                                <p>Ich bin es einfach leid tbh 😑 Ich gebe alles für diesen Club, aber höre ich mal ein Danke? Nein.</p>\
                                 <span class="time-right">11:00</span>\
                             </div>\
                             \
                             <div class="chatcontainer darker">\
-                                <p>Hey! Im fine. Thanks for asking!</p>\
-                                <span class="time-left">11:01</span>\
+                                <p class="chatname">Solas:</p>\
+                                <p>Das tut mir leid 😣</p>\
+                                <span class="time-right">11:01</span>\
                             </div>\
                             \
                             <div class="chatcontainer">\
-                                <p>Sweet! So, what do you wanna do today?</p>\
+                                <p class="chatname">Lucia:</p>\
+                                <p>Es liegt einfach daran, dass ich hinter den Kulissen arbeite. Nur, weil ich nicht als ⭐Star⭐ auf der Bühne stehe, werde ich von den anderen wie Luft behandelt.</p>\
+                                <span class="time-right">11:02</span>\
+                            </div>\
+                            \
+                            <div class="chatcontainer">\
+                                <p class="chatname">Lucia:</p>\
+                                <p>Ich will eigentlich nur etwas Wertschätzung..</p>\
                                 <span class="time-right">11:02</span>\
                             </div>\
                             \
                             <div class="chatcontainer darker">\
-                                <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>\
-                                <span class="time-left">11:05</span>\
+                                <p class="chatname">Solas:</p>\
+                                <p>Das wird schon 🌞 In zwei Tagen ist die Premiere! Wenn am Ende alle applaudieren, stehen auch du und ich auf der Bühne.</p>\
+                                <span class="time-right">11:05</span>\
                             </div>\
                     </div>';
 

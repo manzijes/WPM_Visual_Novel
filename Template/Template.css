@@ -417,9 +417,14 @@ meter#solasMeter::-webkit-meter-optimum-value{
   border-top-width: 60px;
   border-bottom-width: 60px;
   border-radius: 36px;
-  width: 360px;
-  height: 640px;
+  width: 450px;
+  height: fit-content;
   overflow: hidden;
+  font-size: 16px;
+}
+
+.smartphone .content p{
+  margin: 0;
 }
 
 .smartphone .content {
@@ -439,7 +444,8 @@ meter#solasMeter::-webkit-meter-optimum-value{
 
 .darker {
   border-color: #ccc;
-  background-color: #ddd;
+  background-color: #d5d5d5;
+  text-align: right;
 }
 
 .chatcontainer::after {
@@ -467,9 +473,8 @@ meter#solasMeter::-webkit-meter-optimum-value{
   color: #aaa;
 }
 
-.time-left {
-  float: left;
-  color: #999;
+.chatname{
+  color: #aaa;
 }
 
 @media (max-width: 768px){
