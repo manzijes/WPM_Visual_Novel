@@ -113,7 +113,7 @@ namespace Template {
             Protagonist: {
                 T0001: "Hey, ich würde gerne mal mit dir reden. Kurz und knapp: Was denkst du über die Sabotage eures Theaterstücks?",
                 T0002: "Das tut mir leid. Dass die Skripte verschwunden sind, ist ärgerlich, aber du hast das Original bestimmt digital gespeichert, oder?",
-                T0003: "Ich verstehe... Darf ich ehrlich mit dir sein? Ich versuche herauszufinden, wer dahinter steckt. Drei Leute sind verdächtig, darunter auch du.",
+                T0003: "Ich verstehe... Darf ich ehrlich mit dir sein? Ich versuche herauszufinden, wer hinter der Sache steckt. Drei Leute sind verdächtig, darunter auch du.",
                 T0004_a: "Here we go.",
                 T0004_b: "Natürlich.",
                 T0005: "Das... kann gut sein. Du bist ein interessanter Typ, so viel steht fest. Hast du womöglich einen Hinweis darauf, wer der Täter sein könnte?",
