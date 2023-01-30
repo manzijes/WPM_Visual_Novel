@@ -61,15 +61,15 @@ namespace Template {
             Solas: {
                 T0001: "Oh?",
                 T0002: "Was ich darüber denke? Nun... Es ist keine schöne Sache, nicht wahr? Ich habe mein  Herz in dieses Stück gesteckt.",
-                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich Notizen auf mein Skript geschrieben hatte. Die sind jetzt leider verloren.",
+                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich Notizen auf mein Skript geschrieben hatte. Anmerkungen und solche Sachen. Die sind jetzt leider verloren.",
                 T0004: "Ich kann mir vorstellen, wieso. Nur drei Mitglieder haben Zugang zum Theaterraum außerhalb der Proben. Darf ich auch ehrlich mit dir sein?",
-                T0005_bad: "Dass jemand das Stück sabotieren will, kann ich nicht nachvollziehen, aber es inspiriert mich auch. Was steckt dahinter, wenn jemand zu solchen Mitteln greift? Ich denke es ist Verzweiflung. Starke Gefühle sind eine Quelle der Kreativität.",
+                T0005_bad: "Dass jemand das Stück sabotieren will, kann ich nicht nachvollziehen, aber es inspiriert mich auch. Was steckt dahinter, wenn jemand zu solchen Mitteln greift? Ich denke es ist Verzweiflung. Starke Gefühle sind eine Quelle der Kreativität, aber sie können ebenso destruktiv wirken.",
                 T0005_good: "Irgendwie habe ich Mitleid mit der Person, die dahinter steckt. Unter der Oberfläche entpuppt sich jedes noch so triviale Motiv als Ausdruck für etwas Tieferes, denkst du nicht?",
-                T0006: "Nun ja... Ich möchte niemanden anschwärzen, aber Lucia spricht viel über den Theaterclub. Leider nicht viel Gutes. Warte, ich zeige dir ein Beispiel aus unserem Chatverlauf, damit du weißt, was ich meine.",
+                T0006: "Nun ja... Ich möchte niemanden anschwärzen, aber Lucia spricht viel über den Theaterclub. Leider nicht viel Gutes. Warte, ich zeige dir ein Beispiel, damit du weißt, was ich meine.",
                 T0007: "Das muss noch nichts heißen. In dubio pro reo.",
                 T0008_good: "Ich bin zuversichtlich, dass am Ende die Wahrheit übrig sein wird.",
                 T0008_bad: "Mir ist entgangen, dass das mein Problem ist.",
-                T0009: "Denk daran. Wichtiger als die Fakten, sind die Menschen. Manchmal trügt der Schein... und manchmal sind die Leute genau so, wie sie auf den ersten Blick wirken.",
+                T0009: "Denk daran. Wichtiger als die Fakten, sind die Menschen. Manchmal trügt der Schein... und manchmal sind die Leute genau so, wie sie auf den ersten Blick anmuten.",
                 T0010_good: "Auf Wiedersehen.",
                 T0010_bad: "Ciao."
             }
@@ -113,10 +113,10 @@ namespace Template {
             Protagonist: {
                 T0001: "Hey, ich würde gerne mal mit dir reden. Kurz und knapp: Was denkst du über die Sabotage eures Theaterstücks?",
                 T0002: "Das tut mir leid. Dass die Skripte verschwunden sind, ist ärgerlich, aber du hast das Original bestimmt digital gespeichert, oder?",
-                T0003: "Ich verstehe... Darf ich ehrlich mit dir sein? Ich versuche herauszufinden, wer hinter der Sache steckt. Drei Leute sind verdächtig, darunter auch du.",
+                T0003: "Ich verstehe... Darf ich ehrlich mit dir sein? Ich versuche herauszufinden, wer dahinter steckt. Drei Leute sind verdächtig, darunter auch du.",
                 T0004_a: "Here we go.",
                 T0004_b: "Natürlich.",
-                T0005: "Das... kann gut sein. Du bist ein interessanter Typ, so viel steht fest. Hast du womöglich einen Hinweis darauf, wer der Täter sein könnte?",
+                T0005: "Das... kann gut sein. Du bist ein interessanter Typ, weißt du das? Hast du womöglich einen Hinweis darauf, wer der Täter sein könnte?",
                 T0006: "Lucia hat offenbar eine Menge negative Gefühle angestaut...",
                 T0007_a: "Ich finde dich sehr verdächtig.",
                 T0007_b: "Macht es dich nicht nervös, dass du unter Verdacht stehst?",
@@ -487,8 +487,6 @@ namespace Template {
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.solas, solasText.Solas.T0006);
 
-                    ƒS.Speech.clear();
-
                     let diaryPage: string = '\
                         <div class="content">\
                             <div class="chatcontainer">\
@@ -794,8 +792,6 @@ namespace Template {
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
                             dataForSave.luciaScore += 5;
-
-                            ƒS.Speech.clear();
 
                             let diaryPage: string = "<div class='diaryPage'>\
                             <p>Mein Tagebuch,</p>\
