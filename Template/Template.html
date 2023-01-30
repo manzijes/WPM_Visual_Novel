@@ -22,7 +22,7 @@
   <scene id="scene">
     <dialog type="splash" open>
       <img id="FudgeStoryLogo" theme="light" /> <!-- use "light" or "dark" -->
-      <img class="cover" src="Images/Backgrounds/Kapitel/splash.png" alt="Splashscreen">
+      <img class="cover" src="Images/Backgrounds/Kapitel/splash-lilac.png" alt="Splashscreen">
     </dialog>
 
     <canvas></canvas>
@@ -37,6 +37,26 @@
       The content of a page of text for reading
     </dialog>
 
+    <!-- Atlas Meterbar -->
+    <div type="interface" id="atlasInterface">
+      <!-- für value der Skala; Füllung -->
+      <meter id="atlasMeter" name="atlasScore" min="0" max="100" disabled></meter>
+      <script>
+        document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
+        document.getElementById("scoreForAtlas").style.display = "none";
+      </script>
+    </div>
+
+    <!-- Lucia Meterbar -->
+    <div type="interface" id="luciaInterface">
+      <!-- für value der Skala; Füllung -->
+      <meter id="luciaMeter" name="luciaScore" min="0" max="100" disabled></meter>
+      <script>
+        document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+        document.getElementById("scoreForLucia").style.display = "none";
+      </script>
+    </div>
+
   </scene>
 
   <div id="shutter"></div>
@@ -47,12 +67,13 @@
       <div class="portrait-wrapper solas col-12">
         <div class="portrait col-3">
           <p>Solas</p>
-          <img src="Images/Portraits/portrait-solas.png" alt="Portrait">
+          <img id="solasPortrait" src="Images/Portraits/portrait-solas.png" alt="Portrait">
         </div>
         <div class="info col-9">
           <div class="motive">
             <h3>Motiv</h3>
-            <p id="solasMotive" class="hidden">Er könnte die Aufführung sabotieren, weil er ein Perfektionist ist und mehr Zeit braucht, um
+            <p id="solasMotive" class="hidden">Er könnte die Aufführung sabotieren, weil er ein Perfektionist ist und
+              mehr Zeit braucht, um
               das Skript zu optimieren.</p>
           </div>
           <div class="opportunity ">
@@ -68,8 +89,8 @@
         <div class="info col-9">
           <div class="motive">
             <h3>Motiv</h3>
-            <p class="hidden">Er könnte die Sabotage inszenieren, um dich abzulenken, sodass er Jahrgangsbester bleibt.
-            </p>
+            <p id="motiveDiary" class="hidden">Er könnte die Sabotage inszenieren, um dich abzulenken, sodass er Jahrgangsbester bleibt.</p>
+            <p id="motiveNoDiary" class="hidden">???</p>
           </div>
           <div class="opportunity">
             <h3>Indizien</h3>
@@ -79,22 +100,25 @@
       <div class="portrait-wrapper lucia col-12">
         <div class="portrait col-3">
           <p>Lucia</p>
-          <img src="Images/Portraits/portrait-lucia.png" alt="Portrait">
+          <img id="luciaPortrait" src="Images/Portraits/portrait-lucia.png" alt="Portrait">
         </div>
         <div class="info col-9">
           <div class="motive">
             <h3>Motiv</h3>
-            <p class="hidden">Sie könnte aus Rache die Sabotage begehen, weil ihr als Mitglied hinter den Kulissen die
+            <p id="luciaMotive" class="hidden">Sie könnte aus Rache die Sabotage begehen, weil ihr als Mitglied hinter
+              den Kulissen die
               Wertschätzung fehlt.</p>
           </div>
           <div class="opportunity">
             <h3>Indizien</h3>
+            <p id="luciaOpportunity" class="hidden">Sie sagt, sie habe den Schlüssel zum Theaterraum verloren. Stimmt
+              das...?</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+
 </body>
 
 </html>

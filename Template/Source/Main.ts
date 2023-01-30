@@ -5,18 +5,18 @@ namespace Template {
   console.log("FudgeStory template starting");
 
   export let transition = {
-      fizzle: {
-        duration: 1.5,
-        alpha: "FreeTransitions/Others/005.jpg",
-        edge: 2
-      },
-      waves: {
-        duration: 2,
-        alpha: "FreeTransitions/WipesAndOther/9.jpg",
-        edge: 2
-      }
-    };
-    
+    fizzle: {
+      duration: 1.5,
+      alpha: "FreeTransitions/Others/005.jpg",
+      edge: 2
+    },
+    waves: {
+      duration: 2,
+      alpha: "FreeTransitions/WipesAndOther/9.jpg",
+      edge: 2
+    }
+  };
+
   export let sound = {
     // music
     mainMusic: "Audio/Music/inspiration.mp3",
@@ -58,6 +58,10 @@ namespace Template {
       name: "classroomDay",
       background: "Images/Backgrounds/classroom-day.jpg",
       foreground: ""
+    },
+    library: {
+      name: "library",
+      background: "Images/Backgrounds/library.png"
     }
   };
 
@@ -137,39 +141,53 @@ namespace Template {
   export async function simulateCameraFlash() {
     let shutter = document.getElementById("shutter");
     shutter.classList.add("on");
-    ƒS.Sound.play(sound.shutter, 0.5, false); 
-    setTimeout(function() {
+    ƒS.Sound.play(sound.shutter, 0.5, false);
+    setTimeout(function () {
       shutter.classList.remove('on');
-    }, 30*2+45);
+    }, 30 * 2 + 45);
   }
 
   export function revealNotes() {
     dataForSave.toggleSuspectsButton = true;
-}
+  }
 
   export function updateNotes() {
-    if(dataForSave.toggleSuspectsButton == true){
+    if (dataForSave.toggleSuspectsButton == true) {
       let toggleSuspects = document.getElementById("toggleSuspects");
       toggleSuspects.style.visibility = "visible";
       toggleSuspects.style.opacity = "1";
     }
     // Portraits
-    if(dataForSave.atlasPortrait == true){
-      let atlasPortrait =  document.getElementById("atlasPortrait");
+    if (dataForSave.atlasPortrait == true) {
+      let atlasPortrait = document.getElementById("atlasPortrait");
       atlasPortrait.style.filter = "unset";
     }
-    if(dataForSave.solasPortrait == true){
-      let atlasPortrait =  document.getElementById("solasPortrait");
-      atlasPortrait.style.filter = "unset";
+    if (dataForSave.solasPortrait == true) {
+      let solasPortrait = document.getElementById("solasPortrait");
+      solasPortrait.style.filter = "unset";
     }
-    if(dataForSave.luciaPortrait == true){
-      let atlasPortrait =  document.getElementById("luciaPortrait");
-      atlasPortrait.style.filter = "unset";
+    if (dataForSave.luciaPortrait == true) {
+      let luciaPortrait = document.getElementById("luciaPortrait");
+      luciaPortrait.style.filter = "unset";
     }
     // Motives
-    if(dataForSave.solasMotive == true){
-      let solasMotive =  document.getElementById("solasMotive");
+    if (dataForSave.solasMotive == true) {
+      let solasMotive = document.getElementById("solasMotive");
       solasMotive.classList.remove("hidden");
+    }
+    if (dataForSave.atlasMotive == true) {
+      if(dataForSave.atlasDiary == true){
+        let atlasMotive = document.getElementById("motiveDiary");
+        atlasMotive.classList.remove("hidden");
+      } else{
+        let atlasMotive = document.getElementById("motiveNoDiary");
+        atlasMotive.classList.remove("hidden");
+      }
+    }
+    // Opportunities
+    if (dataForSave.luciaOpportunity == true) {
+      let luciaOpportunity = document.getElementById("luciaOpportunity");
+      luciaOpportunity.classList.remove("hidden");
     }
   }
 
@@ -211,14 +229,14 @@ namespace Template {
     ptag2.appendChild(text2);
     div.appendChild(ptag2);
     // append div to scene
-    scene.appendChild(div); 
-}
+    scene.appendChild(div);
+  }
 
   // animation tutorial
   export function animation(): ƒS.AnimationDefinition {
     return {
       start: { translation: ƒS.positions.bottomleft, rotation: -20, scaling: new ƒS.Position(0.5, 1.5) },
-      end: { translation: ƒS.positions.bottomright, rotation: 20, scaling: new ƒS.Position(1.5, 0.5)},
+      end: { translation: ƒS.positions.bottomright, rotation: 20, scaling: new ƒS.Position(1.5, 0.5) },
       duration: 1,
       playmode: ƒS.ANIMATION_PLAYMODE.LOOP
     };
@@ -245,11 +263,16 @@ namespace Template {
     atlasPortrait: false,
     atlasMotive: false,
     atlasOpportunity: false,
+    atlasDiary: false,
 
     luciaPortrait: false,
     luciaMotive: false,
     luciaOpportunity: false,
-    };
+
+    // meterbars
+    atlasScore: 20,
+    luciaScore: 50
+  };
 
   window.addEventListener("load", start);
   function start(_event: Event): void {
@@ -257,18 +280,25 @@ namespace Template {
     gameMenu = ƒS.Menu.create(menuInGame, buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
 
     let scenes: ƒS.Scenes = [
-      // { scene: firstScene, name: "firstScene"}
-      { scene: coverChapterOne, name: "chapterOne"},
-      { scene: motive, name: "motive"},
-      { scene: test, name: "test"}
+      // { scene: firstScene, name: "firstScene"},
+      { scene: beta, name: "beta" },
+      { scene: coverChapterOne, name: "chapterOne" },
+      { scene: motive, name: "motive" },
+      { scene: test, name: "test" }
     ];
 
-    let uiElement: HTMLElement = document.querySelector("[type=interface]");
-    dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
+    // let uiElement: HTMLElement = document.querySelector("[type=interface]");
+    // dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
+
+    let atlasInterface: HTMLElement = document.getElementById("atlasInterface");
+    dataForSave = ƒS.Progress.setData(dataForSave, atlasInterface);
+
+    let luciaInterface: HTMLElement = document.getElementById("luciaInterface");
+    dataForSave = ƒS.Progress.setData(dataForSave, luciaInterface);
 
     // start the sequence
     ƒS.Progress.go(scenes);
 
   }
-  
+
 }

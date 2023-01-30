@@ -7,8 +7,6 @@ namespace Template {
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true); 
         updateNotes();
 
-        addFallingLeaves();
-
         let narratorText = {
             Narrator: {
                 T0001: "Klicke, um fortzufahren."
@@ -26,12 +24,10 @@ namespace Template {
 
         // await new Promise(resolve => setTimeout(resolve, 1600));
 
-        await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
         let ch1 = document.getElementById("ch1");
         ch1.remove();
-
-        removeFallingLeaves();
 
         ƒS.Sound.play(sound.pageflip, 0.5, false); 
     

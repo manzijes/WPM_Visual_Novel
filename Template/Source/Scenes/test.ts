@@ -107,7 +107,7 @@ namespace Template {
 
         await ƒS.Location.show(locations.classroomDay);
         await ƒS.update(1);
-        await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);

@@ -93,7 +93,7 @@ background-color: rgba(255, 255, 255, .3);
     z-index: 4;
 }
 .suspects {
-    font-family: "Handwriting";
+    font-family: "Gamewriting";
     z-index: 988888;
     margin: auto;
     position: absolute;
@@ -173,4 +173,8 @@ background-color: rgba(255, 255, 255, .3);
     color: white;
     padding-bottom: 15px;
     text-align: center;
+}
+
+.opportunity p{
+    padding-right: 30px;
 }

@@ -73,7 +73,7 @@ namespace Template {
         await ƒS.Location.show(locations.schoolOutsideTwilight);
         await ƒS.update(2);
 
-        await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0001);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         ƒS.Sound.play(sound.birds, 0.5, true); 
@@ -98,7 +98,7 @@ namespace Template {
 
         await ƒS.Character.show(characters.kira, characters.kira.pose.neutral, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
-        await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0002);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.stranger, strangerText.Stranger.T0002);
 
@@ -230,7 +230,7 @@ namespace Template {
         await ƒS.Character.hide(characters.kira);
         await ƒS.update(0.5);
   
-        await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0003);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0010);
@@ -247,9 +247,10 @@ namespace Template {
 
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.update(0.5);
+        ƒS.Speech.clear();
         ƒS.Speech.hide();
 
-        await ƒS.Speech.tell(characters.narrator, narratorText.Narrator.T0004);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0004);
 
         removeFallingLeaves();
         ƒS.Sound.fade(sound.mainMusic, 0, 3, true); 

@@ -51,6 +51,10 @@ declare namespace Template {
             background: string;
             foreground: string;
         };
+        library: {
+            name: string;
+            background: string;
+        };
     };
     let chapterCovers: {
         chapterSimple: {
@@ -139,9 +143,12 @@ declare namespace Template {
         atlasPortrait: boolean;
         atlasMotive: boolean;
         atlasOpportunity: boolean;
+        atlasDiary: boolean;
         luciaPortrait: boolean;
         luciaMotive: boolean;
         luciaOpportunity: boolean;
+        atlasScore: number;
+        luciaScore: number;
     };
 }
 declare namespace Template {
@@ -174,6 +181,9 @@ declare namespace Template {
 }
 declare namespace Template {
     function animationExampleScene(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function beta(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function coverChapterOne(): ƒS.SceneReturn;
