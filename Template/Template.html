@@ -40,30 +40,27 @@
     <!-- Atlas Meterbar -->
     <div type="interface" id="atlasInterface">
       <!-- für value der Skala; Füllung -->
-      <meter id="atlasMeter" name="atlasScore" min="0" max="100" disabled></meter>
+      <meter id="atlasMeter" name="atlasScore" min="0" max="100" value="20" disabled></meter>
       <script>
         document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
-        document.getElementById("scoreForAtlas").style.display = "none";
       </script>
     </div>
 
     <!-- Lucia Meterbar -->
     <div type="interface" id="luciaInterface">
       <!-- für value der Skala; Füllung -->
-      <meter id="luciaMeter" name="luciaScore" min="0" max="100" disabled></meter>
+      <meter id="luciaMeter" name="luciaScore" min="0" max="100" value="50" disabled></meter>
       <script>
         document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
-        document.getElementById("scoreForLucia").style.display = "none";
       </script>
     </div>
 
     <!-- Solas Meterbar -->
     <div type="interface" id="solasInterface">
       <!-- für value der Skala; Füllung -->
-      <meter id="solasMeter" name="solasScore" min="0" max="100" disabled></meter>
+      <meter id="solasMeter" name="solasScore" min="0" max="100" value="50" disabled></meter>
       <script>
         document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = true);
-        document.getElementById("scoreForSolas").style.display = "none";
       </script>
     </div>
 

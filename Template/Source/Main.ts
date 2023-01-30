@@ -159,13 +159,11 @@ namespace Template {
   }
 
   export function updateNotes() {
-    dataForSave.toggleSuspectsButton = true;
-
-    if (dataForSave.toggleSuspectsButton == true) {
-      let toggleSuspects = document.getElementById("toggleSuspects");
-      toggleSuspects.style.visibility = "visible";
-      toggleSuspects.style.opacity = "1";
-    }
+      
+    let toggleSuspects = document.getElementById("toggleSuspects");
+    toggleSuspects.style.visibility = "visible";
+    toggleSuspects.style.opacity = "1";
+    
     // Portraits
     if (dataForSave.atlasPortrait == true) {
       let atlasPortrait = document.getElementById("atlasPortrait");
@@ -249,6 +247,28 @@ namespace Template {
       duration: 1,
       playmode: ƒS.ANIMATION_PLAYMODE.LOOP
     };
+  }
+
+  // visibility solas meter
+  export function showSolasMeter() {
+    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+  }
+  export function hideSolasMeter() {
+    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = true);
+  }
+  // visibility atlas meter
+  export function showAtlasMeter() {
+    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+  }
+  export function hideAtlasMeter() {
+    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
+  }
+  // visibility lucia meter
+  export function showLuciaMeter() {
+    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+  }
+  export function hideLuciaMeter() {
+    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
   }
 
   // let speechInDom = document.getElementById("speech");

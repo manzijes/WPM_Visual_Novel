@@ -174,7 +174,6 @@ namespace Template {
         //     bad: "Du machst mich irre. Ciao!"
         // }
 
-
         await ƒS.Location.show(locations.classroomDay);
         await ƒS.update(2);
 
@@ -197,7 +196,7 @@ namespace Template {
                 case startTalk.withAtlas:
                     await ƒS.update(0.5);
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                    showAtlasMeter();
 
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
@@ -211,16 +210,16 @@ namespace Template {
                     await ƒS.update(0.2);
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.angry, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                    showAtlasMeter();
                     await ƒS.update(0.5);
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                    showAtlasMeter();
                     await ƒS.update(1);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0001);
                     await ƒS.update(0.5);
 
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
+                    hideAtlasMeter();
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.update(0.5);
 
@@ -231,10 +230,10 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                    showAtlasMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0002);
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
+                    hideAtlasMeter();
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.update(0.5);
 
@@ -245,7 +244,7 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                    showAtlasMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0003);
 
@@ -256,7 +255,7 @@ namespace Template {
                         case optionsAtlasBusy.good:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
-                            document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                            showAtlasMeter();
                             dataForSave.atlasScore += 10;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_good);
@@ -274,7 +273,7 @@ namespace Template {
 
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                    showAtlasMeter();
                     await ƒS.update(0.5);
 
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_2);
@@ -290,7 +289,7 @@ namespace Template {
                         case optionsAtlasUnless.bad:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
-                            document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                            showAtlasMeter();
                             dataForSave.atlasScore -= 10;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0005_bad);
@@ -299,14 +298,14 @@ namespace Template {
                         case optionsAtlasUnless.good:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
-                            document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                            showAtlasMeter();
                             dataForSave.atlasScore += 10;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0005_good);
                             await ƒS.update(0.5);
                     }
 
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
+                    hideAtlasMeter();
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.update(0.5);
                     await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.angry, ƒS.positionPercent(25, 97));
@@ -316,16 +315,17 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.happy, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                    showAtlasMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0006);
                     await ƒS.update(0.5);
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                    showAtlasMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0006_2);
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
+
+                    hideAtlasMeter();
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.update(0.5);
 
@@ -336,7 +336,7 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                    showAtlasMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0007_1);
                     await ƒS.update(0.5);
@@ -355,7 +355,7 @@ namespace Template {
                         case optionsAtlasGoodbye.good:         
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
-                            document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                            showAtlasMeter();
                             dataForSave.atlasScore += 5;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0008_good);
@@ -364,14 +364,14 @@ namespace Template {
                         case optionsAtlasGoodbye.bad:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.angry, ƒS.positionPercent(75, 97));
-                            document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
+                            showAtlasMeter();
                             dataForSave.atlasScore -= 5;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0008_bad);
                             await ƒS.update(0.5);
                     }
 
-                    document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
+                    hideAtlasMeter();
                     
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.update(0.5);
@@ -386,7 +386,7 @@ namespace Template {
                 case startTalk.withSolas:
                     await ƒS.update(0.5);
                     await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+                    showSolasMeter();
 
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
@@ -400,16 +400,14 @@ namespace Template {
                     await ƒS.update(0.2);
                     await ƒS.Character.hide(characters.solas);
                     await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
                     await ƒS.update(0.5);
                     await ƒS.Character.hide(characters.solas);
                     await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
                     await ƒS.update(1);
                     await ƒS.Speech.tell(characters.solas, solasText.Solas.T0001);
                     await ƒS.update(0.5);
 
-                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = true);
+                    hideSolasMeter();
                     await ƒS.Character.hide(characters.solas);
                     await ƒS.update(0.5);
 
@@ -420,10 +418,11 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+                    showSolasMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.solas, solasText.Solas.T0002);
-                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = true);
+
+                    hideSolasMeter();
                     await ƒS.Character.hide(characters.solas);
                     await ƒS.update(0.5);
 

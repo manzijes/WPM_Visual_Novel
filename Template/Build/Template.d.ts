@@ -144,6 +144,12 @@ declare namespace Template {
     function addFallingLeaves(): void;
     function createText(givenheadline: string, giventext1: string, giventext2: string, givenid: string): void;
     function animation(): ƒS.AnimationDefinition;
+    function showSolasMeter(): void;
+    function hideSolasMeter(): void;
+    function showAtlasMeter(): void;
+    function hideAtlasMeter(): void;
+    function showLuciaMeter(): void;
+    function hideLuciaMeter(): void;
     let dataForSave: {
         nameProtagonist: string;
         toggleSuspectsButton: boolean;
