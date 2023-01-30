@@ -1,8 +1,8 @@
 namespace Template {
     export async function motive(): ƒS.SceneReturn {
 
-        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true); 
-        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true); 
+        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
+        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
         updateNotes();
 
         let narratorText = {
@@ -60,8 +60,8 @@ namespace Template {
         let solasText = {
             Solas: {
                 T0001: "Oh?",
-                T0002: "Was ich darüber denke? Nun... Es ist keine schöne Sache, nicht wahr? Ich habe mein  Herz in dieses Stück gesteckt.",
-                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich meine Notizen darauf geschrieben habe. Die sind jetzt leider weg.",
+                T0002: "Was ich darüber denke? Nun... Es ist keine schöne Sache, nicht wahr? Ich habe mein  Herz in dieses Stück gesteckt. Dass jemand versucht, es zu verhindern... Ich finde das ",
+                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich Notizen auf mein Skript geschrieben hatte. Die sind jetzt leider weg.",
                 T0004: "Ich kann mir vorstellen, wieso. Nur drei Mitglieder haben Zugang zum Theaterraum außerhalb der Probezeiten. Darf ich auch ehrlich mit dir sein?",
                 T0005_bad: "Dass jemand das Stück sabotieren will, kann ich nicht nachvollziehen, aber es inspiriert mich auch. Was steckt dahinter, wenn jemand zu solchen Mitteln greift? Verzweiflung, vermute ich.",
                 T0005_good: "Irgendwie habe ich Mitleid mit der Person, die dahinter steckt. Unter der Oberfläche entpuppt sich jedes noch so triviale Motiv als Ausdruck für etwas Tieferes, denkst du nicht?",
@@ -112,12 +112,12 @@ namespace Template {
         let protagonistToSolas = {
             Protagonist: {
                 T0001: "Hey, ich möchte kurz mit dir reden. Was denkst du über die Sabotage eures Theaterstücks?",
-                T0002: "Das tut mir leid. Dass die Skripte verschwunden sind, ist sicher ärgerlich, aber du hast das Original bestimmt digital gespeichert, oder?",
+                T0002: "Das tut mir leid. Dass die Skripte verschwunden sind, ist ärgerlich, aber du hast das Original bestimmt digital gespeichert, oder?",
                 T0003: "Ich verstehe... Darf ich ehrlich mit dir sein? Ich versuche herauszufinden, wer dahinter steckt. Drei Leute sind verdächtig, darunter auch du.",
                 T0004_a: "Here we go.",
                 T0004_b: "Natürlich.",
                 T0005: "Du bist ein interessanter Typ, so viel steht fest. Hast du womöglich einen Hinweis darauf, wer der Täter sein könnte?",
-                T0006: "Lucia hat offenbar viel Wut aufgestaut.",
+                T0006: "Lucia hat offenbar eine Menge negative Gefühle angestaut...",
                 T0007_a: "Ich finde dich sehr verdächtig.",
                 T0007_b: "Macht es dich nicht nervös, dass du unter Verdacht stehst?",
                 T0008_a: "Nun gut. Bis bald.",
@@ -161,18 +161,18 @@ namespace Template {
         }
 
         // Solas Dialog Options
-        // let optionsSolasHonest = {
-        //     bad: "Here we go.",
-        //     good: "Natürlich."
-        // }
-        // let optionsSolasSuspect = {
-        //     bad: "Ich finde dich sehr verdächtig.",
-        //     good: "Macht es dich nicht nervös, dass du unter Verdacht stehst?"
-        // }
-        // let optionsSolasGoodbye = {
-        //     good: "Nun gut. Bis bald.",
-        //     bad: "Du machst mich irre. Ciao!"
-        // }
+        let optionsSolasHonest = {
+            bad: "Here we go.",
+            good: "Natürlich."
+        }
+        let optionsSolasSuspect = {
+            bad: "Ich finde dich sehr verdächtig.",
+            good: "Macht es dich nicht nervös, dass du unter Verdacht stehst?"
+        }
+        let optionsSolasGoodbye = {
+            good: "Nun gut. Bis bald.",
+            bad: "Du machst mich irre. Ciao!"
+        }
 
         await ƒS.Location.show(locations.classroomDay);
         await ƒS.update(2);
@@ -184,12 +184,12 @@ namespace Template {
         let loopLength: number = Object.keys(startTalk).length;
 
         while (loopCount < loopLength) {
-            if(loopCount > 0){
+            if (loopCount > 0) {
                 await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
             }
 
             let startTalkElement = await ƒS.Menu.getInput(startTalk, "dialogoptions");
-            ƒS.Sound.play(sound.selectDialog, 1.5, false); 
+            ƒS.Sound.play(sound.selectDialog, 1.5, false);
 
             switch (startTalkElement) {
                 // CASE Talk To Atlas
@@ -249,7 +249,7 @@ namespace Template {
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0003);
 
                     let optionsAtlasBusyElement = await ƒS.Menu.getInput(optionsAtlasBusy, "dialogoptions");
-                    ƒS.Sound.play(sound.selectDialog, 1.5, false); 
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
 
                     switch (optionsAtlasBusyElement) {
                         case optionsAtlasBusy.good:
@@ -281,7 +281,7 @@ namespace Template {
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_3);
 
                     let optionsAtlasUnlessElement = await ƒS.Menu.getInput(optionsAtlasUnless, "dialogoptions");
-                    ƒS.Sound.play(sound.selectDialog, 1.5, false); 
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
 
                     await ƒS.update(0.5);
 
@@ -349,10 +349,10 @@ namespace Template {
                     updateNotes();
 
                     let optionsAtlasGoodbyeElement = await ƒS.Menu.getInput(optionsAtlasGoodbye, "dialogoptions");
-                    ƒS.Sound.play(sound.selectDialog, 1.5, false); 
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
 
                     switch (optionsAtlasGoodbyeElement) {
-                        case optionsAtlasGoodbye.good:         
+                        case optionsAtlasGoodbye.good:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
                             showAtlasMeter();
@@ -372,7 +372,7 @@ namespace Template {
                     }
 
                     hideAtlasMeter();
-                    
+
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.update(0.5);
 
@@ -432,6 +432,150 @@ namespace Template {
                     await ƒS.Character.hide(characters.protagonist);
                     await ƒS.update(0.5);
 
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0003);
+
+                    hideSolasMeter();
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0003);
+                    await ƒS.Character.hide(characters.protagonist);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0004);
+
+                    let optionsSolasHonestElement = await ƒS.Menu.getInput(optionsSolasHonest, "dialogoptions");
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
+                    await ƒS.update(0.5);
+
+                    switch (optionsSolasHonestElement) {
+                        case optionsSolasHonest.bad:
+                            await ƒS.Character.hide(characters.solas);
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
+                            dataForSave.solasScore -= 10;
+                            await ƒS.update(0.5);
+                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_bad);
+                            await ƒS.update(0.5);
+                            break;
+                        case optionsSolasHonest.good:
+                            dataForSave.solasScore += 10;
+                            await ƒS.update(0.5);
+                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_good);
+                            await ƒS.update(0.5);
+                            break;
+                    }
+
+                    hideSolasMeter();
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0005);
+                    await ƒS.Character.hide(characters.protagonist);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0006);
+
+                    ƒS.Speech.clear();
+
+                    let diaryPage: string = "<div class='chatPage'>\
+                            </div>";
+
+                    ƒS.Text.setClass("chatPageWrapper");
+                    let close = { done: "x" };
+                    let choice: string;
+                    do {
+                        ƒS.Text.print(diaryPage);
+                        choice = await ƒS.Menu.getInput(close, "pageclose");
+                    } while (choice != close.done);
+                    ƒS.Text.close();
+                    await ƒS.update(0.5);
+
+                    dataForSave.luciaMotive = true;
+                    updateNotes();
+
+                    hideSolasMeter();
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0006);
+                    await ƒS.Character.hide(characters.protagonist);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0007);
+
+                    let optionsSolasSuspectElement = await ƒS.Menu.getInput(optionsSolasSuspect, "dialogoptions");
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
+                    await ƒS.update(0.5);
+
+                    switch (optionsSolasSuspectElement) {
+                        case optionsSolasSuspect.bad:
+                            await ƒS.Character.hide(characters.solas);
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.angry, ƒS.positionPercent(75, 97));
+                            dataForSave.solasScore -= 20;
+                            await ƒS.update(0.5);
+                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0008_bad);
+                            await ƒS.update(0.5);
+                            break;
+                        case optionsSolasSuspect.good:
+                            await ƒS.Character.hide(characters.solas);
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.happy, ƒS.positionPercent(75, 97));
+                            dataForSave.solasScore += 10;
+                            await ƒS.update(0.5);
+                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0008_good);
+                            await ƒS.update(0.5);
+                            break;
+                    }
+
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    showSolasMeter();
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0009);
+
+                    let optionsSolasGoodbyeElement = await ƒS.Menu.getInput(optionsSolasGoodbye, "dialogoptions");
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
+                    await ƒS.update(0.5);
+
+                    switch (optionsSolasGoodbyeElement) {
+                        case optionsSolasGoodbye.bad:
+                            await ƒS.Character.hide(characters.solas);
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
+                            dataForSave.solasScore -= 5;
+                            await ƒS.update(0.5);
+                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0010_bad);
+                            await ƒS.update(0.5);
+                            break;
+                        case optionsSolasGoodbye.good:
+                            await ƒS.Character.hide(characters.solas);
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.happy, ƒS.positionPercent(75, 97));
+                            dataForSave.solasScore += 5;
+                            await ƒS.update(0.5);
+                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0010_good);
+                            await ƒS.update(0.5);
+                            break;
+                    }
+
+                    hideSolasMeter();
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
+
                     delete startTalk.withSolas;
                     break;
 
@@ -440,7 +584,7 @@ namespace Template {
                     // go to library with her
                     await ƒS.update(0.5);
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
                     await ƒS.update(0.5);
@@ -453,7 +597,7 @@ namespace Template {
                     await ƒS.update(0.2);
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
@@ -461,7 +605,7 @@ namespace Template {
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0001);
                     await ƒS.update(0.5);
 
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    hideLuciaMeter();
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.update(0.5);
 
@@ -472,10 +616,10 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0002);
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    hideLuciaMeter();
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.update(0.5);
 
@@ -493,13 +637,13 @@ namespace Template {
                     await ƒS.update(transition.waves.duration, transition.waves.alpha, transition.waves.edge);
 
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0003);
                     await ƒS.update(0.5);
 
                     let optionsLuciaBooksElement = await ƒS.Menu.getInput(optionsLuciaBooks, "dialogoptions");
-                    ƒS.Sound.play(sound.selectDialog, 1.5, false); 
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
 
                     await ƒS.update(0.5);
 
@@ -525,7 +669,7 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     ƒS.Speech.clear();
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    hideLuciaMeter();
 
                     await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
@@ -534,10 +678,10 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0005);
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    hideLuciaMeter();
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.update(0.5);
 
@@ -548,13 +692,13 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0006);
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    hideLuciaMeter();
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.update(0.5);
-   
+
                     await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.protagonist, protagonistToLucia.Protagonist.T0006);
@@ -562,14 +706,14 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0007);
 
                     dataForSave.luciaOpportunity = true;
                     updateNotes();
 
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    hideLuciaMeter();
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.update(0.5);
 
@@ -580,10 +724,10 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0008);
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    hideLuciaMeter();
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.update(0.5);
 
@@ -594,12 +738,12 @@ namespace Template {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0009);
 
                     let optionsLuciaDiaryElement = await ƒS.Menu.getInput(optionsLuciaDiary, "dialogoptions");
-                    ƒS.Sound.play(sound.selectDialog, 1.5, false); 
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
 
                     await ƒS.update(0.5);
 
@@ -636,22 +780,22 @@ namespace Template {
                             let close = { done: "x" };
                             let choice: string;
                             do {
-                              ƒS.Text.print(diaryPage);
-                              choice = await ƒS.Menu.getInput(close, "pageclose");
+                                ƒS.Text.print(diaryPage);
+                                choice = await ƒS.Menu.getInput(close, "pageclose");
                             } while (choice != close.done);
                             ƒS.Text.close();
 
                             dataForSave.atlasDiary = true;
-                            
+
                             await ƒS.update(0.5);
 
                             dataForSave.atlasMotive = true;
                             updateNotes();
-        
+
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.update(0.5);
-                            document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
-        
+                            hideLuciaMeter();
+
                             await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.protagonist, protagonistToLucia.Protagonist.T00010);
@@ -660,14 +804,14 @@ namespace Template {
                     }
 
                     await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    showLuciaMeter();
                     await ƒS.update(0.5);
 
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0011);
                     await ƒS.update(0.5);
 
                     let optionsLuciaGoodbyeElement = await ƒS.Menu.getInput(optionsLuciaGoodbye, "dialogoptions");
-                    ƒS.Sound.play(sound.selectDialog, 1.5, false); 
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
 
                     await ƒS.update(0.5);
 
@@ -679,7 +823,7 @@ namespace Template {
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0012_good);
                             await ƒS.update(0.5);
-                            document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                            hideLuciaMeter();
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.update(0.5);
                             break;
@@ -690,7 +834,7 @@ namespace Template {
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0012_bad);
                             await ƒS.update(0.5);
-                            document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                            hideLuciaMeter();
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.update(0.5);
                     }
@@ -700,14 +844,14 @@ namespace Template {
                     // CLUB ROOM
                     await ƒS.Location.show(locations.classroomDay);
                     await ƒS.update(transition.waves.duration, transition.waves.alpha, transition.waves.edge);
-                    
+
                     delete startTalk.withLucia;
                     break;
             }
             loopCount++;
         }
 
-        ƒS.Sound.fade(sound.mainMusic, 0, 3, true); 
+        ƒS.Sound.fade(sound.mainMusic, 0, 3, true);
 
     }
 }

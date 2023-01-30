@@ -185,6 +185,10 @@ var Template;
                 atlasMotive.classList.remove("hidden");
             }
         }
+        if (Template.dataForSave.luciaMotive == true) {
+            let luciaMotive = document.getElementById("luciaMotive");
+            luciaMotive.classList.remove("hidden");
+        }
         // Opportunities
         if (Template.dataForSave.luciaOpportunity == true) {
             let luciaOpportunity = document.getElementById("luciaOpportunity");
@@ -971,8 +975,8 @@ var Template;
         let solasText = {
             Solas: {
                 T0001: "Oh?",
-                T0002: "Was ich darüber denke? Nun... Es ist keine schöne Sache, nicht wahr? Ich habe mein  Herz in dieses Stück gesteckt.",
-                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich meine Notizen darauf geschrieben habe. Die sind jetzt leider weg.",
+                T0002: "Was ich darüber denke? Nun... Es ist keine schöne Sache, nicht wahr? Ich habe mein  Herz in dieses Stück gesteckt. Dass jemand versucht, es zu verhindern... Ich finde das ",
+                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich Notizen auf mein Skript geschrieben hatte. Die sind jetzt leider weg.",
                 T0004: "Ich kann mir vorstellen, wieso. Nur drei Mitglieder haben Zugang zum Theaterraum außerhalb der Probezeiten. Darf ich auch ehrlich mit dir sein?",
                 T0005_bad: "Dass jemand das Stück sabotieren will, kann ich nicht nachvollziehen, aber es inspiriert mich auch. Was steckt dahinter, wenn jemand zu solchen Mitteln greift? Verzweiflung, vermute ich.",
                 T0005_good: "Irgendwie habe ich Mitleid mit der Person, die dahinter steckt. Unter der Oberfläche entpuppt sich jedes noch so triviale Motiv als Ausdruck für etwas Tieferes, denkst du nicht?",
@@ -1019,12 +1023,12 @@ var Template;
         let protagonistToSolas = {
             Protagonist: {
                 T0001: "Hey, ich möchte kurz mit dir reden. Was denkst du über die Sabotage eures Theaterstücks?",
-                T0002: "Das tut mir leid. Dass die Skripte verschwunden sind, ist sicher ärgerlich, aber du hast das Original bestimmt digital gespeichert, oder?",
+                T0002: "Das tut mir leid. Dass die Skripte verschwunden sind, ist ärgerlich, aber du hast das Original bestimmt digital gespeichert, oder?",
                 T0003: "Ich verstehe... Darf ich ehrlich mit dir sein? Ich versuche herauszufinden, wer dahinter steckt. Drei Leute sind verdächtig, darunter auch du.",
                 T0004_a: "Here we go.",
                 T0004_b: "Natürlich.",
                 T0005: "Du bist ein interessanter Typ, so viel steht fest. Hast du womöglich einen Hinweis darauf, wer der Täter sein könnte?",
-                T0006: "Lucia hat offenbar viel Wut aufgestaut.",
+                T0006: "Lucia hat offenbar eine Menge negative Gefühle angestaut...",
                 T0007_a: "Ich finde dich sehr verdächtig.",
                 T0007_b: "Macht es dich nicht nervös, dass du unter Verdacht stehst?",
                 T0008_a: "Nun gut. Bis bald.",
@@ -1064,18 +1068,18 @@ var Template;
             bad: "Streng dich das nächste Mal bitte etwas mehr an."
         };
         // Solas Dialog Options
-        // let optionsSolasHonest = {
-        //     bad: "Here we go.",
-        //     good: "Natürlich."
-        // }
-        // let optionsSolasSuspect = {
-        //     bad: "Ich finde dich sehr verdächtig.",
-        //     good: "Macht es dich nicht nervös, dass du unter Verdacht stehst?"
-        // }
-        // let optionsSolasGoodbye = {
-        //     good: "Nun gut. Bis bald.",
-        //     bad: "Du machst mich irre. Ciao!"
-        // }
+        let optionsSolasHonest = {
+            bad: "Here we go.",
+            good: "Natürlich."
+        };
+        let optionsSolasSuspect = {
+            bad: "Ich finde dich sehr verdächtig.",
+            good: "Macht es dich nicht nervös, dass du unter Verdacht stehst?"
+        };
+        let optionsSolasGoodbye = {
+            good: "Nun gut. Bis bald.",
+            bad: "Du machst mich irre. Ciao!"
+        };
         await Template.ƒS.Location.show(Template.locations.classroomDay);
         await Template.ƒS.update(2);
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
@@ -1292,6 +1296,128 @@ var Template;
                     await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToSolas.Protagonist.T0002);
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
                     await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    Template.showSolasMeter();
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0003);
+                    Template.hideSolasMeter();
+                    await Template.ƒS.Character.hide(Template.characters.solas);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToSolas.Protagonist.T0003);
+                    await Template.ƒS.Character.hide(Template.characters.protagonist);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    Template.showSolasMeter();
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0004);
+                    let optionsSolasHonestElement = await Template.ƒS.Menu.getInput(optionsSolasHonest, "dialogoptions");
+                    Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+                    await Template.ƒS.update(0.5);
+                    switch (optionsSolasHonestElement) {
+                        case optionsSolasHonest.bad:
+                            await Template.ƒS.Character.hide(Template.characters.solas);
+                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.sad, Template.ƒS.positionPercent(75, 97));
+                            Template.dataForSave.solasScore -= 10;
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0005_bad);
+                            await Template.ƒS.update(0.5);
+                            break;
+                        case optionsSolasHonest.good:
+                            Template.dataForSave.solasScore += 10;
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0005_good);
+                            await Template.ƒS.update(0.5);
+                            break;
+                    }
+                    Template.hideSolasMeter();
+                    await Template.ƒS.Character.hide(Template.characters.solas);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToSolas.Protagonist.T0005);
+                    await Template.ƒS.Character.hide(Template.characters.protagonist);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    Template.showSolasMeter();
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0006);
+                    Template.ƒS.Speech.clear();
+                    let diaryPage = "<div class='chatPage'>\
+                            </div>";
+                    Template.ƒS.Text.setClass("chatPageWrapper");
+                    let close = { done: "x" };
+                    let choice;
+                    do {
+                        Template.ƒS.Text.print(diaryPage);
+                        choice = await Template.ƒS.Menu.getInput(close, "pageclose");
+                    } while (choice != close.done);
+                    Template.ƒS.Text.close();
+                    await Template.ƒS.update(0.5);
+                    Template.dataForSave.luciaMotive = true;
+                    Template.updateNotes();
+                    Template.hideSolasMeter();
+                    await Template.ƒS.Character.hide(Template.characters.solas);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToSolas.Protagonist.T0006);
+                    await Template.ƒS.Character.hide(Template.characters.protagonist);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    Template.showSolasMeter();
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0007);
+                    let optionsSolasSuspectElement = await Template.ƒS.Menu.getInput(optionsSolasSuspect, "dialogoptions");
+                    Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+                    await Template.ƒS.update(0.5);
+                    switch (optionsSolasSuspectElement) {
+                        case optionsSolasSuspect.bad:
+                            await Template.ƒS.Character.hide(Template.characters.solas);
+                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.angry, Template.ƒS.positionPercent(75, 97));
+                            Template.dataForSave.solasScore -= 20;
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0008_bad);
+                            await Template.ƒS.update(0.5);
+                            break;
+                        case optionsSolasSuspect.good:
+                            await Template.ƒS.Character.hide(Template.characters.solas);
+                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.happy, Template.ƒS.positionPercent(75, 97));
+                            Template.dataForSave.solasScore += 10;
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0008_good);
+                            await Template.ƒS.update(0.5);
+                            break;
+                    }
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    Template.showSolasMeter();
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0009);
+                    let optionsSolasGoodbyeElement = await Template.ƒS.Menu.getInput(optionsSolasGoodbye, "dialogoptions");
+                    Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+                    await Template.ƒS.update(0.5);
+                    switch (optionsSolasGoodbyeElement) {
+                        case optionsSolasGoodbye.bad:
+                            await Template.ƒS.Character.hide(Template.characters.solas);
+                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.sad, Template.ƒS.positionPercent(75, 97));
+                            Template.dataForSave.solasScore -= 5;
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0010_bad);
+                            await Template.ƒS.update(0.5);
+                            break;
+                        case optionsSolasGoodbye.good:
+                            await Template.ƒS.Character.hide(Template.characters.solas);
+                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.happy, Template.ƒS.positionPercent(75, 97));
+                            Template.dataForSave.solasScore += 5;
+                            await Template.ƒS.update(0.5);
+                            await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0010_good);
+                            await Template.ƒS.update(0.5);
+                            break;
+                    }
+                    Template.hideSolasMeter();
+                    await Template.ƒS.Character.hide(Template.characters.solas);
+                    await Template.ƒS.update(0.5);
                     delete startTalk.withSolas;
                     break;
                 // CASE Talk To Lucia
@@ -1299,7 +1425,7 @@ var Template;
                     // go to library with her
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.neutral, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0003);
                     await Template.ƒS.update(0.5);
@@ -1310,14 +1436,14 @@ var Template;
                     await Template.ƒS.update(0.2);
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.unsure, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.neutral, Template.ƒS.positionPercent(75, 97));
                     await Template.ƒS.update(1);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0001);
                     await Template.ƒS.update(0.5);
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    Template.hideLuciaMeter();
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
@@ -1326,10 +1452,10 @@ var Template;
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.neutral, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0002);
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    Template.hideLuciaMeter();
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
@@ -1343,7 +1469,7 @@ var Template;
                     await Template.ƒS.Location.show(Template.locations.library);
                     await Template.ƒS.update(Template.transition.waves.duration, Template.transition.waves.alpha, Template.transition.waves.edge);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.neutral, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0003);
                     await Template.ƒS.update(0.5);
@@ -1370,17 +1496,17 @@ var Template;
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.update(0.5);
                     Template.ƒS.Speech.clear();
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    Template.hideLuciaMeter();
                     await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToLucia.Protagonist.T0004);
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.unsure, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0005);
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    Template.hideLuciaMeter();
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
@@ -1389,10 +1515,10 @@ var Template;
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.unsure, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0006);
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    Template.hideLuciaMeter();
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
@@ -1401,12 +1527,12 @@ var Template;
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.unsure, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0007);
                     Template.dataForSave.luciaOpportunity = true;
                     Template.updateNotes();
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    Template.hideLuciaMeter();
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
@@ -1415,10 +1541,10 @@ var Template;
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.unsure, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0008);
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                    Template.hideLuciaMeter();
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
@@ -1427,7 +1553,7 @@ var Template;
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.unsure, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0009);
                     let optionsLuciaDiaryElement = await Template.ƒS.Menu.getInput(optionsLuciaDiary, "dialogoptions");
@@ -1472,7 +1598,7 @@ var Template;
                             Template.updateNotes();
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.update(0.5);
-                            document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                            Template.hideLuciaMeter();
                             await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
                             await Template.ƒS.update(0.5);
                             await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToLucia.Protagonist.T00010);
@@ -1480,7 +1606,7 @@ var Template;
                             await Template.ƒS.update(0.5);
                     }
                     await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.neutral, Template.ƒS.positionPercent(75, 97));
-                    document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
+                    Template.showLuciaMeter();
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0011);
                     await Template.ƒS.update(0.5);
@@ -1495,7 +1621,7 @@ var Template;
                             await Template.ƒS.update(0.5);
                             await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0012_good);
                             await Template.ƒS.update(0.5);
-                            document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                            Template.hideLuciaMeter();
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.update(0.5);
                             break;
@@ -1506,7 +1632,7 @@ var Template;
                             await Template.ƒS.update(0.5);
                             await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0012_bad);
                             await Template.ƒS.update(0.5);
-                            document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
+                            Template.hideLuciaMeter();
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.update(0.5);
                     }

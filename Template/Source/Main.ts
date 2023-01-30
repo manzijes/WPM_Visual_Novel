@@ -191,6 +191,10 @@ namespace Template {
         atlasMotive.classList.remove("hidden");
       }
     }
+    if (dataForSave.luciaMotive == true) {
+      let luciaMotive = document.getElementById("luciaMotive");
+      luciaMotive.classList.remove("hidden");
+    }
     // Opportunities
     if (dataForSave.luciaOpportunity == true) {
       let luciaOpportunity = document.getElementById("luciaOpportunity");
