@@ -135,6 +135,17 @@ namespace Template {
         unsure: "Images/Characters/Lucia/lucia-unsure.png",
         upset: "Images/Characters/Lucia/lucia-upset.png",
       }
+    },
+    solas: {
+      name: "Solas",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        neutral: "Images/Characters/Solas/solas-neutral.png",
+        sad: "Images/Characters/Solas/solas-sad.png",
+        happy: "Images/Characters/Solas/solas-happy.png",
+        scared: "Images/Characters/Solas/solas-scared.png",
+        angry: "Images/Characters/Solas/solas-angry.png",
+      }
     }
   };
 
@@ -147,11 +158,9 @@ namespace Template {
     }, 30 * 2 + 45);
   }
 
-  export function revealNotes() {
-    dataForSave.toggleSuspectsButton = true;
-  }
-
   export function updateNotes() {
+    dataForSave.toggleSuspectsButton = true;
+
     if (dataForSave.toggleSuspectsButton == true) {
       let toggleSuspects = document.getElementById("toggleSuspects");
       toggleSuspects.style.visibility = "visible";
@@ -271,7 +280,8 @@ namespace Template {
 
     // meterbars
     atlasScore: 20,
-    luciaScore: 50
+    luciaScore: 50,
+    solasScore: 50
   };
 
   window.addEventListener("load", start);
@@ -280,11 +290,11 @@ namespace Template {
     gameMenu = ƒS.Menu.create(menuInGame, buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
 
     let scenes: ƒS.Scenes = [
-      // { scene: firstScene, name: "firstScene"},
+      // { scene: intro, name: "Einleitung"},
       { scene: beta, name: "beta" },
-      { scene: coverChapterOne, name: "chapterOne" },
-      { scene: motive, name: "motive" },
-      { scene: test, name: "test" }
+      { scene: coverChapterOne, name: "Hinweis" },
+      { scene: motive, name: "ProbeMotive" },
+      { scene: lightsOut, name: "LichtAus" }
     ];
 
     // let uiElement: HTMLElement = document.querySelector("[type=interface]");
@@ -295,6 +305,9 @@ namespace Template {
 
     let luciaInterface: HTMLElement = document.getElementById("luciaInterface");
     dataForSave = ƒS.Progress.setData(dataForSave, luciaInterface);
+
+    let solasInterface: HTMLElement = document.getElementById("solasInterface");
+    dataForSave = ƒS.Progress.setData(dataForSave, solasInterface);
 
     // start the sequence
     ƒS.Progress.go(scenes);

@@ -406,6 +406,10 @@ meter#luciaMeter::-webkit-meter-optimum-value{
   background-color: #ffe75c;
 }
 
+meter#solasMeter::-webkit-meter-optimum-value{
+  background-color: lightskyblue;
+}
+
 @media (max-width: 768px){
   *, speech content, speech name{
     font-size: 14px;

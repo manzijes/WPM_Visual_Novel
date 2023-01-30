@@ -131,6 +131,17 @@ var Template;
                 unsure: "Images/Characters/Lucia/lucia-unsure.png",
                 upset: "Images/Characters/Lucia/lucia-upset.png",
             }
+        },
+        solas: {
+            name: "Solas",
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                neutral: "Images/Characters/Solas/solas-neutral.png",
+                sad: "Images/Characters/Solas/solas-sad.png",
+                happy: "Images/Characters/Solas/solas-happy.png",
+                scared: "Images/Characters/Solas/solas-scared.png",
+                angry: "Images/Characters/Solas/solas-angry.png",
+            }
         }
     };
     async function simulateCameraFlash() {
@@ -142,11 +153,8 @@ var Template;
         }, 30 * 2 + 45);
     }
     Template.simulateCameraFlash = simulateCameraFlash;
-    function revealNotes() {
-        Template.dataForSave.toggleSuspectsButton = true;
-    }
-    Template.revealNotes = revealNotes;
     function updateNotes() {
+        Template.dataForSave.toggleSuspectsButton = true;
         if (Template.dataForSave.toggleSuspectsButton == true) {
             let toggleSuspects = document.getElementById("toggleSuspects");
             toggleSuspects.style.visibility = "visible";
@@ -260,18 +268,19 @@ var Template;
         luciaOpportunity: false,
         // meterbars
         atlasScore: 20,
-        luciaScore: 50
+        luciaScore: 50,
+        solasScore: 50
     };
     window.addEventListener("load", start);
     function start(_event) {
         //Menü
         Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
-            // { scene: firstScene, name: "firstScene"},
+            // { scene: intro, name: "Einleitung"},
             { scene: Template.beta, name: "beta" },
-            { scene: Template.coverChapterOne, name: "chapterOne" },
-            { scene: Template.motive, name: "motive" },
-            { scene: Template.test, name: "test" }
+            { scene: Template.coverChapterOne, name: "Hinweis" },
+            { scene: Template.motive, name: "ProbeMotive" },
+            { scene: Template.lightsOut, name: "LichtAus" }
         ];
         // let uiElement: HTMLElement = document.querySelector("[type=interface]");
         // dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
@@ -279,6 +288,8 @@ var Template;
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, atlasInterface);
         let luciaInterface = document.getElementById("luciaInterface");
         Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, luciaInterface);
+        let solasInterface = document.getElementById("solasInterface");
+        Template.dataForSave = Template.ƒS.Progress.setData(Template.dataForSave, solasInterface);
         // start the sequence
         Template.ƒS.Progress.go(scenes);
     }
@@ -484,16 +495,14 @@ var Template;
 var Template;
 (function (Template) {
     async function coverChapterOne() {
-        Template.updateNotes();
-        Template.dataForSave.toggleSuspectsButton = true;
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
         let narratorText = {
             Narrator: {
                 T0001: "Klicke, um fortzufahren."
             }
         };
-        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         await Template.ƒS.Location.show(Template.chapterCovers.chapter);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
         Template.createText("Kapitel 1: Motive", "Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen hinzugefügt.", "Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!", "ch1");
@@ -507,7 +516,31 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    async function firstScene() {
+    async function coverChapterTwo() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        let narratorText = {
+            Narrator: {
+                T0001: "Klicke, um fortzufahren."
+            }
+        };
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        await Template.ƒS.Location.show(Template.chapterCovers.chapter);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        Template.createText("Kapitel 2: Indizien", "Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen hinzugefügt.", "Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!", "ch2");
+        // await new Promise(resolve => setTimeout(resolve, 1600));
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+        let ch2 = document.getElementById("ch2");
+        ch2.remove();
+        Template.ƒS.Sound.play(Template.sound.pageflip, 0.5, false);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3, true);
+    }
+    Template.coverChapterTwo = coverChapterTwo;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function intro() {
         let strangerText = {
             Stranger: {
                 T0001: "Entschuldigung!",
@@ -697,7 +730,6 @@ var Template;
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0010);
-        Template.revealNotes();
         Template.updateNotes();
         Template.ƒS.Sound.play(Template.sound.sparkle, 0.5, false);
         await Template.ƒS.update(2);
@@ -714,40 +746,184 @@ var Template;
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3, true);
         Template.ƒS.Sound.fade(Template.sound.birds, 0, 3, true);
     }
-    Template.firstScene = firstScene;
+    Template.intro = intro;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function lightsOut() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // control lights in scene
+        function setLights(action) {
+            let htmlInDom = document.querySelector("html");
+            switch (action) {
+                case "turnOffLights":
+                    Template.ƒS.Sound.play(Template.sound.switch, 1.5, false);
+                    htmlInDom.classList.add("dark");
+                    break;
+                case "turnOnLights":
+                    Template.ƒS.Sound.play(Template.sound.switch, 1.5, false);
+                    htmlInDom.classList.remove("dark");
+                    break;
+                case "turnOnFlashlight":
+                    Template.ƒS.Sound.play(Template.sound.flashlight, 1, false);
+                    htmlInDom.classList.add("flashlight");
+                    break;
+                case "turnOffFlashlight":
+                    Template.ƒS.Sound.play(Template.sound.flashlight, 1, false);
+                    htmlInDom.classList.remove("flashlight");
+                    break;
+                default:
+                    break;
+            }
+        }
+        function updateFlashlight(e) {
+            // get current cursor position
+            let x = e.clientX || e.touches[0].clientX;
+            let y = e.clientY || e.touches[0].clientY;
+            // set as position of flashlight with css
+            document.documentElement.style.setProperty('--cursorX', x + 'px');
+            document.documentElement.style.setProperty('--cursorY', y + 'px');
+        }
+        // call updateFlashlight on mouse movement
+        document.addEventListener('mousemove', updateFlashlight);
+        document.addEventListener('touchmove', updateFlashlight);
+        // add switch img to scene AFTER lights are out, so player doesn't know where it is
+        function addSwitchToScene() {
+            // set classes for possible positions of switch
+            let classes = new Array('bottomRight', 'bottomLeft', 'centerLeft', 'centerRight');
+            let length = classes.length;
+            // create switch img
+            let img = document.createElement("img");
+            img.src = "https://github.com/manzijes/WPM_Visual_Novel/blob/main/Template/Images/switch.png?raw=true";
+            img.id = "switch";
+            // assign random class (therefore position)
+            img.classList.add(classes[Math.floor(Math.random() * length)]);
+            // add switch img to scene
+            let src = document.getElementById("scene");
+            src.appendChild(img);
+            img.addEventListener('click', clickSwitch);
+        }
+        let protagonistText = {
+            Protagonist: {
+                T0001: "Ich habe mir ein gutes erstes Bild verschafft, aber das hat den Saboteur eventuell aufgeschreckt. Er könnte bald wieder handeln...",
+                T0002: "Jemand hat das Licht ausgeschaltet. Warte kurz, an meinem Schlüsselbund hängt eine kleine Taschenlampe. Ich suche gleich einen Lichtschalter.",
+                T0003: "Gefunden!",
+                T0004: "Sieh mal, da ist etwas vor der Tür.",
+                T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Im Flur gibt es einen zweiten Lichtschalter, das war also ganz einfach.",
+                T0006: "Das sehe ich ein. Ich werde dich nicht enttäuschen.",
+                T0007: "Keine Sorge. Morgen werde ich Indizien sammeln und den Schleier lüften."
+            }
+        };
+        let kiraText = {
+            Kira: {
+                T0000: "Hallo, du. Wie kommen deine Ermittlungen voran?",
+                T0001: "Ich verstehe. Und was hast du nun-",
+                T0002: "Holy Moly! Was ist passiert?",
+                T0003: "Puh. Das hat mich ganz schön erschreckt...",
+                T0004: "Ich bin beunruhigt. Wer weiß, wie weit diese Person gehen wird? Wenn du den Saboteur nicht rechtzeitig findest, dann werde ich die Premiere absagen.",
+                T0005: "Ich sage es ungern, aber die Zeit drängt. In zwei Tagen ist die Premiere."
+            }
+        };
+        let narratorText = {
+            Narrator: {
+                T0000: "Die Probe ist zu Ende. Die Clubmitglieder verabschieden sich und trudeln auf den Flur.",
+                T0001: "Kira und du bleiben allein im Theaterraum zurück."
+            }
+        };
+        await Template.ƒS.Location.show(Template.locations.classroomDay);
+        await Template.ƒS.update(1);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.smiling, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0000);
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0001);
+        await Template.ƒS.update(0.5);
+        setLights("turnOffLights");
+        // change normal theme to spooky music
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3);
+        Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0.5, 2.5, true);
+        // remove characters and speech, add light switch
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(1.5);
+        addSwitchToScene();
+        await new Promise(resolve => setTimeout(resolve, 200));
+        Template.ƒS.Sound.play(Template.sound.femalegasp, 1.5, false);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0002);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
+        await Template.ƒS.update(0.5);
+        setLights("turnOnFlashlight");
+        // how to proceed when player finds light switch
+        async function clickSwitch() {
+            // remove light switch
+            let switchImg = document.getElementById("switch");
+            switchImg.remove();
+            Template.ƒS.Sound.play(Template.sound.switch, 1, false);
+            await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+            setLights("turnOnLights");
+            await Template.ƒS.update(0.5);
+            await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
+            await Template.ƒS.Character.hide(Template.characters.protagonist);
+            await Template.ƒS.update(0.5);
+            await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.scared, Template.ƒS.positionPercent(75, 97));
+            await Template.ƒS.update(0.5);
+            await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0003);
+            await Template.ƒS.update(0.5);
+            // change spooky music to normal theme
+            Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0, 6);
+            Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 5, true);
+            Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3, true);
+        }
+    }
+    Template.lightsOut = lightsOut;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
     async function motive() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
         let narratorText = {
             Narrator: {
                 T0001: "Du triffst pünkltich bei der Probe des Theaterclubs ein. Neben den anderen Mitgliedern sind auch deine Verdächtigen anwesend.",
                 T0002: "Mit wem möchtest du sprechen?",
                 T0003: "Schnell ein Foto für die Notes...",
-                // Lucia
                 T0004: "Du begleitest Lucia zur Bibliothek.",
                 T0005: "Du begibst dich zusammen mit Lucia zurück in den Theaterraum."
             }
         };
+        // Suspects Texts
         let atlasText = {
             Atlas: {
                 T0001: "... ?",
                 T0002: "Nur, dass solche amateurhaften Sabotageversuche das Theaterstück nicht stoppen werden.",
                 T0003: "Nein, ich bin sehr beschäftigt. Ich bin Jahrgangsbester und Schulsprecher, wie du vielleicht weißt. Obendrein bin ich Mitglied in mehreren AGs. Der Theaterclub, der Schach-Club, der Kalligraphie-Club... Meinst du wirklich, ich habe Zeit für solche Kindereien?",
-                T0004_a: "Na dann kannst du dir jetzt ein Bild machen.",
-                T0004_b: "Kusch doch nicht gleich. Gute Ermittler sollten etwas mehr Rückrat zeigen.",
+                T0004_good: "Na dann kannst du dir jetzt ein Bild machen.",
+                T0004_bad: "Kusch doch nicht gleich. Gute Ermittler sollten etwas mehr Rückrat zeigen.",
                 T0004_2: "Soll ich dir sagen, was ich denke? Verschwundene Skripte, ein zerstörtes Kostüm... Es würde mich nicht wundern, wenn das alles ein bescheuerter Streich wäre. Ernst nehme ich das jedenfalls nicht.",
                 T0004_3: "Es sei denn...",
-                T0005_a: "Ist das deine Strategie? Du suchst nach Lösungen bei deinen Verdächtigen? Vielleicht solltest du selbst anfangen nachzudenken.",
-                T0005_b: "Es sei denn, du selbst hast die Sabotage inszeniert, um dich wichtig zu machen. Naja, wir werden bald sehen, wie viel heiße Luft in deinem Kopf ist...",
+                T0005_bad: "Ist das deine Strategie? Du suchst nach Lösungen bei deinen Verdächtigen? Vielleicht solltest du selbst anfangen nachzudenken.",
+                T0005_good: "Es sei denn, du selbst hast die Sabotage inszeniert, um dich wichtig zu machen. Naja, wir werden bald sehen, wie viel heiße Luft in deinem Kopf ist...",
                 T0006: "Hm... Da wir schon reden, möchte ich dir einen Hinweis geben.",
                 T0006_2: "Bitte erzähle nicht herum, dass du das von mir hast. Mir ist mein guter Ruf sehr wichtig. Du verstehst das sicher, so von Schulsprecher zu Stellvertreterin.",
                 T0007_1: "Solas macht sich wohl in letzter Zeit viel Druck. Es ist das erste Mal, dass die Schule ein Theaterstück genehmigt hat, das von einem Schüler geschrieben wurde. Normalerweise führt der Theaterclub nur Klassiker auf.",
                 T0007_2: "Solas möchte unbedingt, dass alles perfekt läuft. Das Stück ist sein Meisterwerk, so etwas verstehen nur Künstler. Aber er hatte keine Zeit mehr, das Skript zu überarbeiten. Wenn nun jedoch die Premiere verschoben werden müsste...",
                 T0007_3: "Du verstehst, worauf ich hinaus will, ja?",
-                T0008_a: "Und du bist überraschend scharfzüngig. Na dann, viel Erfolg.",
-                T0008_b: "Das kann ja nur schiefgehen..."
+                T0008_good: "Und du bist überraschend scharfzüngig. Na dann, viel Erfolg.",
+                T0008_bad: "Das kann ja nur schiefgehen..."
             }
         };
         let luciaText = {
@@ -755,8 +931,8 @@ var Template;
                 T0001: "... ?",
                 T0002: "Oh! Gerade passt es schlecht, ich habe etwas in der Bibliothek vergessen, das ich holen gehen wollte... Komm doch einfach mit und wir sprechen dort.",
                 T0003: "So, da sind wir schon. Es gibt nichts schöneres als den Geruch alter Bücher, findest du nicht?",
-                T0004_a: "Wenn du meinst...",
-                T0004_b: "Britische Forscher haben das Aroma alter Bücher einmal beschrieben. Die Duftnote sei eine Kombination aus Gras-Noten, einer Spur Säure und einem Hauch Vanille. So muss Magie riechen.",
+                T0004_bad: "Wenn du meinst...",
+                T0004_good: "Britische Forscher haben das Aroma alter Bücher einmal beschrieben. Die Duftnote sei eine Kombination aus Gras-Noten, einer Spur Säure und einem Hauch Vanille. So muss Magie riechen.",
                 T0005: "Du meinst unser Theaterstück? N-Natürlich. Kira glaubt, dahinter steckt jemand mit einer klaren Intention.",
                 T0006: "Ja, drei von uns besitzen einen Schlüssel. Atlas, weil er ungestört Zusatzproben machen möchte. Solas, weil er als Autor und Regisseur von der Vorbereitung bis zur Premiere alles steuert. Und ich, weil ich hin und wieder an der Technik feilen muss.",
                 T0007: "Das macht Sinn... Nur hatte ich keinen Zugang. Ich habe meinen Schlüssel vor ein paar Tagen verloren.",
@@ -764,10 +940,28 @@ var Template;
                 T0009: "Ich kam neulich hier an, als Atlas seine Sachen gepackt hat. Ich habe mich an seinen Tisch gesetzt und er hat das hier vergessen. Es sieht aus wie eine Seite aus einem Tagebuch.",
                 T0010: "Damit hast du wohl Recht. Trotzdem...",
                 T0011: "Ich hoffe, ich konnte dir weiterhelfen.",
-                T0012_a: "Dann bis bald.",
-                T0012_b: "Haha..."
+                T0012_good: "Dann bis bald.",
+                T0012_bad: "Haha..."
             }
         };
+        let solasText = {
+            Solas: {
+                T0001: "Oh?",
+                T0002: "Was ich darüber denke? Nun... Es ist keine schöne Sache, nicht wahr? Ich habe mein  Herz in dieses Stück gesteckt.",
+                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich meine Notizen darauf geschrieben habe. Die sind jetzt leider weg.",
+                T0004: "Ich kann mir vorstellen, wieso. Nur drei Mitglieder haben Zugang zum Theaterraum außerhalb der Probezeiten. Darf ich auch ehrlich mit dir sein?",
+                T0005_bad: "Dass jemand das Stück sabotieren will, kann ich nicht nachvollziehen, aber es inspiriert mich auch. Was steckt dahinter, wenn jemand zu solchen Mitteln greift? Verzweiflung, vermute ich.",
+                T0005_good: "Irgendwie habe ich Mitleid mit der Person, die dahinter steckt. Unter der Oberfläche entpuppt sich jedes noch so triviale Motiv als Ausdruck für etwas Tieferes, denkst du nicht?",
+                T0006: "Nun ja... Ich möchte niemanden anschwärzen, aber Lucia spricht viel über den Theaterclub. Leider nicht viel Gutes. Warte, ich zeige dir ein Beispiel aus unserem Chatverlauf, damit du weißt, was ich meine.",
+                T0007: "Das muss noch nichts heißen. In dubio pro reo.",
+                T0008_good: "Ich bin zuversichtlich, dass am Ende die Wahrheit übrig sein wird.",
+                T0008_bad: "Mir ist entgangen, dass das mein Problem ist.",
+                T0009: "Denk daran. Wichtiger als die Fakten, sind die Menschen. Manchmal trügt der Schein... und manchmal sind die Leute genau so, wie sie auf den ersten Blick wirken.",
+                T0010_good: "Auf Wiedersehen.",
+                T0010_bad: "Ciao."
+            }
+        };
+        // Protagonist Texts
         let protagonistToAtlas = {
             Protagonist: {
                 T0001: "Hallo, ich höre mich nur ein wenig um. Jemand hat es wohl auf den Theaterclub abgesehen und möchte eure Aufführung verhindern. Weißt du etwas darüber?",
@@ -798,35 +992,66 @@ var Template;
                 T00010: "Atlas hat wirklich eine schöne Schrift. Das ist dann wohl sein einziger Vorzug..."
             }
         };
+        let protagonistToSolas = {
+            Protagonist: {
+                T0001: "Hey, ich möchte kurz mit dir reden. Was denkst du über die Sabotage eures Theaterstücks?",
+                T0002: "Das tut mir leid. Dass die Skripte verschwunden sind, ist sicher ärgerlich, aber du hast das Original bestimmt digital gespeichert, oder?",
+                T0003: "Ich verstehe... Darf ich ehrlich mit dir sein? Ich versuche herauszufinden, wer dahinter steckt. Drei Leute sind verdächtig, darunter auch du.",
+                T0004_a: "Here we go.",
+                T0004_b: "Natürlich.",
+                T0005: "Du bist ein interessanter Typ, so viel steht fest. Hast du womöglich einen Hinweis darauf, wer der Täter sein könnte?",
+                T0006: "Lucia hat offenbar viel Wut aufgestaut.",
+                T0007_a: "Ich finde dich sehr verdächtig.",
+                T0007_b: "Macht es dich nicht nervös, dass du unter Verdacht stehst?",
+                T0008_a: "Nun gut. Bis bald.",
+                T0008_b: "Du machst mich irre. Ciao!"
+            }
+        };
+        // Dialog Options to start talk (to be called in while loop)
         let startTalk = {
             withAtlas: "Atlas",
             withSolas: "Solas",
             withLucia: "Lucia"
         };
-        let dialogoptionsAtlas = {
-            iSayA: "Ich kenne deinen Terminkalender nicht.",
-            iSayB: "Sorry, ich wollte dich nicht anklagen."
+        // Atlas Dialog Options
+        let optionsAtlasBusy = {
+            good: "Ich kenne deinen Terminkalender nicht.",
+            bad: "Sorry, ich wollte dich nicht anklagen."
         };
-        let dialogoptions2Atlas = {
-            iSayA: "Es sei denn... was? Hast du einen Verdacht?",
-            iSayB: "Spucks aus, du Angeber."
+        let optionsAtlasUnless = {
+            bad: "Es sei denn... was? Hast du einen Verdacht?",
+            good: "Spucks aus, du Angeber."
         };
-        let dialogoptions3Atlas = {
-            iSayA: "Das war überraschend hilfreich. Ich danke dir.",
-            iSayB: "Pff... Alles klar. Und tschüss."
+        let optionsAtlasGoodbye = {
+            good: "Das war überraschend hilfreich. Ich danke dir.",
+            bad: "Pff... Alles klar. Und tschüss."
         };
-        let dialogoptionsLucia = {
-            iSayA: "Ganz schön muffig",
-            iSayB: "Das finde ich auch."
+        // Lucia Dialog Options
+        let optionsLuciaBooks = {
+            bad: "Ganz schön muffig",
+            good: "Das finde ich auch."
         };
-        let dialogoptionsLucia2 = {
-            iSayA: "Ein Tagebuch? Das sollte ich nicht lesen, es sind private Gedanken.",
-            iSayB: "Her damit."
+        let optionsLuciaDiary = {
+            bad: "Ein Tagebuch? Das sollte ich nicht lesen, es sind private Gedanken.",
+            good: "Her damit."
         };
-        let dialogoptionsLucia3 = {
-            iSayA: "Ja, vielen Dank.",
-            iSayB: "Streng dich das nächste Mal bitte etwas mehr an."
+        let optionsLuciaGoodbye = {
+            good: "Ja, vielen Dank.",
+            bad: "Streng dich das nächste Mal bitte etwas mehr an."
         };
+        // Solas Dialog Options
+        // let optionsSolasHonest = {
+        //     bad: "Here we go.",
+        //     good: "Natürlich."
+        // }
+        // let optionsSolasSuspect = {
+        //     bad: "Ich finde dich sehr verdächtig.",
+        //     good: "Macht es dich nicht nervös, dass du unter Verdacht stehst?"
+        // }
+        // let optionsSolasGoodbye = {
+        //     good: "Nun gut. Bis bald.",
+        //     bad: "Du machst mich irre. Ciao!"
+        // }
         await Template.ƒS.Location.show(Template.locations.classroomDay);
         await Template.ƒS.update(2);
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
@@ -840,6 +1065,7 @@ var Template;
             let startTalkElement = await Template.ƒS.Menu.getInput(startTalk, "dialogoptions");
             Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
             switch (startTalkElement) {
+                // CASE Talk To Atlas
                 case startTalk.withAtlas:
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.neutral, Template.ƒS.positionPercent(75, 97));
@@ -886,25 +1112,25 @@ var Template;
                     document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0003);
-                    let dialogoptionsAtlasElement = await Template.ƒS.Menu.getInput(dialogoptionsAtlas, "dialogoptions");
+                    let optionsAtlasBusyElement = await Template.ƒS.Menu.getInput(optionsAtlasBusy, "dialogoptions");
                     Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
-                    switch (dialogoptionsAtlasElement) {
-                        case dialogoptionsAtlas.iSayA:
+                    switch (optionsAtlasBusyElement) {
+                        case optionsAtlasBusy.good:
                             await Template.ƒS.Character.hide(Template.characters.atlas);
                             await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.playful, Template.ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             Template.dataForSave.atlasScore += 10;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_a);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_good);
                             await Template.ƒS.update(0.5);
                             break;
-                        case dialogoptionsAtlas.iSayB:
+                        case optionsAtlasBusy.bad:
                             await Template.ƒS.Character.hide(Template.characters.atlas);
                             await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.angry, Template.ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterChildren => meterChildren.hidden = false);
                             Template.dataForSave.atlasScore -= 10;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_b);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_bad);
                             await Template.ƒS.update(0.5);
                     }
                     await Template.ƒS.Character.hide(Template.characters.atlas);
@@ -914,26 +1140,26 @@ var Template;
                     await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_2);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0004_3);
-                    let dialogoptions2AtlasElement = await Template.ƒS.Menu.getInput(dialogoptions2Atlas, "dialogoptions");
+                    let optionsAtlasUnlessElement = await Template.ƒS.Menu.getInput(optionsAtlasUnless, "dialogoptions");
                     Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
                     await Template.ƒS.update(0.5);
-                    switch (dialogoptions2AtlasElement) {
-                        case dialogoptions2Atlas.iSayA:
+                    switch (optionsAtlasUnlessElement) {
+                        case optionsAtlasUnless.bad:
                             await Template.ƒS.Character.hide(Template.characters.atlas);
                             await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.playful, Template.ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             Template.dataForSave.atlasScore -= 10;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0005_a);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0005_bad);
                             await Template.ƒS.update(0.5);
                             break;
-                        case dialogoptions2Atlas.iSayB:
+                        case optionsAtlasUnless.good:
                             await Template.ƒS.Character.hide(Template.characters.atlas);
                             await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.playful, Template.ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             Template.dataForSave.atlasScore += 10;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0005_b);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0005_good);
                             await Template.ƒS.update(0.5);
                     }
                     document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
@@ -973,25 +1199,25 @@ var Template;
                     await Template.ƒS.update(0.5);
                     Template.dataForSave.solasMotive = true;
                     Template.updateNotes();
-                    let dialogoptionsAtlasElement3 = await Template.ƒS.Menu.getInput(dialogoptions3Atlas, "dialogoptions");
+                    let optionsAtlasGoodbyeElement = await Template.ƒS.Menu.getInput(optionsAtlasGoodbye, "dialogoptions");
                     Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
-                    switch (dialogoptionsAtlasElement3) {
-                        case dialogoptions3Atlas.iSayA:
+                    switch (optionsAtlasGoodbyeElement) {
+                        case optionsAtlasGoodbye.good:
                             await Template.ƒS.Character.hide(Template.characters.atlas);
                             await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.playful, Template.ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             Template.dataForSave.atlasScore += 5;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0008_a);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0008_good);
                             await Template.ƒS.update(0.5);
                             break;
-                        case dialogoptions3Atlas.iSayB:
+                        case optionsAtlasGoodbye.bad:
                             await Template.ƒS.Character.hide(Template.characters.atlas);
                             await Template.ƒS.Character.show(Template.characters.atlas, Template.characters.atlas.pose.angry, Template.ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             Template.dataForSave.atlasScore -= 5;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0008_b);
+                            await Template.ƒS.Speech.tell(Template.characters.atlas, atlasText.Atlas.T0008_bad);
                             await Template.ƒS.update(0.5);
                     }
                     document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = true);
@@ -1001,9 +1227,52 @@ var Template;
                     Template.ƒS.Speech.hide();
                     delete startTalk.withAtlas;
                     break;
+                // CASE Talk To Solas
                 case startTalk.withSolas:
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0003);
+                    await Template.ƒS.update(0.5);
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    Template.simulateCameraFlash();
+                    Template.dataForSave.solasPortrait = true;
+                    Template.updateNotes();
+                    await Template.ƒS.update(0.2);
+                    await Template.ƒS.Character.hide(Template.characters.solas);
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.sad, Template.ƒS.positionPercent(75, 97));
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.hide(Template.characters.solas);
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+                    await Template.ƒS.update(1);
+                    await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0001);
+                    await Template.ƒS.update(0.5);
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = true);
+                    await Template.ƒS.Character.hide(Template.characters.solas);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToSolas.Protagonist.T0001);
+                    await Template.ƒS.Character.hide(Template.characters.protagonist);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0002);
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = true);
+                    await Template.ƒS.Character.hide(Template.characters.solas);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToSolas.Protagonist.T0002);
+                    await Template.ƒS.Character.hide(Template.characters.protagonist);
+                    await Template.ƒS.update(0.5);
                     delete startTalk.withSolas;
                     break;
+                // CASE Talk To Lucia
                 case startTalk.withLucia:
                     // go to library with her
                     await Template.ƒS.update(0.5);
@@ -1056,24 +1325,24 @@ var Template;
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0003);
                     await Template.ƒS.update(0.5);
-                    let dialogoptionsLuciaElement = await Template.ƒS.Menu.getInput(dialogoptionsLucia, "dialogoptions");
+                    let optionsLuciaBooksElement = await Template.ƒS.Menu.getInput(optionsLuciaBooks, "dialogoptions");
                     Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
                     await Template.ƒS.update(0.5);
-                    switch (dialogoptionsLuciaElement) {
-                        case dialogoptionsLucia.iSayA:
+                    switch (optionsLuciaBooksElement) {
+                        case optionsLuciaBooks.bad:
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.sad, Template.ƒS.positionPercent(75, 97));
                             Template.dataForSave.luciaScore -= 30;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0004_a);
+                            await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0004_bad);
                             await Template.ƒS.update(0.5);
                             break;
-                        case dialogoptionsLucia.iSayB:
+                        case optionsLuciaBooks.good:
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.smiling, Template.ƒS.positionPercent(75, 97));
                             Template.dataForSave.luciaScore += 10;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0004_b);
+                            await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0004_good);
                             await Template.ƒS.update(0.5);
                     }
                     await Template.ƒS.Character.hide(Template.characters.lucia);
@@ -1139,11 +1408,11 @@ var Template;
                     document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = false);
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0009);
-                    let dialogoptionsLuciaElement2 = await Template.ƒS.Menu.getInput(dialogoptionsLucia2, "dialogoptions");
+                    let optionsLuciaDiaryElement = await Template.ƒS.Menu.getInput(optionsLuciaDiary, "dialogoptions");
                     Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
                     await Template.ƒS.update(0.5);
-                    switch (dialogoptionsLuciaElement2) {
-                        case dialogoptionsLucia2.iSayA:
+                    switch (optionsLuciaDiaryElement) {
+                        case optionsLuciaDiary.bad:
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.neutral, Template.ƒS.positionPercent(75, 97));
                             Template.dataForSave.luciaScore -= 5;
@@ -1154,7 +1423,7 @@ var Template;
                             Template.dataForSave.atlasMotive = true;
                             Template.updateNotes();
                             break;
-                        case dialogoptionsLucia2.iSayB:
+                        case optionsLuciaDiary.good:
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.unsure, Template.ƒS.positionPercent(75, 97));
                             Template.dataForSave.luciaScore += 5;
@@ -1193,27 +1462,27 @@ var Template;
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0011);
                     await Template.ƒS.update(0.5);
-                    let dialogoptionsLuciaElement3 = await Template.ƒS.Menu.getInput(dialogoptionsLucia3, "dialogoptions");
+                    let optionsLuciaGoodbyeElement = await Template.ƒS.Menu.getInput(optionsLuciaGoodbye, "dialogoptions");
                     Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
                     await Template.ƒS.update(0.5);
-                    switch (dialogoptionsLuciaElement3) {
-                        case dialogoptionsLucia3.iSayA:
+                    switch (optionsLuciaGoodbyeElement) {
+                        case optionsLuciaGoodbye.good:
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.smiling, Template.ƒS.positionPercent(75, 97));
                             Template.dataForSave.luciaScore += 5;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0012_a);
+                            await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0012_good);
                             await Template.ƒS.update(0.5);
                             document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.update(0.5);
                             break;
-                        case dialogoptionsLucia3.iSayB:
+                        case optionsLuciaGoodbye.bad:
                             await Template.ƒS.Character.hide(Template.characters.lucia);
                             await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.sad, Template.ƒS.positionPercent(75, 97));
                             Template.dataForSave.luciaScore -= 5;
                             await Template.ƒS.update(0.5);
-                            await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0012_b);
+                            await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0012_bad);
                             await Template.ƒS.update(0.5);
                             document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
                             await Template.ƒS.Character.hide(Template.characters.lucia);
@@ -1228,126 +1497,8 @@ var Template;
             }
             loopCount++;
         }
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3, true);
     }
     Template.motive = motive;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    async function test() {
-        Template.updateNotes();
-        // control lights in scene
-        function setLights(action) {
-            let htmlInDom = document.querySelector("html");
-            switch (action) {
-                case "turnOffLights":
-                    Template.ƒS.Sound.play(Template.sound.switch, 1.5, false);
-                    htmlInDom.classList.add("dark");
-                    break;
-                case "turnOnLights":
-                    Template.ƒS.Sound.play(Template.sound.switch, 1.5, false);
-                    htmlInDom.classList.remove("dark");
-                    break;
-                case "turnOnFlashlight":
-                    Template.ƒS.Sound.play(Template.sound.flashlight, 1, false);
-                    htmlInDom.classList.add("flashlight");
-                    break;
-                case "turnOffFlashlight":
-                    Template.ƒS.Sound.play(Template.sound.flashlight, 1, false);
-                    htmlInDom.classList.remove("flashlight");
-                    break;
-                default:
-                    break;
-            }
-        }
-        function updateFlashlight(e) {
-            // get current cursor position
-            let x = e.clientX || e.touches[0].clientX;
-            let y = e.clientY || e.touches[0].clientY;
-            // set as position of flashlight with css
-            document.documentElement.style.setProperty('--cursorX', x + 'px');
-            document.documentElement.style.setProperty('--cursorY', y + 'px');
-        }
-        // call updateFlashlight on mouse movement
-        document.addEventListener('mousemove', updateFlashlight);
-        document.addEventListener('touchmove', updateFlashlight);
-        // add switch img to scene AFTER lights are out, so player doesn't know where it is
-        function addSwitchToScene() {
-            // set classes for possible positions of switch
-            let classes = new Array('bottomRight', 'bottomLeft', 'centerLeft', 'centerRight');
-            let length = classes.length;
-            // create switch img
-            let img = document.createElement("img");
-            img.src = "https://github.com/manzijes/WPM_Visual_Novel/blob/main/Template/Images/switch.png?raw=true";
-            img.id = "switch";
-            // assign random class (therefore position)
-            img.classList.add(classes[Math.floor(Math.random() * length)]);
-            // add switch img to scene
-            let src = document.getElementById("scene");
-            src.appendChild(img);
-            img.addEventListener('click', clickSwitch);
-        }
-        // how to proceed when player finds light switch
-        async function clickSwitch() {
-            // remove switch image
-            let switchImg = document.getElementById("switch");
-            switchImg.remove();
-            Template.ƒS.Sound.play(Template.sound.switch, 1, false);
-            await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
-            setLights("turnOnLights");
-            await Template.ƒS.update(0.5);
-            await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
-            await Template.ƒS.Character.hide(Template.characters.protagonist);
-            await Template.ƒS.update(0.5);
-            await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.scared, Template.ƒS.positionPercent(75, 97));
-            await Template.ƒS.update(0.5);
-            await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0002);
-            await Template.ƒS.update(0.5);
-            // change spooky music to normal theme
-            Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0, 6);
-            Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 5, true);
-        }
-        let protagonistText = {
-            Protagonist: {
-                T0001: "Test.",
-                T0002: "Jemand hat das Licht ausgeschaltet. Warte kurz, an meinem Schlüsselbund hängt eine kleine Taschenlampe. Ich suche gleich einen Lichtschalter.",
-                T0003: "Gefunden!",
-                T0004: "Sieh mal, da ist etwas an der Tür.",
-                T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Vor der Tür gibt es einen zweiten Lichtschalter, das war also ganz einfach."
-            }
-        };
-        let kiraText = {
-            Kira: {
-                T0001: "Holy Moly! Was ist passiert?",
-                T0002: "Puh. Das hat mich ganz schön erschreckt..."
-            }
-        };
-        let narratorText = {
-            Narrator: {
-                T0001: "Kira und du bleiben allein im Theaterraum zurück."
-            }
-        };
-        await Template.ƒS.Location.show(Template.locations.classroomDay);
-        await Template.ƒS.update(1);
-        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
-        await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
-        await Template.ƒS.update(0.5);
-        setLights("turnOffLights");
-        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3);
-        Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0.5, 2.5, true);
-        await Template.ƒS.Character.hide(Template.characters.protagonist);
-        Template.ƒS.Speech.hide();
-        await Template.ƒS.update(1.5);
-        addSwitchToScene();
-        await new Promise(resolve => setTimeout(resolve, 200));
-        Template.ƒS.Sound.play(Template.sound.femalegasp, 1.5, false);
-        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0001);
-        await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
-        await Template.ƒS.update(0.5);
-        setLights("turnOnFlashlight");
-    }
-    Template.test = test;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

@@ -126,9 +126,19 @@ declare namespace Template {
                 upset: string;
             };
         };
+        solas: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                neutral: string;
+                sad: string;
+                happy: string;
+                scared: string;
+                angry: string;
+            };
+        };
     };
     function simulateCameraFlash(): Promise<void>;
-    function revealNotes(): void;
     function updateNotes(): void;
     function removeFallingLeaves(): void;
     function addFallingLeaves(): void;
@@ -149,6 +159,7 @@ declare namespace Template {
         luciaOpportunity: boolean;
         atlasScore: number;
         luciaScore: number;
+        solasScore: number;
     };
 }
 declare namespace Template {
@@ -189,11 +200,14 @@ declare namespace Template {
     function coverChapterOne(): ƒS.SceneReturn;
 }
 declare namespace Template {
-    function firstScene(): ƒS.SceneReturn;
+    function coverChapterTwo(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function intro(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function lightsOut(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function motive(): ƒS.SceneReturn;
-}
-declare namespace Template {
-    function test(): ƒS.SceneReturn;
 }

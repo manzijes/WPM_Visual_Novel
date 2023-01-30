@@ -1,6 +1,8 @@
 namespace Template {
     export async function motive(): ƒS.SceneReturn {
 
+        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true); 
+        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true); 
         updateNotes();
 
         let narratorText = {
@@ -8,30 +10,31 @@ namespace Template {
                 T0001: "Du triffst pünkltich bei der Probe des Theaterclubs ein. Neben den anderen Mitgliedern sind auch deine Verdächtigen anwesend.",
                 T0002: "Mit wem möchtest du sprechen?",
                 T0003: "Schnell ein Foto für die Notes...",
-                // Lucia
                 T0004: "Du begleitest Lucia zur Bibliothek.",
                 T0005: "Du begibst dich zusammen mit Lucia zurück in den Theaterraum."
             }
         };
+
+        // Suspects Texts
 
         let atlasText = {
             Atlas: {
                 T0001: "... ?",
                 T0002: "Nur, dass solche amateurhaften Sabotageversuche das Theaterstück nicht stoppen werden.",
                 T0003: "Nein, ich bin sehr beschäftigt. Ich bin Jahrgangsbester und Schulsprecher, wie du vielleicht weißt. Obendrein bin ich Mitglied in mehreren AGs. Der Theaterclub, der Schach-Club, der Kalligraphie-Club... Meinst du wirklich, ich habe Zeit für solche Kindereien?",
-                T0004_a: "Na dann kannst du dir jetzt ein Bild machen.",
-                T0004_b: "Kusch doch nicht gleich. Gute Ermittler sollten etwas mehr Rückrat zeigen.",
+                T0004_good: "Na dann kannst du dir jetzt ein Bild machen.",
+                T0004_bad: "Kusch doch nicht gleich. Gute Ermittler sollten etwas mehr Rückrat zeigen.",
                 T0004_2: "Soll ich dir sagen, was ich denke? Verschwundene Skripte, ein zerstörtes Kostüm... Es würde mich nicht wundern, wenn das alles ein bescheuerter Streich wäre. Ernst nehme ich das jedenfalls nicht.",
                 T0004_3: "Es sei denn...",
-                T0005_a: "Ist das deine Strategie? Du suchst nach Lösungen bei deinen Verdächtigen? Vielleicht solltest du selbst anfangen nachzudenken.",
-                T0005_b: "Es sei denn, du selbst hast die Sabotage inszeniert, um dich wichtig zu machen. Naja, wir werden bald sehen, wie viel heiße Luft in deinem Kopf ist...",
+                T0005_bad: "Ist das deine Strategie? Du suchst nach Lösungen bei deinen Verdächtigen? Vielleicht solltest du selbst anfangen nachzudenken.",
+                T0005_good: "Es sei denn, du selbst hast die Sabotage inszeniert, um dich wichtig zu machen. Naja, wir werden bald sehen, wie viel heiße Luft in deinem Kopf ist...",
                 T0006: "Hm... Da wir schon reden, möchte ich dir einen Hinweis geben.",
                 T0006_2: "Bitte erzähle nicht herum, dass du das von mir hast. Mir ist mein guter Ruf sehr wichtig. Du verstehst das sicher, so von Schulsprecher zu Stellvertreterin.",
                 T0007_1: "Solas macht sich wohl in letzter Zeit viel Druck. Es ist das erste Mal, dass die Schule ein Theaterstück genehmigt hat, das von einem Schüler geschrieben wurde. Normalerweise führt der Theaterclub nur Klassiker auf.",
                 T0007_2: "Solas möchte unbedingt, dass alles perfekt läuft. Das Stück ist sein Meisterwerk, so etwas verstehen nur Künstler. Aber er hatte keine Zeit mehr, das Skript zu überarbeiten. Wenn nun jedoch die Premiere verschoben werden müsste...",
                 T0007_3: "Du verstehst, worauf ich hinaus will, ja?",
-                T0008_a: "Und du bist überraschend scharfzüngig. Na dann, viel Erfolg.",
-                T0008_b: "Das kann ja nur schiefgehen..."
+                T0008_good: "Und du bist überraschend scharfzüngig. Na dann, viel Erfolg.",
+                T0008_bad: "Das kann ja nur schiefgehen..."
             }
         };
 
@@ -40,8 +43,8 @@ namespace Template {
                 T0001: "... ?",
                 T0002: "Oh! Gerade passt es schlecht, ich habe etwas in der Bibliothek vergessen, das ich holen gehen wollte... Komm doch einfach mit und wir sprechen dort.",
                 T0003: "So, da sind wir schon. Es gibt nichts schöneres als den Geruch alter Bücher, findest du nicht?",
-                T0004_a: "Wenn du meinst...",
-                T0004_b: "Britische Forscher haben das Aroma alter Bücher einmal beschrieben. Die Duftnote sei eine Kombination aus Gras-Noten, einer Spur Säure und einem Hauch Vanille. So muss Magie riechen.",
+                T0004_bad: "Wenn du meinst...",
+                T0004_good: "Britische Forscher haben das Aroma alter Bücher einmal beschrieben. Die Duftnote sei eine Kombination aus Gras-Noten, einer Spur Säure und einem Hauch Vanille. So muss Magie riechen.",
                 T0005: "Du meinst unser Theaterstück? N-Natürlich. Kira glaubt, dahinter steckt jemand mit einer klaren Intention.",
                 T0006: "Ja, drei von uns besitzen einen Schlüssel. Atlas, weil er ungestört Zusatzproben machen möchte. Solas, weil er als Autor und Regisseur von der Vorbereitung bis zur Premiere alles steuert. Und ich, weil ich hin und wieder an der Technik feilen muss.",
                 T0007: "Das macht Sinn... Nur hatte ich keinen Zugang. Ich habe meinen Schlüssel vor ein paar Tagen verloren.",
@@ -49,10 +52,30 @@ namespace Template {
                 T0009: "Ich kam neulich hier an, als Atlas seine Sachen gepackt hat. Ich habe mich an seinen Tisch gesetzt und er hat das hier vergessen. Es sieht aus wie eine Seite aus einem Tagebuch.",
                 T0010: "Damit hast du wohl Recht. Trotzdem...",
                 T0011: "Ich hoffe, ich konnte dir weiterhelfen.",
-                T0012_a: "Dann bis bald.",
-                T0012_b: "Haha..."
+                T0012_good: "Dann bis bald.",
+                T0012_bad: "Haha..."
             }
         };
+
+        let solasText = {
+            Solas: {
+                T0001: "Oh?",
+                T0002: "Was ich darüber denke? Nun... Es ist keine schöne Sache, nicht wahr? Ich habe mein  Herz in dieses Stück gesteckt.",
+                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich meine Notizen darauf geschrieben habe. Die sind jetzt leider weg.",
+                T0004: "Ich kann mir vorstellen, wieso. Nur drei Mitglieder haben Zugang zum Theaterraum außerhalb der Probezeiten. Darf ich auch ehrlich mit dir sein?",
+                T0005_bad: "Dass jemand das Stück sabotieren will, kann ich nicht nachvollziehen, aber es inspiriert mich auch. Was steckt dahinter, wenn jemand zu solchen Mitteln greift? Verzweiflung, vermute ich.",
+                T0005_good: "Irgendwie habe ich Mitleid mit der Person, die dahinter steckt. Unter der Oberfläche entpuppt sich jedes noch so triviale Motiv als Ausdruck für etwas Tieferes, denkst du nicht?",
+                T0006: "Nun ja... Ich möchte niemanden anschwärzen, aber Lucia spricht viel über den Theaterclub. Leider nicht viel Gutes. Warte, ich zeige dir ein Beispiel aus unserem Chatverlauf, damit du weißt, was ich meine.",
+                T0007: "Das muss noch nichts heißen. In dubio pro reo.",
+                T0008_good: "Ich bin zuversichtlich, dass am Ende die Wahrheit übrig sein wird.",
+                T0008_bad: "Mir ist entgangen, dass das mein Problem ist.",
+                T0009: "Denk daran. Wichtiger als die Fakten, sind die Menschen. Manchmal trügt der Schein... und manchmal sind die Leute genau so, wie sie auf den ersten Blick wirken.",
+                T0010_good: "Auf Wiedersehen.",
+                T0010_bad: "Ciao."
+            }
+        }
+
+        // Protagonist Texts
 
         let protagonistToAtlas = {
             Protagonist: {
@@ -86,36 +109,70 @@ namespace Template {
             }
         };
 
+        let protagonistToSolas = {
+            Protagonist: {
+                T0001: "Hey, ich möchte kurz mit dir reden. Was denkst du über die Sabotage eures Theaterstücks?",
+                T0002: "Das tut mir leid. Dass die Skripte verschwunden sind, ist sicher ärgerlich, aber du hast das Original bestimmt digital gespeichert, oder?",
+                T0003: "Ich verstehe... Darf ich ehrlich mit dir sein? Ich versuche herauszufinden, wer dahinter steckt. Drei Leute sind verdächtig, darunter auch du.",
+                T0004_a: "Here we go.",
+                T0004_b: "Natürlich.",
+                T0005: "Du bist ein interessanter Typ, so viel steht fest. Hast du womöglich einen Hinweis darauf, wer der Täter sein könnte?",
+                T0006: "Lucia hat offenbar viel Wut aufgestaut.",
+                T0007_a: "Ich finde dich sehr verdächtig.",
+                T0007_b: "Macht es dich nicht nervös, dass du unter Verdacht stehst?",
+                T0008_a: "Nun gut. Bis bald.",
+                T0008_b: "Du machst mich irre. Ciao!"
+            }
+        };
+
+        // Dialog Options to start talk (to be called in while loop)
         let startTalk = {
             withAtlas: "Atlas",
             withSolas: "Solas",
             withLucia: "Lucia"
         };
 
-        let dialogoptionsAtlas = {
-            iSayA: "Ich kenne deinen Terminkalender nicht.",
-            iSayB: "Sorry, ich wollte dich nicht anklagen."
+        // Atlas Dialog Options
+        let optionsAtlasBusy = {
+            good: "Ich kenne deinen Terminkalender nicht.",
+            bad: "Sorry, ich wollte dich nicht anklagen."
         }
-        let dialogoptions2Atlas = {
-            iSayA: "Es sei denn... was? Hast du einen Verdacht?",
-            iSayB: "Spucks aus, du Angeber."
+        let optionsAtlasUnless = {
+            bad: "Es sei denn... was? Hast du einen Verdacht?",
+            good: "Spucks aus, du Angeber."
         }
-        let dialogoptions3Atlas = {
-            iSayA: "Das war überraschend hilfreich. Ich danke dir.",
-            iSayB: "Pff... Alles klar. Und tschüss."
+        let optionsAtlasGoodbye = {
+            good: "Das war überraschend hilfreich. Ich danke dir.",
+            bad: "Pff... Alles klar. Und tschüss."
         }
-        let dialogoptionsLucia = {
-            iSayA: "Ganz schön muffig",
-            iSayB: "Das finde ich auch."
+
+        // Lucia Dialog Options
+        let optionsLuciaBooks = {
+            bad: "Ganz schön muffig",
+            good: "Das finde ich auch."
         }
-        let dialogoptionsLucia2 = {
-            iSayA: "Ein Tagebuch? Das sollte ich nicht lesen, es sind private Gedanken.",
-            iSayB: "Her damit."
+        let optionsLuciaDiary = {
+            bad: "Ein Tagebuch? Das sollte ich nicht lesen, es sind private Gedanken.",
+            good: "Her damit."
         }
-        let dialogoptionsLucia3 = {
-            iSayA: "Ja, vielen Dank.",
-            iSayB: "Streng dich das nächste Mal bitte etwas mehr an."
+        let optionsLuciaGoodbye = {
+            good: "Ja, vielen Dank.",
+            bad: "Streng dich das nächste Mal bitte etwas mehr an."
         }
+
+        // Solas Dialog Options
+        // let optionsSolasHonest = {
+        //     bad: "Here we go.",
+        //     good: "Natürlich."
+        // }
+        // let optionsSolasSuspect = {
+        //     bad: "Ich finde dich sehr verdächtig.",
+        //     good: "Macht es dich nicht nervös, dass du unter Verdacht stehst?"
+        // }
+        // let optionsSolasGoodbye = {
+        //     good: "Nun gut. Bis bald.",
+        //     bad: "Du machst mich irre. Ciao!"
+        // }
 
 
         await ƒS.Location.show(locations.classroomDay);
@@ -136,6 +193,7 @@ namespace Template {
             ƒS.Sound.play(sound.selectDialog, 1.5, false); 
 
             switch (startTalkElement) {
+                // CASE Talk To Atlas
                 case startTalk.withAtlas:
                     await ƒS.update(0.5);
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
@@ -191,26 +249,26 @@ namespace Template {
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0003);
 
-                    let dialogoptionsAtlasElement = await ƒS.Menu.getInput(dialogoptionsAtlas, "dialogoptions");
+                    let optionsAtlasBusyElement = await ƒS.Menu.getInput(optionsAtlasBusy, "dialogoptions");
                     ƒS.Sound.play(sound.selectDialog, 1.5, false); 
 
-                    switch (dialogoptionsAtlasElement) {
-                        case dialogoptionsAtlas.iSayA:
+                    switch (optionsAtlasBusyElement) {
+                        case optionsAtlasBusy.good:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             dataForSave.atlasScore += 10;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_a);
+                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_good);
                             await ƒS.update(0.5);
                             break;
-                        case dialogoptionsAtlas.iSayB:
+                        case optionsAtlasBusy.bad:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.angry, ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterChildren => meterChildren.hidden = false);
                             dataForSave.atlasScore -= 10;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_b);
+                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_bad);
                             await ƒS.update(0.5);
                     }
 
@@ -223,28 +281,28 @@ namespace Template {
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_3);
 
-                    let dialogoptions2AtlasElement = await ƒS.Menu.getInput(dialogoptions2Atlas, "dialogoptions");
+                    let optionsAtlasUnlessElement = await ƒS.Menu.getInput(optionsAtlasUnless, "dialogoptions");
                     ƒS.Sound.play(sound.selectDialog, 1.5, false); 
 
                     await ƒS.update(0.5);
 
-                    switch (dialogoptions2AtlasElement) {
-                        case dialogoptions2Atlas.iSayA:
+                    switch (optionsAtlasUnlessElement) {
+                        case optionsAtlasUnless.bad:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             dataForSave.atlasScore -= 10;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0005_a);
+                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0005_bad);
                             await ƒS.update(0.5);
                             break;
-                        case dialogoptions2Atlas.iSayB:
+                        case optionsAtlasUnless.good:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             dataForSave.atlasScore += 10;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0005_b);
+                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0005_good);
                             await ƒS.update(0.5);
                     }
 
@@ -290,26 +348,26 @@ namespace Template {
                     dataForSave.solasMotive = true;
                     updateNotes();
 
-                    let dialogoptionsAtlasElement3 = await ƒS.Menu.getInput(dialogoptions3Atlas, "dialogoptions");
+                    let optionsAtlasGoodbyeElement = await ƒS.Menu.getInput(optionsAtlasGoodbye, "dialogoptions");
                     ƒS.Sound.play(sound.selectDialog, 1.5, false); 
 
-                    switch (dialogoptionsAtlasElement3) {
-                        case dialogoptions3Atlas.iSayA:         
+                    switch (optionsAtlasGoodbyeElement) {
+                        case optionsAtlasGoodbye.good:         
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             dataForSave.atlasScore += 5;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0008_a);
+                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0008_good);
                             await ƒS.update(0.5);
                             break;
-                        case dialogoptions3Atlas.iSayB:
+                        case optionsAtlasGoodbye.bad:
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.angry, ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterStuffAtlas => meterStuffAtlas.hidden = false);
                             dataForSave.atlasScore -= 5;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0008_b);
+                            await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0008_bad);
                             await ƒS.update(0.5);
                     }
 
@@ -324,10 +382,61 @@ namespace Template {
                     delete startTalk.withAtlas;
                     break;
 
+                // CASE Talk To Solas
                 case startTalk.withSolas:
+                    await ƒS.update(0.5);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
+                    await ƒS.update(0.5);
+
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    simulateCameraFlash();
+                    dataForSave.solasPortrait = true;
+                    updateNotes();
+
+                    await ƒS.update(0.2);
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+                    await ƒS.update(0.5);
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+                    await ƒS.update(1);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0001);
+                    await ƒS.update(0.5);
+
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = true);
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0001);
+                    await ƒS.Character.hide(characters.protagonist);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0002);
+                    document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = true);
+                    await ƒS.Character.hide(characters.solas);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.update(0.5);
+                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0002);
+                    await ƒS.Character.hide(characters.protagonist);
+                    await ƒS.update(0.5);
+
                     delete startTalk.withSolas;
                     break;
 
+                // CASE Talk To Lucia
                 case startTalk.withLucia:
                     // go to library with her
                     await ƒS.update(0.5);
@@ -390,26 +499,26 @@ namespace Template {
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0003);
                     await ƒS.update(0.5);
 
-                    let dialogoptionsLuciaElement = await ƒS.Menu.getInput(dialogoptionsLucia, "dialogoptions");
+                    let optionsLuciaBooksElement = await ƒS.Menu.getInput(optionsLuciaBooks, "dialogoptions");
                     ƒS.Sound.play(sound.selectDialog, 1.5, false); 
 
                     await ƒS.update(0.5);
 
-                    switch (dialogoptionsLuciaElement) {
-                        case dialogoptionsLucia.iSayA:
+                    switch (optionsLuciaBooksElement) {
+                        case optionsLuciaBooks.bad:
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.Character.show(characters.lucia, characters.lucia.pose.sad, ƒS.positionPercent(75, 97));
                             dataForSave.luciaScore -= 30;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0004_a);
+                            await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0004_bad);
                             await ƒS.update(0.5);
                             break;
-                        case dialogoptionsLucia.iSayB:
+                        case optionsLuciaBooks.good:
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.Character.show(characters.lucia, characters.lucia.pose.smiling, ƒS.positionPercent(75, 97));
                             dataForSave.luciaScore += 10;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0004_b);
+                            await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0004_good);
                             await ƒS.update(0.5);
                     }
 
@@ -490,13 +599,13 @@ namespace Template {
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0009);
 
-                    let dialogoptionsLuciaElement2 = await ƒS.Menu.getInput(dialogoptionsLucia2, "dialogoptions");
+                    let optionsLuciaDiaryElement = await ƒS.Menu.getInput(optionsLuciaDiary, "dialogoptions");
                     ƒS.Sound.play(sound.selectDialog, 1.5, false); 
 
                     await ƒS.update(0.5);
 
-                    switch (dialogoptionsLuciaElement2) {
-                        case dialogoptionsLucia2.iSayA:
+                    switch (optionsLuciaDiaryElement) {
+                        case optionsLuciaDiary.bad:
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
                             dataForSave.luciaScore -= 5;
@@ -508,7 +617,7 @@ namespace Template {
                             dataForSave.atlasMotive = true;
                             updateNotes();
                             break;
-                        case dialogoptionsLucia2.iSayB:
+                        case optionsLuciaDiary.good:
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
                             dataForSave.luciaScore += 5;
@@ -558,29 +667,29 @@ namespace Template {
                     await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0011);
                     await ƒS.update(0.5);
 
-                    let dialogoptionsLuciaElement3 = await ƒS.Menu.getInput(dialogoptionsLucia3, "dialogoptions");
+                    let optionsLuciaGoodbyeElement = await ƒS.Menu.getInput(optionsLuciaGoodbye, "dialogoptions");
                     ƒS.Sound.play(sound.selectDialog, 1.5, false); 
 
                     await ƒS.update(0.5);
 
-                    switch (dialogoptionsLuciaElement3) {
-                        case dialogoptionsLucia3.iSayA:
+                    switch (optionsLuciaGoodbyeElement) {
+                        case optionsLuciaGoodbye.good:
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.Character.show(characters.lucia, characters.lucia.pose.smiling, ƒS.positionPercent(75, 97));
                             dataForSave.luciaScore += 5;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0012_a);
+                            await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0012_good);
                             await ƒS.update(0.5);
                             document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.update(0.5);
                             break;
-                        case dialogoptionsLucia3.iSayB:
+                        case optionsLuciaGoodbye.bad:
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.Character.show(characters.lucia, characters.lucia.pose.sad, ƒS.positionPercent(75, 97));
                             dataForSave.luciaScore -= 5;
                             await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0012_b);
+                            await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0012_bad);
                             await ƒS.update(0.5);
                             document.getElementsByName("luciaScore").forEach(meterStuffLucia => meterStuffLucia.hidden = true);
                             await ƒS.Character.hide(characters.lucia);
@@ -598,6 +707,8 @@ namespace Template {
             }
             loopCount++;
         }
+
+        ƒS.Sound.fade(sound.mainMusic, 0, 3, true); 
 
     }
 }

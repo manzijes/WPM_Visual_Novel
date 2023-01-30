@@ -1,5 +1,5 @@
 namespace Template {
-    export async function firstScene(): ƒS.SceneReturn {
+    export async function intro(): ƒS.SceneReturn {
 
         let strangerText = {
             Stranger: {
@@ -235,7 +235,6 @@ namespace Template {
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0010);
 
-        revealNotes();
         updateNotes();
         ƒS.Sound.play(sound.sparkle, 0.5, false); 
 
