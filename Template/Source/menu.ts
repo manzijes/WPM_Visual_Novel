@@ -151,7 +151,6 @@ namespace Template {
         }
     }
 
-
     // Shortcuts
     document.addEventListener("keydown", hndKeyPress);
     export async function hndKeyPress(_event: KeyboardEvent): Promise<void> {

@@ -332,7 +332,6 @@ img#switch.centerRight{
     margin: 0 auto;
     width: 60%;
     top: 2.5%;
-    height: 100%;
     background: none;
     text-align: right;
 }
@@ -408,6 +407,69 @@ meter#luciaMeter::-webkit-meter-optimum-value{
 
 meter#solasMeter::-webkit-meter-optimum-value{
   background-color: lightskyblue;
+}
+
+/* The device with borders */
+.smartphone {
+  position: relative;
+  margin: auto;
+  border: 16px black solid;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+  width: 360px;
+  height: 640px;
+  overflow: hidden;
+}
+
+.smartphone .content {
+  background: white;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.chatcontainer {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.chatcontainer::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.chatcontainer img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.chatcontainer img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
 }
 
 @media (max-width: 768px){

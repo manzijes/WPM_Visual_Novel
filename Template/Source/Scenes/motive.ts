@@ -7,7 +7,7 @@ namespace Template {
 
         let narratorText = {
             Narrator: {
-                T0001: "Du triffst pünkltich bei der Probe des Theaterclubs ein. Neben den anderen Mitgliedern sind auch deine Verdächtigen anwesend.",
+                T0001: "Du triffst pünktlich bei der Probe des Theaterclubs ein. Neben den anderen Mitgliedern sind auch deine Verdächtigen anwesend.",
                 T0002: "Mit wem möchtest du sprechen?",
                 T0003: "Schnell ein Foto für die Notes...",
                 T0004: "Du begleitest Lucia zur Bibliothek.",
@@ -60,10 +60,10 @@ namespace Template {
         let solasText = {
             Solas: {
                 T0001: "Oh?",
-                T0002: "Was ich darüber denke? Nun... Es ist keine schöne Sache, nicht wahr? Ich habe mein  Herz in dieses Stück gesteckt. Dass jemand versucht, es zu verhindern... Ich finde das ",
-                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich Notizen auf mein Skript geschrieben hatte. Die sind jetzt leider weg.",
-                T0004: "Ich kann mir vorstellen, wieso. Nur drei Mitglieder haben Zugang zum Theaterraum außerhalb der Probezeiten. Darf ich auch ehrlich mit dir sein?",
-                T0005_bad: "Dass jemand das Stück sabotieren will, kann ich nicht nachvollziehen, aber es inspiriert mich auch. Was steckt dahinter, wenn jemand zu solchen Mitteln greift? Ich denke es ist Verzweiflung.",
+                T0002: "Was ich darüber denke? Nun... Es ist keine schöne Sache, nicht wahr? Ich habe mein  Herz in dieses Stück gesteckt.",
+                T0003: "Ja, natürlich. Wir haben sofort neue Skripte für jeden gedruckt. Es war trotzdem lästig, weil ich Notizen auf mein Skript geschrieben hatte. Die sind jetzt leider verloren.",
+                T0004: "Ich kann mir vorstellen, wieso. Nur drei Mitglieder haben Zugang zum Theaterraum außerhalb der Proben. Darf ich auch ehrlich mit dir sein?",
+                T0005_bad: "Dass jemand das Stück sabotieren will, kann ich nicht nachvollziehen, aber es inspiriert mich auch. Was steckt dahinter, wenn jemand zu solchen Mitteln greift? Ich denke es ist Verzweiflung. Starke Gefühle sind eine Quelle der Kreativität.",
                 T0005_good: "Irgendwie habe ich Mitleid mit der Person, die dahinter steckt. Unter der Oberfläche entpuppt sich jedes noch so triviale Motiv als Ausdruck für etwas Tieferes, denkst du nicht?",
                 T0006: "Nun ja... Ich möchte niemanden anschwärzen, aber Lucia spricht viel über den Theaterclub. Leider nicht viel Gutes. Warte, ich zeige dir ein Beispiel aus unserem Chatverlauf, damit du weißt, was ich meine.",
                 T0007: "Das muss noch nichts heißen. In dubio pro reo.",
@@ -105,18 +105,18 @@ namespace Template {
                 T0008: "Tatsächlich?",
                 T0009_a: "Ein Tagebuch? Das sollte ich nicht lesen, es sind private Gedanken.",
                 T0009_b: "Her damit.",
-                T00010: "Atlas hat wirklich eine schöne Schrift. Das ist dann wohl sein einziger Vorzug..."
+                T00010: "Atlas hat wirklich eine schöne Schrift... und er mag mich nicht, weil ich ihm den Titel des Jahrgangsbesten streitig mache. Interessant."
             }
         };
 
         let protagonistToSolas = {
             Protagonist: {
-                T0001: "Hey, ich möchte kurz mit dir reden. Was denkst du über die Sabotage eures Theaterstücks?",
+                T0001: "Hey, ich würde gerne mal mit dir reden. Kurz und knapp: Was denkst du über die Sabotage eures Theaterstücks?",
                 T0002: "Das tut mir leid. Dass die Skripte verschwunden sind, ist ärgerlich, aber du hast das Original bestimmt digital gespeichert, oder?",
                 T0003: "Ich verstehe... Darf ich ehrlich mit dir sein? Ich versuche herauszufinden, wer dahinter steckt. Drei Leute sind verdächtig, darunter auch du.",
                 T0004_a: "Here we go.",
                 T0004_b: "Natürlich.",
-                T0005: "Du bist ein interessanter Typ, so viel steht fest. Hast du womöglich einen Hinweis darauf, wer der Täter sein könnte?",
+                T0005: "Das... kann gut sein. Du bist ein interessanter Typ, so viel steht fest. Hast du womöglich einen Hinweis darauf, wer der Täter sein könnte?",
                 T0006: "Lucia hat offenbar eine Menge negative Gefühle angestaut...",
                 T0007_a: "Ich finde dich sehr verdächtig.",
                 T0007_b: "Macht es dich nicht nervös, dass du unter Verdacht stehst?",
@@ -314,14 +314,13 @@ namespace Template {
                     await ƒS.Character.hide(characters.protagonist);
                     await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.atlas, characters.atlas.pose.happy, ƒS.positionPercent(75, 97));
+                    await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
                     showAtlasMeter();
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0006);
                     await ƒS.update(0.5);
                     await ƒS.Character.hide(characters.atlas);
-                    await ƒS.Character.show(characters.atlas, characters.atlas.pose.neutral, ƒS.positionPercent(75, 97));
-                    showAtlasMeter();
+                    await ƒS.Character.show(characters.atlas, characters.atlas.pose.happy, ƒS.positionPercent(75, 97));
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0006_2);
 
@@ -384,116 +383,136 @@ namespace Template {
 
                 // CASE Talk To Solas
                 case startTalk.withSolas:
-                    await ƒS.update(0.5);
-                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    showSolasMeter();
+                    // await ƒS.update(0.5);
+                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    // showSolasMeter();
 
-                    await ƒS.update(0.5);
-                    await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
-                    await ƒS.update(0.5);
+                    // await ƒS.update(0.5);
+                    // await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
+                    // await ƒS.update(0.5);
 
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                    simulateCameraFlash();
-                    dataForSave.solasPortrait = true;
-                    updateNotes();
+                    // await new Promise(resolve => setTimeout(resolve, 500));
+                    // simulateCameraFlash();
+                    // dataForSave.solasPortrait = true;
+                    // updateNotes();
 
-                    await ƒS.update(0.2);
-                    await ƒS.Character.hide(characters.solas);
-                    await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
-                    await ƒS.update(0.5);
-                    await ƒS.Character.hide(characters.solas);
-                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    await ƒS.update(1);
-                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0001);
-                    await ƒS.update(0.5);
+                    // await ƒS.update(0.2);
+                    // await ƒS.Character.hide(characters.solas);
+                    // await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
+                    // await ƒS.update(0.5);
+                    // await ƒS.Character.hide(characters.solas);
+                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    // await ƒS.update(1);
+                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0001);
+                    // await ƒS.update(0.5);
 
-                    hideSolasMeter();
-                    await ƒS.Character.hide(characters.solas);
-                    await ƒS.update(0.5);
+                    // hideSolasMeter();
+                    // await ƒS.Character.hide(characters.solas);
+                    // await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-                    await ƒS.update(0.5);
-                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0001);
-                    await ƒS.Character.hide(characters.protagonist);
-                    await ƒS.update(0.5);
+                    // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    // await ƒS.update(0.5);
+                    // await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0001);
+                    // await ƒS.Character.hide(characters.protagonist);
+                    // await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    showSolasMeter();
-                    await ƒS.update(0.5);
-                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0002);
+                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    // showSolasMeter();
+                    // await ƒS.update(0.5);
+                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0002);
 
-                    hideSolasMeter();
-                    await ƒS.Character.hide(characters.solas);
-                    await ƒS.update(0.5);
+                    // hideSolasMeter();
+                    // await ƒS.Character.hide(characters.solas);
+                    // await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-                    await ƒS.update(0.5);
-                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0002);
-                    await ƒS.Character.hide(characters.protagonist);
-                    await ƒS.update(0.5);
+                    // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    // await ƒS.update(0.5);
+                    // await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0002);
+                    // await ƒS.Character.hide(characters.protagonist);
+                    // await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    showSolasMeter();
-                    await ƒS.update(0.5);
-                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0003);
+                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    // showSolasMeter();
+                    // await ƒS.update(0.5);
+                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0003);
 
-                    hideSolasMeter();
-                    await ƒS.Character.hide(characters.solas);
-                    await ƒS.update(0.5);
+                    // hideSolasMeter();
+                    // await ƒS.Character.hide(characters.solas);
+                    // await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-                    await ƒS.update(0.5);
-                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0003);
-                    await ƒS.Character.hide(characters.protagonist);
-                    await ƒS.update(0.5);
+                    // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    // await ƒS.update(0.5);
+                    // await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0003);
+                    // await ƒS.Character.hide(characters.protagonist);
+                    // await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    showSolasMeter();
-                    await ƒS.update(0.5);
-                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0004);
+                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    // showSolasMeter();
+                    // await ƒS.update(0.5);
+                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0004);
 
-                    let optionsSolasHonestElement = await ƒS.Menu.getInput(optionsSolasHonest, "dialogoptions");
-                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
-                    await ƒS.update(0.5);
+                    // let optionsSolasHonestElement = await ƒS.Menu.getInput(optionsSolasHonest, "dialogoptions");
+                    // ƒS.Sound.play(sound.selectDialog, 1.5, false);
+                    // await ƒS.update(0.5);
 
-                    switch (optionsSolasHonestElement) {
-                        case optionsSolasHonest.bad:
-                            await ƒS.Character.hide(characters.solas);
-                            await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
-                            dataForSave.solasScore -= 10;
-                            await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_bad);
-                            await ƒS.update(0.5);
-                            break;
-                        case optionsSolasHonest.good:
-                            dataForSave.solasScore += 10;
-                            await ƒS.update(0.5);
-                            await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_good);
-                            await ƒS.update(0.5);
-                            break;
-                    }
+                    // switch (optionsSolasHonestElement) {
+                    //     case optionsSolasHonest.bad:
+                    //         await ƒS.Character.hide(characters.solas);
+                    //         await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    //         dataForSave.solasScore -= 10;
+                    //         await ƒS.update(0.5);
+                    //         await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_bad);
+                    //         await ƒS.update(0.5);
+                    //         break;
+                    //     case optionsSolasHonest.good:
+                    //         dataForSave.solasScore += 10;
+                    //         await ƒS.update(0.5);
+                    //         await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_good);
+                    //         await ƒS.update(0.5);
+                    //         break;
+                    // }
 
-                    hideSolasMeter();
-                    await ƒS.Character.hide(characters.solas);
-                    await ƒS.update(0.5);
+                    // hideSolasMeter();
+                    // await ƒS.Character.hide(characters.solas);
+                    // await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-                    await ƒS.update(0.5);
-                    await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0005);
-                    await ƒS.Character.hide(characters.protagonist);
-                    await ƒS.update(0.5);
+                    // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    // await ƒS.update(0.5);
+                    // await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0005);
+                    // await ƒS.Character.hide(characters.protagonist);
+                    // await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-                    showSolasMeter();
-                    await ƒS.update(0.5);
-                    await ƒS.Speech.tell(characters.solas, solasText.Solas.T0006);
+                    // await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                    // showSolasMeter();
+                    // await ƒS.update(0.5);
+                    // await ƒS.Speech.tell(characters.solas, solasText.Solas.T0006);
 
-                    ƒS.Speech.clear();
+                    // ƒS.Speech.clear();
 
-                    let diaryPage: string = "<div class='chatPage'>\
-                            </div>";
+                    let diaryPage: string = '\
+                        <div class="content">\
+                            <div class="chatcontainer">\
+                                <p>Hello. How are you today?</p>\
+                                <span class="time-right">11:00</span>\
+                            </div>\
+                            \
+                            <div class="chatcontainer darker">\
+                                <p>Hey! Im fine. Thanks for asking!</p>\
+                                <span class="time-left">11:01</span>\
+                            </div>\
+                            \
+                            <div class="chatcontainer">\
+                                <p>Sweet! So, what do you wanna do today?</p>\
+                                <span class="time-right">11:02</span>\
+                            </div>\
+                            \
+                            <div class="chatcontainer darker">\
+                                <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>\
+                                <span class="time-left">11:05</span>\
+                            </div>\
+                    </div>';
 
-                    ƒS.Text.setClass("chatPageWrapper");
+                    ƒS.Text.setClass("smartphone");
                     let close = { done: "x" };
                     let choice: string;
                     do {
@@ -528,7 +547,7 @@ namespace Template {
                     switch (optionsSolasSuspectElement) {
                         case optionsSolasSuspect.bad:
                             await ƒS.Character.hide(characters.solas);
-                            await ƒS.Character.show(characters.solas, characters.solas.pose.angry, ƒS.positionPercent(75, 97));
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
                             dataForSave.solasScore -= 20;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.solas, solasText.Solas.T0008_bad);
@@ -544,6 +563,7 @@ namespace Template {
                             break;
                     }
 
+                    await ƒS.Character.hide(characters.solas);
                     await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
                     showSolasMeter();
                     await ƒS.update(0.5);
