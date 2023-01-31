@@ -21,8 +21,12 @@
 <body>
   <scene id="scene">
     <dialog type="splash" open>
+      <div class="splash-wrapper">
+        <img class="cover bottom" src="Images/Backgrounds/Kapitel/splash-lilacc.png" alt="Splashscreen">
+        <img class="cover top" src="Images/Backgrounds/Kapitel/splash-lilac-2.png" alt="Splashscreen">
+        <img class="cover top" src="Images/Backgrounds/Kapitel/splash-lilac-3.png" alt="Splashscreen">
+      </div>
       <img id="FudgeStoryLogo" theme="light" /> <!-- use "light" or "dark" -->
-      <img class="cover" src="Images/Backgrounds/Kapitel/splash.png" alt="Splashscreen">
     </dialog>
 
     <canvas></canvas>
@@ -64,6 +68,9 @@
       </script>
     </div>
 
+    <!-- lightsOut Szene Switch -->
+    <img src="Images/switch.png" id="switch" hidden>
+
   </scene>
 
   <div id="shutter"></div>
@@ -73,7 +80,7 @@
     <div class="portraits row">
       <div class="portrait-wrapper solas col-12">
         <div class="portrait col-3">
-          <p>Solas</p>
+          <p>Autor Solas</p>
           <img id="solasPortrait" src="Images/Portraits/portrait-solas.png" alt="Portrait">
         </div>
         <div class="info col-9">
@@ -84,13 +91,13 @@
               das Skript zu optimieren.</p>
           </div>
           <div class="opportunity ">
-            <h3>Indizien</h3>
+            <h3>Hinweise</h3>
           </div>
         </div>
       </div>
       <div class="portrait-wrapper atlas col-12">
         <div class="portrait col-3">
-          <p>Atlas</p>
+          <p>Hauptdarsteller Atlas</p>
           <img id="atlasPortrait" src="Images/Portraits/portrait-atlas.png" alt="Portrait">
         </div>
         <div class="info col-9">
@@ -102,13 +109,13 @@
             <p id="motiveNoDiary" class="hidden">???</p>
           </div>
           <div class="opportunity">
-            <h3>Indizien</h3>
+            <h3>Hinweise</h3>
           </div>
         </div>
       </div>
       <div class="portrait-wrapper lucia col-12">
         <div class="portrait col-3">
-          <p>Lucia</p>
+          <p>Technikerin Lucia</p>
           <img id="luciaPortrait" src="Images/Portraits/portrait-lucia.png" alt="Portrait">
         </div>
         <div class="info col-9">
@@ -118,7 +125,7 @@
               den Kulissen die Wertschätzung fehlt.</p>
           </div>
           <div class="opportunity">
-            <h3>Indizien</h3>
+            <h3>Hinweise</h3>
             <p id="luciaOpportunity" class="hidden">Sie sagt, sie habe den Schlüssel zum Theaterraum verloren. Stimmt
               das...?</p>
           </div>

@@ -6,6 +6,12 @@
     transition: all 0.4s;
 }
 
+#toggleAquiredPages{
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+}
+
 .hidden{
     opacity: 0;
     visibility: hidden;
@@ -66,7 +72,9 @@
     bottom: 0;
     text-align: center;
     z-index: 1;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    padding-left: 10px;
+    padding-right: 10px;
     background-color: rgb(0, 0, 0, 0.4);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;

@@ -1,8 +1,8 @@
 namespace Template {
     export async function lightsOut(): ƒS.SceneReturn {
 
-        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true); 
-        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true); 
+        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
+        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
         updateNotes();
 
         // control lights in scene
@@ -42,28 +42,15 @@ namespace Template {
         document.addEventListener('mousemove', updateFlashlight);
         document.addEventListener('touchmove', updateFlashlight);
 
-        // add switch img to scene AFTER lights are out, so player doesn't know where it is
-        function addSwitchToScene() {
-            // set classes for possible positions of switch
-            let classes = new Array('bottomRight', 'bottomLeft', 'centerLeft', 'centerRight');
-            let length = classes.length;
-            // create switch img
-            let img = document.createElement("img");
-            img.src = "https://github.com/manzijes/WPM_Visual_Novel/blob/main/Template/Images/switch.png?raw=true";
-            img.id = "switch";
-            // assign random class (therefore position)
-            img.classList.add(classes[Math.floor(Math.random() * length)]);
-            // add switch img to scene
-            let src = document.getElementById("scene");
-            src.appendChild(img);
-            img.addEventListener('click', clickSwitch);
-        }
-
         let protagonistText = {
             Protagonist: {
                 T0001: "Ich habe mir ein gutes erstes Bild verschafft, aber das hat den Saboteur eventuell aufgeschreckt. Er könnte bald wieder handeln...",
                 T0002: "Jemand hat das Licht ausgeschaltet. Warte kurz, an meinem Schlüsselbund hängt eine kleine Taschenlampe. Ich suche gleich einen Lichtschalter.",
-                T0003: "Gefunden!",
+                T0003: "Ich hab ihn!",
+                T0003_b: "Da ist er! Warte, ich laufe kurz hin...",
+                T0003_c: "Geduld, bitte. Ich will nirgendwo anstoßen!",
+                T0003_d: "Autsch! Jetzt bin ich gestolpert...",
+                T0003_e: "Fast da!",
                 T0004: "Sieh mal, da ist etwas vor der Tür.",
                 T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Im Flur gibt es einen zweiten Lichtschalter, das war also ganz einfach.",
                 T0006: "Das sehe ich ein. Ich werde dich nicht enttäuschen.",
@@ -116,12 +103,40 @@ namespace Template {
         // change normal theme to spooky music
         ƒS.Sound.fade(sound.mainMusic, 0, 3);
         ƒS.Sound.fade(sound.spookyMusic, 0.5, 2.5, true);
-        
+
         // remove characters and speech, add light switch
         await ƒS.Character.hide(characters.kira);
         ƒS.Speech.hide();
         await ƒS.update(1.5);
-        addSwitchToScene();
+
+        // set classes for possible positions of switch
+        let classes = new Array('bottomRight', 'bottomLeft', 'centerLeft', 'centerRight');
+        let length = classes.length;
+        // get switch img
+        let img = document.getElementById("switch");
+        // assign random class (therefore position)
+        img.classList.add(classes[Math.floor(Math.random() * length)]);
+        // make visible
+        img.hidden = false;
+        img.addEventListener("click", clickSwitch);
+
+        let clickedSwitch: number = 0;
+
+        async function clickSwitch() {
+            if(clickedSwitch == 0){
+                await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_b);
+            }
+            if(clickedSwitch == 1){
+                await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_c);
+            }
+            if(clickedSwitch == 2){
+                await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_d);
+            }
+            if(clickedSwitch > 2){
+                await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_e);
+            }
+            clickedSwitch += 1;
+        }
 
         await new Promise(resolve => setTimeout(resolve, 200));
         ƒS.Sound.play(sound.femalegasp, 1.5, false);
@@ -133,32 +148,35 @@ namespace Template {
 
         setLights("turnOnFlashlight");
 
-        // how to proceed when player finds light switch
-        async function clickSwitch() {
-            // remove light switch
-            let switchImg = document.getElementById("switch");
-            switchImg.remove();
+        await new Promise(resolve => setTimeout(resolve, 20000));
 
-            ƒS.Sound.play(sound.switch, 1, false);
-            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+        // remove light switch
+        let switchImg = document.getElementById("switch");
+        switchImg.remove();
+        ƒS.Sound.play(sound.switch, 1, false);
 
-            setLights("turnOnLights");
+        await ƒS.update(0.5);
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
 
-            await ƒS.update(0.5);
-            await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
-            await ƒS.Character.hide(characters.protagonist);
-            await ƒS.update(0.5);
+        setLights("turnOnLights");
 
-            await ƒS.Character.show(characters.kira, characters.kira.pose.scared, ƒS.positionPercent(75, 97));
-            await ƒS.update(0.5);
-            await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003);
-            await ƒS.update(0.5);
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.update(0.5);
 
-            // change spooky music to normal theme
-            ƒS.Sound.fade(sound.spookyMusic, 0, 6);
-            ƒS.Sound.fade(sound.mainMusic, 0.5, 5, true);
+        await ƒS.Character.show(characters.kira, characters.kira.pose.scared, ƒS.positionPercent(75, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003);
+        await ƒS.update(0.5);
 
-            ƒS.Sound.fade(sound.mainMusic, 0, 3, true); 
-        }
+        // change spooky music to normal theme
+        ƒS.Sound.fade(sound.spookyMusic, 0, 6);
+        ƒS.Sound.fade(sound.mainMusic, 0.5, 5, true);
+
+        await ƒS.Character.hide(characters.kira);
+        ƒS.Speech.hide();
+        await ƒS.update(0.5);
+
     }
 }

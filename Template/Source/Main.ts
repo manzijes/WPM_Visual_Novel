@@ -73,7 +73,7 @@ namespace Template {
     },
     chapter: {
       name: "chapterOne",
-      background: "Images/Backgrounds/Kapitel/chapter.png",
+      background: "Images/Backgrounds/Kapitel/chapter-lilac.png",
       foreground: ""
     },
   }
@@ -158,11 +158,109 @@ namespace Template {
     }, 30 * 2 + 45);
   }
 
+  export async function showAquiredPages(){
+    let pages: string[] = ['<div class="aquiredPagesWrapper"><p>Im Laufe des Spiels erhälst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p></div>'];
+    let current: number = 0;
+    let numberAquired = 0;
+
+    if(dataForSave.luciaMotive == true){
+      numberAquired += 1;
+
+      pages.push('<div class="smartphone">\
+      <div class="content">\
+          <div class="chatcontainer">\
+              <p class="chatname">Lucia:</p>\
+              <p>Ich bin es einfach leid tbh 😑 Ich gebe alles für diesen Club, aber höre ich mal ein Danke? Nein.</p>\
+              <span class="time-right">11:00</span>\
+          </div>\
+          \
+          <div class="chatcontainer darker">\
+              <p class="chatname">Solas:</p>\
+              <p>Das tut mir leid 😣</p>\
+              <span class="time-right">11:01</span>\
+          </div>\
+          \
+          <div class="chatcontainer">\
+              <p class="chatname">Lucia:</p>\
+              <p>Es liegt einfach daran, dass ich hinter den Kulissen arbeite. Nur, weil ich nicht als ⭐Star⭐ auf der Bühne stehe, werde ich von den anderen wie Luft behandelt.</p>\
+              <span class="time-right">11:02</span>\
+          </div>\
+          \
+          <div class="chatcontainer">\
+              <p class="chatname">Lucia:</p>\
+              <p>Ich will eigentlich nur etwas Wertschätzung..</p>\
+              <span class="time-right">11:02</span>\
+          </div>\
+          \
+          <div class="chatcontainer darker">\
+              <p class="chatname">Solas:</p>\
+              <p>Das wird schon 🌞 In zwei Tagen ist die Premiere! Wenn am Ende alle applaudieren, stehen auch du und ich auf der Bühne.</p>\
+              <span class="time-right">11:05</span>\
+          </div>\
+          </div>\
+        </div>')
+    }
+
+    if(dataForSave.atlasDiary == true){
+      numberAquired += 1;
+
+      pages.push('<div class="diaryPageWrapper-flip">\
+      <div class="diaryPage">\
+      <p>Mein Tagebuch,</p>\
+      <p>ich muss zugeben, dass ich frustriert bin. Sollen meine Bemühungen umsonst gewesen sein?</p>\
+      <p>Jeder mit Augen im Kopf muss doch erkennen, dass ich mit Abstand der beste Schüler an dieser Schule bin... Trotzdem droht der Titel des Jahrgangsbesten mir nun abhanden zu kommen.</p>\
+      <p>Ausgerechnet die stellvertretende Schulsprecherin macht mir Konkurrenz. Dabei erhalte ich die Auszeichnung jedes Schuljahr mit Leichtigkeit, also wie konnte es dazu kommen? Habe ich mich mit dem Amt des Schulsprechers und den vielen AGs etwa übernommen?</p>\
+      <p>Ich wünschte, meine Stellvertreterin stünde unter demselben Druck wie ich. Dann würden faire Bedingungen herrschen.</p>\
+      <p style="text-align: right">Gezeichnet, Atlas.</p>\
+      </div>\
+      </div>');
+    }
+
+    console.log("number: " + numberAquired);
+
+    // multiple pages
+    if(numberAquired > 0){
+      let flip = { back: "Zurück", next: "Weiter", done: "x" };
+      let choice: string;
+      ƒS.Text.setClass("allhints");
+      do {
+        ƒS.Text.print(pages[current]);
+        choice = await ƒS.Menu.getInput(flip, "flip");
+        if(numberAquired > 1){
+          switch (choice) {
+            case flip.back: current = Math.max(0, current - 1); break;
+            case flip.next: current = Math.min(numberAquired, current + 1); break;
+          }
+        } else{
+          switch (choice) {
+            case flip.back: current = Math.max(0, current - 1); break;
+            case flip.next: current = Math.min(1, current + 1); break;
+          }
+        }
+      } while (choice != flip.done);
+    // single page
+    } else{
+      let close = { done: "x" };
+      let choice: string;
+      ƒS.Text.setClass("allhints");
+      do {
+          ƒS.Text.print(pages[current]);
+          choice = await ƒS.Menu.getInput(close, "pageclose");
+      } while (choice != close.done);
+    }
+    ƒS.Text.close();
+  }
+
   export function updateNotes() {
       
+    dataForSave.toggleSuspectsButton = true;
     let toggleSuspects = document.getElementById("toggleSuspects");
     toggleSuspects.style.visibility = "visible";
     toggleSuspects.style.opacity = "1";
+
+    let toggleAquiredPages = document.getElementById("toggleAquiredPages");
+    toggleAquiredPages.style.visibility = "visible";
+    toggleAquiredPages.style.opacity = "1";
     
     // Portraits
     if (dataForSave.atlasPortrait == true) {
@@ -315,10 +413,11 @@ namespace Template {
 
     let scenes: ƒS.Scenes = [
       // { scene: intro, name: "Einleitung"},
-      { scene: beta, name: "beta" },
-      { scene: coverChapterOne, name: "Hinweis" },
-      { scene: motive, name: "ProbeMotive" },
-      { scene: lightsOut, name: "LichtAus" }
+      // { scene: beta, name: "beta" },
+      // { scene: coverChapterOne, name: "Hinweis" },
+      // { scene: motive, name: "ProbeMotive" },
+      { scene: lightsOut, name: "LichtAus" },
+      { scene: coverChapterTwo, name: "Hinweis" }
     ];
 
     // let uiElement: HTMLElement = document.querySelector("[type=interface]");

@@ -520,7 +520,7 @@ namespace Template {
                             </div>\
                     </div>';
 
-                    ƒS.Text.setClass("smartphone");
+                    ƒS.Text.setClass("smartphone blendin");
                     let close = { done: "x" };
                     let choice: string;
                     do {
@@ -802,7 +802,7 @@ namespace Template {
                             <p style='text-align: right'>Gezeichnet, Atlas.</p>\
                             </div>";
 
-                            ƒS.Text.setClass("diaryPageWrapper");
+                            ƒS.Text.setClass("diaryPageWrapper blendin");
                             let close = { done: "x" };
                             let choice: string;
                             do {

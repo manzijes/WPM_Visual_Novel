@@ -70,7 +70,7 @@ var Template;
         },
         chapter: {
             name: "chapterOne",
-            background: "Images/Backgrounds/Kapitel/chapter.png",
+            background: "Images/Backgrounds/Kapitel/chapter-lilac.png",
             foreground: ""
         },
     };
@@ -153,10 +153,111 @@ var Template;
         }, 30 * 2 + 45);
     }
     Template.simulateCameraFlash = simulateCameraFlash;
+    async function showAquiredPages() {
+        let pages = ['<div class="aquiredPagesWrapper"><p>Im Laufe des Spiels erhälst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p></div>'];
+        let current = 0;
+        let numberAquired = 0;
+        if (Template.dataForSave.luciaMotive == true) {
+            numberAquired += 1;
+            pages.push('<div class="smartphone">\
+      <div class="content">\
+          <div class="chatcontainer">\
+              <p class="chatname">Lucia:</p>\
+              <p>Ich bin es einfach leid tbh 😑 Ich gebe alles für diesen Club, aber höre ich mal ein Danke? Nein.</p>\
+              <span class="time-right">11:00</span>\
+          </div>\
+          \
+          <div class="chatcontainer darker">\
+              <p class="chatname">Solas:</p>\
+              <p>Das tut mir leid 😣</p>\
+              <span class="time-right">11:01</span>\
+          </div>\
+          \
+          <div class="chatcontainer">\
+              <p class="chatname">Lucia:</p>\
+              <p>Es liegt einfach daran, dass ich hinter den Kulissen arbeite. Nur, weil ich nicht als ⭐Star⭐ auf der Bühne stehe, werde ich von den anderen wie Luft behandelt.</p>\
+              <span class="time-right">11:02</span>\
+          </div>\
+          \
+          <div class="chatcontainer">\
+              <p class="chatname">Lucia:</p>\
+              <p>Ich will eigentlich nur etwas Wertschätzung..</p>\
+              <span class="time-right">11:02</span>\
+          </div>\
+          \
+          <div class="chatcontainer darker">\
+              <p class="chatname">Solas:</p>\
+              <p>Das wird schon 🌞 In zwei Tagen ist die Premiere! Wenn am Ende alle applaudieren, stehen auch du und ich auf der Bühne.</p>\
+              <span class="time-right">11:05</span>\
+          </div>\
+          </div>\
+        </div>');
+        }
+        if (Template.dataForSave.atlasDiary == true) {
+            numberAquired += 1;
+            pages.push('<div class="diaryPageWrapper-flip">\
+      <div class="diaryPage">\
+      <p>Mein Tagebuch,</p>\
+      <p>ich muss zugeben, dass ich frustriert bin. Sollen meine Bemühungen umsonst gewesen sein?</p>\
+      <p>Jeder mit Augen im Kopf muss doch erkennen, dass ich mit Abstand der beste Schüler an dieser Schule bin... Trotzdem droht der Titel des Jahrgangsbesten mir nun abhanden zu kommen.</p>\
+      <p>Ausgerechnet die stellvertretende Schulsprecherin macht mir Konkurrenz. Dabei erhalte ich die Auszeichnung jedes Schuljahr mit Leichtigkeit, also wie konnte es dazu kommen? Habe ich mich mit dem Amt des Schulsprechers und den vielen AGs etwa übernommen?</p>\
+      <p>Ich wünschte, meine Stellvertreterin stünde unter demselben Druck wie ich. Dann würden faire Bedingungen herrschen.</p>\
+      <p style="text-align: right">Gezeichnet, Atlas.</p>\
+      </div>\
+      </div>');
+        }
+        console.log("number: " + numberAquired);
+        // multiple pages
+        if (numberAquired > 0) {
+            let flip = { back: "Zurück", next: "Weiter", done: "x" };
+            let choice;
+            Template.ƒS.Text.setClass("allhints");
+            do {
+                Template.ƒS.Text.print(pages[current]);
+                choice = await Template.ƒS.Menu.getInput(flip, "flip");
+                if (numberAquired > 1) {
+                    switch (choice) {
+                        case flip.back:
+                            current = Math.max(0, current - 1);
+                            break;
+                        case flip.next:
+                            current = Math.min(numberAquired, current + 1);
+                            break;
+                    }
+                }
+                else {
+                    switch (choice) {
+                        case flip.back:
+                            current = Math.max(0, current - 1);
+                            break;
+                        case flip.next:
+                            current = Math.min(1, current + 1);
+                            break;
+                    }
+                }
+            } while (choice != flip.done);
+            // single page
+        }
+        else {
+            let close = { done: "x" };
+            let choice;
+            Template.ƒS.Text.setClass("allhints");
+            do {
+                Template.ƒS.Text.print(pages[current]);
+                choice = await Template.ƒS.Menu.getInput(close, "pageclose");
+            } while (choice != close.done);
+        }
+        Template.ƒS.Text.close();
+    }
+    Template.showAquiredPages = showAquiredPages;
     function updateNotes() {
+        Template.dataForSave.toggleSuspectsButton = true;
         let toggleSuspects = document.getElementById("toggleSuspects");
         toggleSuspects.style.visibility = "visible";
         toggleSuspects.style.opacity = "1";
+        let toggleAquiredPages = document.getElementById("toggleAquiredPages");
+        toggleAquiredPages.style.visibility = "visible";
+        toggleAquiredPages.style.opacity = "1";
         // Portraits
         if (Template.dataForSave.atlasPortrait == true) {
             let atlasPortrait = document.getElementById("atlasPortrait");
@@ -305,10 +406,11 @@ var Template;
         Template.gameMenu = Template.ƒS.Menu.create(Template.menuInGame, Template.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         let scenes = [
             // { scene: intro, name: "Einleitung"},
-            { scene: Template.beta, name: "beta" },
-            { scene: Template.coverChapterOne, name: "Hinweis" },
-            { scene: Template.motive, name: "ProbeMotive" },
-            { scene: Template.lightsOut, name: "LichtAus" }
+            // { scene: beta, name: "beta" },
+            // { scene: coverChapterOne, name: "Hinweis" },
+            // { scene: motive, name: "ProbeMotive" },
+            { scene: Template.lightsOut, name: "LichtAus" },
+            { scene: Template.coverChapterTwo, name: "Hinweis" }
         ];
         // let uiElement: HTMLElement = document.querySelector("[type=interface]");
         // dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
@@ -401,16 +503,20 @@ var Template;
           </tr>\
           <tr>\
             <td>Save</td>\
-            <td>f8</td>\
+            <td>S</td>\
           </tr>\
           <tr>\
             <td>Load</td>\
-            <td>f9</td>\
+            <td>L</td>\
           </tr>\
           <tr>\
             <td>Notes</td>\
-            <td>S</td>\
+            <td>N</td>\
         </tr>\
+        <tr>\
+        <td>Indizien</td>\
+        <td>H</td>\
+    </tr>\
         </table>\
         ";
         Template.ƒS.Text.print(shortcuts);
@@ -427,11 +533,11 @@ var Template;
         toggleSound: "Sound",
         turnUpVolume: "+",
         turnDownVolume: "-",
-        toggleSuspects: "Notes"
+        toggleSuspects: "Notes",
+        toggleAquiredPages: "Indizien"
     };
     // true = offen; false = geschlossen
     Template.menuOpen = true;
-    Template.notesCreated = false;
     async function buttonFunctionalities(_option) {
         console.log(_option);
         switch (_option) {
@@ -469,6 +575,10 @@ var Template;
                 Template.ƒS.Sound.play(Template.sound.select, 2, false);
                 showSuspects();
                 break;
+            case Template.menuInGame.toggleAquiredPages:
+                Template.ƒS.Sound.play(Template.sound.select, 2, false);
+                Template.showAquiredPages();
+                break;
         }
     }
     Template.buttonFunctionalities = buttonFunctionalities;
@@ -476,21 +586,23 @@ var Template;
     document.addEventListener("keydown", hndKeyPress);
     async function hndKeyPress(_event) {
         switch (_event.code) {
-            case Template.ƒ.KEYBOARD_CODE.F8:
-                console.log("Save");
+            case Template.ƒ.KEYBOARD_CODE.S:
                 await Template.ƒS.Progress.save();
                 break;
-            case Template.ƒ.KEYBOARD_CODE.F9:
-                console.log("Load");
+            case Template.ƒ.KEYBOARD_CODE.L:
                 await Template.ƒS.Progress.load();
                 break;
-            case Template.ƒ.KEYBOARD_CODE.S:
-                if (Template.notesCreated) {
-                    console.log("Suspects");
+            case Template.ƒ.KEYBOARD_CODE.N:
+                if (Template.dataForSave.toggleSuspectsButton == true) {
                     showSuspects();
                 }
                 break;
-            case Template.ƒ.KEYBOARD_CODE.M:
+            case Template.ƒ.KEYBOARD_CODE.H:
+                if (Template.dataForSave.toggleSuspectsButton == true) {
+                    Template.showAquiredPages();
+                }
+                break;
+            case Template.ƒ.KEYBOARD_CODE.C:
                 if (Template.menuOpen) {
                     console.log("Schließen");
                     Template.gameMenu.close();
@@ -556,7 +668,7 @@ var Template;
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         await Template.ƒS.Location.show(Template.chapterCovers.chapter);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
-        Template.createText("Kapitel 2: Indizien", "Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen hinzugefügt.", "Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!", "ch2");
+        Template.createText("Kapitel 2: Indizien", "Der nächste Tag ist angebrochen und die Zeit drängt. Du hast bereits einen ersten Einblick gewonnen. Weiter so!", "Dein nächster Schritt wird es sein, Hinweise zu sammeln, die dich zum richtigen Täter führen. Am Ende dieses Kapitels wirst du Kira dein Ergebnis mitteilen.", "ch2");
         // await new Promise(resolve => setTimeout(resolve, 1600));
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         let ch2 = document.getElementById("ch2");
@@ -817,27 +929,15 @@ var Template;
         // call updateFlashlight on mouse movement
         document.addEventListener('mousemove', updateFlashlight);
         document.addEventListener('touchmove', updateFlashlight);
-        // add switch img to scene AFTER lights are out, so player doesn't know where it is
-        function addSwitchToScene() {
-            // set classes for possible positions of switch
-            let classes = new Array('bottomRight', 'bottomLeft', 'centerLeft', 'centerRight');
-            let length = classes.length;
-            // create switch img
-            let img = document.createElement("img");
-            img.src = "https://github.com/manzijes/WPM_Visual_Novel/blob/main/Template/Images/switch.png?raw=true";
-            img.id = "switch";
-            // assign random class (therefore position)
-            img.classList.add(classes[Math.floor(Math.random() * length)]);
-            // add switch img to scene
-            let src = document.getElementById("scene");
-            src.appendChild(img);
-            img.addEventListener('click', clickSwitch);
-        }
         let protagonistText = {
             Protagonist: {
                 T0001: "Ich habe mir ein gutes erstes Bild verschafft, aber das hat den Saboteur eventuell aufgeschreckt. Er könnte bald wieder handeln...",
                 T0002: "Jemand hat das Licht ausgeschaltet. Warte kurz, an meinem Schlüsselbund hängt eine kleine Taschenlampe. Ich suche gleich einen Lichtschalter.",
-                T0003: "Gefunden!",
+                T0003: "Ich hab ihn!",
+                T0003_b: "Da ist er! Warte, ich laufe kurz hin...",
+                T0003_c: "Geduld, bitte. Ich will nirgendwo anstoßen!",
+                T0003_d: "Autsch! Jetzt bin ich gestolpert...",
+                T0003_e: "Fast da!",
                 T0004: "Sieh mal, da ist etwas vor der Tür.",
                 T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Im Flur gibt es einen zweiten Lichtschalter, das war also ganz einfach.",
                 T0006: "Das sehe ich ein. Ich werde dich nicht enttäuschen.",
@@ -886,7 +986,32 @@ var Template;
         await Template.ƒS.Character.hide(Template.characters.kira);
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(1.5);
-        addSwitchToScene();
+        // set classes for possible positions of switch
+        let classes = new Array('bottomRight', 'bottomLeft', 'centerLeft', 'centerRight');
+        let length = classes.length;
+        // get switch img
+        let img = document.getElementById("switch");
+        // assign random class (therefore position)
+        img.classList.add(classes[Math.floor(Math.random() * length)]);
+        // make visible
+        img.hidden = false;
+        img.addEventListener("click", clickSwitch);
+        let clickedSwitch = 0;
+        async function clickSwitch() {
+            if (clickedSwitch == 0) {
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_b);
+            }
+            if (clickedSwitch == 1) {
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_c);
+            }
+            if (clickedSwitch == 2) {
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_d);
+            }
+            if (clickedSwitch > 2) {
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_e);
+            }
+            clickedSwitch += 1;
+        }
         await new Promise(resolve => setTimeout(resolve, 200));
         Template.ƒS.Sound.play(Template.sound.femalegasp, 1.5, false);
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0002);
@@ -894,27 +1019,28 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
         await Template.ƒS.update(0.5);
         setLights("turnOnFlashlight");
-        // how to proceed when player finds light switch
-        async function clickSwitch() {
-            // remove light switch
-            let switchImg = document.getElementById("switch");
-            switchImg.remove();
-            Template.ƒS.Sound.play(Template.sound.switch, 1, false);
-            await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
-            setLights("turnOnLights");
-            await Template.ƒS.update(0.5);
-            await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
-            await Template.ƒS.Character.hide(Template.characters.protagonist);
-            await Template.ƒS.update(0.5);
-            await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.scared, Template.ƒS.positionPercent(75, 97));
-            await Template.ƒS.update(0.5);
-            await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0003);
-            await Template.ƒS.update(0.5);
-            // change spooky music to normal theme
-            Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0, 6);
-            Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 5, true);
-            Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3, true);
-        }
+        await new Promise(resolve => setTimeout(resolve, 20000));
+        // remove light switch
+        let switchImg = document.getElementById("switch");
+        switchImg.remove();
+        Template.ƒS.Sound.play(Template.sound.switch, 1, false);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        setLights("turnOnLights");
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.scared, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0003);
+        await Template.ƒS.update(0.5);
+        // change spooky music to normal theme
+        Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0, 6);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 5, true);
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
     }
     Template.lightsOut = lightsOut;
 })(Template || (Template = {}));
@@ -1374,7 +1500,7 @@ var Template;
                                 <span class="time-right">11:05</span>\
                             </div>\
                     </div>';
-                    Template.ƒS.Text.setClass("smartphone");
+                    Template.ƒS.Text.setClass("smartphone blendin");
                     let close = { done: "x" };
                     let choice;
                     do {
@@ -1612,7 +1738,7 @@ var Template;
                             <p>Ich wünschte, meine Stellvertreterin stünde unter demselben Druck wie ich. Dann würden faire Bedingungen herrschen.</p>\
                             <p style='text-align: right'>Gezeichnet, Atlas.</p>\
                             </div>";
-                            Template.ƒS.Text.setClass("diaryPageWrapper");
+                            Template.ƒS.Text.setClass("diaryPageWrapper blendin");
                             let close = { done: "x" };
                             let choice;
                             do {

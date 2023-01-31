@@ -139,6 +139,7 @@ declare namespace Template {
         };
     };
     function simulateCameraFlash(): Promise<void>;
+    function showAquiredPages(): Promise<void>;
     function updateNotes(): void;
     function removeFallingLeaves(): void;
     function addFallingLeaves(): void;
@@ -189,10 +190,10 @@ declare namespace Template {
         turnUpVolume: string;
         turnDownVolume: string;
         toggleSuspects: string;
+        toggleAquiredPages: string;
     };
     let gameMenu: ƒS.Menu;
     let menuOpen: boolean;
-    let notesCreated: boolean;
     function buttonFunctionalities(_option: string): Promise<void>;
     function hndKeyPress(_event: KeyboardEvent): Promise<void>;
 }

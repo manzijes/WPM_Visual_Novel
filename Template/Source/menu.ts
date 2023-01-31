@@ -58,7 +58,7 @@ namespace Template {
     export function showShortcuts(): void {
         ƒS.Text.setClass("shortcuts hint");
         let shortcuts =
-        "<h1>Shortcuts</h1>\
+            "<h1>Shortcuts</h1>\
         <table>\
           <tr>\
             <td>Menu (open/close)</td>\
@@ -74,16 +74,20 @@ namespace Template {
           </tr>\
           <tr>\
             <td>Save</td>\
-            <td>f8</td>\
+            <td>S</td>\
           </tr>\
           <tr>\
             <td>Load</td>\
-            <td>f9</td>\
+            <td>L</td>\
           </tr>\
           <tr>\
             <td>Notes</td>\
-            <td>S</td>\
+            <td>N</td>\
         </tr>\
+        <tr>\
+        <td>Indizien</td>\
+        <td>H</td>\
+    </tr>\
         </table>\
         ";
         ƒS.Text.print(shortcuts);
@@ -100,14 +104,14 @@ namespace Template {
         toggleSound: "Sound",
         turnUpVolume: "+",
         turnDownVolume: "-",
-        toggleSuspects: "Notes"
+        toggleSuspects: "Notes",
+        toggleAquiredPages: "Indizien"
     };
 
     export let gameMenu: ƒS.Menu;
 
     // true = offen; false = geschlossen
     export let menuOpen: boolean = true;
-    export let notesCreated: boolean = false;
 
     export async function buttonFunctionalities(_option: string): Promise<void> {
         console.log(_option);
@@ -123,28 +127,32 @@ namespace Template {
             //     menuOpen = false;
             //     break;
             case menuInGame.credits:
-                ƒS.Sound.play(sound.select, 2, false); 
+                ƒS.Sound.play(sound.select, 2, false);
                 showCredits();
                 break;
             case menuInGame.shortcuts:
-                ƒS.Sound.play(sound.select, 2, false); 
+                ƒS.Sound.play(sound.select, 2, false);
                 showShortcuts();
                 break;
             case menuInGame.toggleSound:
-                ƒS.Sound.play(sound.select, 2, false); 
+                ƒS.Sound.play(sound.select, 2, false);
                 toggleSound();
                 break;
             case menuInGame.turnUpVolume:
-                ƒS.Sound.play(sound.select, 2, false); 
+                ƒS.Sound.play(sound.select, 2, false);
                 incrementSound();
                 break;
             case menuInGame.turnDownVolume:
-                ƒS.Sound.play(sound.select, 2, false); 
+                ƒS.Sound.play(sound.select, 2, false);
                 decrementSound();
                 break;
             case menuInGame.toggleSuspects:
-                ƒS.Sound.play(sound.select, 2, false); 
+                ƒS.Sound.play(sound.select, 2, false);
                 showSuspects();
+                break;
+            case menuInGame.toggleAquiredPages:
+                ƒS.Sound.play(sound.select, 2, false);
+                showAquiredPages();
                 break;
 
 
@@ -155,21 +163,23 @@ namespace Template {
     document.addEventListener("keydown", hndKeyPress);
     export async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
         switch (_event.code) {
-            case ƒ.KEYBOARD_CODE.F8:
-                console.log("Save");
+            case ƒ.KEYBOARD_CODE.S:
                 await ƒS.Progress.save();
                 break;
-            case ƒ.KEYBOARD_CODE.F9:
-                console.log("Load");
+            case ƒ.KEYBOARD_CODE.L:
                 await ƒS.Progress.load();
                 break;
-            case ƒ.KEYBOARD_CODE.S:
-                if(notesCreated){
-                    console.log("Suspects");
+            case ƒ.KEYBOARD_CODE.N:
+                if (dataForSave.toggleSuspectsButton == true) {
                     showSuspects();
                 }
                 break;
-            case ƒ.KEYBOARD_CODE.M:
+            case ƒ.KEYBOARD_CODE.H:
+                if (dataForSave.toggleSuspectsButton == true) {
+                    showAquiredPages();
+                }
+                break;
+            case ƒ.KEYBOARD_CODE.C:
                 if (menuOpen) {
                     console.log("Schließen");
                     gameMenu.close();
