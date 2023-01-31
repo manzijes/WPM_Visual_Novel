@@ -35,7 +35,10 @@ namespace Template {
     selectDialog: "Audio/SFX/selectdialog.wav",
     typing: "Audio/SFX/phone.wav",
     femalegasp: "Audio/SFX/femalegasp.mp3",
-    shutter: "Audio/SFX/shutter.mp3"
+    shutter: "Audio/SFX/shutter.mp3",
+    aua: "Audio/SFX/aua.wav",
+    smallsigh: "Audio/SFX/defeated_sigh.wav",
+    bigsigh: "Audio/SFX/heavy_sigh.wav"
   };
 
   export let locations = {

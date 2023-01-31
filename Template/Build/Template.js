@@ -34,7 +34,10 @@ var Template;
         selectDialog: "Audio/SFX/selectdialog.wav",
         typing: "Audio/SFX/phone.wav",
         femalegasp: "Audio/SFX/femalegasp.mp3",
-        shutter: "Audio/SFX/shutter.mp3"
+        shutter: "Audio/SFX/shutter.mp3",
+        aua: "Audio/SFX/aua.wav",
+        smallsigh: "Audio/SFX/defeated_sigh.wav",
+        bigsigh: "Audio/SFX/heavy_sigh.wav"
     };
     Template.locations = {
         schoolOutsideDay: {
@@ -937,7 +940,7 @@ var Template;
                 T0003_b: "Da ist er! Warte, ich laufe kurz hin...",
                 T0003_c: "Geduld, bitte. Ich will nirgendwo anstoßen!",
                 T0003_d: "Autsch! Jetzt bin ich gestolpert...",
-                T0003_e: "Fast da!",
+                T0003_e: "Stress mich nicht!",
                 T0004: "Sieh mal, da ist etwas vor der Tür.",
                 T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Im Flur gibt es einen zweiten Lichtschalter, das war also ganz einfach.",
                 T0006: "Das sehe ich ein. Ich werde dich nicht enttäuschen.",
@@ -999,15 +1002,19 @@ var Template;
         let clickedSwitch = 0;
         async function clickSwitch() {
             if (clickedSwitch == 0) {
+                Template.ƒS.Sound.play(Template.sound.smallsigh, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_b);
             }
             if (clickedSwitch == 1) {
+                Template.ƒS.Sound.play(Template.sound.smallsigh, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_c);
             }
             if (clickedSwitch == 2) {
+                Template.ƒS.Sound.play(Template.sound.aua, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_d);
             }
             if (clickedSwitch > 2) {
+                Template.ƒS.Sound.play(Template.sound.bigsigh, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_e);
             }
             clickedSwitch += 1;

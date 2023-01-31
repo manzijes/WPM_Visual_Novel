@@ -29,6 +29,9 @@ declare namespace Template {
         typing: string;
         femalegasp: string;
         shutter: string;
+        aua: string;
+        smallsigh: string;
+        bigsigh: string;
     };
     let locations: {
         schoolOutsideDay: {
