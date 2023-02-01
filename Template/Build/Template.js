@@ -471,12 +471,19 @@ var Template;
         let scenes = [
             // { scene: intro, name: "Einleitung"},
             // { scene: beta, name: "beta" },
-            // { scene: coverChapterOne, name: "Hinweis" },
-            { scene: Template.motive, name: "ProbeMotive" },
-            // { scene: lightsOut, name: "LichtAus" },
-            { scene: Template.coverChapterTwo, name: "Hinweis" },
-            // { scene: girlOnCorridor, name: "AufDemFlur" },
-            { scene: Template.lookForKey, name: "SucheKey" }
+            // { scene: coverChapterOne, name: "Kapitel" },
+            // { scene: motive, name: "Treffe die Verdächtigen" },
+            // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
+            { scene: Template.coverChapterTwo, name: "Kapitel" },
+            { scene: Template.girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+            { scene: Template.lookForKey, name: "Suche nach Lucias Schlüssel" },
+            { id: "kiraGivesHint", scene: Template.kiraGivesHint, name: "Kira gibt einen Hinweis" },
+            { id: "luciaGivesHint", scene: Template.luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+            { id: "confrontSolasAfterKira", scene: Template.confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+            { id: "confrontSolasAfterLucia", scene: Template.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+            { id: "roofAtlas", scene: Template.roofAtlas, name: "Stelle Atlas" },
+            { id: "roofLucia", scene: Template.roofLucia, name: "Stelle Lucia" },
+            { id: "roofSolas", scene: Template.roofSolas, name: "Stelle Solas" }
         ];
         // let uiElement: HTMLElement = document.querySelector("[type=interface]");
         // dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
@@ -694,6 +701,66 @@ var Template;
         Template.characters.girl.name = Template.dataForSave.nameGirl;
     }
     Template.beta = beta;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function confrontSolasAfterKira() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // let protagonistText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let solasText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let narratorText = {
+        //     Narrator: {
+        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //     }
+        // };
+        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        // close
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+    }
+    Template.confrontSolasAfterKira = confrontSolasAfterKira;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function confrontSolasAfterLucia() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // let protagonistText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let solasText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let narratorText = {
+        //     Narrator: {
+        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //     }
+        // };
+        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        // close
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+    }
+    Template.confrontSolasAfterLucia = confrontSolasAfterLucia;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -1045,6 +1112,36 @@ var Template;
         Template.ƒS.Sound.fade(Template.sound.birds, 0, 3, true);
     }
     Template.intro = intro;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function kiraGivesHint() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // let protagonistText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let kiraText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let narratorText = {
+        //     Narrator: {
+        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //     }
+        // };
+        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        // close
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+    }
+    Template.kiraGivesHint = kiraGivesHint;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -1424,6 +1521,36 @@ var Template;
         }
     }
     Template.lookForKey = lookForKey;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function luciaGivesHint() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // let protagonistText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let luciaText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let narratorText = {
+        //     Narrator: {
+        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //     }
+        // };
+        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        // close
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+    }
+    Template.luciaGivesHint = luciaGivesHint;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -2184,5 +2311,110 @@ var Template;
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3, true);
     }
     Template.motive = motive;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function roofAtlas() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // let protagonistText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let kiraText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let atlasText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let narratorText = {
+        //     Narrator: {
+        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //     }
+        // };
+        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        // close
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+    }
+    Template.roofAtlas = roofAtlas;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function roofLucia() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // let protagonistText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let kiraText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let luciaText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let narratorText = {
+        //     Narrator: {
+        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //     }
+        // };
+        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        // close
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+    }
+    Template.roofLucia = roofLucia;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function roofSolas() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // let protagonistText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let kiraText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let solasText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let narratorText = {
+        //     Narrator: {
+        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //     }
+        // };
+        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        // close
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+    }
+    Template.roofSolas = roofSolas;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

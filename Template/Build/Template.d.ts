@@ -242,6 +242,12 @@ declare namespace Template {
     function beta(): ƒS.SceneReturn;
 }
 declare namespace Template {
+    function confrontSolasAfterKira(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function confrontSolasAfterLucia(): ƒS.SceneReturn;
+}
+declare namespace Template {
     function coverChapterOne(): ƒS.SceneReturn;
 }
 declare namespace Template {
@@ -254,11 +260,26 @@ declare namespace Template {
     function intro(): ƒS.SceneReturn;
 }
 declare namespace Template {
+    function kiraGivesHint(): ƒS.SceneReturn;
+}
+declare namespace Template {
     function lightsOut(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function lookForKey(): ƒS.SceneReturn;
 }
 declare namespace Template {
+    function luciaGivesHint(): ƒS.SceneReturn;
+}
+declare namespace Template {
     function motive(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function roofAtlas(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function roofLucia(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function roofSolas(): ƒS.SceneReturn;
 }

@@ -85,21 +85,6 @@
     padding-top: 5px;
 }
 
-.portrait:before,
-.portrait:after {
-background-color: rgba(255, 255, 255, .3);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-  content: "";
-  display: block;
-  height: 30px;
-  position: absolute;
-  margin: auto;
-  width: 100px;
-    top: -10px;
-    left: 0;
-    right: 0;
-    z-index: 4;
-}
 .suspects {
     font-family: "Gamewriting";
     z-index: 988888;
@@ -122,14 +107,14 @@ background-color: rgba(255, 255, 255, .3);
     max-width: 1000px;
     max-height: 100%;
     border: 2px solid white;
-    overflow-y: scroll;
+    overflow: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
 
 .portraits.row{
     max-height: 100%;
-    overflow-y: scroll;
+    overflow: scroll;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
@@ -216,9 +201,6 @@ background-color: rgba(255, 255, 255, .3);
         gap: 5px;
     }
     .portrait-wrapper img{
-        display: none;
-    }
-    .portrait:before, .portrait:after{
         display: none;
     }
     .suspects{

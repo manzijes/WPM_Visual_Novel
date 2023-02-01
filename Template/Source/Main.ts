@@ -481,12 +481,22 @@ namespace Template {
     let scenes: ƒS.Scenes = [
       // { scene: intro, name: "Einleitung"},
       // { scene: beta, name: "beta" },
-      // { scene: coverChapterOne, name: "Hinweis" },
-      { scene: motive, name: "ProbeMotive" },
-      // { scene: lightsOut, name: "LichtAus" },
-      { scene: coverChapterTwo, name: "Hinweis" },
-      // { scene: girlOnCorridor, name: "AufDemFlur" },
-      { scene: lookForKey, name: "SucheKey" }
+      // { scene: coverChapterOne, name: "Kapitel" },
+      // { scene: motive, name: "Treffe die Verdächtigen" },
+      // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
+      { scene: coverChapterTwo, name: "Kapitel" },
+      { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+      { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
+
+      { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
+      { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+
+      { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+      { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+
+      { id: "roofAtlas", scene: roofAtlas, name: "Stelle Atlas" },
+      { id: "roofLucia", scene: roofLucia, name: "Stelle Lucia" },
+      { id: "roofSolas", scene: roofSolas, name: "Stelle Solas" }
     ];
 
     // let uiElement: HTMLElement = document.querySelector("[type=interface]");
