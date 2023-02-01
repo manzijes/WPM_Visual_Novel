@@ -36,31 +36,32 @@ namespace Template {
                 T0002: "Du verlässt die Bibliothek."
             }
         };
-        // await ƒS.Location.show(locations.stairs);
-        // await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
-        // ƒS.Sound.play(sound.schoolBell, 0.5, false);
-        // await ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await ƒS.Location.show(locations.stairs);
+        await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
-        // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-        // await ƒS.update(0.5);
-        // await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0001);
-        // await ƒS.update(0.5);
-        // await ƒS.Character.hide(characters.protagonist);
-        // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.serious, ƒS.positionPercent(25, 97));
-        // await ƒS.update(0.5);
-        // await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0002);
-        // await ƒS.update(0.5);
-        // await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
-        // await ƒS.update(0.5);
-        // await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+        ƒS.Sound.play(sound.schoolBell, 0.5, false);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0000);
 
-        // await ƒS.Character.hide(characters.protagonist);
-        // await ƒS.update(0.5);
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0001);
+        await ƒS.update(0.5);
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.serious, ƒS.positionPercent(25, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0002);
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
-        // ƒS.Speech.clear();
-        // ƒS.Speech.hide();
-        // await ƒS.update(0.5);
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.update(0.5);
+
+        ƒS.Speech.clear();
+        ƒS.Speech.hide();
+        await ƒS.update(0.5);
 
         await ƒS.Location.show(locations.library);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
@@ -156,7 +157,12 @@ namespace Template {
         switch (dataForSave.foundKey){
             case true:
                 updateNotes();
-                // go to scene 
+
+                ƒS.Speech.clear();
+                ƒS.Speech.hide();
+                await ƒS.update();
+
+                return "luciaGivesHint";
                 break;
             case false:
                 updateNotes();
@@ -166,7 +172,15 @@ namespace Template {
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0016);
                 await ƒS.update(0.5);
                 await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+
+                await ƒS.Character.hide(characters.protagonist);
                 await ƒS.update(0.5);
+
+                ƒS.Speech.clear();
+                ƒS.Speech.hide();
+                await ƒS.update(0.5);
+
+                return "kiraGivesHint";
                 break;
         }
 

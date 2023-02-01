@@ -1,6 +1,9 @@
 namespace Template {
     export async function lightsOut(): ƒS.SceneReturn {
 
+        // how long are the lights out (in seconds)?
+        let waitSeconds = 30;
+
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
         ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
         updateNotes();
@@ -126,21 +129,21 @@ namespace Template {
         let clickedSwitch: number = 0;
 
         async function clickSwitch() {
-
-            if (clickedSwitch == 0) {
+            ƒS.Speech.clear();
+            clickedSwitch += 1;
+            if (clickedSwitch == 1) {
                 ƒS.Sound.play(sound.smallsigh, 1.5, false);
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_b);
-            } else if (clickedSwitch == 1) {
+            } else if (clickedSwitch == 2) {
                 ƒS.Sound.play(sound.smallsigh, 1.5, false);
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_c);
-            } else if (clickedSwitch == 2) {
+            } else if (clickedSwitch == 3) {
                 ƒS.Sound.play(sound.aua, 1.5, false);
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_d);
             } else {
                 ƒS.Sound.play(sound.bigsigh, 1.5, false);
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_e);
             }
-            clickedSwitch += 1;
         }
 
         await new Promise(resolve => setTimeout(resolve, 200));
@@ -153,9 +156,7 @@ namespace Template {
 
         setLights("turnOnFlashlight");
 
-        await new Promise(resolve => setTimeout(resolve, 30000));
-
-        ƒS.Speech.clear();
+        await new Promise(resolve => setTimeout(resolve, waitSeconds * 1000));
 
         // remove light switch
         let switchImg = document.getElementById("switch");
@@ -166,6 +167,8 @@ namespace Template {
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
 
         setLights("turnOnLights");
+
+        ƒS.Speech.clear();
 
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);

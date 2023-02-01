@@ -344,7 +344,7 @@ var Template;
         }
         if (Template.dataForSave.atlasOpportunity == true) {
             let atlasOpportunity = document.getElementById("atlasOpportunity");
-            atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur gibt Atlas ein Alibi für die Zeit, als das Kostüm zerstört wurde.";
+            atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur gibt Atlas ein Alibi.";
         }
         if (Template.dataForSave.lookedForKey == true) {
             let whatAboutKey = document.getElementById("whatAboutKey");
@@ -354,6 +354,14 @@ var Template;
             else {
                 whatAboutKey.innerHTML = "Du konntest nicht herausfinden, ob Lucia lügt.";
             }
+        }
+        if (Template.dataForSave.aboutAlibi == true) {
+            let aboutAlibi = document.getElementById("whatAboutKey");
+            aboutAlibi.innerHTML = "Die Glaubwürdigkeit des Mädchens ist zweifelhaft, da sie in Atlas verliebt ist.";
+        }
+        if (Template.dataForSave.solasHandwriting == true) {
+            let solasHandwriting = document.getElementById("solasHandwriting");
+            solasHandwriting.innerHTML = "Die Schrift auf der Notiz des Täters sieht aus wie Solas Schrift.";
         }
     }
     Template.updateNotes = updateNotes;
@@ -447,10 +455,12 @@ var Template;
         // visibility of elements in notes window
         solasPortrait: false,
         solasMotive: false,
-        solasOpportunity: false,
+        solasHandwriting: false,
+        solasPlea: false,
         atlasPortrait: false,
         atlasMotive: false,
         atlasOpportunity: false,
+        aboutAlibi: false,
         atlasDiary: false,
         atlasNoDiary: false,
         luciaPortrait: false,
@@ -474,16 +484,17 @@ var Template;
             // { scene: coverChapterOne, name: "Kapitel" },
             // { scene: motive, name: "Treffe die Verdächtigen" },
             // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
-            { scene: Template.coverChapterTwo, name: "Kapitel" },
-            { scene: Template.girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+            // { scene: coverChapterTwo, name: "Kapitel" },
+            // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
             { scene: Template.lookForKey, name: "Suche nach Lucias Schlüssel" },
             { id: "kiraGivesHint", scene: Template.kiraGivesHint, name: "Kira gibt einen Hinweis" },
             { id: "luciaGivesHint", scene: Template.luciaGivesHint, name: "Lucia gibt einen Hinweis" },
             { id: "confrontSolasAfterKira", scene: Template.confrontSolasAfterKira, name: "Konfrontation mit Solas" },
             { id: "confrontSolasAfterLucia", scene: Template.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
-            { id: "roofAtlas", scene: Template.roofAtlas, name: "Stelle Atlas" },
-            { id: "roofLucia", scene: Template.roofLucia, name: "Stelle Lucia" },
-            { id: "roofSolas", scene: Template.roofSolas, name: "Stelle Solas" }
+            { scene: Template.yourConclusion, name: "Du sagst Kira, wen du für den Täter hältst." },
+            { id: "roofAtlas", scene: Template.roofAtlas, name: "Verdächtige Atlas" },
+            { id: "roofLucia", scene: Template.roofLucia, name: "Verdächtige Lucia" },
+            { id: "roofSolas", scene: Template.roofSolas, name: "Verdächtige Solas" }
         ];
         // let uiElement: HTMLElement = document.querySelector("[type=interface]");
         // dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
@@ -683,14 +694,6 @@ var Template;
         }
     }
     Template.hndKeyPress = hndKeyPress;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    async function animationExampleScene() {
-        await Template.ƒS.Character.animate(Template.characters.protagonist, Template.characters.protagonist.pose.happy, Template.animation());
-        await Template.ƒS.update();
-    }
-    Template.animationExampleScene = animationExampleScene;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -1119,33 +1122,83 @@ var Template;
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
-        // let protagonistText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
-        // let kiraText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
-        // let narratorText = {
-        //     Narrator: {
-        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
-        //     }
-        // };
+        let protagonistText = {
+            Protagonist: {
+                T0001: "Ach ja? Was denn?",
+                T0002: "Wirklich? Und weißt du auch, zu wem sie gehört?",
+                T0003: "Ich verstehe... Das macht Solas natürlich zum Hauptverdächtigen. Mal sehen, was er dazu zu sagen hat. Bis später, Kira!"
+            }
+        };
+        let kiraText = {
+            Kira: {
+                T0001: "Hey, ich habe dich gesucht! Mir ist etwas aufgefallen.",
+                T0002: "Diese Notiz, die uns der Saboteur hinterlassen hat... Irgendwie kommt mir die Handschrift bekannt vor. Ich habe sie schon oft gesehen.",
+                T0003: "Ich wollte sicher gehen, bevor ich mit dir darüber spreche. Deswegen habe ich sie noch einmal mit der Schrift unserer Verdächtigen verglichen, um meine Ahnung zu bestätigen.",
+                T0004: "Sie sieht aus wie die Handschrift von... Solas.",
+                T0005: "Alles, was ich höre, ist tick tack."
+            }
+        };
+        let narratorText = {
+            Narrator: {
+                T0000: "Du läufst durch den Flur und denkst über deine nächsten Schritte nach, als du auf Kira triffst.",
+                T0001: "Du begibst dich auf die Suche nach Solas, um ihn zu konfrontieren."
+            }
+        };
         await Template.ƒS.Location.show(Template.locations.corridorDay);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0001);
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0002);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0003);
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.sad, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0004);
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        await Template.ƒS.update(0.5);
+        Template.dataForSave.solasHandwriting = true;
+        Template.updateNotes();
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.unsure, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0005);
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        await Template.ƒS.update(0.5);
         // close
         Template.ƒS.Speech.clear();
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(0.5);
+        return "confrontSolasAfterKira";
     }
     Template.kiraGivesHint = kiraGivesHint;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
     async function lightsOut() {
+        // how long are the lights out (in seconds)?
+        let waitSeconds = 30;
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
@@ -1256,15 +1309,17 @@ var Template;
         img.addEventListener("click", clickSwitch);
         let clickedSwitch = 0;
         async function clickSwitch() {
-            if (clickedSwitch == 0) {
+            Template.ƒS.Speech.clear();
+            clickedSwitch += 1;
+            if (clickedSwitch == 1) {
                 Template.ƒS.Sound.play(Template.sound.smallsigh, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_b);
             }
-            else if (clickedSwitch == 1) {
+            else if (clickedSwitch == 2) {
                 Template.ƒS.Sound.play(Template.sound.smallsigh, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_c);
             }
-            else if (clickedSwitch == 2) {
+            else if (clickedSwitch == 3) {
                 Template.ƒS.Sound.play(Template.sound.aua, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_d);
             }
@@ -1272,7 +1327,6 @@ var Template;
                 Template.ƒS.Sound.play(Template.sound.bigsigh, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_e);
             }
-            clickedSwitch += 1;
         }
         await new Promise(resolve => setTimeout(resolve, 200));
         Template.ƒS.Sound.play(Template.sound.femalegasp, 1.5, false);
@@ -1281,8 +1335,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
         await Template.ƒS.update(0.5);
         setLights("turnOnFlashlight");
-        await new Promise(resolve => setTimeout(resolve, 30000));
-        Template.ƒS.Speech.clear();
+        await new Promise(resolve => setTimeout(resolve, waitSeconds * 1000));
         // remove light switch
         let switchImg = document.getElementById("switch");
         switchImg.remove();
@@ -1290,6 +1343,7 @@ var Template;
         await Template.ƒS.update(0.5);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         setLights("turnOnLights");
+        Template.ƒS.Speech.clear();
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
@@ -1399,27 +1453,27 @@ var Template;
                 T0002: "Du verlässt die Bibliothek."
             }
         };
-        // await ƒS.Location.show(locations.stairs);
-        // await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
-        // ƒS.Sound.play(sound.schoolBell, 0.5, false);
-        // await ƒS.Speech.tell(null, narratorText.Narrator.T0000);
-        // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-        // await ƒS.update(0.5);
-        // await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0001);
-        // await ƒS.update(0.5);
-        // await ƒS.Character.hide(characters.protagonist);
-        // await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.serious, ƒS.positionPercent(25, 97));
-        // await ƒS.update(0.5);
-        // await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0002);
-        // await ƒS.update(0.5);
-        // await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
-        // await ƒS.update(0.5);
-        // await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
-        // await ƒS.Character.hide(characters.protagonist);
-        // await ƒS.update(0.5);
-        // ƒS.Speech.clear();
-        // ƒS.Speech.hide();
-        // await ƒS.update(0.5);
+        await Template.ƒS.Location.show(Template.locations.stairs);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        Template.ƒS.Sound.play(Template.sound.schoolBell, 0.5, false);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Location.show(Template.locations.library);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
@@ -1506,7 +1560,10 @@ var Template;
         switch (Template.dataForSave.foundKey) {
             case true:
                 Template.updateNotes();
-                // go to scene 
+                Template.ƒS.Speech.clear();
+                Template.ƒS.Speech.hide();
+                await Template.ƒS.update();
+                return "luciaGivesHint";
                 break;
             case false:
                 Template.updateNotes();
@@ -1516,7 +1573,12 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0016);
                 await Template.ƒS.update(0.5);
                 await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+                await Template.ƒS.Character.hide(Template.characters.protagonist);
                 await Template.ƒS.update(0.5);
+                Template.ƒS.Speech.clear();
+                Template.ƒS.Speech.hide();
+                await Template.ƒS.update(0.5);
+                return "kiraGivesHint";
                 break;
         }
     }
@@ -1534,7 +1596,7 @@ var Template;
         //     }
         // };
         // let luciaText = {
-        //     Protagonist: {
+        //     Lucia: {
         //         T0001: "Huh?"
         //     }
         // };
@@ -1545,6 +1607,9 @@ var Template;
         // };
         await Template.ƒS.Location.show(Template.locations.corridorDay);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        Template.dataForSave.aboutAlibi = true;
+        Template.updateNotes();
+        return "confrontSolasAfterKira";
         // close
         Template.ƒS.Speech.clear();
         Template.ƒS.Speech.hide();
@@ -2416,5 +2481,40 @@ var Template;
         await Template.ƒS.update(0.5);
     }
     Template.roofSolas = roofSolas;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function yourConclusion() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // let protagonistText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let kiraText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let luciaText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let narratorText = {
+        //     Narrator: {
+        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //     }
+        // };
+        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        // close
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+    }
+    Template.yourConclusion = yourConclusion;
 })(Template || (Template = {}));
 //# sourceMappingURL=Template.js.map

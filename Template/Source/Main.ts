@@ -350,7 +350,7 @@ namespace Template {
     }
     if (dataForSave.atlasOpportunity == true) {
       let atlasOpportunity = document.getElementById("atlasOpportunity");
-      atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur gibt Atlas ein Alibi für die Zeit, als das Kostüm zerstört wurde.";
+      atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur gibt Atlas ein Alibi.";
     }
     if (dataForSave.lookedForKey == true) {
       let whatAboutKey = document.getElementById("whatAboutKey");
@@ -359,6 +359,14 @@ namespace Template {
       } else{
         whatAboutKey.innerHTML = "Du konntest nicht herausfinden, ob Lucia lügt.";
       }
+    }
+    if(dataForSave.aboutAlibi == true){
+      let aboutAlibi = document.getElementById("whatAboutKey");
+      aboutAlibi.innerHTML = "Die Glaubwürdigkeit des Mädchens ist zweifelhaft, da sie in Atlas verliebt ist."
+    }
+    if(dataForSave.solasHandwriting == true){
+      let solasHandwriting = document.getElementById("solasHandwriting");
+      solasHandwriting.innerHTML = "Die Schrift auf der Notiz des Täters sieht aus wie Solas Schrift."
     }
   }
 
@@ -451,11 +459,13 @@ namespace Template {
     // visibility of elements in notes window
     solasPortrait: false,
     solasMotive: false,
-    solasOpportunity: false,
+    solasHandwriting: false,
+    solasPlea: false,
 
     atlasPortrait: false,
     atlasMotive: false,
     atlasOpportunity: false,
+    aboutAlibi: false,
     atlasDiary: false,
     atlasNoDiary: false,
 
@@ -484,8 +494,8 @@ namespace Template {
       // { scene: coverChapterOne, name: "Kapitel" },
       // { scene: motive, name: "Treffe die Verdächtigen" },
       // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
-      { scene: coverChapterTwo, name: "Kapitel" },
-      { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+      // { scene: coverChapterTwo, name: "Kapitel" },
+      // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
       { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
 
       { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
@@ -494,9 +504,11 @@ namespace Template {
       { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
       { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
 
-      { id: "roofAtlas", scene: roofAtlas, name: "Stelle Atlas" },
-      { id: "roofLucia", scene: roofLucia, name: "Stelle Lucia" },
-      { id: "roofSolas", scene: roofSolas, name: "Stelle Solas" }
+      { scene: yourConclusion, name: "Du sagst Kira, wen du für den Täter hältst." },
+
+      { id: "roofAtlas", scene: roofAtlas, name: "Verdächtige Atlas" },
+      { id: "roofLucia", scene: roofLucia, name: "Verdächtige Lucia" },
+      { id: "roofSolas", scene: roofSolas, name: "Verdächtige Solas" }
     ];
 
     // let uiElement: HTMLElement = document.querySelector("[type=interface]");

@@ -190,10 +190,12 @@ declare namespace Template {
         toggleSuspectsButton: boolean;
         solasPortrait: boolean;
         solasMotive: boolean;
-        solasOpportunity: boolean;
+        solasHandwriting: boolean;
+        solasPlea: boolean;
         atlasPortrait: boolean;
         atlasMotive: boolean;
         atlasOpportunity: boolean;
+        aboutAlibi: boolean;
         atlasDiary: boolean;
         atlasNoDiary: boolean;
         luciaPortrait: boolean;
@@ -234,9 +236,6 @@ declare namespace Template {
     let menuOpen: boolean;
     function buttonFunctionalities(_option: string): Promise<void>;
     function hndKeyPress(_event: KeyboardEvent): Promise<void>;
-}
-declare namespace Template {
-    function animationExampleScene(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function beta(): ƒS.SceneReturn;
@@ -282,4 +281,7 @@ declare namespace Template {
 }
 declare namespace Template {
     function roofSolas(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function yourConclusion(): ƒS.SceneReturn;
 }

@@ -12,7 +12,7 @@ namespace Template {
         // };
 
         // let luciaText = {
-        //     Protagonist: {
+        //     Lucia: {
         //         T0001: "Huh?"
         //     }
         // };
@@ -26,7 +26,10 @@ namespace Template {
         await ƒS.Location.show(locations.corridorDay);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
+        dataForSave.aboutAlibi = true;
+        updateNotes();
 
+        return "confrontSolasAfterKira";
         
         // close
         ƒS.Speech.clear();
