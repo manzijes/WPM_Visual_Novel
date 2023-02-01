@@ -785,7 +785,9 @@ namespace Template {
                             await ƒS.Character.hide(characters.lucia);
 
                             dataForSave.atlasMotive = true;
+                            dataForSave.atlasNoDiary = true;
                             updateNotes();
+
                             break;
                         case optionsLuciaDiary.good:
                             await ƒS.Character.hide(characters.lucia);
@@ -810,11 +812,10 @@ namespace Template {
                             } while (choice != close.done);
                             ƒS.Text.close();
 
-                            dataForSave.atlasDiary = true;
-
                             await ƒS.update(0.5);
 
                             dataForSave.atlasMotive = true;
+                            dataForSave.atlasDiary = true;
                             updateNotes();
 
                             await ƒS.Character.hide(characters.lucia);

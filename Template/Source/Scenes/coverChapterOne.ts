@@ -1,8 +1,8 @@
 namespace Template {
     export async function coverChapterOne(): ƒS.SceneReturn {
 
-        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true); 
-        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true); 
+        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
+        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
         updateNotes();
 
         let narratorText = {
@@ -16,7 +16,12 @@ namespace Template {
 
         await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
-        ƒS.Sound.play(sound.pageflip, 0.5, false); 
-    
+        // close
+        ƒS.Speech.clear();
+        ƒS.Speech.hide();
+        await ƒS.update(0.5);
+
+        ƒS.Sound.play(sound.pageflip, 0.5, false);
+
     }
 }

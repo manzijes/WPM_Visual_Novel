@@ -16,7 +16,13 @@ namespace Template {
 
         await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
+        // close
+        ƒS.Speech.clear();
+        ƒS.Speech.hide();
+        await ƒS.update(0.5);
+
         ƒS.Sound.play(sound.pageflip, 0.5, false); 
+
         }
     
 }

@@ -65,6 +65,14 @@ namespace Template {
     library: {
       name: "library",
       background: "Images/Backgrounds/library.png"
+    },
+    roof: {
+      name: "roof",
+      background: "Images/Backgrounds/roof-day.png"
+    },
+    stairs: {
+      name: "stairs",
+      background: "Images/Backgrounds/stairs-day.jpg"
     }
   };
 
@@ -131,7 +139,7 @@ namespace Template {
         smiling: "Images/Characters/Girl/girl-smiling.png",
         unsure: "Images/Characters/Girl/girl-unsure.png",
         upset: "Images/Characters/Girl/girl-upset.png",
-        neutral: "Images/Characters/Girl/girl-neutral.png"
+        neutral: "Images/Characters/Girl/girl.png"
       }
     },
     atlas: {
@@ -280,7 +288,7 @@ namespace Template {
       } while (choice != flip.done);
     // single page
     } else{
-      pages[0] = '<div class="aquiredPagesWrapper"><h1>Indizien</h1><p>Im Laufe des Spiels erhältst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p><p>Hey, warte mal...! Du hast bisher noch gar keine Indizien gesammelt. Dachtest du, das merke ich nicht?</p><br><p>Spiel einfach weiter, dann kommt das schon.</p></div>'
+      pages[0] = '<div class="aquiredPagesWrapper"><h1>Indizien</h1><p>Im Laufe des Spiels erhältst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p><p>Hey, warte mal...! Du hast bisher noch gar keine Indizien gesammelt. Dachtest du, das merke ich nicht?</p><p>Spiel einfach weiter, dann kommt das schon.</p></div>'
 
       let close = { done: "x" };
       let choice: string;
@@ -320,25 +328,37 @@ namespace Template {
     // Motives
     if (dataForSave.solasMotive == true) {
       let solasMotive = document.getElementById("solasMotive");
-      solasMotive.classList.remove("hidden");
+      solasMotive.innerHTML = "Er könnte die Aufführung sabotieren, weil er ein Perfektionist ist und mehr Zeit braucht, um das Skript zu optimieren.";
     }
     if (dataForSave.atlasMotive == true) {
       if(dataForSave.atlasDiary == true){
-        let atlasMotive = document.getElementById("motiveDiary");
-        atlasMotive.classList.remove("hidden");
+        let atlasMotive = document.getElementById("atlasMotive");
+        atlasMotive.innerHTML = "Er könnte die Sabotage inszenieren, um dich von der Schule abzulenken, sodass er Jahrgangsbester bleibt.";
       } else{
-        let atlasMotive = document.getElementById("motiveNoDiary");
-        atlasMotive.classList.remove("hidden");
+        let atlasMotive = document.getElementById("atlasMotive");
+        atlasMotive.innerHTML = "? ? ?";
       }
     }
     if (dataForSave.luciaMotive == true) {
       let luciaMotive = document.getElementById("luciaMotive");
-      luciaMotive.classList.remove("hidden");
+      luciaMotive.innerHTML = "Sie könnte aus Rache die Sabotage begehen, weil ihr als Mitglied hinter den Kulissen die Wertschätzung fehlt.";
     }
-    // Opportunities
+    // Hints
     if (dataForSave.luciaOpportunity == true) {
       let luciaOpportunity = document.getElementById("luciaOpportunity");
-      luciaOpportunity.classList.remove("hidden");
+      luciaOpportunity.innerHTML = "Sie sagt, sie habe den Schlüssel zum Theaterraum verloren. Stimmt das...?";
+    }
+    if (dataForSave.atlasOpportunity == true) {
+      let atlasOpportunity = document.getElementById("atlasOpportunity");
+      atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur gibt Atlas ein Alibi für die Zeit, als das Kostüm zerstört wurde.";
+    }
+    if (dataForSave.lookedForKey == true) {
+      let whatAboutKey = document.getElementById("whatAboutKey");
+      if(dataForSave.foundKey == true){
+        whatAboutKey.innerHTML = "Lucia hat die Wahrheit gesagt. Vetrauensbonus!";
+      } else{
+        whatAboutKey.innerHTML = "Du konntest nicht herausfinden, ob Lucia lügt.";
+      }
     }
   }
 
@@ -437,6 +457,7 @@ namespace Template {
     atlasMotive: false,
     atlasOpportunity: false,
     atlasDiary: false,
+    atlasNoDiary: false,
 
     luciaPortrait: false,
     luciaMotive: false,
@@ -447,7 +468,9 @@ namespace Template {
     luciaScore: 50,
     solasScore: 50,
 
-    warningNote: false
+    warningNote: false,
+    foundKey: false,
+    lookedForKey: false
   };
 
   window.addEventListener("load", start);
@@ -458,10 +481,12 @@ namespace Template {
     let scenes: ƒS.Scenes = [
       // { scene: intro, name: "Einleitung"},
       // { scene: beta, name: "beta" },
-      { scene: coverChapterOne, name: "Hinweis" },
-      // { scene: motive, name: "ProbeMotive" },
-      { scene: lightsOut, name: "LichtAus" },
-      { scene: coverChapterTwo, name: "Hinweis" }
+      // { scene: coverChapterOne, name: "Hinweis" },
+      { scene: motive, name: "ProbeMotive" },
+      // { scene: lightsOut, name: "LichtAus" },
+      { scene: coverChapterTwo, name: "Hinweis" },
+      // { scene: girlOnCorridor, name: "AufDemFlur" },
+      { scene: lookForKey, name: "SucheKey" }
     ];
 
     // let uiElement: HTMLElement = document.querySelector("[type=interface]");
@@ -475,6 +500,8 @@ namespace Template {
 
     let solasInterface: HTMLElement = document.getElementById("solasInterface");
     dataForSave = ƒS.Progress.setData(dataForSave, solasInterface);
+
+    ƒS.Speech.clear();
 
     // start the sequence
     ƒS.Progress.go(scenes);

@@ -58,6 +58,14 @@ declare namespace Template {
             name: string;
             background: string;
         };
+        roof: {
+            name: string;
+            background: string;
+        };
+        stairs: {
+            name: string;
+            background: string;
+        };
     };
     let chapterCovers: {
         chapterOne: {
@@ -187,6 +195,7 @@ declare namespace Template {
         atlasMotive: boolean;
         atlasOpportunity: boolean;
         atlasDiary: boolean;
+        atlasNoDiary: boolean;
         luciaPortrait: boolean;
         luciaMotive: boolean;
         luciaOpportunity: boolean;
@@ -194,6 +203,8 @@ declare namespace Template {
         luciaScore: number;
         solasScore: number;
         warningNote: boolean;
+        foundKey: boolean;
+        lookedForKey: boolean;
     };
 }
 declare namespace Template {
@@ -237,10 +248,16 @@ declare namespace Template {
     function coverChapterTwo(): ƒS.SceneReturn;
 }
 declare namespace Template {
+    function girlOnCorridor(): ƒS.SceneReturn;
+}
+declare namespace Template {
     function intro(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function lightsOut(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function lookForKey(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function motive(): ƒS.SceneReturn;

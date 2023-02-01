@@ -252,7 +252,6 @@ namespace Template {
         await ƒS.Speech.tell(null, narratorText.Narrator.T0004);
 
         removeFallingLeaves();
-        ƒS.Sound.fade(sound.mainMusic, 0, 3, true); 
         ƒS.Sound.fade(sound.birds, 0, 3, true); 
 
     }

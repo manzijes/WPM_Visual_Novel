@@ -119,10 +119,24 @@ background-color: rgba(255, 255, 255, .3);
     height: fit-content;
     padding: 30px;
     border-radius: 15px;
-    max-width: 900px;
+    max-width: 1000px;
     max-height: 100%;
     border: 2px solid white;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
+
+.portraits.row{
+    max-height: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.portraits.row::-webkit-scrollbar, .suspects::-webkit-scrollbar {
+    display: none;
+  }
 
 .motive {
     padding-right: 15px;
@@ -185,4 +199,36 @@ background-color: rgba(255, 255, 255, .3);
 
 .opportunity p{
     padding-right: 30px;
+}
+
+@media screen and (max-width: 768px), (max-width: 1000px) and (orientation: landscape){
+    .portrait p{
+        position: relative;
+        background-color: transparent;
+    }
+    .portrait{
+        border: none;
+    }
+    .portrait-wrapper{
+        gap: 5px;
+    }
+    .portraits {
+        gap: 5px;
+    }
+    .portrait-wrapper img{
+        display: none;
+    }
+    .portrait:before, .portrait:after{
+        display: none;
+    }
+    .suspects{
+        max-height: 95%;
+        padding: 5px;
+    }
+    .suspects .title{
+        display: none;
+    }
+    .suspects h4{
+        margin-bottom: 0;
+    }
 }

@@ -62,7 +62,7 @@ namespace Template {
         <table>\
           <tr>\
             <td>Menu (open/close)</td>\
-            <td>m</td>\
+            <td>M</td>\
           </tr>\
           <tr>\
             <td>Full-screen Windows</td>\
@@ -80,14 +80,6 @@ namespace Template {
             <td>Load</td>\
             <td>L</td>\
           </tr>\
-          <tr>\
-            <td>Notes</td>\
-            <td>N</td>\
-        </tr>\
-        <tr>\
-        <td>Indizien</td>\
-        <td>H</td>\
-    </tr>\
         </table>\
         ";
         ƒS.Text.print(shortcuts);
@@ -169,17 +161,17 @@ namespace Template {
             case ƒ.KEYBOARD_CODE.L:
                 await ƒS.Progress.load();
                 break;
-            case ƒ.KEYBOARD_CODE.N:
-                if (dataForSave.toggleSuspectsButton == true) {
-                    showSuspects();
-                }
-                break;
-            case ƒ.KEYBOARD_CODE.H:
-                if (dataForSave.toggleSuspectsButton == true) {
-                    showAquiredPages();
-                }
-                break;
-            case ƒ.KEYBOARD_CODE.C:
+            // case ƒ.KEYBOARD_CODE.F9:
+            //     if (dataForSave.toggleSuspectsButton == true) {
+            //         showSuspects();
+            //     }
+            //     break;
+            // case ƒ.KEYBOARD_CODE.F8:
+            //     if (dataForSave.toggleSuspectsButton == true) {
+            //         showAquiredPages();
+            //     }
+            //     break;
+            case ƒ.KEYBOARD_CODE.M:
                 if (menuOpen) {
                     console.log("Schließen");
                     gameMenu.close();
