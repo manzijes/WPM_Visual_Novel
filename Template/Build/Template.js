@@ -6,12 +6,12 @@ var Template;
     console.log("FudgeStory template starting");
     Template.transition = {
         fizzle: {
-            duration: 1.5,
+            duration: 1.3,
             alpha: "FreeTransitions/Others/005.jpg",
             edge: 2
         },
         waves: {
-            duration: 2,
+            duration: 1,
             alpha: "FreeTransitions/WipesAndOther/9.jpg",
             edge: 2
         }
@@ -66,13 +66,18 @@ var Template;
         }
     };
     Template.chapterCovers = {
-        chapterSimple: {
-            name: "chapterSimple",
-            background: "Images/Backgrounds/Kapitel/Kapitel1.png",
+        chapterOne: {
+            name: "chapterOne",
+            background: "Images/Backgrounds/Kapitel/chapter-one.png",
+            foreground: ""
+        },
+        chapterTwo: {
+            name: "chapterTwo",
+            background: "Images/Backgrounds/Kapitel/chapter-two.png",
             foreground: ""
         },
         chapter: {
-            name: "chapterOne",
+            name: "chapter",
             background: "Images/Backgrounds/Kapitel/chapter-lilac.png",
             foreground: ""
         },
@@ -157,7 +162,7 @@ var Template;
     }
     Template.simulateCameraFlash = simulateCameraFlash;
     async function showAquiredPages() {
-        let pages = ['<div class="aquiredPagesWrapper"><p>Im Laufe des Spiels erhälst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p></div>'];
+        let pages = ['<div class="aquiredPagesWrapper"><h1>Indizien</h1><p>Im Laufe des Spiels erhältst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p><p>Klick einfach weiter, um sie dir noch einmal anzuschauen.</p></div>'];
         let current = 0;
         let numberAquired = 0;
         if (Template.dataForSave.luciaMotive == true) {
@@ -242,6 +247,7 @@ var Template;
             // single page
         }
         else {
+            pages[0] = '<div class="aquiredPagesWrapper"><h1>Indizien</h1><p>Im Laufe des Spiels erhältst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p><p>Hey, warte mal...! Du hast bisher noch gar keine Indizien gesammelt. Dachtest du, das merke ich nicht?</p><br><p>Spiel einfach weiter, dann kommt das schon.</p></div>';
             let close = { done: "x" };
             let choice;
             Template.ƒS.Text.setClass("allhints");
@@ -410,8 +416,8 @@ var Template;
         let scenes = [
             // { scene: intro, name: "Einleitung"},
             // { scene: beta, name: "beta" },
-            // { scene: coverChapterOne, name: "Hinweis" },
-            // { scene: motive, name: "ProbeMotive" },
+            { scene: Template.coverChapterOne, name: "Hinweis" },
+            { scene: Template.motive, name: "ProbeMotive" },
             { scene: Template.lightsOut, name: "LichtAus" },
             { scene: Template.coverChapterTwo, name: "Hinweis" }
         ];
@@ -646,13 +652,9 @@ var Template;
                 T0001: "Klicke, um fortzufahren."
             }
         };
-        await Template.ƒS.Location.show(Template.chapterCovers.chapter);
+        await Template.ƒS.Location.show(Template.chapterCovers.chapterOne);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
-        Template.createText("Kapitel 1: Motive", "Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen hinzugefügt.", "Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!", "ch1");
-        // await new Promise(resolve => setTimeout(resolve, 1600));
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
-        let ch1 = document.getElementById("ch1");
-        ch1.remove();
         Template.ƒS.Sound.play(Template.sound.pageflip, 0.5, false);
     }
     Template.coverChapterOne = coverChapterOne;
@@ -668,16 +670,10 @@ var Template;
                 T0001: "Klicke, um fortzufahren."
             }
         };
-        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
-        await Template.ƒS.Location.show(Template.chapterCovers.chapter);
+        await Template.ƒS.Location.show(Template.chapterCovers.chapterTwo);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
-        Template.createText("Kapitel 2: Indizien", "Der nächste Tag ist angebrochen und die Zeit drängt. Du hast bereits einen ersten Einblick gewonnen. Weiter so!", "Dein nächster Schritt wird es sein, Hinweise zu sammeln, die dich zum richtigen Täter führen. Am Ende dieses Kapitels wirst du Kira dein Ergebnis mitteilen.", "ch2");
-        // await new Promise(resolve => setTimeout(resolve, 1600));
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
-        let ch2 = document.getElementById("ch2");
-        ch2.remove();
         Template.ƒS.Sound.play(Template.sound.pageflip, 0.5, false);
-        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0, 3, true);
     }
     Template.coverChapterTwo = coverChapterTwo;
 })(Template || (Template = {}));
@@ -940,7 +936,7 @@ var Template;
                 T0003_b: "Da ist er! Warte, ich laufe kurz hin...",
                 T0003_c: "Geduld, bitte. Ich will nirgendwo anstoßen!",
                 T0003_d: "Autsch! Jetzt bin ich gestolpert...",
-                T0003_e: "Stress mich nicht!",
+                T0003_e: "Stress mich nicht! Ich bin fast da.",
                 T0004: "Sieh mal, da ist etwas vor der Tür.",
                 T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Im Flur gibt es einen zweiten Lichtschalter, das war also ganz einfach.",
                 T0006: "Das sehe ich ein. Ich werde dich nicht enttäuschen.",
@@ -1005,15 +1001,15 @@ var Template;
                 Template.ƒS.Sound.play(Template.sound.smallsigh, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_b);
             }
-            if (clickedSwitch == 1) {
+            else if (clickedSwitch == 1) {
                 Template.ƒS.Sound.play(Template.sound.smallsigh, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_c);
             }
-            if (clickedSwitch == 2) {
+            else if (clickedSwitch == 2) {
                 Template.ƒS.Sound.play(Template.sound.aua, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_d);
             }
-            if (clickedSwitch > 2) {
+            else {
                 Template.ƒS.Sound.play(Template.sound.bigsigh, 1.5, false);
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_e);
             }
@@ -1026,7 +1022,8 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
         await Template.ƒS.update(0.5);
         setLights("turnOnFlashlight");
-        await new Promise(resolve => setTimeout(resolve, 20000));
+        await new Promise(resolve => setTimeout(resolve, 30000));
+        Template.ƒS.Speech.clear();
         // remove light switch
         let switchImg = document.getElementById("switch");
         switchImg.remove();
@@ -1143,7 +1140,7 @@ var Template;
                 T0002: "In Ordnung.",
                 T0003_a: "Ganz schön muffig.",
                 T0003_b: "Das finde ich auch.",
-                T0004: "Worüber ich eigentlich mit dir sprechen wollte... Du hast doch sicher mitbekommen, dass jemand eure Aufführung verhindern möchte.",
+                T0004: "Ja... Worüber ich eigentlich mit dir sprechen wollte... Du hast doch sicher mitbekommen, dass jemand eure Aufführung verhindern möchte.",
                 T0005: "Das denke ich auch. Weißt du, Kira hat mich beauftragt, den Saboteur zu entlarven. Du bist eine von wenigen, die uneingeschränkten Zugang zum Theaterraum haben.",
                 T0006: "Ich glaube, einer von euch ist für die Sabotage verantwortlich. Niemand sonst hatte eine Gelegenheit.",
                 T0007: "Ich verstehe. Wenn das wahr ist, kann ich dich ausschließen. Aber woher weiß ich, ob das stimmt?",
@@ -1214,7 +1211,7 @@ var Template;
             bad: "Du machst mich irre. Ciao!"
         };
         await Template.ƒS.Location.show(Template.locations.classroomDay);
-        await Template.ƒS.update(2);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
         let loopCount = 0;
@@ -1383,8 +1380,6 @@ var Template;
                     Template.hideAtlasMeter();
                     await Template.ƒS.Character.hide(Template.characters.atlas);
                     await Template.ƒS.update(0.5);
-                    Template.ƒS.Speech.clear();
-                    Template.ƒS.Speech.hide();
                     delete startTalk.withAtlas;
                     break;
                 // CASE Talk To Solas

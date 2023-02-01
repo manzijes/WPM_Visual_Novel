@@ -98,7 +98,7 @@ namespace Template {
                 T0002: "In Ordnung.",
                 T0003_a: "Ganz schön muffig.",
                 T0003_b: "Das finde ich auch.",
-                T0004: "Worüber ich eigentlich mit dir sprechen wollte... Du hast doch sicher mitbekommen, dass jemand eure Aufführung verhindern möchte.",
+                T0004: "Ja... Worüber ich eigentlich mit dir sprechen wollte... Du hast doch sicher mitbekommen, dass jemand eure Aufführung verhindern möchte.",
                 T0005: "Das denke ich auch. Weißt du, Kira hat mich beauftragt, den Saboteur zu entlarven. Du bist eine von wenigen, die uneingeschränkten Zugang zum Theaterraum haben.",
                 T0006: "Ich glaube, einer von euch ist für die Sabotage verantwortlich. Niemand sonst hatte eine Gelegenheit.",
                 T0007: "Ich verstehe. Wenn das wahr ist, kann ich dich ausschließen. Aber woher weiß ich, ob das stimmt?",
@@ -175,7 +175,7 @@ namespace Template {
         }
 
         await ƒS.Location.show(locations.classroomDay);
-        await ƒS.update(2);
+        await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
         await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
@@ -374,9 +374,6 @@ namespace Template {
 
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.update(0.5);
-
-                    ƒS.Speech.clear();
-                    ƒS.Speech.hide();
 
                     delete startTalk.withAtlas;
                     break;

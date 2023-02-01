@@ -6,12 +6,12 @@ namespace Template {
 
   export let transition = {
     fizzle: {
-      duration: 1.5,
+      duration: 1.3,
       alpha: "FreeTransitions/Others/005.jpg",
       edge: 2
     },
     waves: {
-      duration: 2,
+      duration: 1,
       alpha: "FreeTransitions/WipesAndOther/9.jpg",
       edge: 2
     }
@@ -69,13 +69,18 @@ namespace Template {
   };
 
   export let chapterCovers = {
-    chapterSimple: {
-      name: "chapterSimple",
-      background: "Images/Backgrounds/Kapitel/Kapitel1.png",
+    chapterOne: {
+      name: "chapterOne",
+      background: "Images/Backgrounds/Kapitel/chapter-one.png",
+      foreground: ""
+    },
+    chapterTwo: {
+      name: "chapterTwo",
+      background: "Images/Backgrounds/Kapitel/chapter-two.png",
       foreground: ""
     },
     chapter: {
-      name: "chapterOne",
+      name: "chapter",
       background: "Images/Backgrounds/Kapitel/chapter-lilac.png",
       foreground: ""
     },
@@ -162,7 +167,7 @@ namespace Template {
   }
 
   export async function showAquiredPages(){
-    let pages: string[] = ['<div class="aquiredPagesWrapper"><p>Im Laufe des Spiels erhälst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p></div>'];
+    let pages: string[] = ['<div class="aquiredPagesWrapper"><h1>Indizien</h1><p>Im Laufe des Spiels erhältst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p><p>Klick einfach weiter, um sie dir noch einmal anzuschauen.</p></div>'];
     let current: number = 0;
     let numberAquired = 0;
 
@@ -243,6 +248,8 @@ namespace Template {
       } while (choice != flip.done);
     // single page
     } else{
+      pages[0] = '<div class="aquiredPagesWrapper"><h1>Indizien</h1><p>Im Laufe des Spiels erhältst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p><p>Hey, warte mal...! Du hast bisher noch gar keine Indizien gesammelt. Dachtest du, das merke ich nicht?</p><br><p>Spiel einfach weiter, dann kommt das schon.</p></div>'
+
       let close = { done: "x" };
       let choice: string;
       ƒS.Text.setClass("allhints");
@@ -417,8 +424,8 @@ namespace Template {
     let scenes: ƒS.Scenes = [
       // { scene: intro, name: "Einleitung"},
       // { scene: beta, name: "beta" },
-      // { scene: coverChapterOne, name: "Hinweis" },
-      // { scene: motive, name: "ProbeMotive" },
+      { scene: coverChapterOne, name: "Hinweis" },
+      { scene: motive, name: "ProbeMotive" },
       { scene: lightsOut, name: "LichtAus" },
       { scene: coverChapterTwo, name: "Hinweis" }
     ];

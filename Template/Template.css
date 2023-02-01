@@ -246,7 +246,7 @@ dialog.menuInGame button.active#toggleSound{
   height: fit-content;
 }
 
-.coverDialog h1{
+.coverDialog h1, .aquiredPagesWrapper h1{
   font-family: "Gamewriting";
 }
 
@@ -338,12 +338,18 @@ img#switch.centerRight{
 }
 
 .flip button{
-  border: none;
   margin-left: 10px;
+
+  padding: 6px 10px;
+    border: 2px solid white;
+    background-color: var(--primary);
+    transition: all 0.4s;
+    color: white;
+    border-radius: 0.25rem;
 }
 
 .flip button:last-of-type{
-  padding: 1px 1%;
+  padding: 6px 16px;
 }
 
 .aquiredPagesWrapper{
@@ -378,8 +384,12 @@ background-color: white;
 }
 
 .pageclose button{
-  border: none;
-  padding: 0 1%;
+  padding: 6px 16px;
+  border: 2px solid white;
+  background-color: var(--primary);
+  transition: all 0.4s;
+  color: white;
+  border-radius: 0.25rem;
 }
 
 .diaryPageWrapper{
@@ -605,13 +615,20 @@ meter#solasMeter::-webkit-meter-optimum-value{
   }
 }
 
-@media (max-width: 768px){
-  *, speech content, speech name{
-    font-size: 14px;
+@media screen and (max-width: 1450px){
+meter{
+  right: unset;
+    left: -13%;
+}
+}
+
+@media screen and (max-width: 768px), (max-width: 1000px) and (orientation: landscape){
+  *, speech content, speech name, dialog.menuInGame button{
+    font-size: 14px !important;
   }
   speech{
-    min-height: 83px; 
-    height: 83px;
+    height: fit-content;
+    min-height: unset;
   }
   speech content, speech name{
     margin: 0;
@@ -619,5 +636,20 @@ meter#solasMeter::-webkit-meter-optimum-value{
   .suspects{
     margin-left: 110px !important;
     margin-right: 110px !important;
+  }
+  dialog.menuInGame button{
+    padding: 0;
+  }
+  dialog.menuInGame{
+    right: 40px;
+  }
+  #toggleSuspects{
+    margin-top: 0 !important;
+  }
+  meter::before{
+    font-size: 35px;
+  }
+  meter{
+    height: 50px;
   }
 }

@@ -60,7 +60,12 @@ declare namespace Template {
         };
     };
     let chapterCovers: {
-        chapterSimple: {
+        chapterOne: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        chapterTwo: {
             name: string;
             background: string;
             foreground: string;

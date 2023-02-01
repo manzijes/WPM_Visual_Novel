@@ -11,20 +11,10 @@ namespace Template {
             }
         };
 
-        await ƒS.Location.show(chapterCovers.chapter);
+        await ƒS.Location.show(chapterCovers.chapterOne);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
-        createText("Kapitel 1: Motive", 
-        "Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen hinzugefügt.",
-        "Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!", 
-        "ch1");
-
-        // await new Promise(resolve => setTimeout(resolve, 1600));
-
         await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
-
-        let ch1 = document.getElementById("ch1");
-        ch1.remove();
 
         ƒS.Sound.play(sound.pageflip, 0.5, false); 
     
