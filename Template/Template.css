@@ -16,6 +16,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "HandwritingWarning";
+  src: url("Fonts/GloriaHallelujah-Regular.ttf");
+  font-display: swap;
+}
+
 *{
   cursor: pointer !important;
 }
@@ -392,17 +398,50 @@ background-color: white;
   border-radius: 0.25rem;
 }
 
+/* WARNING PAGE */
+.warningPageWrapper{
+  width: 500px;
+  height: min-content;
+  border: none;
+  font-family: "HandwritingWarning";
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+
+.warningPageWrapper-flip{
+  width: 500px;
+  height: min-content;
+  border: none;
+  font-family: "HandwritingWarning";
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.warningPageWrapper p, .warningPageWrapper-flip p{
+  color: #16264c;
+}
+
+.warningPageWrapper bold, .warningPageWrapper-flip bold {
+  font-family: "HandwritingAtlas";
+  font-weight: bold;
+  font-size: 24px;
+}
+
+
 .diaryPageWrapper{
   width: 60%;
   border: none;
   padding: 0;
   overflow: hidden;
+  border-radius: 5px;
 }
 .diaryPageWrapper-flip{
   width: auto;
   border: none;
   padding: 0;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .diaryPage {

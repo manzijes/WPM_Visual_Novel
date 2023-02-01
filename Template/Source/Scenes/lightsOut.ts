@@ -51,7 +51,7 @@ namespace Template {
                 T0003_c: "Geduld, bitte. Ich will nirgendwo anstoßen!",
                 T0003_d: "Autsch! Jetzt bin ich gestolpert...",
                 T0003_e: "Stress mich nicht! Ich bin fast da.",
-                T0004: "Sieh mal, da ist etwas vor der Tür.",
+                T0004: "Sieh mal, da hat jemand etwas unter der Tür durchgeschoben.",
                 T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Im Flur gibt es einen zweiten Lichtschalter, das war also ganz einfach.",
                 T0006: "Das sehe ich ein. Ich werde dich nicht enttäuschen.",
                 T0007: "Keine Sorge. Morgen werde ich Indizien sammeln und den Schleier lüften."
@@ -64,20 +64,23 @@ namespace Template {
                 T0001: "Ich verstehe. Und was hast du nun-",
                 T0002: "Holy Moly! Was ist passiert?",
                 T0003: "Puh. Das hat mich ganz schön erschreckt...",
-                T0004: "Ich bin beunruhigt. Wer weiß, wie weit diese Person gehen wird? Wenn du den Saboteur nicht rechtzeitig findest, dann werde ich die Premiere absagen.",
-                T0005: "Ich sage es ungern, aber die Zeit drängt. In zwei Tagen ist die Premiere."
+                T0004: "Was...? Lass mal sehen.",
+                T0005: "Das ist ja unheimlich...",
+                T0006: "Ich bin beunruhigt. Wer weiß, wie weit diese Person gehen wird? Wenn du den Saboteur nicht rechtzeitig findest, dann werde ich die Premiere absagen.",
+                T0007: "Ich sage es ungern, aber die Zeit drängt. In zwei Tagen ist die Premiere."
             }
         };
 
         let narratorText = {
             Narrator: {
                 T0000: "Die Probe ist zu Ende. Die Clubmitglieder verabschieden sich und trudeln auf den Flur.",
-                T0001: "Kira und du bleiben allein im Theaterraum zurück."
+                T0001: "Kira und du bleiben allein im Theaterraum zurück.",
+                T0002: "Der Schultag neigt sich dem Ende zu und du verabschiedest dich von Kira. Morgen wirst du deine Ermittlungen fortführen..."
             }
         };
 
         await ƒS.Location.show(locations.classroomDay);
-        await ƒS.update(1);
+        await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
         await ƒS.Speech.tell(null, narratorText.Narrator.T0000);
         await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
@@ -124,13 +127,13 @@ namespace Template {
 
         async function clickSwitch() {
 
-            if(clickedSwitch == 0){
+            if (clickedSwitch == 0) {
                 ƒS.Sound.play(sound.smallsigh, 1.5, false);
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_b);
-            } else if(clickedSwitch == 1){
+            } else if (clickedSwitch == 1) {
                 ƒS.Sound.play(sound.smallsigh, 1.5, false);
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_c);
-            } else if(clickedSwitch == 2){
+            } else if (clickedSwitch == 2) {
                 ƒS.Sound.play(sound.aua, 1.5, false);
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003_d);
             } else {
@@ -172,13 +175,83 @@ namespace Template {
         await ƒS.Character.show(characters.kira, characters.kira.pose.scared, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003);
+        await ƒS.Character.hide(characters.kira);
         await ƒS.update(0.5);
 
         // change spooky music to normal theme
         ƒS.Sound.fade(sound.spookyMusic, 0, 6);
         ƒS.Sound.fade(sound.mainMusic, 0.5, 5, true);
 
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0004);
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.update(0.5);
+
+        await ƒS.Character.show(characters.kira, characters.kira.pose.unsure, ƒS.positionPercent(75, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0004);
+
+        let diaryPage: string = "<div class='warningPage'>\
+        <p>Meine Möchtegern-Detektive,</p>\
+        <p>lasst das Scooby-D<bold>oo</bold>-Spiel besser sein.</p>\
+        <p>Das is<bold>t</bold> eine Warnung.</p>\
+        <p>Die nächste wird nicht so nett ausfallen...</p>\
+        <p style='text-align: right;'>- Eu<bold>e</bold>r 'Saboteur'</p>\
+        </div>";
+
+        ƒS.Text.setClass("warningPageWrapper blendin");
+        let close = { done: "x" };
+        let choice: string;
+        do {
+            ƒS.Text.print(diaryPage);
+            choice = await ƒS.Menu.getInput(close, "pageclose");
+        } while (choice != close.done);
+        ƒS.Text.close();
+
+        dataForSave.warningNote = true;
+        await ƒS.update(0.5);
+
         await ƒS.Character.hide(characters.kira);
+        await ƒS.update(0.5);
+
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.serious, ƒS.positionPercent(25, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0005);
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.update(0.5);
+
+        await ƒS.Character.show(characters.kira, characters.kira.pose.scared, ƒS.positionPercent(75, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0005);
+        await ƒS.Character.hide(characters.kira);
+        await ƒS.Character.show(characters.kira, characters.kira.pose.unsure, ƒS.positionPercent(75, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0006);
+        await ƒS.Character.hide(characters.kira);
+        await ƒS.update(0.5);
+
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0006);
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.update(0.5);
+
+        await ƒS.Character.show(characters.kira, characters.kira.pose.scared, ƒS.positionPercent(75, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0007);
+        await ƒS.Character.hide(characters.kira);
+        await ƒS.update(0.5);
+
+        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.confident, ƒS.positionPercent(25, 97));
+        await ƒS.update(0.5);
+        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0007);
+        await ƒS.Character.hide(characters.protagonist);
+        await ƒS.update(0.5);
+
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+
+        ƒS.Speech.clear();
         ƒS.Speech.hide();
         await ƒS.update(0.5);
 

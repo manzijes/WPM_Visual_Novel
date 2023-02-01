@@ -95,6 +95,8 @@ declare namespace Template {
                 scared: string;
                 mean: string;
                 surprised: string;
+                confident: string;
+                serious: string;
             };
         };
         kira: {
@@ -108,6 +110,18 @@ declare namespace Template {
                 scared: string;
                 unsure: string;
                 smiling: string;
+            };
+        };
+        girl: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                annoyed: string;
+                blushing: string;
+                smiling: string;
+                unsure: string;
+                upset: string;
+                neutral: string;
             };
         };
         atlas: {
@@ -143,6 +157,10 @@ declare namespace Template {
                 happy: string;
                 scared: string;
                 angry: string;
+                upset: string;
+                thoughtful: string;
+                confused: string;
+                unhappy: string;
             };
         };
     };
@@ -160,7 +178,7 @@ declare namespace Template {
     function showLuciaMeter(): void;
     function hideLuciaMeter(): void;
     let dataForSave: {
-        nameProtagonist: string;
+        nameGirl: string;
         toggleSuspectsButton: boolean;
         solasPortrait: boolean;
         solasMotive: boolean;
@@ -175,6 +193,7 @@ declare namespace Template {
         atlasScore: number;
         luciaScore: number;
         solasScore: number;
+        warningNote: boolean;
     };
 }
 declare namespace Template {

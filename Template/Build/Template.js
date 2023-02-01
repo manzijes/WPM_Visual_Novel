@@ -100,7 +100,9 @@ var Template;
                 neutral: "Images/Characters/Protagonist/protagonist-neutral.png",
                 scared: "Images/Characters/Protagonist/protagonist-scared.png",
                 mean: "Images/Characters/Protagonist/protagonist-mean.png",
-                surprised: "Images/Characters/Protagonist/protagonist-surprised.png"
+                surprised: "Images/Characters/Protagonist/protagonist-surprised.png",
+                confident: "Images/Characters/Protagonist/protagonist-confident.png",
+                serious: "Images/Characters/Protagonist/protagonist-serious.png"
             }
         },
         kira: {
@@ -114,6 +116,18 @@ var Template;
                 scared: "Images/Characters/Kira/kira-scared.png",
                 unsure: "Images/Characters/Kira/kira-unsure.png",
                 smiling: "Images/Characters/Kira/kira-smiling.png"
+            }
+        },
+        girl: {
+            name: "",
+            origin: Template.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                annoyed: "Images/Characters/Girl/girl-annoyed.png",
+                blushing: "Images/Characters/Girl/girl-blushing.png",
+                smiling: "Images/Characters/Girl/girl-smiling.png",
+                unsure: "Images/Characters/Girl/girl-unsure.png",
+                upset: "Images/Characters/Girl/girl-upset.png",
+                neutral: "Images/Characters/Girl/girl-neutral.png"
             }
         },
         atlas: {
@@ -149,6 +163,10 @@ var Template;
                 happy: "Images/Characters/Solas/solas-happy.png",
                 scared: "Images/Characters/Solas/solas-scared.png",
                 angry: "Images/Characters/Solas/solas-angry.png",
+                upset: "Images/Characters/Solas/solas-upset.png",
+                thoughtful: "Images/Characters/Solas/solas-thoughtful.png",
+                confused: "Images/Characters/Solas/solas-confused.png",
+                unhappy: "Images/Characters/Solas/solas-unhappy.png",
             }
         }
     };
@@ -213,6 +231,18 @@ var Template;
       <p style="text-align: right">Gezeichnet, Atlas.</p>\
       </div>\
       </div>');
+        }
+        if (Template.dataForSave.warningNote == true) {
+            numberAquired += 1;
+            pages.push('<div class="warningPageWrapper-flip">\
+      <div class="warningPage">\
+      <p>Meine Möchtegern-Detektive,</p>\
+      <p>lasst das Scooby-D<bold>oo</bold>-Spiel besser sein.</p>\
+      <p>Das is<bold>t</bold> eine Warnung.</p>\
+      <p>Die nächste wird nicht so nett ausfallen...</p>\
+      <p style="text-align: right;">- Eu<bold>e</bold>r "Saboteur"</p>\
+      </div>\
+      </div>;');
         }
         console.log("number: " + numberAquired);
         // multiple pages
@@ -390,7 +420,7 @@ var Template;
     //   console.log("speaking");
     // }
     Template.dataForSave = {
-        nameProtagonist: "",
+        nameGirl: "",
         // visibility of buttons in menu
         toggleSuspectsButton: false,
         // visibility of elements in notes window
@@ -407,7 +437,8 @@ var Template;
         // meterbars
         atlasScore: 20,
         luciaScore: 50,
-        solasScore: 50
+        solasScore: 50,
+        warningNote: false
     };
     window.addEventListener("load", start);
     function start(_event) {
@@ -417,7 +448,7 @@ var Template;
             // { scene: intro, name: "Einleitung"},
             // { scene: beta, name: "beta" },
             { scene: Template.coverChapterOne, name: "Hinweis" },
-            { scene: Template.motive, name: "ProbeMotive" },
+            // { scene: motive, name: "ProbeMotive" },
             { scene: Template.lightsOut, name: "LichtAus" },
             { scene: Template.coverChapterTwo, name: "Hinweis" }
         ];
@@ -638,6 +669,10 @@ var Template;
 var Template;
 (function (Template) {
     async function beta() {
+        // name the girl
+        Template.dataForSave.nameGirl = await Template.ƒS.Speech.getInput();
+        await Template.ƒS.update(0.5);
+        Template.characters.girl.name = Template.dataForSave.nameGirl;
     }
     Template.beta = beta;
 })(Template || (Template = {}));
@@ -937,7 +972,7 @@ var Template;
                 T0003_c: "Geduld, bitte. Ich will nirgendwo anstoßen!",
                 T0003_d: "Autsch! Jetzt bin ich gestolpert...",
                 T0003_e: "Stress mich nicht! Ich bin fast da.",
-                T0004: "Sieh mal, da ist etwas vor der Tür.",
+                T0004: "Sieh mal, da hat jemand etwas unter der Tür durchgeschoben.",
                 T0005: "Der Saboteur hat offenbar das Licht ausgeschaltet, um uns im Schutz der Dunkelheit diese Notiz zu hinterlassen. Im Flur gibt es einen zweiten Lichtschalter, das war also ganz einfach.",
                 T0006: "Das sehe ich ein. Ich werde dich nicht enttäuschen.",
                 T0007: "Keine Sorge. Morgen werde ich Indizien sammeln und den Schleier lüften."
@@ -949,18 +984,21 @@ var Template;
                 T0001: "Ich verstehe. Und was hast du nun-",
                 T0002: "Holy Moly! Was ist passiert?",
                 T0003: "Puh. Das hat mich ganz schön erschreckt...",
-                T0004: "Ich bin beunruhigt. Wer weiß, wie weit diese Person gehen wird? Wenn du den Saboteur nicht rechtzeitig findest, dann werde ich die Premiere absagen.",
-                T0005: "Ich sage es ungern, aber die Zeit drängt. In zwei Tagen ist die Premiere."
+                T0004: "Was...? Lass mal sehen.",
+                T0005: "Das ist ja unheimlich...",
+                T0006: "Ich bin beunruhigt. Wer weiß, wie weit diese Person gehen wird? Wenn du den Saboteur nicht rechtzeitig findest, dann werde ich die Premiere absagen.",
+                T0007: "Ich sage es ungern, aber die Zeit drängt. In zwei Tagen ist die Premiere."
             }
         };
         let narratorText = {
             Narrator: {
                 T0000: "Die Probe ist zu Ende. Die Clubmitglieder verabschieden sich und trudeln auf den Flur.",
-                T0001: "Kira und du bleiben allein im Theaterraum zurück."
+                T0001: "Kira und du bleiben allein im Theaterraum zurück.",
+                T0002: "Der Schultag neigt sich dem Ende zu und du verabschiedest dich von Kira. Morgen wirst du deine Ermittlungen fortführen..."
             }
         };
         await Template.ƒS.Location.show(Template.locations.classroomDay);
-        await Template.ƒS.update(1);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.smiling, Template.ƒS.positionPercent(75, 97));
@@ -1038,11 +1076,69 @@ var Template;
         await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.scared, Template.ƒS.positionPercent(75, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0003);
+        await Template.ƒS.Character.hide(Template.characters.kira);
         await Template.ƒS.update(0.5);
         // change spooky music to normal theme
         Template.ƒS.Sound.fade(Template.sound.spookyMusic, 0, 6);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 5, true);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0004);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.unsure, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0004);
+        let diaryPage = "<div class='warningPage'>\
+        <p>Meine Möchtegern-Detektive,</p>\
+        <p>lasst das Scooby-D<bold>oo</bold>-Spiel besser sein.</p>\
+        <p>Das is<bold>t</bold> eine Warnung.</p>\
+        <p>Die nächste wird nicht so nett ausfallen...</p>\
+        <p style='text-align: right;'>- Eu<bold>e</bold>r 'Saboteur'</p>\
+        </div>";
+        Template.ƒS.Text.setClass("warningPageWrapper blendin");
+        let close = { done: "x" };
+        let choice;
+        do {
+            Template.ƒS.Text.print(diaryPage);
+            choice = await Template.ƒS.Menu.getInput(close, "pageclose");
+        } while (choice != close.done);
+        Template.ƒS.Text.close();
+        Template.dataForSave.warningNote = true;
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Character.hide(Template.characters.kira);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0005);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.scared, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0005);
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.unsure, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0006);
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0006);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.scared, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0007);
+        await Template.ƒS.Character.hide(Template.characters.kira);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.confident, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0007);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+        Template.ƒS.Speech.clear();
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(0.5);
     }
@@ -1396,7 +1492,7 @@ var Template;
                     Template.updateNotes();
                     await Template.ƒS.update(0.2);
                     await Template.ƒS.Character.hide(Template.characters.solas);
-                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.sad, Template.ƒS.positionPercent(75, 97));
+                    await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.confused, Template.ƒS.positionPercent(75, 97));
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Character.hide(Template.characters.solas);
                     await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
@@ -1430,7 +1526,7 @@ var Template;
                     Template.hideSolasMeter();
                     await Template.ƒS.Character.hide(Template.characters.solas);
                     await Template.ƒS.update(0.5);
-                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToSolas.Protagonist.T0003);
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
@@ -1445,13 +1541,15 @@ var Template;
                     switch (optionsSolasHonestElement) {
                         case optionsSolasHonest.bad:
                             await Template.ƒS.Character.hide(Template.characters.solas);
-                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.unhappy, Template.ƒS.positionPercent(75, 97));
                             Template.dataForSave.solasScore -= 10;
                             await Template.ƒS.update(0.5);
                             await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0005_bad);
                             await Template.ƒS.update(0.5);
                             break;
                         case optionsSolasHonest.good:
+                            await Template.ƒS.Character.hide(Template.characters.solas);
+                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.thoughtful, Template.ƒS.positionPercent(75, 97));
                             Template.dataForSave.solasScore += 10;
                             await Template.ƒS.update(0.5);
                             await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0005_good);
@@ -1516,7 +1614,7 @@ var Template;
                     Template.hideSolasMeter();
                     await Template.ƒS.Character.hide(Template.characters.solas);
                     await Template.ƒS.update(0.5);
-                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToSolas.Protagonist.T0006);
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
@@ -1531,7 +1629,7 @@ var Template;
                     switch (optionsSolasSuspectElement) {
                         case optionsSolasSuspect.bad:
                             await Template.ƒS.Character.hide(Template.characters.solas);
-                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+                            await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.upset, Template.ƒS.positionPercent(75, 97));
                             Template.dataForSave.solasScore -= 20;
                             await Template.ƒS.update(0.5);
                             await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0008_bad);
@@ -1678,7 +1776,7 @@ var Template;
                     Template.hideLuciaMeter();
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.update(0.5);
-                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToLucia.Protagonist.T0006);
                     await Template.ƒS.Character.hide(Template.characters.protagonist);
@@ -1704,7 +1802,7 @@ var Template;
                     Template.hideLuciaMeter();
                     await Template.ƒS.Character.hide(Template.characters.lucia);
                     await Template.ƒS.update(0.5);
-                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                    await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.surprised, Template.ƒS.positionPercent(25, 97));
                     await Template.ƒS.update(0.5);
                     await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistToLucia.Protagonist.T0008);
                     await Template.ƒS.Character.hide(Template.characters.protagonist);

@@ -395,7 +395,7 @@ namespace Template {
 
                     await ƒS.update(0.2);
                     await ƒS.Character.hide(characters.solas);
-                    await ƒS.Character.show(characters.solas, characters.solas.pose.sad, ƒS.positionPercent(75, 97));
+                    await ƒS.Character.show(characters.solas, characters.solas.pose.confused, ƒS.positionPercent(75, 97));
                     await ƒS.update(0.5);
                     await ƒS.Character.hide(characters.solas);
                     await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
@@ -437,7 +437,7 @@ namespace Template {
                     await ƒS.Character.hide(characters.solas);
                     await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.serious, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0003);
                     await ƒS.Character.hide(characters.protagonist);
@@ -455,13 +455,15 @@ namespace Template {
                     switch (optionsSolasHonestElement) {
                         case optionsSolasHonest.bad:
                             await ƒS.Character.hide(characters.solas);
-                            await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.unhappy, ƒS.positionPercent(75, 97));
                             dataForSave.solasScore -= 10;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_bad);
                             await ƒS.update(0.5);
                             break;
                         case optionsSolasHonest.good:
+                            await ƒS.Character.hide(characters.solas);
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.thoughtful, ƒS.positionPercent(75, 97));
                             dataForSave.solasScore += 10;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.solas, solasText.Solas.T0005_good);
@@ -534,7 +536,7 @@ namespace Template {
                     await ƒS.Character.hide(characters.solas);
                     await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.serious, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.protagonist, protagonistToSolas.Protagonist.T0006);
                     await ƒS.Character.hide(characters.protagonist);
@@ -552,7 +554,7 @@ namespace Template {
                     switch (optionsSolasSuspectElement) {
                         case optionsSolasSuspect.bad:
                             await ƒS.Character.hide(characters.solas);
-                            await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
+                            await ƒS.Character.show(characters.solas, characters.solas.pose.upset, ƒS.positionPercent(75, 97));
                             dataForSave.solasScore -= 20;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.solas, solasText.Solas.T0008_bad);
@@ -724,7 +726,7 @@ namespace Template {
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.serious, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.protagonist, protagonistToLucia.Protagonist.T0006);
                     await ƒS.Character.hide(characters.protagonist);
@@ -756,7 +758,7 @@ namespace Template {
                     await ƒS.Character.hide(characters.lucia);
                     await ƒS.update(0.5);
 
-                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.surprised, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.protagonist, protagonistToLucia.Protagonist.T0008);
                     await ƒS.Character.hide(characters.protagonist);

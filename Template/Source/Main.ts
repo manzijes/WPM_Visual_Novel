@@ -104,7 +104,9 @@ namespace Template {
         neutral: "Images/Characters/Protagonist/protagonist-neutral.png",
         scared: "Images/Characters/Protagonist/protagonist-scared.png",
         mean: "Images/Characters/Protagonist/protagonist-mean.png",
-        surprised: "Images/Characters/Protagonist/protagonist-surprised.png"
+        surprised: "Images/Characters/Protagonist/protagonist-surprised.png",
+        confident: "Images/Characters/Protagonist/protagonist-confident.png",
+        serious: "Images/Characters/Protagonist/protagonist-serious.png"
       }
     },
     kira: {
@@ -118,6 +120,18 @@ namespace Template {
         scared: "Images/Characters/Kira/kira-scared.png",
         unsure: "Images/Characters/Kira/kira-unsure.png",
         smiling: "Images/Characters/Kira/kira-smiling.png"
+      }
+    },
+    girl: {
+      name: "",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        annoyed: "Images/Characters/Girl/girl-annoyed.png",
+        blushing: "Images/Characters/Girl/girl-blushing.png",
+        smiling: "Images/Characters/Girl/girl-smiling.png",
+        unsure: "Images/Characters/Girl/girl-unsure.png",
+        upset: "Images/Characters/Girl/girl-upset.png",
+        neutral: "Images/Characters/Girl/girl-neutral.png"
       }
     },
     atlas: {
@@ -153,6 +167,10 @@ namespace Template {
         happy: "Images/Characters/Solas/solas-happy.png",
         scared: "Images/Characters/Solas/solas-scared.png",
         angry: "Images/Characters/Solas/solas-angry.png",
+        upset: "Images/Characters/Solas/solas-upset.png",
+        thoughtful: "Images/Characters/Solas/solas-thoughtful.png",
+        confused: "Images/Characters/Solas/solas-confused.png",
+        unhappy: "Images/Characters/Solas/solas-unhappy.png",
       }
     }
   };
@@ -222,6 +240,20 @@ namespace Template {
       <p style="text-align: right">Gezeichnet, Atlas.</p>\
       </div>\
       </div>');
+    }
+
+    if(dataForSave.warningNote == true){
+      numberAquired += 1;
+
+      pages.push('<div class="warningPageWrapper-flip">\
+      <div class="warningPage">\
+      <p>Meine Möchtegern-Detektive,</p>\
+      <p>lasst das Scooby-D<bold>oo</bold>-Spiel besser sein.</p>\
+      <p>Das is<bold>t</bold> eine Warnung.</p>\
+      <p>Die nächste wird nicht so nett ausfallen...</p>\
+      <p style="text-align: right;">- Eu<bold>e</bold>r "Saboteur"</p>\
+      </div>\
+      </div>;');
     }
 
     console.log("number: " + numberAquired);
@@ -391,7 +423,7 @@ namespace Template {
   // }
 
   export let dataForSave = {
-    nameProtagonist: "",
+    nameGirl: "",
 
     // visibility of buttons in menu
     toggleSuspectsButton: false,
@@ -413,7 +445,9 @@ namespace Template {
     // meterbars
     atlasScore: 20,
     luciaScore: 50,
-    solasScore: 50
+    solasScore: 50,
+
+    warningNote: false
   };
 
   window.addEventListener("load", start);
@@ -425,7 +459,7 @@ namespace Template {
       // { scene: intro, name: "Einleitung"},
       // { scene: beta, name: "beta" },
       { scene: coverChapterOne, name: "Hinweis" },
-      { scene: motive, name: "ProbeMotive" },
+      // { scene: motive, name: "ProbeMotive" },
       { scene: lightsOut, name: "LichtAus" },
       { scene: coverChapterTwo, name: "Hinweis" }
     ];
