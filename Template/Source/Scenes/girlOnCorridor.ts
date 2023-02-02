@@ -89,14 +89,14 @@ namespace Template {
             case optionsAtlasTutoring.good:
                 showAtlasMeter();
                 await ƒS.update(0.5);
-                dataForSave.atlasScore += 7;
+                dataForSave.atlasScore += 6;
                 await ƒS.update(0.5);
                 hideAtlasMeter();
                 break;
             case optionsAtlasTutoring.bad:
                 showAtlasMeter();
                 await ƒS.update(0.5);
-                dataForSave.atlasScore -= 7;
+                dataForSave.atlasScore -= 6;
                 await ƒS.update(0.5);
                 hideAtlasMeter();
                 break;

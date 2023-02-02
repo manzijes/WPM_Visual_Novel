@@ -520,9 +520,9 @@ var Template;
             // { scene: coverChapterTwo, name: "Kapitel" },
             // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
             // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
-            { id: "kiraGivesHint", scene: Template.kiraGivesHint, name: "Kira gibt einen Hinweis" },
-            { id: "luciaGivesHint", scene: Template.luciaGivesHint, name: "Lucia gibt einen Hinweis" },
-            { id: "confrontSolasAfterKira", scene: Template.confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+            // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
+            // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+            // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
             { id: "confrontSolasAfterLucia", scene: Template.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
             { scene: Template.yourConclusion, name: "Du sagst Kira, wen du für den Täter hältst." },
             { id: "roofAtlas", scene: Template.roofAtlas, name: "Verdächtige Atlas" },
@@ -908,9 +908,8 @@ var Template;
             Protagonist: {
                 T0001: "Hallo, Solas. Ich muss noch einmal mit dir sprechen.",
                 T0002: "Ich habe inzwischen einige Hinweise gesammelt. Du bleibst mir aber nach wie vor ein Rätsel.",
-                T0003_bad: "Und dein Ergebnis?",
-                T0003_good: "Sag mir, was du denkst.",
-                T0004: "Wie meinst du das?",
+                T0003: "Und dein Ergebnis? Was denkst du?",
+                T0004: "Hmm... Wie meinst du das?",
                 T0005_bad: "Ich werde nicht schlau aus dir.",
                 T0005_good: "Ich glaube, ich verstehe.",
                 T0006: "Bis bald."
@@ -919,21 +918,102 @@ var Template;
         let solasText = {
             Solas: {
                 T0001: "Sicher doch, was gibt es?",
-                T0002: "Ist das so, ja? Ich habe selbst den ganzen Tag über die Sache nachgedacht.",
-                T0003: "Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört...",
+                T0002: "Ist das so, ja? Ich habe selbst den ganzen Tag über die Sache nachgedacht...",
+                T0003: "Naja. Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört...",
                 T0004: "Aber auch der Saboteur hat meine Anteilnahme. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
                 T0005: "Du verdächtigst uns alle aus verschiedenen Gründen, aber hinter jedem Motiv, das du uns zugeschrieben hast, steht der Ehrgeiz.",
-                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes.",
+                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes. Das schrieb zumindest Shakespeare.",
                 T0007: "Ich muss jetzt weiter. Bis bald."
             }
         };
         let narratorText = {
             Narrator: {
-                T0000: "Du begibst dich auf die Suche nach Solas. Du findest ihn schließlich draußen auf dem Schulhof."
+                T0000: "Du findest Solas in einem abgelegenen Korridor.",
+                T0001: "Solas verschwindet. "
             }
         };
-        await Template.ƒS.Location.show(Template.locations.schoolOutsideTwilight);
+        await Template.ƒS.Location.show(Template.locations.corridorDay2);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        Template.showSolasMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0001);
+        Template.hideSolasMeter();
+        await Template.ƒS.Character.hide(Template.characters.solas);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.thoughtful, Template.ƒS.positionPercent(75, 97));
+        Template.showSolasMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0002);
+        Template.hideSolasMeter();
+        await Template.ƒS.Character.hide(Template.characters.solas);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        Template.showSolasMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0003);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0004);
+        Template.hideSolasMeter();
+        await Template.ƒS.Character.hide(Template.characters.solas);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.surprised, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0004);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.thoughtful, Template.ƒS.positionPercent(75, 97));
+        Template.showSolasMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0005);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.hide(Template.characters.solas);
+        await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0006);
+        let optionsSolasDream = {
+            bad: "Ich werde nicht schlau aus dir.",
+            good: "Ich glaube, ich verstehe."
+        };
+        let optionsSolasDreamElement = await Template.ƒS.Menu.getInput(optionsSolasDream, "dialogoptions");
+        Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+        switch (optionsSolasDreamElement) {
+            case optionsSolasDream.good:
+                await Template.ƒS.Character.hide(Template.characters.solas);
+                await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.happy, Template.ƒS.positionPercent(75, 97));
+                Template.dataForSave.solasScore += 3;
+                await Template.ƒS.update(0.5);
+                break;
+            case optionsSolasDream.bad:
+                await Template.ƒS.Character.hide(Template.characters.solas);
+                await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.unhappy, Template.ƒS.positionPercent(75, 97));
+                Template.dataForSave.solasScore -= 3;
+                await Template.ƒS.update(0.5);
+                break;
+        }
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0007);
+        Template.hideSolasMeter();
+        await Template.ƒS.Character.hide(Template.characters.solas);
+        await Template.ƒS.update(0.5);
+        Template.dataForSave.confrontedSolas = true;
+        Template.updateNotes();
+        await Template.ƒS.update(0.5);
         // close
         Template.ƒS.Speech.clear();
         Template.ƒS.Speech.hide();
@@ -1062,14 +1142,14 @@ var Template;
             case optionsAtlasTutoring.good:
                 Template.showAtlasMeter();
                 await Template.ƒS.update(0.5);
-                Template.dataForSave.atlasScore += 7;
+                Template.dataForSave.atlasScore += 6;
                 await Template.ƒS.update(0.5);
                 Template.hideAtlasMeter();
                 break;
             case optionsAtlasTutoring.bad:
                 Template.showAtlasMeter();
                 await Template.ƒS.update(0.5);
-                Template.dataForSave.atlasScore -= 7;
+                Template.dataForSave.atlasScore -= 6;
                 await Template.ƒS.update(0.5);
                 Template.hideAtlasMeter();
                 break;
@@ -1817,7 +1897,8 @@ var Template;
         let narratorText = {
             Narrator: {
                 T0000: "Du läufst auf der Suche nach Lucia durch den Flur und triffst sie schließlich an der Treppe.",
-                T0001: "Lucia läuft die Treppe hinauf. Du begibst dich auf die Suche nach Solas, um ihn zu konfrontieren."
+                T0001: "Lucia läuft die Treppe hinauf.",
+                T0002: "Du begibst dich auf die Suche nach Solas, um mehr von ihm zu erfahren."
             }
         };
         await Template.ƒS.Location.show(Template.locations.stairs);
@@ -1885,17 +1966,18 @@ var Template;
         Template.showLuciaMeter();
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0005);
-        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
-        await Template.ƒS.update(0.5);
         Template.hideLuciaMeter();
         await Template.ƒS.Character.hide(Template.characters.lucia);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await Template.ƒS.update(0.5);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0006);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+        await Template.ƒS.update(0.5);
         return "confrontSolasAfterLucia";
     }
     Template.luciaGivesHint = luciaGivesHint;

@@ -534,10 +534,10 @@ namespace Template {
       // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
       // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
 
-      { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
-      { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+      // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
+      // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
 
-      { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+      // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
       { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
 
       { scene: yourConclusion, name: "Du sagst Kira, wen du für den Täter hältst." },

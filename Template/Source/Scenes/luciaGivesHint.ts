@@ -30,7 +30,8 @@ namespace Template {
         let narratorText = {
             Narrator: {
                 T0000: "Du läufst auf der Suche nach Lucia durch den Flur und triffst sie schließlich an der Treppe.",
-                T0001: "Lucia läuft die Treppe hinauf. Du begibst dich auf die Suche nach Solas, um ihn zu konfrontieren."
+                T0001: "Lucia läuft die Treppe hinauf.",
+                T0002: "Du begibst dich auf die Suche nach Solas, um mehr von ihm zu erfahren."
             }
         };
 
@@ -119,11 +120,11 @@ namespace Template {
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0005);
 
-        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
-        await ƒS.update(0.5);
-
         hideLuciaMeter();
         await ƒS.Character.hide(characters.lucia);
+        await ƒS.update(0.5);
+
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await ƒS.update(0.5);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
@@ -132,7 +133,8 @@ namespace Template {
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.update(0.5);
 
-        await ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+        await ƒS.update(0.5);
 
         return "confrontSolasAfterLucia";
 
