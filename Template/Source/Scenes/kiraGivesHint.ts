@@ -9,7 +9,7 @@ namespace Template {
             Protagonist: {
                 T0001: "Ach ja? Was denn?",
                 T0002: "Wirklich? Und weißt du auch, zu wem sie gehört?",
-                T0003: "Ich verstehe... Das macht Solas natürlich zum Hauptverdächtigen. Mal sehen, was er dazu zu sagen hat. Bis später, Kira!"
+                T0003: "Ich verstehe... Das macht Solas zum Hauptverdächtigen. Mal sehen, was er dazu zu sagen hat. Bis später, Kira!"
             }
         };
 

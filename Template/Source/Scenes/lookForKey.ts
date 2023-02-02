@@ -7,7 +7,7 @@ namespace Template {
 
         let protagonistText = {
             Protagonist: {
-                T0001: "Es wird Zeit, meine Ermittlungen fortzusetzen.",
+                T0001: "Es wird Zeit, meine Ermittlungen fortzusetzen...",
                 T0002: "Lucia meinte, sie habe ihren Schlüssel zum Theaterraum verloren. Falls das stimmt, dann hatte sie keine Gelegenheit, zwischen den Proben die Sabotage zu begehen.",
                 T0003: "Ich suche einfach mal nach dem Schlüssel. Wenn ich ihn finde, würde das Lucias Geschichte bestätigen... Am besten, ich schaue in der Bibliothek. Sie wohnt ja förmlich dort.",
                 T0004: "Also dann, wo könnte Lucia den Schlüssel verloren haben?",
@@ -24,7 +24,7 @@ namespace Template {
                 T0014: "Hier nicht, aber die frische Luft ist schön.",
                 T0015: "Oh, da ist er! Ich 1 - Schlüssel 0.",
 
-                T0016: "Ich gebe auf! Ich kann den Schlüssel nicht finden. Das war von Anfang an eine Schnapsidee... Ob Lucia die Wahrheit gesagt oder gelogen hat, ist jetzt eine Vetrauensfrage.",
+                T0016: "Ich gebe auf! Ich kann den Schlüssel nicht finden. Das war von Anfang an eine Schnapsidee... Ob Lucia die Wahrheit gesagt oder gelogen hat, bleibt wohl oder übel eine Vertrauensfrage...",
                 T0017: "Lucia hat also die Wahrheit gesagt. Natürlich könnte immer noch ein großer Masterplan dahinter stecken, aber ich bin geneigt, ihr zu vertrauen. Ich werde sie suchen und den Schlüssel zurückgeben."
             }
         };

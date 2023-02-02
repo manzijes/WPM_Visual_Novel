@@ -10,7 +10,8 @@ namespace Template {
                 T0001: "Huh?",
                 T0002: "Warte, ich kenne dich. Du heißt doch... ",
                 T0003: "Wenn du es so ausdrücken willst, sicher.",
-                T0004: "Oh? Er hat dich gar nicht erwähnt.",
+                T0004_a: "Oh? Er hat dich gar nicht erwähnt.",
+                T0004_b: "Nachhilfe? Ich habe nicht erwartet, dass Atlas so ein guter Samariter ist.",
                 T0005: "Was für ein höfliches Mädchen."
             }
         };

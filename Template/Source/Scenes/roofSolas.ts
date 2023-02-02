@@ -7,7 +7,7 @@ namespace Template {
 
         // let protagonistText = {
         //     Protagonist: {
-        //         T0001: "Huh?"
+        //         T0001: "Ich habe dich hergerufen, um dich zu stellen. Ich weiß, dass du der Saboteur bist. Du bist überführt, Solas."
         //     }
         // };
 
