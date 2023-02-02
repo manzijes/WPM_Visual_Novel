@@ -32,7 +32,7 @@ namespace Template {
         let narratorText = {
             Narrator: {
                 T0000: "Es ist Pause! Während des Unterrichts sind deine Gedanken immer wieder abgedriftet.",
-                T0001: "Du begibst dich in die Bibliothek.",
+                T0001: "Du betrittst die Bibliothek.",
                 T0002: "Du verlässt die Bibliothek."
             }
         };
@@ -54,7 +54,6 @@ namespace Template {
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
         await ƒS.update(0.5);
-        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.update(0.5);
@@ -65,6 +64,9 @@ namespace Template {
 
         await ƒS.Location.show(locations.library);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
+
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+        await ƒS.update(0.5);
 
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
@@ -158,7 +160,17 @@ namespace Template {
             case true:
                 updateNotes();
                 await ƒS.Character.hide(characters.protagonist);
+                await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
                 await ƒS.update(0.5);
+                await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0017);
+                await ƒS.update(0.5);
+
+                await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+                await ƒS.update(0.5);
+
+                await ƒS.Character.hide(characters.protagonist);
+                await ƒS.update(0.5);
+
                 ƒS.Speech.clear();
                 ƒS.Speech.hide();
                 await ƒS.update(0.5);
@@ -172,7 +184,9 @@ namespace Template {
                 await ƒS.update(0.5);
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0016);
                 await ƒS.update(0.5);
+
                 await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+                await ƒS.update(0.5);
 
                 await ƒS.Character.hide(characters.protagonist);
                 await ƒS.update(0.5);

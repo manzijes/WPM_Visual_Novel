@@ -7,7 +7,8 @@ namespace Template {
 
         // let protagonistText = {
         //     Protagonist: {
-        //         T0001: "Ich habe dich hergerufen, um dich zu stellen. Ich weiß, dass du der Saboteur bist. Du bist überführt, Lucia."
+        //         T0001: "Ich habe dich hergerufen, um dich zu stellen. Ich weiß, dass du der Saboteur bist. Du bist überführt, Lucia.",
+        //         T0002: "Oh nein... Habe ich mich etwa geirrt?"
         //     }
         // };
 
@@ -17,15 +18,16 @@ namespace Template {
         //     }
         // };
 
-        // let luciaText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
+        let luciaText = {
+            Lucia: {
+                T0001: "Du glaubst, ich bin der Täter...?",
+                T0002: "Es tut mir leid, dich zu enttäuschen, aber ich bin es wirklich nicht. Ich liebe den Theaterclub von Herzen."
+            }
+        };
 
         // let narratorText = {
         //     Narrator: {
-        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //         T0000: ""
         //     }
         // };
 
@@ -33,7 +35,7 @@ namespace Template {
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
 
-        
+
         // close
         ƒS.Speech.clear();
         ƒS.Speech.hide();

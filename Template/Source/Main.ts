@@ -309,6 +309,19 @@ namespace Template {
     ƒS.Text.close();
   }
 
+  export function findFavorite(): string {
+    let favorite = "Atlas";
+
+    if(dataForSave.atlasScore < dataForSave.solasScore){
+      favorite = "Solas";
+    } 
+    if(dataForSave.solasScore < dataForSave.luciaScore){
+      favorite = "Lucia";
+    }
+    
+    return favorite;
+  }
+
   export function updateNotes() {
       
     dataForSave.toggleSuspectsButton = true;
@@ -358,7 +371,7 @@ namespace Template {
     }
     if (dataForSave.atlasOpportunity == true) {
       let atlasOpportunity = document.getElementById("atlasOpportunity");
-      atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur gibt Atlas ein Alibi.";
+      atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur ( " + dataForSave.nameGirl + " ) gibt Atlas ein Alibi.";
     }
     if (dataForSave.lookedForKey == true) {
       let whatAboutKey = document.getElementById("whatAboutKey");
@@ -370,7 +383,7 @@ namespace Template {
     }
     if(dataForSave.aboutAlibi == true){
       let aboutAlibi = document.getElementById("aboutAlibi");
-      aboutAlibi.innerHTML = "Die Glaubwürdigkeit des Mädchens ist zweifelhaft, da sie in Atlas verliebt ist."
+      aboutAlibi.innerHTML = "Die Glaubwürdigkeit von " + dataForSave.nameGirl + " ist zweifelhaft, da sie in Atlas verliebt ist."
     }
     if(dataForSave.solasHandwriting == true){
       let solasHandwriting = document.getElementById("solasHandwriting");
@@ -459,7 +472,7 @@ namespace Template {
   // }
 
   export let dataForSave = {
-    nameGirl: "",
+    nameGirl: "Cat",
 
     // visibility of buttons in menu
     toggleSuspectsButton: false,

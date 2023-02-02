@@ -13,7 +13,7 @@ namespace Template {
 
         // let kiraText = {
         //     Protagonist: {
-        //         T0001: "Huh?"
+        //         T0001: "Schau dir alles, was du gesammelt hast, noch einmal genau an und suche nach Unstimmigkeiten.",
         //     }
         // };
 

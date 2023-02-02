@@ -304,6 +304,17 @@ var Template;
         Template.ƒS.Text.close();
     }
     Template.showAquiredPages = showAquiredPages;
+    function findFavorite() {
+        let favorite = "Atlas";
+        if (Template.dataForSave.atlasScore < Template.dataForSave.solasScore) {
+            favorite = "Solas";
+        }
+        if (Template.dataForSave.solasScore < Template.dataForSave.luciaScore) {
+            favorite = "Lucia";
+        }
+        return favorite;
+    }
+    Template.findFavorite = findFavorite;
     function updateNotes() {
         Template.dataForSave.toggleSuspectsButton = true;
         let toggleSuspects = document.getElementById("toggleSuspects");
@@ -351,7 +362,7 @@ var Template;
         }
         if (Template.dataForSave.atlasOpportunity == true) {
             let atlasOpportunity = document.getElementById("atlasOpportunity");
-            atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur gibt Atlas ein Alibi.";
+            atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur ( " + Template.dataForSave.nameGirl + " ) gibt Atlas ein Alibi.";
         }
         if (Template.dataForSave.lookedForKey == true) {
             let whatAboutKey = document.getElementById("whatAboutKey");
@@ -364,7 +375,7 @@ var Template;
         }
         if (Template.dataForSave.aboutAlibi == true) {
             let aboutAlibi = document.getElementById("aboutAlibi");
-            aboutAlibi.innerHTML = "Die Glaubwürdigkeit des Mädchens ist zweifelhaft, da sie in Atlas verliebt ist.";
+            aboutAlibi.innerHTML = "Die Glaubwürdigkeit von " + Template.dataForSave.nameGirl + " ist zweifelhaft, da sie in Atlas verliebt ist.";
         }
         if (Template.dataForSave.solasHandwriting == true) {
             let solasHandwriting = document.getElementById("solasHandwriting");
@@ -456,7 +467,7 @@ var Template;
     //   console.log("speaking");
     // }
     Template.dataForSave = {
-        nameGirl: "",
+        nameGirl: "Cat",
         // visibility of buttons in menu
         toggleSuspectsButton: false,
         // visibility of elements in notes window
@@ -828,7 +839,7 @@ var Template;
                 T0002: "Warte, ich kenne dich. Du heißt doch... ",
                 T0003: "Wenn du es so ausdrücken willst, sicher.",
                 T0004_a: "Oh? Er hat dich gar nicht erwähnt.",
-                T0004_b: "Nachhilfe? Ich habe nicht erwartet, dass Atlas so ein guter Samariter ist.",
+                T0004_b: "Nachhilfe? Ich hätte nicht gedacht, dass Atlas so ein guter Samariter ist.",
                 T0005: "Was für ein höfliches Mädchen."
             }
         };
@@ -848,6 +859,10 @@ var Template;
                 T0002: "Du machst eine Notiz, dann gehst auch du in deine Klasse."
                 // T0002: "Es ist Pause! Während des Unterrichts sind deine Gedanken immer wieder abgedriftet."
             }
+        };
+        let optionsAtlasTutoring = {
+            good: "Oh? Er hat dich gar nicht erwähnt.",
+            bad: "Nachhilfe? Ich habe nicht erwartet, dass Atlas so ein guter Samariter ist."
         };
         await Template.ƒS.Location.show(Template.locations.corridorDay);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
@@ -881,13 +896,25 @@ var Template;
         await Template.ƒS.Character.show(Template.characters.girl, Template.characters.girl.pose.upset, Template.ƒS.positionPercent(75, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.girl, girlText.Girl.T0003);
-        await Template.ƒS.Character.hide(Template.characters.girl);
         await Template.ƒS.update(0.5);
-        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
-        await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0004);
-        await Template.ƒS.Character.hide(Template.characters.protagonist);
-        await Template.ƒS.update(0.5);
+        let optionsAtlasTutoringElement = await Template.ƒS.Menu.getInput(optionsAtlasTutoring, "dialogoptions");
+        Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+        switch (optionsAtlasTutoringElement) {
+            case optionsAtlasTutoring.good:
+                Template.showAtlasMeter();
+                await Template.ƒS.update(0.5);
+                Template.dataForSave.atlasScore += 7;
+                await Template.ƒS.update(0.5);
+                Template.hideAtlasMeter();
+                break;
+            case optionsAtlasTutoring.bad:
+                Template.showAtlasMeter();
+                await Template.ƒS.update(0.5);
+                Template.dataForSave.atlasScore -= 7;
+                await Template.ƒS.update(0.5);
+                Template.hideAtlasMeter();
+                break;
+        }
         await Template.ƒS.Character.show(Template.characters.girl, Template.characters.girl.pose.annoyed, Template.ƒS.positionPercent(75, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.girl, girlText.Girl.T0004);
@@ -896,6 +923,8 @@ var Template;
         await Template.ƒS.Character.show(Template.characters.girl, Template.characters.girl.pose.unsure, Template.ƒS.positionPercent(75, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.girl, girlText.Girl.T0005);
+        await Template.ƒS.Character.hide(Template.characters.girl);
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await Template.ƒS.Character.hide(Template.characters.girl);
         await Template.ƒS.update(0.5);
@@ -1457,7 +1486,7 @@ var Template;
         let narratorText = {
             Narrator: {
                 T0000: "Es ist Pause! Während des Unterrichts sind deine Gedanken immer wieder abgedriftet.",
-                T0001: "Du begibst dich in die Bibliothek.",
+                T0001: "Du betrittst die Bibliothek.",
                 T0002: "Du verlässt die Bibliothek."
             }
         };
@@ -1476,7 +1505,6 @@ var Template;
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
         await Template.ƒS.update(0.5);
-        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.update(0.5);
         Template.ƒS.Speech.clear();
@@ -1484,6 +1512,8 @@ var Template;
         await Template.ƒS.update(0.5);
         await Template.ƒS.Location.show(Template.locations.library);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+        await Template.ƒS.update(0.5);
         await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0004);
@@ -1569,6 +1599,13 @@ var Template;
             case true:
                 Template.updateNotes();
                 await Template.ƒS.Character.hide(Template.characters.protagonist);
+                await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0017);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Character.hide(Template.characters.protagonist);
                 await Template.ƒS.update(0.5);
                 Template.ƒS.Speech.clear();
                 Template.ƒS.Speech.hide();
@@ -1583,6 +1620,7 @@ var Template;
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0016);
                 await Template.ƒS.update(0.5);
                 await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+                await Template.ƒS.update(0.5);
                 await Template.ƒS.Character.hide(Template.characters.protagonist);
                 await Template.ƒS.update(0.5);
                 Template.ƒS.Speech.clear();
@@ -1615,26 +1653,97 @@ var Template;
             Lucia: {
                 T0001: "Oh, vielen Dank! Ich habe mich schlecht gefühlt, weil ich ihn verloren hatte.",
                 T0002: "Nun, w-was das angeht... Ich war mir nicht sicher, ob ich mich einmischen sollte, aber ich muss dir etwas sagen.",
-                T0003: "Ich habe dein Gespräch mit " + Template.dataForSave.nameGirl + "mitbekommen. Ich möchte dich warnen, ihr nicht blind zu vertrauen.",
+                T0003: "Ich habe vorhin dein Gespräch mit " + Template.dataForSave.nameGirl + " mitbekommen. Ich möchte dich warnen, ihr nicht blind zu vertrauen.",
                 T0004: "Darum ging es mir nicht. Es ist nur so... Jeder weiß, dass sie in Atlas verknallt ist. Wer weiß, ob sie ihn nur decken wollte?",
-                T0005: "Ich muss jetzt los. Ich hoffe, du findest den Täter... Bis bald!"
+                T0005: "Das war schon alles, was ich dir sagen wollte. Ich muss jetzt los... Bis bald!"
             }
         };
         let narratorText = {
             Narrator: {
-                T0000: "Du läufst durch den Flur auf der Suche nach Lucia und triffst sie schließlich vor der Treppe.",
+                T0000: "Du läufst auf der Suche nach Lucia durch den Flur und triffst sie schließlich an der Treppe.",
                 T0001: "Lucia läuft die Treppe hinauf."
             }
         };
         await Template.ƒS.Location.show(Template.locations.stairs);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        Template.showLuciaMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0001);
+        Template.hideLuciaMeter();
+        await Template.ƒS.Character.hide(Template.characters.lucia);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.unsure, Template.ƒS.positionPercent(75, 97));
+        Template.showLuciaMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0002);
+        let optionsLuciaInfo = {
+            good: "Nur zu, jede Information ist hilfreich.",
+            bad: "Meinetwegen, aber ganz aus dem Schneider bist du nicht..."
+        };
+        let optionsLuciaInfoElement = await Template.ƒS.Menu.getInput(optionsLuciaInfo, "dialogoptions");
+        Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+        switch (optionsLuciaInfoElement) {
+            case optionsLuciaInfo.good:
+                Template.dataForSave.luciaScore += 4;
+                break;
+            case optionsLuciaInfo.bad:
+                Template.dataForSave.luciaScore -= 4;
+                break;
+        }
+        await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0003);
+        Template.hideLuciaMeter();
+        await Template.ƒS.Character.hide(Template.characters.lucia);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.surprised, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0004);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.unsure, Template.ƒS.positionPercent(75, 97));
+        Template.showLuciaMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0004);
         Template.dataForSave.aboutAlibi = true;
         Template.updateNotes();
-        return "confrontSolasAfterKira";
+        Template.hideLuciaMeter();
+        await Template.ƒS.Character.hide(Template.characters.lucia);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0005);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.lucia, Template.characters.lucia.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        Template.showLuciaMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.lucia, luciaText.Lucia.T0005);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+        await Template.ƒS.update(0.5);
+        Template.hideLuciaMeter();
+        await Template.ƒS.Character.hide(Template.characters.lucia);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0006);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
         // close
         Template.ƒS.Speech.clear();
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(0.5);
+        return "confrontSolasAfterLucia";
     }
     Template.luciaGivesHint = luciaGivesHint;
 })(Template || (Template = {}));
@@ -2404,6 +2513,7 @@ var Template;
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
+        // let isFavorite = findFavorite();
         // drei fälle für die erklärung:
         // diary true und key true
         // diary false und key false
@@ -2444,18 +2554,23 @@ var Template;
         //         T0001: "Huh?"
         //     }
         // };
-        let atlasText = {
-            Atlas: {
-                T0001: "Überführt, ja? Wieso glaubst du, dass ich der Täter bin?",
-                T0002: "Schon gut, ich gebe es zu. Du hast mich in meinem eigenen Spiel besiegt.",
-                T0003: "Ich habe die Sabotage inszeniert, um dir ein wenig Zeit zu stehlen. Jede freie Minute steckt deine Nase in einem Buch. Ich wollte nicht, dass du mir den Titel des Jahrgangsbesten abnimmst.",
-                T0004: "Solas sagte etwas darüber, dass hinter der Sabotage etwas Tieferes steckt... und es stimmt. Ich glaube, ich hatte Angst. Wenn ich nicht der Beste sein kann... wer bin ich dann überhaupt?",
-                T0005: "Ich sehe jetzt ein, dass das dumm war."
-            }
-        };
+        // let atlasText = {
+        //     Atlas: {
+        //         T0001: "Überführt, ja? Wieso glaubst du, dass ich der Täter bin?",
+        //         T0002: "Schon gut, ich gebe es zu. Du hast mich in meinem eigenen Spiel besiegt.",
+        //         T0003: "Ich habe die Sabotage inszeniert, um dir ein wenig Zeit zu stehlen. Jede freie Minute steckt deine Nase in einem Buch. Ich wollte nicht, dass du mir den Titel des Jahrgangsbesten abnimmst.",
+        //         T0004: "Solas sagte etwas darüber, dass hinter der Sabotage etwas Tieferes steckt... und es stimmt. Ich glaube, ich hatte Angst. Wenn ich nicht der Beste sein kann... wer bin ich dann überhaupt?",
+        //         T0005: "Ich sehe jetzt ein, dass das dumm war."
+        //     }
+        // };
+        // let narratorTextAtlasFavorit = {
+        //     Narrator: {
+        //         T0000: "Atlas gibt also zu, der Täter zu sein. Die Entscheidung liegt nun bei dir..."
+        //     }
+        // };
         // let narratorText = {
         //     Narrator: {
-        //         T0000: ""
+        //         T0000: "Atlas gibt also zu, der Täter zu sein. Gute Arbeit!"
         //     }
         // };
         await Template.ƒS.Location.show(Template.locations.corridorDay);
@@ -2475,7 +2590,8 @@ var Template;
         Template.updateNotes();
         // let protagonistText = {
         //     Protagonist: {
-        //         T0001: "Ich habe dich hergerufen, um dich zu stellen. Ich weiß, dass du der Saboteur bist. Du bist überführt, Lucia."
+        //         T0001: "Ich habe dich hergerufen, um dich zu stellen. Ich weiß, dass du der Saboteur bist. Du bist überführt, Lucia.",
+        //         T0002: "Oh nein... Habe ich mich etwa geirrt?"
         //     }
         // };
         // let kiraText = {
@@ -2483,14 +2599,15 @@ var Template;
         //         T0001: "Huh?"
         //     }
         // };
-        // let luciaText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
+        let luciaText = {
+            Lucia: {
+                T0001: "Du glaubst, ich bin der Täter...?",
+                T0002: "Es tut mir leid, dich zu enttäuschen, aber ich bin es wirklich nicht. Ich liebe den Theaterclub von Herzen."
+            }
+        };
         // let narratorText = {
         //     Narrator: {
-        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
+        //         T0000: ""
         //     }
         // };
         await Template.ƒS.Location.show(Template.locations.corridorDay);
@@ -2550,7 +2667,7 @@ var Template;
         // };
         // let kiraText = {
         //     Protagonist: {
-        //         T0001: "Huh?"
+        //         T0001: "Schau dir alles, was du gesammelt hast, noch einmal genau an und suche nach Unstimmigkeiten.",
         //     }
         // };
         // let luciaText = {

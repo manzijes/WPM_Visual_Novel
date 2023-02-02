@@ -181,6 +181,7 @@ declare namespace Template {
     };
     function simulateCameraFlash(): Promise<void>;
     function showAquiredPages(): Promise<void>;
+    function findFavorite(): string;
     function updateNotes(): void;
     function removeFallingLeaves(): void;
     function addFallingLeaves(): void;

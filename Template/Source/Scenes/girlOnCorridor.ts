@@ -11,7 +11,7 @@ namespace Template {
                 T0002: "Warte, ich kenne dich. Du heißt doch... ",
                 T0003: "Wenn du es so ausdrücken willst, sicher.",
                 T0004_a: "Oh? Er hat dich gar nicht erwähnt.",
-                T0004_b: "Nachhilfe? Ich habe nicht erwartet, dass Atlas so ein guter Samariter ist.",
+                T0004_b: "Nachhilfe? Ich hätte nicht gedacht, dass Atlas so ein guter Samariter ist.",
                 T0005: "Was für ein höfliches Mädchen."
             }
         };
@@ -34,6 +34,13 @@ namespace Template {
                 // T0002: "Es ist Pause! Während des Unterrichts sind deine Gedanken immer wieder abgedriftet."
             }
         };
+
+        let optionsAtlasTutoring = {
+            good: "Oh? Er hat dich gar nicht erwähnt.",
+            bad: "Nachhilfe? Ich habe nicht erwartet, dass Atlas so ein guter Samariter ist."
+        }
+
+
         await ƒS.Location.show(locations.corridorDay);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
@@ -73,14 +80,27 @@ namespace Template {
         await ƒS.Character.show(characters.girl, characters.girl.pose.upset, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.girl, girlText.Girl.T0003);
-        await ƒS.Character.hide(characters.girl);
         await ƒS.update(0.5);
 
-        await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
-        await ƒS.update(0.5);
-        await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0004);
-        await ƒS.Character.hide(characters.protagonist);
-        await ƒS.update(0.5);
+        let optionsAtlasTutoringElement = await ƒS.Menu.getInput(optionsAtlasTutoring, "dialogoptions");
+        ƒS.Sound.play(sound.selectDialog, 1.5, false);
+
+        switch (optionsAtlasTutoringElement) {
+            case optionsAtlasTutoring.good:
+                showAtlasMeter();
+                await ƒS.update(0.5);
+                dataForSave.atlasScore += 7;
+                await ƒS.update(0.5);
+                hideAtlasMeter();
+                break;
+            case optionsAtlasTutoring.bad:
+                showAtlasMeter();
+                await ƒS.update(0.5);
+                dataForSave.atlasScore -= 7;
+                await ƒS.update(0.5);
+                hideAtlasMeter();
+                break;
+        }
 
         await ƒS.Character.show(characters.girl, characters.girl.pose.annoyed, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
@@ -90,6 +110,8 @@ namespace Template {
         await ƒS.Character.show(characters.girl, characters.girl.pose.unsure, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.girl, girlText.Girl.T0005);
+        await ƒS.Character.hide(characters.girl);
+        await ƒS.update(0.5);
 
         await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await ƒS.Character.hide(characters.girl);
@@ -106,7 +128,7 @@ namespace Template {
 
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.update(0.5);
-        
+
         // close
         ƒS.Speech.clear();
         ƒS.Speech.hide();

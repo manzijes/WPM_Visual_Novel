@@ -5,6 +5,8 @@ namespace Template {
         ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
         updateNotes();
 
+        // let isFavorite = findFavorite();
+
         // drei fälle für die erklärung:
         // diary true und key true
         // diary false und key false
@@ -51,19 +53,25 @@ namespace Template {
         //     }
         // };
 
-        let atlasText = {
-            Atlas: {
-                T0001: "Überführt, ja? Wieso glaubst du, dass ich der Täter bin?",
-                T0002: "Schon gut, ich gebe es zu. Du hast mich in meinem eigenen Spiel besiegt.",
-                T0003: "Ich habe die Sabotage inszeniert, um dir ein wenig Zeit zu stehlen. Jede freie Minute steckt deine Nase in einem Buch. Ich wollte nicht, dass du mir den Titel des Jahrgangsbesten abnimmst.",
-                T0004: "Solas sagte etwas darüber, dass hinter der Sabotage etwas Tieferes steckt... und es stimmt. Ich glaube, ich hatte Angst. Wenn ich nicht der Beste sein kann... wer bin ich dann überhaupt?",
-                T0005: "Ich sehe jetzt ein, dass das dumm war."
-            }
-        };
+        // let atlasText = {
+        //     Atlas: {
+        //         T0001: "Überführt, ja? Wieso glaubst du, dass ich der Täter bin?",
+        //         T0002: "Schon gut, ich gebe es zu. Du hast mich in meinem eigenen Spiel besiegt.",
+        //         T0003: "Ich habe die Sabotage inszeniert, um dir ein wenig Zeit zu stehlen. Jede freie Minute steckt deine Nase in einem Buch. Ich wollte nicht, dass du mir den Titel des Jahrgangsbesten abnimmst.",
+        //         T0004: "Solas sagte etwas darüber, dass hinter der Sabotage etwas Tieferes steckt... und es stimmt. Ich glaube, ich hatte Angst. Wenn ich nicht der Beste sein kann... wer bin ich dann überhaupt?",
+        //         T0005: "Ich sehe jetzt ein, dass das dumm war."
+        //     }
+        // };
+
+        // let narratorTextAtlasFavorit = {
+        //     Narrator: {
+        //         T0000: "Atlas gibt also zu, der Täter zu sein. Die Entscheidung liegt nun bei dir..."
+        //     }
+        // };
 
         // let narratorText = {
         //     Narrator: {
-        //         T0000: ""
+        //         T0000: "Atlas gibt also zu, der Täter zu sein. Gute Arbeit!"
         //     }
         // };
 
