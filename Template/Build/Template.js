@@ -90,6 +90,13 @@ var Template;
             foreground: ""
         },
     };
+    Template.items = {
+        key: {
+            name: "key",
+            description: "Lucias Schlüssel",
+            image: "Images/Items/key.png"
+        }
+    };
     Template.characters = {
         narrator: {
             name: "Narrator"
@@ -356,7 +363,7 @@ var Template;
             }
         }
         if (Template.dataForSave.aboutAlibi == true) {
-            let aboutAlibi = document.getElementById("whatAboutKey");
+            let aboutAlibi = document.getElementById("aboutAlibi");
             aboutAlibi.innerHTML = "Die Glaubwürdigkeit des Mädchens ist zweifelhaft, da sie in Atlas verliebt ist.";
         }
         if (Template.dataForSave.solasHandwriting == true) {
@@ -1560,9 +1567,11 @@ var Template;
         switch (Template.dataForSave.foundKey) {
             case true:
                 Template.updateNotes();
+                await Template.ƒS.Character.hide(Template.characters.protagonist);
+                await Template.ƒS.update(0.5);
                 Template.ƒS.Speech.clear();
                 Template.ƒS.Speech.hide();
-                await Template.ƒS.update();
+                await Template.ƒS.update(0.5);
                 return "luciaGivesHint";
                 break;
             case false:

@@ -94,6 +94,14 @@ namespace Template {
     },
   }
 
+  export let items = {
+    key: {
+      name: "key",
+      description: "Lucias Schlüssel",
+      image: "Images/Items/key.png"
+    }
+  }
+
   export let characters = {
     narrator: {
       name: "Narrator"
@@ -361,7 +369,7 @@ namespace Template {
       }
     }
     if(dataForSave.aboutAlibi == true){
-      let aboutAlibi = document.getElementById("whatAboutKey");
+      let aboutAlibi = document.getElementById("aboutAlibi");
       aboutAlibi.innerHTML = "Die Glaubwürdigkeit des Mädchens ist zweifelhaft, da sie in Atlas verliebt ist."
     }
     if(dataForSave.solasHandwriting == true){

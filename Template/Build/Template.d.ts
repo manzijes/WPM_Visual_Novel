@@ -84,6 +84,13 @@ declare namespace Template {
             foreground: string;
         };
     };
+    let items: {
+        key: {
+            name: string;
+            description: string;
+            image: string;
+        };
+    };
     let characters: {
         narrator: {
             name: string;

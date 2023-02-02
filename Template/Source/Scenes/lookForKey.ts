@@ -157,10 +157,11 @@ namespace Template {
         switch (dataForSave.foundKey){
             case true:
                 updateNotes();
-
+                await ƒS.Character.hide(characters.protagonist);
+                await ƒS.update(0.5);
                 ƒS.Speech.clear();
                 ƒS.Speech.hide();
-                await ƒS.update();
+                await ƒS.update(0.5);
 
                 return "luciaGivesHint";
                 break;
