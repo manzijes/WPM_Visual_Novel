@@ -55,6 +55,11 @@ var Template;
             background: "Images/Backgrounds/corridor-day.jpg",
             foreground: ""
         },
+        corridorDay2: {
+            name: "corridorDay2",
+            background: "Images/Backgrounds/corridor-day-2.png",
+            foreground: ""
+        },
         classroomDay: {
             name: "classroomDay",
             background: "Images/Backgrounds/classroom-day.jpg",
@@ -514,10 +519,10 @@ var Template;
             // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
             // { scene: coverChapterTwo, name: "Kapitel" },
             // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
-            { scene: Template.lookForKey, name: "Suche nach Lucias Schlüssel" },
+            // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
             { id: "kiraGivesHint", scene: Template.kiraGivesHint, name: "Kira gibt einen Hinweis" },
             { id: "luciaGivesHint", scene: Template.luciaGivesHint, name: "Lucia gibt einen Hinweis" },
-            { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+            { id: "confrontSolasAfterKira", scene: Template.confrontSolasAfterKira, name: "Konfrontation mit Solas" },
             { id: "confrontSolasAfterLucia", scene: Template.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
             { scene: Template.yourConclusion, name: "Du sagst Kira, wen du für den Täter hältst." },
             { id: "roofAtlas", scene: Template.roofAtlas, name: "Verdächtige Atlas" },
@@ -735,22 +740,22 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    async function confrontSolasAfterLucia() {
+    async function confrontSolasAfterKira() {
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
         let protagonistText = {
             Protagonist: {
                 T0001: "Hallo, Solas. Ich muss noch einmal mit dir sprechen.",
-                T0002: "Der Täter hat uns eine Warnung zukommen lassen. Die Handschrift darauf sieht aus wie deine.",
-                T0003_good: "Hellseherisches Talent",
+                T0002: "Ich sage es geradeheraus: Der Täter hat uns eine Warnung zukommen lassen. Die Handschrift darauf sieht aus wie deine.",
+                T0003_good: "Hellseherisches Talent.",
                 T0003_bad: "Ich nicht, aber Kira.",
                 T0003_2_good: "Das stimmt wohl.",
                 T0003_2_bad: "Das befürchte ich auch.",
                 T0004: "Du wirkst sehr gefasst... Wenn du unschuldig wärst, würdest du nicht so ruhig reagieren.",
                 T0005_bad: "Wie poetisch.",
                 T0005_good: "Ich glaube, ich habe gerade einen Blick erhascht.",
-                T0006: "Die Uhr tickt... Ich muss mit Kira sprechen."
+                T0006: "Bis bald."
             }
         };
         let solasText = {
@@ -759,28 +764,139 @@ var Template;
                 T0002: "Ist das so? Woher kennst du meine Handschrift?",
                 T0003_a: "Wenn du wirklich eine Hellseherin wärst, müsstest du nicht Detektiv spielen, oder?",
                 T0003_b: "Kira also... Vielleicht kennt sie mich nicht so gut, wie sie glaubt.",
-                T0004: "Es gibt nur zwei Möglichkeiten.",
-                T0005: "1. Jemand der anderen beiden hat meine Handschrift imitiert, um mir die Sache anzuhängen. Doch wer käme dafür infrage? Oder...",
-                T0006: "2. Ich versuche gerade, dich zu manipulieren. Ein letzter Verzweiflungsakt, nachdem du mich überführt hast.",
-                T0007: "Niccoló Machiavelli hat einmal gesagt: 'Jeder sieht wie du zu sein scheinst, wenige fühlen heraus wie du bist.'",
-                T0008: "Wir können einander nicht ins Herz schauen. Darin liegt die eigentliche Tragödie.",
+                T0004: "Ich verstehe, dass mich das mit der Handschrift belastet. So wie ich das sehe, gibt es nur zwei Möglichkeiten.",
+                T0005: "Möglichkeit 1: Jemand der anderen beiden hat meine Handschrift imitiert, um mir die Sache anzuhängen. Doch wer käme dafür infrage?",
+                T0006: "Möglichkeit 2: Ich versuche gerade, dich zu manipulieren. Ein letzter Verzweiflungsakt, nachdem du mich überführt hast.",
+                T0007: "Niccoló Machiavelli hat einmal gesagt: 'Jeder sieht wie du zu sein scheinst, wenige fühlen heraus wie du bist.' Ich glaube, er meinte damit... Wir können einander nicht ins Herz schauen. Darin liegt die eigentliche Tragödie.",
                 T0009: "Ich muss jetzt weiter. Bis bald."
             }
         };
         let narratorText = {
             Narrator: {
-                T0000: "Du begibst dich auf die Suche nach Solas. Du findest ihn schließlich draußen auf dem Schulhof."
+                T0000: "Du findest Solas in einem abgelegenen Korridor."
             }
         };
-        await Template.ƒS.Location.show(Template.locations.schoolOutsideTwilight);
+        await Template.ƒS.Location.show(Template.locations.corridorDay2);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        Template.showSolasMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0001);
+        Template.hideSolasMeter();
+        await Template.ƒS.Character.hide(Template.characters.solas);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        Template.showSolasMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0002);
+        let optionsSolasHandwriting = {
+            good: "Hellseherisches Talent.",
+            bad: "Ich nicht, aber Kira."
+        };
+        let optionsSolasHandwritingElement = await Template.ƒS.Menu.getInput(optionsSolasHandwriting, "dialogoptions");
+        Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+        switch (optionsSolasHandwritingElement) {
+            case optionsSolasHandwriting.good:
+                await Template.ƒS.Character.hide(Template.characters.solas);
+                await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.thoughtful, Template.ƒS.positionPercent(75, 97));
+                Template.dataForSave.solasScore += 9;
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0003_a);
+                Template.hideSolasMeter();
+                await Template.ƒS.Character.hide(Template.characters.solas);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_2_good);
+                await Template.ƒS.Character.hide(Template.characters.protagonist);
+                await Template.ƒS.update(0.5);
+                break;
+            case optionsSolasHandwriting.bad:
+                await Template.ƒS.Character.hide(Template.characters.solas);
+                await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.unhappy, Template.ƒS.positionPercent(75, 97));
+                Template.dataForSave.solasScore -= 9;
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0003_b);
+                Template.hideSolasMeter();
+                await Template.ƒS.Character.hide(Template.characters.solas);
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+                await Template.ƒS.update(0.5);
+                await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003_2_bad);
+                await Template.ƒS.Character.hide(Template.characters.protagonist);
+                await Template.ƒS.update(0.5);
+                break;
+        }
+        await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        Template.showSolasMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0004);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0005);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0006);
+        Template.hideSolasMeter();
+        await Template.ƒS.Character.hide(Template.characters.solas);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0004);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.neutral, Template.ƒS.positionPercent(75, 97));
+        Template.showSolasMeter();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0007);
+        let optionsSolasHeart = {
+            bad: "Wie poetisch.",
+            good: "Ich glaube, ich habe gerade einen Blick erhascht."
+        };
+        let optionsSolasHeartElement = await Template.ƒS.Menu.getInput(optionsSolasHeart, "dialogoptions");
+        Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+        switch (optionsSolasHeartElement) {
+            case optionsSolasHeart.good:
+                await Template.ƒS.Character.hide(Template.characters.solas);
+                await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.happy, Template.ƒS.positionPercent(75, 97));
+                Template.dataForSave.solasScore += 5;
+                await Template.ƒS.update(0.5);
+                break;
+            case optionsSolasHeart.bad:
+                await Template.ƒS.Character.hide(Template.characters.solas);
+                await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.sad, Template.ƒS.positionPercent(75, 97));
+                Template.dataForSave.solasScore -= 5;
+                await Template.ƒS.update(0.5);
+                break;
+        }
+        await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0009);
+        Template.hideSolasMeter();
+        await Template.ƒS.Character.hide(Template.characters.solas);
+        await Template.ƒS.update(0.5);
+        Template.dataForSave.confrontedSolas = true;
+        Template.updateNotes();
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.neutral, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0006);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.update(0.5);
         // close
         Template.ƒS.Speech.clear();
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(0.5);
         return "yourConclusion";
     }
-    Template.confrontSolasAfterLucia = confrontSolasAfterLucia;
+    Template.confrontSolasAfterKira = confrontSolasAfterKira;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -796,7 +912,8 @@ var Template;
                 T0003_good: "Sag mir, was du denkst.",
                 T0004: "Wie meinst du das?",
                 T0005_bad: "Ich werde nicht schlau aus dir.",
-                T0005_good: "Ich glaube, ich verstehe."
+                T0005_good: "Ich glaube, ich verstehe.",
+                T0006: "Bis bald."
             }
         };
         let solasText = {
@@ -806,7 +923,8 @@ var Template;
                 T0003: "Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört...",
                 T0004: "Aber auch der Saboteur hat meine Anteilnahme. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
                 T0005: "Du verdächtigst uns alle aus verschiedenen Gründen, aber hinter jedem Motiv, das du uns zugeschrieben hast, steht der Ehrgeiz.",
-                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes."
+                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes.",
+                T0007: "Ich muss jetzt weiter. Bis bald."
             }
         };
         let narratorText = {
@@ -1247,7 +1365,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.update(0.5);
-        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.sad, Template.ƒS.positionPercent(75, 97));
+        await Template.ƒS.Character.show(Template.characters.kira, Template.characters.kira.pose.unsure, Template.ƒS.positionPercent(75, 97));
         await Template.ƒS.update(0.5);
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0004);
         await Template.ƒS.Character.hide(Template.characters.kira);
@@ -1264,10 +1382,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.kira, kiraText.Kira.T0005);
         await Template.ƒS.Character.hide(Template.characters.kira);
         await Template.ƒS.update(0.5);
-        // close
-        Template.ƒS.Speech.clear();
-        Template.ƒS.Speech.hide();
-        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         return "confrontSolasAfterKira";
     }
     Template.kiraGivesHint = kiraGivesHint;
@@ -1702,7 +1817,7 @@ var Template;
         let narratorText = {
             Narrator: {
                 T0000: "Du läufst auf der Suche nach Lucia durch den Flur und triffst sie schließlich an der Treppe.",
-                T0001: "Lucia läuft die Treppe hinauf."
+                T0001: "Lucia läuft die Treppe hinauf. Du begibst dich auf die Suche nach Solas, um ihn zu konfrontieren."
             }
         };
         await Template.ƒS.Location.show(Template.locations.stairs);
@@ -1780,10 +1895,7 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0006);
         await Template.ƒS.Character.hide(Template.characters.protagonist);
         await Template.ƒS.update(0.5);
-        // close
-        Template.ƒS.Speech.clear();
-        Template.ƒS.Speech.hide();
-        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
         return "confrontSolasAfterLucia";
     }
     Template.luciaGivesHint = luciaGivesHint;
@@ -2570,7 +2682,7 @@ var Template;
         // let conclusionNoDiaryNoKey = {
         //     Protagonist: {
         //         T0001: "Der Täter hatte uns eine Warnung zukommen lassen. Es sah erst so aus, als gehöre die Handschrift zu Solas...",
-        //         T0002: "Solas wiederum brachte mich auf die Idee, dass jemand seine Handschrift imitiert haben könnte. Deswegen sah ich mir die Warnung noch einmal an...",
+        //         T0002: "Doch Solas brachte mich auf die Idee, dass jemand seine Handschrift imitiert haben könnte. Deswegen sah ich mir die Warnung noch einmal an...",
         //         T0003: "Dabei fiel mir auf, dass einige Buchstaben aus der Reihe tanzten. So war mir klar, dass jemand Solas die Sache anhängen wollte.",
         //         T0004: "Aber wer könnte so meisterhaft eine andere Handschrift fälschen? Du, natürlich. Seit Jahren bist du Mitglied in der Kalligraphie AG. Lucia, der Nerd, hat dagegen wahrscheinlich noch nie einen Stift benutzt."
         //     }
@@ -2579,7 +2691,7 @@ var Template;
         //     Protagonist: {
         //         T0001: "Lucia erwies sich als vertrauenswürdig. Sie gab mir den Tipp, dass dein Alibi zum Himmel stinkt.",
         //         T0002: "Außerdem hatte der Täter uns eine Warnung zukommen lassen. Dabei fiel mir auf, dass einige Buchstaben aus der Reihe tanzten...",
-        //         T0003: "Jemand hatte also versucht, die Schrift eines anderen zu imitieren. Doch wer hätte die Fähigkeit dazu? Du, natürlich. Seit Jahren bist du Mitglied in der Kalligraphie AG"
+        //         T0003: "Jemand hatte also versucht, die Schrift eines anderen zu imitieren. Doch wer hätte die Fähigkeiten dazu? Du, natürlich. Seit Jahren bist du Mitglied in der Kalligraphie AG.",
         //         T0004: "Und zu guter Letzt... Ich bin ich ein guter Menschenkenner. Solas wirkte aufrichtig, als er sein Mitgefühl mit der Kostümschneiderin äußerte."
         //     }
         // };
@@ -2640,12 +2752,12 @@ var Template;
         //         T0001: "Huh?"
         //     }
         // };
-        let luciaText = {
-            Lucia: {
-                T0001: "Du glaubst, ich bin der Täter...?",
-                T0002: "Es tut mir leid, dich zu enttäuschen, aber ich bin es wirklich nicht. Ich liebe den Theaterclub von Herzen."
-            }
-        };
+        // let luciaText = {
+        //     Lucia: {
+        //         T0001: "Du glaubst, ich bin der Täter...?",
+        //         T0002: "Es tut mir leid, dich zu enttäuschen, aber ich bin es wirklich nicht. Ich liebe den Theaterclub von Herzen."
+        //     }
+        // };
         // let narratorText = {
         //     Narrator: {
         //         T0000: ""
@@ -2703,17 +2815,8 @@ var Template;
         Template.updateNotes();
         // let protagonistText = {
         //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
-        // let kiraText = {
-        //     Protagonist: {
-        //         T0001: "Schau dir alles, was du gesammelt hast, noch einmal genau an und suche nach Unstimmigkeiten.",
-        //     }
-        // };
-        // let luciaText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
+        //         T0001: "Die Uhr tickt... Ich muss eine Entscheidung treffen.",
+        //         T0002: "Am besten, ich schaue mir alle Indizien noch einmal genau an. Besonders die Notiz des Täters ist ein interessantes Beweisstück..."
         //     }
         // };
         // let narratorText = {

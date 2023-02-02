@@ -57,6 +57,11 @@ namespace Template {
       background: "Images/Backgrounds/corridor-day.jpg",
       foreground: ""
     },
+    corridorDay2: {
+      name: "corridorDay2",
+      background: "Images/Backgrounds/corridor-day-2.png",
+      foreground: ""
+    },
     classroomDay: {
       name: "classroomDay",
       background: "Images/Backgrounds/classroom-day.jpg",
@@ -527,7 +532,7 @@ namespace Template {
       // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
       // { scene: coverChapterTwo, name: "Kapitel" },
       // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
-      { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
+      // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
 
       { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
       { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },

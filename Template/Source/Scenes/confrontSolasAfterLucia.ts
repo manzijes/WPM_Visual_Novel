@@ -13,7 +13,8 @@ namespace Template {
                 T0003_good: "Sag mir, was du denkst.",
                 T0004: "Wie meinst du das?",
                 T0005_bad: "Ich werde nicht schlau aus dir.",
-                T0005_good: "Ich glaube, ich verstehe."
+                T0005_good: "Ich glaube, ich verstehe.",
+                T0006: "Bis bald."
             }
         };
 
@@ -24,7 +25,8 @@ namespace Template {
                 T0003: "Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört...",
                 T0004: "Aber auch der Saboteur hat meine Anteilnahme. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
                 T0005: "Du verdächtigst uns alle aus verschiedenen Gründen, aber hinter jedem Motiv, das du uns zugeschrieben hast, steht der Ehrgeiz.",
-                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes."
+                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes.",
+                T0007: "Ich muss jetzt weiter. Bis bald."
             }
         };
 

@@ -61,7 +61,7 @@ namespace Template {
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.update(0.5);
 
-        await ƒS.Character.show(characters.kira, characters.kira.pose.sad, ƒS.positionPercent(75, 97));
+        await ƒS.Character.show(characters.kira, characters.kira.pose.unsure, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0004);
         await ƒS.Character.hide(characters.kira);
@@ -82,10 +82,7 @@ namespace Template {
         await ƒS.Character.hide(characters.kira);
         await ƒS.update(0.5);
         
-        // close
-        ƒS.Speech.clear();
-        ƒS.Speech.hide();
-        await ƒS.update(0.5);
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
         return "confrontSolasAfterKira";
 

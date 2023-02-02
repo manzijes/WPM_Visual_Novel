@@ -18,12 +18,12 @@ namespace Template {
         //     }
         // };
 
-        let luciaText = {
-            Lucia: {
-                T0001: "Du glaubst, ich bin der Täter...?",
-                T0002: "Es tut mir leid, dich zu enttäuschen, aber ich bin es wirklich nicht. Ich liebe den Theaterclub von Herzen."
-            }
-        };
+        // let luciaText = {
+        //     Lucia: {
+        //         T0001: "Du glaubst, ich bin der Täter...?",
+        //         T0002: "Es tut mir leid, dich zu enttäuschen, aber ich bin es wirklich nicht. Ich liebe den Theaterclub von Herzen."
+        //     }
+        // };
 
         // let narratorText = {
         //     Narrator: {

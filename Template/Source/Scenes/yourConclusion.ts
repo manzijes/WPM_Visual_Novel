@@ -7,21 +7,11 @@ namespace Template {
 
         // let protagonistText = {
         //     Protagonist: {
-        //         T0001: "Huh?"
+        //         T0001: "Die Uhr tickt... Ich muss eine Entscheidung treffen.",
+        //         T0002: "Am besten, ich schaue mir alle Indizien noch einmal genau an. Besonders die Notiz des Täters ist ein interessantes Beweisstück..."
         //     }
         // };
 
-        // let kiraText = {
-        //     Protagonist: {
-        //         T0001: "Schau dir alles, was du gesammelt hast, noch einmal genau an und suche nach Unstimmigkeiten.",
-        //     }
-        // };
-
-        // let luciaText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
 
         // let narratorText = {
         //     Narrator: {

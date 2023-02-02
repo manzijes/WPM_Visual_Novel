@@ -24,7 +24,7 @@ namespace Template {
         // let conclusionNoDiaryNoKey = {
         //     Protagonist: {
         //         T0001: "Der Täter hatte uns eine Warnung zukommen lassen. Es sah erst so aus, als gehöre die Handschrift zu Solas...",
-        //         T0002: "Solas wiederum brachte mich auf die Idee, dass jemand seine Handschrift imitiert haben könnte. Deswegen sah ich mir die Warnung noch einmal an...",
+        //         T0002: "Doch Solas brachte mich auf die Idee, dass jemand seine Handschrift imitiert haben könnte. Deswegen sah ich mir die Warnung noch einmal an...",
         //         T0003: "Dabei fiel mir auf, dass einige Buchstaben aus der Reihe tanzten. So war mir klar, dass jemand Solas die Sache anhängen wollte.",
         //         T0004: "Aber wer könnte so meisterhaft eine andere Handschrift fälschen? Du, natürlich. Seit Jahren bist du Mitglied in der Kalligraphie AG. Lucia, der Nerd, hat dagegen wahrscheinlich noch nie einen Stift benutzt."
         //     }
@@ -34,7 +34,7 @@ namespace Template {
         //     Protagonist: {
         //         T0001: "Lucia erwies sich als vertrauenswürdig. Sie gab mir den Tipp, dass dein Alibi zum Himmel stinkt.",
         //         T0002: "Außerdem hatte der Täter uns eine Warnung zukommen lassen. Dabei fiel mir auf, dass einige Buchstaben aus der Reihe tanzten...",
-        //         T0003: "Jemand hatte also versucht, die Schrift eines anderen zu imitieren. Doch wer hätte die Fähigkeit dazu? Du, natürlich. Seit Jahren bist du Mitglied in der Kalligraphie AG"
+        //         T0003: "Jemand hatte also versucht, die Schrift eines anderen zu imitieren. Doch wer hätte die Fähigkeiten dazu? Du, natürlich. Seit Jahren bist du Mitglied in der Kalligraphie AG.",
         //         T0004: "Und zu guter Letzt... Ich bin ich ein guter Menschenkenner. Solas wirkte aufrichtig, als er sein Mitgefühl mit der Kostümschneiderin äußerte."
         //     }
         // };

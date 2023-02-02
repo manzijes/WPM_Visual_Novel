@@ -49,6 +49,11 @@ declare namespace Template {
             background: string;
             foreground: string;
         };
+        corridorDay2: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
         classroomDay: {
             name: string;
             background: string;
@@ -249,8 +254,10 @@ declare namespace Template {
     function beta(): ƒS.SceneReturn;
 }
 declare namespace Template {
+    function confrontSolasAfterKira(): ƒS.SceneReturn;
 }
 declare namespace Template {
+    function confrontSolasAfterLucia(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function coverChapterOne(): ƒS.SceneReturn;
