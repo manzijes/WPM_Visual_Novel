@@ -199,7 +199,7 @@ declare namespace Template {
         solasPortrait: boolean;
         solasMotive: boolean;
         solasHandwriting: boolean;
-        solasPlea: boolean;
+        confrontedSolas: boolean;
         atlasPortrait: boolean;
         atlasMotive: boolean;
         atlasOpportunity: boolean;

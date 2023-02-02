@@ -381,6 +381,16 @@ var Template;
             let solasHandwriting = document.getElementById("solasHandwriting");
             solasHandwriting.innerHTML = "Die Schrift auf der Notiz des Täters sieht aus wie Solas Schrift.";
         }
+        if (Template.dataForSave.confrontedSolas == true) {
+            if (Template.dataForSave.solasHandwriting == true) {
+                let solasPlea = document.getElementById("solasPlea");
+                solasPlea.innerHTML = "Solas argumentiert, dass jemand seine Handschrift gefälscht haben könnte. Wer käme dafür infrage? Oder lockt er dich auf eine falsche Fährte?";
+            }
+            else {
+                let solasPlea = document.getElementById("solasPlea");
+                solasPlea.innerHTML = "Solas zeigt Mitleid mit der Kostümschneiderin, aber auch mit dem Täter.";
+            }
+        }
     }
     Template.updateNotes = updateNotes;
     function removeFallingLeaves() {
@@ -474,7 +484,7 @@ var Template;
         solasPortrait: false,
         solasMotive: false,
         solasHandwriting: false,
-        solasPlea: false,
+        confrontedSolas: false,
         atlasPortrait: false,
         atlasMotive: false,
         atlasOpportunity: false,
@@ -759,21 +769,32 @@ var Template;
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
-        // let protagonistText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
-        // let solasText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
-        // let narratorText = {
-        //     Narrator: {
-        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
-        //     }
-        // };
+        let protagonistText = {
+            Protagonist: {
+                T0001: "Hallo, Solas. Ich muss noch einmal mit dir sprechen.",
+                T0002: "Ich habe inzwischen einige Hinweise gesammelt. Du bleibst mir aber nach wie vor ein Rätsel.",
+                T0003_a: "Und dein Ergebnis?",
+                T0003_b: "Sag mir, was du denkst.",
+                T0004: "Wie meinst du das?",
+                T0005_a: "Ich werde nicht schlau aus dir.",
+                T0005_b: "Ich glaube, ich verstehe."
+            }
+        };
+        let solasText = {
+            Solas: {
+                T0001: "Sicher doch, was gibt es?",
+                T0002: "Ist das so, ja? Ich habe selbst den ganzen Tag über die Sache nachgedacht.",
+                T0003: "Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört...",
+                T0004: "Aber auch der Saboteur hat meine Anteilnahme. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
+                T0005: "Du verdächtigst uns alle aus verschiedenen Gründen, aber hinter jedem potenziellen Motiv, das du uns zugeschrieben hast, steht der Ehrgeiz.",
+                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes..."
+            }
+        };
+        let narratorText = {
+            Narrator: {
+                T0000: "Du begibst dich auf die Suche nach Solas. Du findest ihn schließlich draußen auf dem Schulhof."
+            }
+        };
         await Template.ƒS.Location.show(Template.locations.corridorDay);
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
         // close

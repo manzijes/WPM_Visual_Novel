@@ -5,23 +5,34 @@ namespace Template {
         ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
         updateNotes();
 
-        // let protagonistText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
+        let protagonistText = {
+            Protagonist: {
+                T0001: "Hallo, Solas. Ich muss noch einmal mit dir sprechen.",
+                T0002: "Ich habe inzwischen einige Hinweise gesammelt. Du bleibst mir aber nach wie vor ein Rätsel.",
+                T0003_a: "Und dein Ergebnis?",
+                T0003_b: "Sag mir, was du denkst.",
+                T0004: "Wie meinst du das?",
+                T0005_a: "Ich werde nicht schlau aus dir.",
+                T0005_b: "Ich glaube, ich verstehe."
+            }
+        };
 
-        // let solasText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
+        let solasText = {
+            Solas: {
+                T0001: "Sicher doch, was gibt es?",
+                T0002: "Ist das so, ja? Ich habe selbst den ganzen Tag über die Sache nachgedacht.",
+                T0003: "Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört...",
+                T0004: "Aber auch der Saboteur hat meine Anteilnahme. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
+                T0005: "Du verdächtigst uns alle aus verschiedenen Gründen, aber hinter jedem potenziellen Motiv, das du uns zugeschrieben hast, steht der Ehrgeiz.",
+                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes..."
+            }
+        };
 
-        // let narratorText = {
-        //     Narrator: {
-        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
-        //     }
-        // };
+        let narratorText = {
+            Narrator: {
+                T0000: "Du begibst dich auf die Suche nach Solas. Du findest ihn schließlich draußen auf dem Schulhof."
+            }
+        };
 
         await ƒS.Location.show(locations.corridorDay);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);

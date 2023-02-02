@@ -318,7 +318,7 @@ namespace Template {
     if(dataForSave.solasScore < dataForSave.luciaScore){
       favorite = "Lucia";
     }
-    
+
     return favorite;
   }
 
@@ -388,6 +388,15 @@ namespace Template {
     if(dataForSave.solasHandwriting == true){
       let solasHandwriting = document.getElementById("solasHandwriting");
       solasHandwriting.innerHTML = "Die Schrift auf der Notiz des Täters sieht aus wie Solas Schrift."
+    }
+    if(dataForSave.confrontedSolas == true){
+      if(dataForSave.solasHandwriting == true){
+        let solasPlea = document.getElementById("solasPlea");
+        solasPlea.innerHTML = "Solas argumentiert, dass jemand seine Handschrift gefälscht haben könnte. Wer käme dafür infrage? Oder lockt er dich auf eine falsche Fährte?"
+      } else{
+        let solasPlea = document.getElementById("solasPlea");
+        solasPlea.innerHTML = "Solas zeigt Mitleid mit der Kostümschneiderin, aber auch mit dem Täter."
+      }
     }
   }
 
@@ -481,7 +490,8 @@ namespace Template {
     solasPortrait: false,
     solasMotive: false,
     solasHandwriting: false,
-    solasPlea: false,
+
+    confrontedSolas: false,
 
     atlasPortrait: false,
     atlasMotive: false,
