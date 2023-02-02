@@ -23,7 +23,7 @@ namespace Template {
                 T0002: "Ist das so, ja? Ich habe selbst den ganzen Tag über die Sache nachgedacht.",
                 T0003: "Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört...",
                 T0004: "Aber auch der Saboteur hat meine Anteilnahme. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
-                T0005: "Du verdächtigst uns alle aus verschiedenen Gründen, aber hinter jedem potenziellen Motiv, das du uns zugeschrieben hast, steht der Ehrgeiz.",
+                T0005: "Du verdächtigst uns alle aus verschiedenen Gründen, aber hinter jedem Motiv, das du uns zugeschrieben hast, steht der Ehrgeiz.",
                 T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes."
             }
         };
@@ -34,7 +34,7 @@ namespace Template {
             }
         };
 
-        await ƒS.Location.show(locations.corridorDay);
+        await ƒS.Location.show(locations.schoolOutsideTwilight);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
 
@@ -43,6 +43,8 @@ namespace Template {
         ƒS.Speech.clear();
         ƒS.Speech.hide();
         await ƒS.update(0.5);
+
+        return "yourConclusion";
 
     }
 }

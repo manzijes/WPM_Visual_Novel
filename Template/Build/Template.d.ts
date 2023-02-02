@@ -249,10 +249,8 @@ declare namespace Template {
     function beta(): ƒS.SceneReturn;
 }
 declare namespace Template {
-    function confrontSolasAfterKira(): ƒS.SceneReturn;
 }
 declare namespace Template {
-    function confrontSolasAfterLucia(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function coverChapterOne(): ƒS.SceneReturn;
