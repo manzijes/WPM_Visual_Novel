@@ -2849,7 +2849,7 @@ var Template;
         // };
         // let narratorText = {
         //     Narrator: {
-        //         T0000: "Atlas gibt also zu, der Täter zu sein. Gute Arbeit!"
+        //         T0000: "Atlas gibt also zu, der Täter zu sein... Gute Arbeit!"
         //     }
         // };
         await Template.ƒS.Location.show(Template.locations.corridorDay);
@@ -2956,7 +2956,6 @@ var Template;
                     await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
                     Template.dataForSave.choseAtlas = true;
                     loopCount++;
-                    return "roofRight";
                     break;
                 case optionsCulprit.solas:
                     await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0005);
@@ -2964,7 +2963,6 @@ var Template;
                     await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0003);
                     Template.dataForSave.choseSolas = true;
                     loopCount++;
-                    return "roofWrong";
                     break;
                 case optionsCulprit.lucia:
                     await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0006);
@@ -2972,7 +2970,6 @@ var Template;
                     await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0004);
                     Template.dataForSave.choseLucia = true;
                     loopCount++;
-                    return "roofWrong";
                     break;
                 case optionsCulprit.kira:
                     await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0007);
@@ -2987,6 +2984,12 @@ var Template;
         Template.removeFallingLeaves();
         Template.ƒS.Sound.fade(Template.sound.birds, 0, 3, true);
         await Template.ƒS.update(0.5);
+        if (Template.dataForSave.choseAtlas == true) {
+            return "roofRight";
+        }
+        else {
+            return "roofWrong";
+        }
     }
     Template.yourConclusion = yourConclusion;
 })(Template || (Template = {}));

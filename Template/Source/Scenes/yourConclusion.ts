@@ -71,7 +71,6 @@ namespace Template {
                     await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
                     dataForSave.choseAtlas = true;
                     loopCount++;
-                    return "roofRight";
                     break;
                 case optionsCulprit.solas:
                     await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0005);
@@ -79,7 +78,6 @@ namespace Template {
                     await ƒS.Speech.tell(null, narratorText.Narrator.T0003);
                     dataForSave.choseSolas = true;
                     loopCount++;
-                    return "roofWrong";
                     break;
                 case optionsCulprit.lucia:
                     await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0006);
@@ -87,7 +85,6 @@ namespace Template {
                     await ƒS.Speech.tell(null, narratorText.Narrator.T0004);
                     dataForSave.choseLucia = true;
                     loopCount++;
-                    return "roofWrong";
                     break;
                 case optionsCulprit.kira:
                     await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0007);
@@ -97,7 +94,7 @@ namespace Template {
             }
         }
 
-
+        
         await ƒS.Character.hide(characters.protagonist);
         ƒS.Speech.clear();
         await ƒS.update(0.5);
@@ -105,6 +102,12 @@ namespace Template {
         removeFallingLeaves();
         ƒS.Sound.fade(sound.birds, 0, 3, true);
         await ƒS.update(0.5);
+
+        if(dataForSave.choseAtlas == true){
+            return "roofRight";
+        } else {
+            return "roofWrong";
+        }
 
     }
 }

@@ -71,7 +71,7 @@ namespace Template {
 
         // let narratorText = {
         //     Narrator: {
-        //         T0000: "Atlas gibt also zu, der Täter zu sein. Gute Arbeit!"
+        //         T0000: "Atlas gibt also zu, der Täter zu sein... Gute Arbeit!"
         //     }
         // };
 
