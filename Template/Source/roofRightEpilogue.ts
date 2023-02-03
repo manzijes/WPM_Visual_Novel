@@ -1,7 +1,7 @@
 namespace BehindTheScenes {
     export async function roofRightEpilogue(): ƒS.SceneReturn {
 
-        let isFavorite = "Atlas";
+        let isFavorite = "Lucia";
 
         let protagonistText = {
             Protagonist: {
@@ -53,8 +53,9 @@ namespace BehindTheScenes {
         };
         let favText = {
             isFavorite: {
+                T0000: "Ja, ich bins.",
                 T0001: "Heute Abend findet die Premiere statt und alle sind schon ganz aufgeregt. Das haben wir nur dir zu verdanken.",
-                T0002: "Das ist aber nicht der Grund, warum ich mit dir reden wollte...",
+                T0002: "Das ist aber eigentlich nicht der Grund, warum ich mit dir reden wollte...",
                 T0003: "Ich würde dich gerne zur Premiere einladen. Hier ist eine Eintrittskarte für die erste Reihe... Es würde mich sehr freuen, wenn du da wärst.",
                 T0004: "Wirklich? Toll! Dann sehe ich dich dort. Bis heute Abend!"
             }
@@ -99,6 +100,7 @@ namespace BehindTheScenes {
         await ƒS.Character.hide(characters.protagonist);
         await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.surprised, ƒS.positionPercent(25, 97));
         await ƒS.update(0.5);
+
 
         if(isFavorite == "Atlas"){
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0002);
@@ -170,6 +172,8 @@ namespace BehindTheScenes {
             await ƒS.Character.show(characters.solas, characters.solas.pose.happy, ƒS.positionPercent(75, 97));
             showSolasMeter();
             await ƒS.update(0.5);
+            await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
+            await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
             await ƒS.update(0.5);
 
@@ -231,13 +235,15 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
         
         } else{
-            await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
+            await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0004);
             await ƒS.update(0.5);
             await ƒS.Character.hide(characters.protagonist);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.lucia, characters.lucia.pose.smiling, ƒS.positionPercent(75, 97));
+            await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
             showLuciaMeter();
+            await ƒS.update(0.5);
+            await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
             await ƒS.update(0.5);
@@ -301,6 +307,9 @@ namespace BehindTheScenes {
         }
 
         await ƒS.Speech.tell(null, narratorText.Narrator.T000end);
+        await ƒS.update(0.5);
+
+        await ƒS.Speech.clear();
         await ƒS.update(0.5);
 
         removeFallingLeaves();

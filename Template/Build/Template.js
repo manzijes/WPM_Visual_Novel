@@ -524,7 +524,7 @@ var BehindTheScenes;
             // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
             // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
             // { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
-            { id: "roofRight", scene: BehindTheScenes.roofRight, name: "" },
+            // { id: "roofRight", scene: roofRight, name: "" },
             // { id: "roofWrong", scene: roofWrong, name: "" },
             { id: "roofRightEpilogue", scene: BehindTheScenes.roofRightEpilogue, name: "" },
             { id: "roofWrongEpilogue", scene: BehindTheScenes.roofWrongEpilogue, name: "" },
@@ -732,7 +732,7 @@ var BehindTheScenes;
 var BehindTheScenes;
 (function (BehindTheScenes) {
     async function roofRightEpilogue() {
-        let isFavorite = "Atlas";
+        let isFavorite = "Lucia";
         let protagonistText = {
             Protagonist: {
                 T0001: "Wir haben wirklich schönes Wetter heute. Ein toller Tag zum Faulenzen.",
@@ -775,8 +775,9 @@ var BehindTheScenes;
         };
         let favText = {
             isFavorite: {
+                T0000: "Ja, ich bins.",
                 T0001: "Heute Abend findet die Premiere statt und alle sind schon ganz aufgeregt. Das haben wir nur dir zu verdanken.",
-                T0002: "Das ist aber nicht der Grund, warum ich mit dir reden wollte...",
+                T0002: "Das ist aber eigentlich nicht der Grund, warum ich mit dir reden wollte...",
                 T0003: "Ich würde dich gerne zur Premiere einladen. Hier ist eine Eintrittskarte für die erste Reihe... Es würde mich sehr freuen, wenn du da wärst.",
                 T0004: "Wirklich? Toll! Dann sehe ich dich dort. Bis heute Abend!"
             }
@@ -870,6 +871,8 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
             BehindTheScenes.showSolasMeter();
             await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
+            await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
             await BehindTheScenes.ƒS.update(0.5);
             BehindTheScenes.hideSolasMeter();
@@ -920,12 +923,14 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.update(0.5);
         }
         else {
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0003);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0004);
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
             await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.smiling, BehindTheScenes.ƒS.positionPercent(75, 97));
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
             BehindTheScenes.showLuciaMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
             await BehindTheScenes.ƒS.update(0.5);
@@ -977,6 +982,8 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.update(0.5);
         }
         await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T000end);
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Speech.clear();
         await BehindTheScenes.ƒS.update(0.5);
         BehindTheScenes.removeFallingLeaves();
         return "yourTitle";
@@ -3579,8 +3586,8 @@ var BehindTheScenes;
         };
         let isFavorite = BehindTheScenes.findFavorite();
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0, 0.0, true);
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0.5, 0.1, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0, 0.0, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.7, 0.1, true);
         BehindTheScenes.updateNotes();
         await BehindTheScenes.ƒS.Location.show(BehindTheScenes.chapterCovers.chapter);
         await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
