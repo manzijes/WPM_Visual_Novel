@@ -67,6 +67,10 @@ declare namespace Template {
             name: string;
             background: string;
         };
+        roofTwilight: {
+            name: string;
+            background: string;
+        };
         stairs: {
             name: string;
             background: string;
@@ -84,6 +88,11 @@ declare namespace Template {
             foreground: string;
         };
         chapter: {
+            name: string;
+            background: string;
+            foreground: string;
+        };
+        epilogue: {
             name: string;
             background: string;
             foreground: string;
@@ -117,6 +126,7 @@ declare namespace Template {
                 surprised: string;
                 confident: string;
                 serious: string;
+                benevolent: string;
             };
         };
         kira: {
@@ -154,6 +164,8 @@ declare namespace Template {
                 neutral: string;
                 scared: string;
                 playful: string;
+                smiling: string;
+                unhappy: string;
             };
         };
         lucia: {
@@ -254,6 +266,12 @@ declare namespace Template {
     function hndKeyPress(_event: KeyboardEvent): Promise<void>;
 }
 declare namespace Template {
+    function roofRightEpilogue(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function roofWrongEpilogue(): ƒS.SceneReturn;
+}
+declare namespace Template {
     function beta(): ƒS.SceneReturn;
 }
 declare namespace Template {
@@ -290,9 +308,6 @@ declare namespace Template {
     function motive(): ƒS.SceneReturn;
 }
 declare namespace Template {
-    function roofLucia(): ƒS.SceneReturn;
-}
-declare namespace Template {
     function roofRight(): ƒS.SceneReturn;
 }
 declare namespace Template {
@@ -300,4 +315,7 @@ declare namespace Template {
 }
 declare namespace Template {
     function yourConclusion(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function yourTitle(): ƒS.SceneReturn;
 }

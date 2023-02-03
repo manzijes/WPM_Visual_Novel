@@ -108,6 +108,18 @@ speech {
   visibility: hidden;
 }
 
+.summary p, .summary h1{
+    color: white;
+}
+
+.summary{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 /* dialog[type=splash] + canvas + speech{
   background-color: transparent;
     top: 50%;

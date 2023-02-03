@@ -73,7 +73,11 @@ namespace Template {
     },
     roof: {
       name: "roof",
-      background: "Images/Backgrounds/roof-day.png"
+      background: "Images/Backgrounds/roof-day.jpg"
+    },
+    roofTwilight: {
+      name: "roofTwilight",
+      background: "Images/Backgrounds/roof-twilight.jpg"
     },
     stairs: {
       name: "stairs",
@@ -95,6 +99,11 @@ namespace Template {
     chapter: {
       name: "chapter",
       background: "Images/Backgrounds/Kapitel/chapter-lilac.png",
+      foreground: ""
+    },
+    epilogue: {
+      name: "epilogue",
+      background: "Images/Backgrounds/Kapitel/epilogue.png",
       foreground: ""
     },
   }
@@ -127,7 +136,8 @@ namespace Template {
         mean: "Images/Characters/Protagonist/protagonist-mean.png",
         surprised: "Images/Characters/Protagonist/protagonist-surprised.png",
         confident: "Images/Characters/Protagonist/protagonist-confident.png",
-        serious: "Images/Characters/Protagonist/protagonist-serious.png"
+        serious: "Images/Characters/Protagonist/protagonist-serious.png",
+        benevolent: "Images/Characters/Protagonist/protagonist-benevolent.png"
       }
     },
     kira: {
@@ -164,7 +174,9 @@ namespace Template {
         sad: "Images/Characters/Atlas/atlas-sad.png",
         neutral: "Images/Characters/Atlas/atlas-neutral.png",
         scared: "Images/Characters/Atlas/atlas-scared.png",
-        playful: "Images/Characters/Atlas/atlas-playful.png"
+        playful: "Images/Characters/Atlas/atlas-playful.png",
+        smiling: "Images/Characters/Atlas/atlas-smiling.png",
+        unhappy: "Images/Characters/Atlas/atlas-unhappy.png"
       }
     },
     lucia: {
@@ -544,10 +556,15 @@ namespace Template {
       // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
       // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
 
-      { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
+      // { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
 
-      { id: "roofRight", scene: roofRight, name: "" },
-      { id: "roofWrong", scene: roofWrong, name: "" }
+      // { id: "roofRight", scene: roofRight, name: "" },
+      // { id: "roofWrong", scene: roofWrong, name: "" },
+
+      { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },
+      { id: "roofWrongEpilogue", scene: roofWrongEpilogue, name: "" },
+
+      { id: "yourTitle", scene: yourTitle, name: "Du erhältst einen Titel abhängig von deiner Spielweise" }
     ];
 
     // let uiElement: HTMLElement = document.querySelector("[type=interface]");

@@ -14,7 +14,7 @@ namespace Template {
                 T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und erfreust dich an der Nachmittagssonne.",
                 T0002: "Du drehst dich um und erblickst ein Mädchen, das dir bekannt vorkommt. Sie geht nicht in deine Klasse, also woher...?",
                 T0003: "Du schaust zu, wie Kira im Schulgebäude verschwindet.",
-                T0004: "Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin! Du kannst es ab jetzt im Menü unter 'Notes' einblenden."
+                T0004: "Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin! Du kannst es ab jetzt im Menü unter 'Notes' einblenden und ausblenden. Dann kannst du auch gleich einen ersten Blick auf deine Indizien-Sammlung werfen..."
             }
         };
 

@@ -32,12 +32,7 @@ namespace Template {
         await ƒS.Location.show(locations.corridorDay);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
-
-        
-        // close
-        ƒS.Speech.clear();
-        ƒS.Speech.hide();
-        await ƒS.update(0.5);
+        return "roofWrongEpilogue";
 
     }
 }
