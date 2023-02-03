@@ -450,7 +450,7 @@ background-color: white;
 .warningPageWrapper bold, .warningPageWrapper-flip bold {
   font-family: "HandwritingAtlas";
   font-weight: bold;
-  font-size: 24px;
+  font-size: 28px;
 }
 
 
@@ -715,5 +715,8 @@ meter{
   }
   meter{
     height: 50px;
+  }
+  .warningPageWrapper bold, .warningPageWrapper-flip bold {
+    font-size: 20px !important;
   }
 }

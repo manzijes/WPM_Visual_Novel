@@ -1,5 +1,5 @@
 namespace Template {
-    export async function roofAtlas(): ƒS.SceneReturn {
+    export async function roofRight(): ƒS.SceneReturn {
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
         ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);

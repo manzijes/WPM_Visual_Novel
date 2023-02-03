@@ -220,6 +220,9 @@ declare namespace Template {
         warningNote: boolean;
         foundKey: boolean;
         lookedForKey: boolean;
+        choseAtlas: boolean;
+        choseSolas: boolean;
+        choseLucia: boolean;
     };
 }
 declare namespace Template {
@@ -287,13 +290,13 @@ declare namespace Template {
     function motive(): ƒS.SceneReturn;
 }
 declare namespace Template {
-    function roofAtlas(): ƒS.SceneReturn;
-}
-declare namespace Template {
     function roofLucia(): ƒS.SceneReturn;
 }
 declare namespace Template {
-    function roofSolas(): ƒS.SceneReturn;
+    function roofRight(): ƒS.SceneReturn;
+}
+declare namespace Template {
+    function roofWrong(): ƒS.SceneReturn;
 }
 declare namespace Template {
     function yourConclusion(): ƒS.SceneReturn;

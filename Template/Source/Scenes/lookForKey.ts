@@ -88,6 +88,7 @@ namespace Template {
 
         let loopCount: number = 0;
 
+        // 5 tries then give up
         while (loopCount < 5) {
             if (loopCount > 0) {
                 await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0004_b);

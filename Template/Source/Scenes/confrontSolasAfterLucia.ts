@@ -9,7 +9,7 @@ namespace Template {
             Protagonist: {
                 T0001: "Hallo, Solas. Ich muss noch einmal mit dir sprechen.",
                 T0002: "Ich habe inzwischen einige Hinweise gesammelt. Du bleibst mir aber nach wie vor ein Rätsel.",
-                T0003: "Und dein Ergebnis? Was denkst du?",
+                T0003: "Und?",
                 T0004: "Hmm... Wie meinst du das?",
                 T0005_bad: "Ich werde nicht schlau aus dir.",
                 T0005_good: "Ich glaube, ich verstehe.",
@@ -21,10 +21,10 @@ namespace Template {
             Solas: {
                 T0001: "Sicher doch, was gibt es?",
                 T0002: "Ist das so, ja? Ich habe selbst den ganzen Tag über die Sache nachgedacht...",
-                T0003: "Naja. Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört... Wir haben es zerschnitten im Müll gefunden.",
-                T0004: "Aber auch der Saboteur hat meine Anteilnahme. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
+                T0003: "Naja. Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört... Das ist wirklich unfair.",
+                T0004: "Aber auch der Saboteur tut mir leid. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
                 T0005: "Du verdächtigst uns alle aus verschiedenen Gründen, aber hinter jedem Motiv, das du uns zugeschrieben hast, steht der Ehrgeiz.",
-                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes. Das schrieb zumindest Shakespeare. Damit will ich sagen, dass auch hinter den Handlungen des Täters letztendlich eine Sehnsucht steckt.",
+                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes. Zumindest schrieb das Shakespeare.",
                 T0007: "Ich muss jetzt weiter. Bis bald."
             }
         };
@@ -103,7 +103,8 @@ namespace Template {
 
         let optionsSolasDream = {
             bad: "Ich werde nicht schlau aus dir.",
-            good: "Ich glaube, ich verstehe."
+            good: "Der Schatten eines Traumes...",
+            excellent: "Ich glaube, ich verstehe."
         }
 
         let optionsSolasDreamElement = await ƒS.Menu.getInput(optionsSolasDream, "dialogoptions");
@@ -112,8 +113,15 @@ namespace Template {
         switch (optionsSolasDreamElement) {
             case optionsSolasDream.good:
                 await ƒS.Character.hide(characters.solas);
-                await ƒS.Character.show(characters.solas, characters.solas.pose.happy, ƒS.positionPercent(75, 97));
+                await ƒS.Character.show(characters.solas, characters.solas.pose.thoughtful, ƒS.positionPercent(75, 97));
                 dataForSave.solasScore += 3;
+                await ƒS.update(0.5);
+
+                break;
+            case optionsSolasDream.excellent:
+                await ƒS.Character.hide(characters.solas);
+                await ƒS.Character.show(characters.solas, characters.solas.pose.happy, ƒS.positionPercent(75, 97));
+                dataForSave.solasScore += 10;
                 await ƒS.update(0.5);
 
                 break;
@@ -127,20 +135,16 @@ namespace Template {
         }
 
         await ƒS.Speech.tell(characters.solas, solasText.Solas.T0007);
-        hideSolasMeter();
-        await ƒS.Character.hide(characters.solas);
-        await ƒS.update(0.5);
 
         dataForSave.confrontedSolas = true;
         updateNotes();
         await ƒS.update(0.5);
 
-        // close
-        ƒS.Speech.clear();
-        ƒS.Speech.hide();
+        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await ƒS.update(0.5);
 
-        return "yourConclusion";
-
+        hideSolasMeter();
+        await ƒS.Character.hide(characters.solas);
+        await ƒS.update(0.5);
     }
 }

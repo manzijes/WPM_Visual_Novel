@@ -381,7 +381,7 @@ namespace Template {
     if (dataForSave.lookedForKey == true) {
       let whatAboutKey = document.getElementById("whatAboutKey");
       if(dataForSave.foundKey == true){
-        whatAboutKey.innerHTML = "Lucia hat die Wahrheit gesagt. Vetrauensbonus!";
+        whatAboutKey.innerHTML = "Lucia hat die Wahrheit gesagt. Vertrauensbonus?";
       } else{
         whatAboutKey.innerHTML = "Du konntest nicht herausfinden, ob Lucia lügt.";
       }
@@ -516,7 +516,11 @@ namespace Template {
 
     warningNote: false,
     foundKey: false,
-    lookedForKey: false
+    lookedForKey: false,
+
+    choseAtlas: false,
+    choseSolas: false,
+    choseLucia: false
   };
 
   window.addEventListener("load", start);
@@ -538,13 +542,12 @@ namespace Template {
       // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
 
       // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
-      { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+      // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
 
-      { scene: yourConclusion, name: "Du sagst Kira, wen du für den Täter hältst." },
+      { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
 
-      { id: "roofAtlas", scene: roofAtlas, name: "Verdächtige Atlas" },
-      { id: "roofLucia", scene: roofLucia, name: "Verdächtige Lucia" },
-      { id: "roofSolas", scene: roofSolas, name: "Verdächtige Solas" }
+      { id: "roofRight", scene: roofRight, name: "" },
+      { id: "roofWrong", scene: roofWrong, name: "" }
     ];
 
     // let uiElement: HTMLElement = document.querySelector("[type=interface]");

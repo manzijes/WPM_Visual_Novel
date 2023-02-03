@@ -372,7 +372,7 @@ var Template;
         if (Template.dataForSave.lookedForKey == true) {
             let whatAboutKey = document.getElementById("whatAboutKey");
             if (Template.dataForSave.foundKey == true) {
-                whatAboutKey.innerHTML = "Lucia hat die Wahrheit gesagt. Vetrauensbonus!";
+                whatAboutKey.innerHTML = "Lucia hat die Wahrheit gesagt. Vertrauensbonus?";
             }
             else {
                 whatAboutKey.innerHTML = "Du konntest nicht herausfinden, ob Lucia lügt.";
@@ -505,7 +505,10 @@ var Template;
         solasScore: 50,
         warningNote: false,
         foundKey: false,
-        lookedForKey: false
+        lookedForKey: false,
+        choseAtlas: false,
+        choseSolas: false,
+        choseLucia: false
     };
     window.addEventListener("load", start);
     function start(_event) {
@@ -523,11 +526,10 @@ var Template;
             // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
             // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
             // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
-            { id: "confrontSolasAfterLucia", scene: Template.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
-            { scene: Template.yourConclusion, name: "Du sagst Kira, wen du für den Täter hältst." },
-            { id: "roofAtlas", scene: Template.roofAtlas, name: "Verdächtige Atlas" },
-            { id: "roofLucia", scene: Template.roofLucia, name: "Verdächtige Lucia" },
-            { id: "roofSolas", scene: Template.roofSolas, name: "Verdächtige Solas" }
+            // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+            { scene: Template.yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
+            { id: "roofRight", scene: Template.roofRight, name: "" },
+            { id: "roofWrong", scene: Template.roofWrong, name: "" }
         ];
         // let uiElement: HTMLElement = document.querySelector("[type=interface]");
         // dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
@@ -908,7 +910,7 @@ var Template;
             Protagonist: {
                 T0001: "Hallo, Solas. Ich muss noch einmal mit dir sprechen.",
                 T0002: "Ich habe inzwischen einige Hinweise gesammelt. Du bleibst mir aber nach wie vor ein Rätsel.",
-                T0003: "Und dein Ergebnis? Was denkst du?",
+                T0003: "Und?",
                 T0004: "Hmm... Wie meinst du das?",
                 T0005_bad: "Ich werde nicht schlau aus dir.",
                 T0005_good: "Ich glaube, ich verstehe.",
@@ -919,10 +921,10 @@ var Template;
             Solas: {
                 T0001: "Sicher doch, was gibt es?",
                 T0002: "Ist das so, ja? Ich habe selbst den ganzen Tag über die Sache nachgedacht...",
-                T0003: "Naja. Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört... Wir haben es zerschnitten im Müll gefunden.",
-                T0004: "Aber auch der Saboteur hat meine Anteilnahme. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
+                T0003: "Naja. Mir tut unsere Kostümschneiderin leid. Sie näht sehr kunstvoll und steckt ihr Herz in jedes Projekt. Wie du weißt, wurde eines der Kostüme zerstört... Das ist wirklich unfair.",
+                T0004: "Aber auch der Saboteur tut mir leid. Seine Handlungen zeugen von einem Gefühl der Ratlosigkeit, denkst du nicht?",
                 T0005: "Du verdächtigst uns alle aus verschiedenen Gründen, aber hinter jedem Motiv, das du uns zugeschrieben hast, steht der Ehrgeiz.",
-                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes. Das schrieb zumindest Shakespeare. Damit will ich sagen, dass auch hinter den Handlungen des Täters letztendlich eine Sehnsucht steckt.",
+                T0006: "...und das eigentliche Wesen des Ehrgeizes ist nur der Schatten eines Traumes. Zumindest schrieb das Shakespeare.",
                 T0007: "Ich muss jetzt weiter. Bis bald."
             }
         };
@@ -989,15 +991,22 @@ var Template;
         await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0006);
         let optionsSolasDream = {
             bad: "Ich werde nicht schlau aus dir.",
-            good: "Ich glaube, ich verstehe."
+            good: "Der Schatten eines Traumes...",
+            excellent: "Ich glaube, ich verstehe."
         };
         let optionsSolasDreamElement = await Template.ƒS.Menu.getInput(optionsSolasDream, "dialogoptions");
         Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
         switch (optionsSolasDreamElement) {
             case optionsSolasDream.good:
                 await Template.ƒS.Character.hide(Template.characters.solas);
-                await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.happy, Template.ƒS.positionPercent(75, 97));
+                await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.thoughtful, Template.ƒS.positionPercent(75, 97));
                 Template.dataForSave.solasScore += 3;
+                await Template.ƒS.update(0.5);
+                break;
+            case optionsSolasDream.excellent:
+                await Template.ƒS.Character.hide(Template.characters.solas);
+                await Template.ƒS.Character.show(Template.characters.solas, Template.characters.solas.pose.happy, Template.ƒS.positionPercent(75, 97));
+                Template.dataForSave.solasScore += 10;
                 await Template.ƒS.update(0.5);
                 break;
             case optionsSolasDream.bad:
@@ -1008,17 +1017,14 @@ var Template;
                 break;
         }
         await Template.ƒS.Speech.tell(Template.characters.solas, solasText.Solas.T0007);
-        Template.hideSolasMeter();
-        await Template.ƒS.Character.hide(Template.characters.solas);
-        await Template.ƒS.update(0.5);
         Template.dataForSave.confrontedSolas = true;
         Template.updateNotes();
         await Template.ƒS.update(0.5);
-        // close
-        Template.ƒS.Speech.clear();
-        Template.ƒS.Speech.hide();
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await Template.ƒS.update(0.5);
-        return "yourConclusion";
+        Template.hideSolasMeter();
+        await Template.ƒS.Character.hide(Template.characters.solas);
+        await Template.ƒS.update(0.5);
     }
     Template.confrontSolasAfterLucia = confrontSolasAfterLucia;
 })(Template || (Template = {}));
@@ -1767,6 +1773,7 @@ var Template;
             onChair: "Auf dem Stuhl"
         };
         let loopCount = 0;
+        // 5 tries then give up
         while (loopCount < 5) {
             if (loopCount > 0) {
                 await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0004_b);
@@ -2744,7 +2751,44 @@ var Template;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    async function roofAtlas() {
+    async function roofLucia() {
+        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
+        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
+        Template.updateNotes();
+        // let protagonistText = {
+        //     Protagonist: {
+        //         T0001: "Ich habe dich hergerufen, um dich zu stellen. Ich weiß, dass du der Saboteur bist. Du bist überführt, Lucia.",
+        //         T0002: "Oh nein... Habe ich mich etwa geirrt?"
+        //     }
+        // };
+        // let kiraText = {
+        //     Protagonist: {
+        //         T0001: "Huh?"
+        //     }
+        // };
+        // let luciaText = {
+        //     Lucia: {
+        //         T0001: "Du glaubst, ich bin der Täter...?",
+        //         T0002: "Es tut mir leid, dich zu enttäuschen, aber ich bin es wirklich nicht. Ich liebe den Theaterclub von Herzen."
+        //     }
+        // };
+        // let narratorText = {
+        //     Narrator: {
+        //         T0000: ""
+        //     }
+        // };
+        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
+        // close
+        Template.ƒS.Speech.clear();
+        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+    }
+    Template.roofLucia = roofLucia;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
+    async function roofRight() {
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
@@ -2815,48 +2859,11 @@ var Template;
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(0.5);
     }
-    Template.roofAtlas = roofAtlas;
+    Template.roofRight = roofRight;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
-    async function roofLucia() {
-        Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
-        Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
-        Template.updateNotes();
-        // let protagonistText = {
-        //     Protagonist: {
-        //         T0001: "Ich habe dich hergerufen, um dich zu stellen. Ich weiß, dass du der Saboteur bist. Du bist überführt, Lucia.",
-        //         T0002: "Oh nein... Habe ich mich etwa geirrt?"
-        //     }
-        // };
-        // let kiraText = {
-        //     Protagonist: {
-        //         T0001: "Huh?"
-        //     }
-        // };
-        // let luciaText = {
-        //     Lucia: {
-        //         T0001: "Du glaubst, ich bin der Täter...?",
-        //         T0002: "Es tut mir leid, dich zu enttäuschen, aber ich bin es wirklich nicht. Ich liebe den Theaterclub von Herzen."
-        //     }
-        // };
-        // let narratorText = {
-        //     Narrator: {
-        //         T0000: ""
-        //     }
-        // };
-        await Template.ƒS.Location.show(Template.locations.corridorDay);
-        await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
-        // close
-        Template.ƒS.Speech.clear();
-        Template.ƒS.Speech.hide();
-        await Template.ƒS.update(0.5);
-    }
-    Template.roofLucia = roofLucia;
-})(Template || (Template = {}));
-var Template;
-(function (Template) {
-    async function roofSolas() {
+    async function roofWrong() {
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
@@ -2887,7 +2894,7 @@ var Template;
         Template.ƒS.Speech.hide();
         await Template.ƒS.update(0.5);
     }
-    Template.roofSolas = roofSolas;
+    Template.roofWrong = roofWrong;
 })(Template || (Template = {}));
 var Template;
 (function (Template) {
@@ -2895,22 +2902,90 @@ var Template;
         Template.ƒS.Sound.fade(Template.sound.splashMusic, 0, 0.0, true);
         Template.ƒS.Sound.fade(Template.sound.mainMusic, 0.5, 0.1, true);
         Template.updateNotes();
-        // let protagonistText = {
-        //     Protagonist: {
-        //         T0001: "Die Uhr tickt... Ich muss eine Entscheidung treffen.",
-        //         T0002: "Am besten, ich schaue mir alle Indizien noch einmal genau an. Besonders die Notiz des Täters ist ein interessantes Beweisstück..."
-        //     }
-        // };
-        // let narratorText = {
-        //     Narrator: {
-        //         T0000: "Es ist früh morgens und du betrittst die Schule. Nach ein paar Schritten stoppt dich ein Mädchen auf dem Korridor."
-        //     }
-        // };
-        await Template.ƒS.Location.show(Template.locations.corridorDay);
+        let protagonistText = {
+            Protagonist: {
+                T0001: "Die Zeit ist um... Ich muss eine Entscheidung treffen.",
+                T0002: "Am besten, ich schaue mir alle Indizien noch einmal genau an und lasse meine Ermittlungen Revue passieren... Besonders die Notiz des Täters ist ein interessantes Beweisstück...",
+                T0003: "Also dann...",
+                T0004: "Der Täter ist Atlas!",
+                T0005: "Der Täter ist Solas!",
+                T0006: "Der Täter ist Lucia!",
+                T0007: "Der Täter ist Kira! Warte, nein. So ein Quatsch...",
+            }
+        };
+        let narratorText = {
+            Narrator: {
+                T0000: "Der Tag neigt sich dem Ende zu. Du gehst auf den Schulhof und schnappst frische Luft.",
+                T0001: "Wer ist der Täter?",
+                T0002: "Du bestellst Atlas auf das Schuldach, um ihn mit deiner Schlussfolgerung zu konfrontieren...",
+                T0003: "Du bestellst Solas auf das Schuldach, um ihn mit deiner Schlussfolgerung zu konfrontieren...",
+                T0004: "Du bestellst Lucia auf das Schuldach, um sie mit deiner Schlussfolgerung zu konfrontieren...",
+            }
+        };
+        await Template.ƒS.Location.show(Template.locations.schoolOutsideDay);
+        Template.addFallingLeaves();
         await Template.ƒS.update(Template.transition.fizzle.duration, Template.transition.fizzle.alpha, Template.transition.fizzle.edge);
-        // close
+        await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        Template.ƒS.Sound.play(Template.sound.birds, 0.6, true);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.serious, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0001);
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
+        await Template.ƒS.Character.show(Template.characters.protagonist, Template.characters.protagonist.pose.confident, Template.ƒS.positionPercent(25, 97));
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0002);
+        await Template.ƒS.update(0.5);
+        await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0003);
+        await Template.ƒS.update(0.5);
+        let optionsCulprit = {
+            atlas: "Atlas!",
+            solas: "Solas!",
+            lucia: "Lucia!",
+            kira: "Kira!"
+        };
+        let loopCount = 0;
+        while (loopCount < 1) {
+            await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+            let optionsCulpritElement = await Template.ƒS.Menu.getInput(optionsCulprit, "dialogoptions");
+            Template.ƒS.Sound.play(Template.sound.selectDialog, 1.5, false);
+            switch (optionsCulpritElement) {
+                case optionsCulprit.atlas:
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0004);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+                    Template.dataForSave.choseAtlas = true;
+                    loopCount++;
+                    return "roofRight";
+                    break;
+                case optionsCulprit.solas:
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0005);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0003);
+                    Template.dataForSave.choseSolas = true;
+                    loopCount++;
+                    return "roofWrong";
+                    break;
+                case optionsCulprit.lucia:
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0006);
+                    await Template.ƒS.update(0.5);
+                    await Template.ƒS.Speech.tell(null, narratorText.Narrator.T0004);
+                    Template.dataForSave.choseLucia = true;
+                    loopCount++;
+                    return "roofWrong";
+                    break;
+                case optionsCulprit.kira:
+                    await Template.ƒS.Speech.tell(Template.characters.protagonist, protagonistText.Protagonist.T0007);
+                    await Template.ƒS.update(0.5);
+                    delete optionsCulprit.kira;
+                    break;
+            }
+        }
+        await Template.ƒS.Character.hide(Template.characters.protagonist);
         Template.ƒS.Speech.clear();
-        Template.ƒS.Speech.hide();
+        await Template.ƒS.update(0.5);
+        Template.removeFallingLeaves();
+        Template.ƒS.Sound.fade(Template.sound.birds, 0, 3, true);
         await Template.ƒS.update(0.5);
     }
     Template.yourConclusion = yourConclusion;
