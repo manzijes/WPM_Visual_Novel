@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function roofWrongEpilogue(): ƒS.SceneReturn {
 
         let isFavorite = findFavorite();

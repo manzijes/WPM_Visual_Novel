@@ -691,6 +691,35 @@ meter#solasMeter::-webkit-meter-optimum-value{
   }
 }
 
+dialog.playerTitle {
+  border: none;
+  width: 50%;
+  border-radius: 5px;
+  font-family: "Gamewriting";
+}
+
+dialog.playerTitle h1{
+  text-align: center;
+}
+
+dialog.coverTitle {
+  border: none;
+  width: 50%;
+  background-color: transparent;
+  font-family: "Gamewriting";
+}
+
+dialog.coverTitle h1{
+  text-align: center;
+  color: white;
+}
+
+dialog.coverTitle h5{
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
 @media screen and (max-width: 1450px){
 meter{
   right: unset;
@@ -700,7 +729,7 @@ meter{
 
 @media screen and (max-width: 768px), (max-width: 1000px) and (orientation: landscape){
   *, speech content, speech name, dialog.menuInGame button{
-    font-size: 14px !important;
+    font-size: 12px !important;
   }
   speech{
     height: fit-content;
@@ -718,6 +747,7 @@ meter{
   }
   dialog.menuInGame{
     right: 40px;
+    gap: 10px;
   }
   #toggleSuspects{
     margin-top: 0 !important;
@@ -730,5 +760,9 @@ meter{
   }
   .warningPageWrapper bold, .warningPageWrapper-flip bold {
     font-size: 20px !important;
+  }
+  dialog[type=splash]>img#FudgeStoryLogo{
+    max-width: 200px;
+    right: unset;
   }
 }

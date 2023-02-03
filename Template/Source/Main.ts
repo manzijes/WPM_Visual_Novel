@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
   export import ƒ = FudgeCore;
   export import ƒS = FudgeStory;
 
@@ -22,6 +22,7 @@ namespace Template {
     mainMusic: "Audio/Music/inspiration.mp3",
     spookyMusic: "Audio/Music/nightmare.mp3",
     splashMusic: "Audio/Music/hillofwind.mp3",
+    ending: "Audio/Music/pond.mp3",
     // ambiance
     birds: "Audio/Ambiance/springBirds.wav",
     // SFX
@@ -217,12 +218,12 @@ namespace Template {
     }, 30 * 2 + 45);
   }
 
-  export async function showAquiredPages(){
+  export async function showAquiredPages() {
     let pages: string[] = ['<div class="aquiredPagesWrapper"><h1>Indizien</h1><p>Im Laufe des Spiels erhältst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p><p>Klick einfach weiter, um sie dir noch einmal anzuschauen.</p></div>'];
     let current: number = 0;
     let numberAquired = 0;
 
-    if(dataForSave.luciaMotive == true){
+    if (dataForSave.luciaMotive == true) {
       numberAquired += 1;
 
       pages.push('<div class="smartphone">\
@@ -260,7 +261,7 @@ namespace Template {
         </div>')
     }
 
-    if(dataForSave.atlasDiary == true){
+    if (dataForSave.atlasDiary == true) {
       numberAquired += 1;
 
       pages.push('<div class="diaryPageWrapper-flip">\
@@ -275,7 +276,7 @@ namespace Template {
       </div>');
     }
 
-    if(dataForSave.warningNote == true){
+    if (dataForSave.warningNote == true) {
       numberAquired += 1;
 
       pages.push('<div class="warningPageWrapper-flip">\
@@ -292,47 +293,62 @@ namespace Template {
     console.log("number: " + numberAquired);
 
     // multiple pages
-    if(numberAquired > 0){
+    if (numberAquired > 0) {
       let flip = { back: "Zurück", next: "Weiter", done: "x" };
       let choice: string;
       ƒS.Text.setClass("allhints");
       do {
         ƒS.Text.print(pages[current]);
         choice = await ƒS.Menu.getInput(flip, "flip");
-        if(numberAquired > 1){
+        if (numberAquired > 1) {
           switch (choice) {
-            case flip.back: current = Math.max(0, current - 1); break;
-            case flip.next: current = Math.min(numberAquired, current + 1); break;
+            case flip.back:
+              current = Math.max(0, current - 1);
+              ƒS.Sound.play(sound.pageflip, 0.5, false);
+              break;
+            case flip.next:
+              current = Math.min(numberAquired, current + 1);
+              ƒS.Sound.play(sound.pageflip, 0.5, false);
+              break;
           }
-        } else{
+        // exactly two pages
+        } else {
           switch (choice) {
-            case flip.back: current = Math.max(0, current - 1); break;
-            case flip.next: current = Math.min(1, current + 1); break;
+            case flip.back:
+              current = Math.max(0, current - 1);
+              ƒS.Sound.play(sound.pageflip, 0.5, false);
+              break;
+            case flip.next:
+              current = Math.min(1, current + 1);
+              ƒS.Sound.play(sound.pageflip, 0.5, false);
+              break;
+
           }
         }
       } while (choice != flip.done);
-    // single page
-    } else{
+      // single page
+    } else {
       pages[0] = '<div class="aquiredPagesWrapper"><h1>Indizien</h1><p>Im Laufe des Spiels erhältst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p><p>Hey, warte mal...! Du hast bisher noch gar keine Indizien gesammelt. Dachtest du, das merke ich nicht?</p><p>Spiel einfach weiter, dann kommt das schon.</p></div>'
 
       let close = { done: "x" };
       let choice: string;
       ƒS.Text.setClass("allhints");
       do {
-          ƒS.Text.print(pages[current]);
-          choice = await ƒS.Menu.getInput(close, "pageclose");
+        ƒS.Text.print(pages[current]);
+        choice = await ƒS.Menu.getInput(close, "pageclose");
       } while (choice != close.done);
     }
+    ƒS.Sound.play(sound.selectDialog, 1.5, false);
     ƒS.Text.close();
   }
 
   export function findFavorite(): string {
     let favorite = "Atlas";
 
-    if(dataForSave.atlasScore < dataForSave.solasScore){
+    if (dataForSave.atlasScore < dataForSave.solasScore) {
       favorite = "Solas";
-    } 
-    if(dataForSave.solasScore < dataForSave.luciaScore){
+    }
+    if (dataForSave.solasScore < dataForSave.luciaScore) {
       favorite = "Lucia";
     }
 
@@ -340,7 +356,7 @@ namespace Template {
   }
 
   export function updateNotes() {
-      
+
     dataForSave.toggleSuspectsButton = true;
     let toggleSuspects = document.getElementById("toggleSuspects");
     toggleSuspects.style.visibility = "visible";
@@ -349,7 +365,7 @@ namespace Template {
     let toggleAquiredPages = document.getElementById("toggleAquiredPages");
     toggleAquiredPages.style.visibility = "visible";
     toggleAquiredPages.style.opacity = "1";
-    
+
     // Portraits
     if (dataForSave.atlasPortrait == true) {
       let atlasPortrait = document.getElementById("atlasPortrait");
@@ -369,10 +385,10 @@ namespace Template {
       solasMotive.innerHTML = "Er könnte die Aufführung sabotieren, weil er ein Perfektionist ist und mehr Zeit braucht, um das Skript zu optimieren.";
     }
     if (dataForSave.atlasMotive == true) {
-      if(dataForSave.atlasDiary == true){
+      if (dataForSave.atlasDiary == true) {
         let atlasMotive = document.getElementById("atlasMotive");
         atlasMotive.innerHTML = "Er könnte die Sabotage inszenieren, um dich von der Schule abzulenken, sodass er Jahrgangsbester bleibt.";
-      } else{
+      } else {
         let atlasMotive = document.getElementById("atlasMotive");
         atlasMotive.innerHTML = "? ? ?";
       }
@@ -392,25 +408,25 @@ namespace Template {
     }
     if (dataForSave.lookedForKey == true) {
       let whatAboutKey = document.getElementById("whatAboutKey");
-      if(dataForSave.foundKey == true){
+      if (dataForSave.foundKey == true) {
         whatAboutKey.innerHTML = "Lucia hat die Wahrheit gesagt. Vertrauensbonus?";
-      } else{
+      } else {
         whatAboutKey.innerHTML = "Du konntest nicht herausfinden, ob Lucia lügt.";
       }
     }
-    if(dataForSave.aboutAlibi == true){
+    if (dataForSave.aboutAlibi == true) {
       let aboutAlibi = document.getElementById("aboutAlibi");
       aboutAlibi.innerHTML = "Die Glaubwürdigkeit von " + dataForSave.nameGirl + " ist zweifelhaft, da sie in Atlas verliebt ist."
     }
-    if(dataForSave.solasHandwriting == true){
+    if (dataForSave.solasHandwriting == true) {
       let solasHandwriting = document.getElementById("solasHandwriting");
       solasHandwriting.innerHTML = "Die Schrift auf der Notiz des Täters sieht aus wie Solas Schrift."
     }
-    if(dataForSave.confrontedSolas == true){
-      if(dataForSave.solasHandwriting == true){
+    if (dataForSave.confrontedSolas == true) {
+      if (dataForSave.solasHandwriting == true) {
         let solasPlea = document.getElementById("solasPlea");
         solasPlea.innerHTML = "Solas argumentiert, dass jemand seine Handschrift gefälscht haben könnte. Wer käme dafür infrage? Oder lockt er dich auf eine falsche Fährte?"
-      } else{
+      } else {
         let solasPlea = document.getElementById("solasPlea");
         solasPlea.innerHTML = "Solas zeigt Mitleid mit der Kostümschneiderin, aber auch mit dem Täter."
       }
@@ -430,31 +446,6 @@ namespace Template {
       let i = document.createElement("i");
       div.appendChild(i);
     }
-    scene.appendChild(div);
-  }
-
-  // create chapter cover text
-  export function createText(givenheadline: string, giventext1: string, giventext2: string, givenid: string) {
-    let scene = document.getElementById("scene");
-    // create div
-    let div = document.createElement("div");
-    div.classList.add("coverDialog");
-    div.id = givenid;
-    // create headline, append to div
-    let headline = document.createElement("h1");
-    let headlineContent = document.createTextNode(givenheadline);
-    headline.appendChild(headlineContent);
-    div.appendChild(headline);
-    // create text, append to div
-    let ptag1 = document.createElement("p");
-    let text1 = document.createTextNode(giventext1);
-    ptag1.appendChild(text1);
-    div.appendChild(ptag1);
-    let ptag2 = document.createElement("p");
-    let text2 = document.createTextNode(giventext2);
-    ptag2.appendChild(text2);
-    div.appendChild(ptag2);
-    // append div to scene
     scene.appendChild(div);
   }
 
@@ -532,17 +523,19 @@ namespace Template {
 
     choseAtlas: false,
     choseSolas: false,
-    choseLucia: false
+    choseLucia: false,
+
+    letCulpritGo: false
   };
 
   window.addEventListener("load", start);
   function start(_event: Event): void {
     //Menü
     gameMenu = ƒS.Menu.create(menuInGame, buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
+    ƒS.Sound.fade(sound.splashMusic, 0.5, 0.1, true);
 
     let scenes: ƒS.Scenes = [
       // { scene: intro, name: "Einleitung"},
-      // { scene: beta, name: "beta" },
       // { scene: coverChapterOne, name: "Kapitel" },
       // { scene: motive, name: "Treffe die Verdächtigen" },
       // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },

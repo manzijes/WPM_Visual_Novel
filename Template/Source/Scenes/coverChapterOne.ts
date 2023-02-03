@@ -1,25 +1,22 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function coverChapterOne(): ƒS.SceneReturn {
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
         ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
         updateNotes();
 
-        let narratorText = {
-            Narrator: {
-                T0001: "Klicke, um fortzufahren."
-            }
-        };
-
-        await ƒS.Location.show(chapterCovers.chapterOne);
+        await ƒS.Location.show(chapterCovers.chapter);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
-        await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
-
-        // close
-        ƒS.Speech.clear();
-        ƒS.Speech.hide();
-        await ƒS.update(0.5);
+        let pages = "<h1>Kapitel 1: Motive</h1><h5>Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen oder Indizien hinzugefügt.</h5><h5>Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!</h5>";
+         let close = { done: "Weiter" };
+         let choice: string;
+         ƒS.Text.setClass("coverTitle");
+         do {
+             ƒS.Text.print(pages);
+             choice = await ƒS.Menu.getInput(close, "pageclose");
+         } while (choice != close.done);
+         ƒS.Text.close();
 
         ƒS.Sound.play(sound.pageflip, 0.5, false);
 

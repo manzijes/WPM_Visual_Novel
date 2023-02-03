@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function roofRight(): ƒS.SceneReturn {
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
@@ -63,9 +63,11 @@ namespace Template {
             Narrator: {
                 T0000: "Du hast also den richtigen Täter gefunden... Gute Arbeit!",
                 T0000_2: "Du scheinst dich allerdings gut mit Atlas zu verstehen. Die Entscheidung liegt nun bei dir...",
-            
+
                 T0001: "Du schreibst Kira, dass du den Saboteur nicht entlarven konntest und sie sagt die Premiere ab.",
-                T0002: "Atlas und du bleiben noch eine Weile auf dem Dach. Er fordert dich heraus, auch nächstes Schuljahr dein Bestes zu geben."
+                T0002: "Atlas und du bleiben noch eine Weile auf dem Dach. Er fordert dich heraus, auch nächstes Schuljahr dein Bestes zu geben.",
+
+                T0003: "Ende."
             }
         };
 
@@ -237,7 +239,10 @@ namespace Template {
             ƒS.Sound.play(sound.selectDialog, 1.5, false);
 
             switch (optionsLoveOrLawElement) {
+                // you don't tell kira who the culprit is
                 case optionsLoveOrLaw.letGo:
+
+                    dataForSave.letCulpritGo = true;
                     await ƒS.Character.hide(characters.protagonist);
                     await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.serious, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
@@ -271,7 +276,7 @@ namespace Template {
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.protagonist, AtlasLetGo.Atlas.T0002);
                     await ƒS.update(0.5);
-                  
+
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.Character.show(characters.atlas, characters.atlas.pose.smiling, ƒS.positionPercent(75, 97));
                     await ƒS.update(0.5);
@@ -325,7 +330,7 @@ namespace Template {
                     hideAtlasMeter();
                     await ƒS.Character.hide(characters.atlas);
                     await ƒS.update(0.5);
-                    
+
                     await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.protagonist, protagonistLetGo.Protagonist.T0005);
@@ -350,16 +355,28 @@ namespace Template {
                     await ƒS.Character.hide(characters.protagonist);
                     await ƒS.update(0.5);
 
+                    // change normal theme to spooky music
+                    ƒS.Sound.fade(sound.mainMusic, 0, 4);
+                    ƒS.Sound.fade(sound.ending, 0.7, 2, true);
+
                     await ƒS.Speech.tell(null, narratorTextAtlasFavorit.Narrator.T0001);
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(null, narratorTextAtlasFavorit.Narrator.T0002);
                     await ƒS.update(0.5);
+                    await ƒS.Speech.tell(null, narratorTextAtlasFavorit.Narrator.T0003);
+                    await ƒS.update(0.5);
+
+                    ƒS.Speech.hide();
+                    await ƒS.update(0.5);
+
+                    return "yourTitle";
 
                     break;
+                // you tell kira who the culprit is
                 case optionsLoveOrLaw.dontLetGo:
                     await ƒS.Speech.tell(characters.protagonist, protagonistDontLetGo.Protagonist.T0000);
                     await ƒS.update(0.5);
-                    
+
                     await ƒS.Character.hide(characters.protagonist);
                     await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
@@ -368,31 +385,27 @@ namespace Template {
                     await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0001);
                     await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0002);
                     await ƒS.update(0.5);
+
+                    return "roofRightEpilogue";
+
                     break;
             }
 
+            // you tell kira who the culprit is
         } else {
             await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
 
             await ƒS.Character.hide(characters.protagonist);
             await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
-            
+
             await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0000);
             await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0001);
             await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0002);
             await ƒS.update(0.5);
+
+            return "roofRightEpilogue";
         }
-
-        await ƒS.Character.hide(characters.protagonist);
-        await ƒS.update(0.5);
-
-        await ƒS.Speech.clear();
-        await ƒS.Speech.hide();
-        await ƒS.update(0.5);
-
-        removeFallingLeaves();
-        return "roofRightEpilogue";
 
     }
 }

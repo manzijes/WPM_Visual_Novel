@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function roofRightEpilogue(): ƒS.SceneReturn {
 
         let isFavorite = "Atlas";
@@ -36,8 +36,9 @@ namespace Template {
                 T0000: "Am nächsten Tag verbringst du die Mittagspause wie immer draußen auf dem Hof.",
                 T0001: "Hey, du.",
 
-                T0002: "Kira winkt dir zum Abschied und du spürst, wie sich ein glückliches Lächeln auf deinem Gesicht ausbreitet.",
-                T0002_b: isFavorite + " winkt dir zum Abschied und du spürst, wie sich ein glückliches Lächeln auf deinem Gesicht ausbreitet."
+                T0002: "Kira winkt dir zum Abschied und du spürst ein glückliches Lächeln auf deinem Gesicht.",
+                T0002_b: isFavorite + " winkt dir zum Abschied und du spürst ein glückliches Lächeln auf deinem Gesicht.",
+                T000end: "Ende."
             }
         };
 
@@ -60,19 +61,27 @@ namespace Template {
         }
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
-        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
+        ƒS.Sound.fade(sound.ending, 0.5, 0.1, true);
         updateNotes();
 
-        await ƒS.Location.show(chapterCovers.epilogue);
+        await ƒS.Location.show(chapterCovers.chapter);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
-        await ƒS.Speech.tell(null, narratorText.Narrator.T0000_a);
-        await ƒS.update(0.5);
-        await ƒS.Speech.clear();
+        let pages = "<h1>Epilog</h1>"
+         let close = { done: "Weiter" };
+         let choice: string;
+         ƒS.Text.setClass("coverTitle");
+         do {
+             ƒS.Text.print(pages);
+             choice = await ƒS.Menu.getInput(close, "pageclose");
+         } while (choice != close.done);
+         ƒS.Text.close();
+
+         ƒS.Sound.play(sound.pageflip, 0.5, false);
 
         await ƒS.Location.show(locations.schoolOutsideDay);
-        addFallingLeaves();
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
+        addFallingLeaves();
 
         await ƒS.Speech.tell(null, narratorText.Narrator.T0000);
         await ƒS.update(0.5);
@@ -150,6 +159,7 @@ namespace Template {
 
             await ƒS.Character.hide(characters.kira);
             await ƒS.update(0.5);
+            
 
         } else if(isFavorite == "Solas"){
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
@@ -290,8 +300,7 @@ namespace Template {
             await ƒS.update(0.5);
         }
 
-        await ƒS.Speech.clear();
-        await ƒS.Speech.hide();
+        await ƒS.Speech.tell(null, narratorText.Narrator.T000end);
         await ƒS.update(0.5);
 
         removeFallingLeaves();

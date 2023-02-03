@@ -1,4 +1,4 @@
-declare namespace Template {
+declare namespace BehindTheScenes {
     export import ƒ = FudgeCore;
     export import ƒS = FudgeStory;
     let transition: {
@@ -17,6 +17,7 @@ declare namespace Template {
         mainMusic: string;
         spookyMusic: string;
         splashMusic: string;
+        ending: string;
         birds: string;
         drop: string;
         schoolBell: string;
@@ -202,7 +203,6 @@ declare namespace Template {
     function updateNotes(): void;
     function removeFallingLeaves(): void;
     function addFallingLeaves(): void;
-    function createText(givenheadline: string, giventext1: string, giventext2: string, givenid: string): void;
     function animation(): ƒS.AnimationDefinition;
     function showSolasMeter(): void;
     function hideSolasMeter(): void;
@@ -235,12 +235,13 @@ declare namespace Template {
         choseAtlas: boolean;
         choseSolas: boolean;
         choseLucia: boolean;
+        letCulpritGo: boolean;
     };
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function Scene(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     let volume: number;
     let volumeBeforeMute: number;
     function incrementSound(): void;
@@ -265,57 +266,57 @@ declare namespace Template {
     function buttonFunctionalities(_option: string): Promise<void>;
     function hndKeyPress(_event: KeyboardEvent): Promise<void>;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function roofRightEpilogue(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function roofWrongEpilogue(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function beta(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function confrontSolasAfterKira(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function confrontSolasAfterLucia(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function coverChapterOne(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function coverChapterTwo(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function girlOnCorridor(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function intro(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function kiraGivesHint(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function lightsOut(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function lookForKey(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function luciaGivesHint(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function motive(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function roofRight(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function roofWrong(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function yourConclusion(): ƒS.SceneReturn;
 }
-declare namespace Template {
+declare namespace BehindTheScenes {
     function yourTitle(): ƒS.SceneReturn;
 }

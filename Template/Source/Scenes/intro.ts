@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function intro(): ƒS.SceneReturn {
 
         let strangerText = {

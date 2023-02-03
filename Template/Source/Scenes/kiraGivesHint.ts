@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function kiraGivesHint(): ƒS.SceneReturn {
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);

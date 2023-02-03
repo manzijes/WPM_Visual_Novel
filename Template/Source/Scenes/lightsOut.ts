@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function lightsOut(): ƒS.SceneReturn {
 
         // how long are the lights out (in seconds)?

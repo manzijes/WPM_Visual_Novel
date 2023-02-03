@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function beta(): ƒS.SceneReturn {
         
         // name the girl

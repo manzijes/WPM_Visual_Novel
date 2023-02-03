@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
 
     //  MENU - Audio functions
 

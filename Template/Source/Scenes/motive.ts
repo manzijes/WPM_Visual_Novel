@@ -1,4 +1,4 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function motive(): ƒS.SceneReturn {
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
@@ -526,6 +526,7 @@ namespace Template {
                         ƒS.Text.print(diaryPage);
                         choice = await ƒS.Menu.getInput(close, "pageclose");
                     } while (choice != close.done);
+                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
                     ƒS.Text.close();
                     await ƒS.update(0.5);
 
@@ -810,6 +811,7 @@ namespace Template {
                                 ƒS.Text.print(diaryPage);
                                 choice = await ƒS.Menu.getInput(close, "pageclose");
                             } while (choice != close.done);
+                            ƒS.Sound.play(sound.selectDialog, 1.5, false);
                             ƒS.Text.close();
 
                             await ƒS.update(0.5);

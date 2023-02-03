@@ -1,13 +1,21 @@
-namespace Template {
+namespace BehindTheScenes {
     export async function roofWrong(): ƒS.SceneReturn {
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
         ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
         updateNotes();
 
+        // let chosenCulprit = "";
+
+        // if(dataForSave.choseLucia){
+        //     chosenCulprit = "Lucia"
+        // } else {
+        //     chosenCulprit = "Solas"
+        // }
+
         // let protagonistText = {
         //     Protagonist: {
-        //         T0001: "Ich habe dich hergerufen, um dich zu stellen. Ich weiß, dass du der Saboteur bist. Du bist überführt, Solas."
+        //         T0001: "Ich habe dich hergerufen, um dich zu stellen. Ich weiß, dass du der Saboteur bist. Du bist überführt, " + chosenCulprit + "."
         //     }
         // };
 
