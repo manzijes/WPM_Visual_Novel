@@ -61,7 +61,7 @@ namespace BehindTheScenes {
         }
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
-        ƒS.Sound.fade(sound.ending, 0.5, 0.1, true);
+        ƒS.Sound.fade(sound.ending, 0.7, 0.1, true);
         updateNotes();
 
         await ƒS.Location.show(chapterCovers.chapter);

@@ -23,6 +23,7 @@ namespace BehindTheScenes {
     spookyMusic: "Audio/Music/nightmare.mp3",
     splashMusic: "Audio/Music/hillofwind.mp3",
     ending: "Audio/Music/pond.mp3",
+    thinking: "Audio/Music/limit-70.mp3",
     // ambiance
     birds: "Audio/Ambiance/springBirds.wav",
     // SFX
@@ -532,7 +533,7 @@ namespace BehindTheScenes {
   function start(_event: Event): void {
     //Menü
     gameMenu = ƒS.Menu.create(menuInGame, buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
-    ƒS.Sound.fade(sound.splashMusic, 0.5, 0.1, true);
+    ƒS.Sound.fade(sound.splashMusic, 0.4, 0.1, true);
 
     let scenes: ƒS.Scenes = [
       // { scene: intro, name: "Einleitung"},
@@ -551,7 +552,7 @@ namespace BehindTheScenes {
 
       // { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
 
-      // { id: "roofRight", scene: roofRight, name: "" },
+      { id: "roofRight", scene: roofRight, name: "" },
       // { id: "roofWrong", scene: roofWrong, name: "" },
 
       { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },

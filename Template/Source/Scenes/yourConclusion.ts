@@ -97,6 +97,7 @@ namespace BehindTheScenes {
         
         await ƒS.Character.hide(characters.protagonist);
         ƒS.Speech.clear();
+        ƒS.Speech.hide();
         await ƒS.update(0.5);
 
         removeFallingLeaves();

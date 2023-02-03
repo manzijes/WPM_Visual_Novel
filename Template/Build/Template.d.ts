@@ -18,6 +18,7 @@ declare namespace BehindTheScenes {
         spookyMusic: string;
         splashMusic: string;
         ending: string;
+        thinking: string;
         birds: string;
         drop: string;
         schoolBell: string;

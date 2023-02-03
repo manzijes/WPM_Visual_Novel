@@ -22,6 +22,7 @@ var BehindTheScenes;
         spookyMusic: "Audio/Music/nightmare.mp3",
         splashMusic: "Audio/Music/hillofwind.mp3",
         ending: "Audio/Music/pond.mp3",
+        thinking: "Audio/Music/limit-70.mp3",
         // ambiance
         birds: "Audio/Ambiance/springBirds.wav",
         // SFX
@@ -509,7 +510,7 @@ var BehindTheScenes;
     function start(_event) {
         //Menü
         BehindTheScenes.gameMenu = BehindTheScenes.ƒS.Menu.create(BehindTheScenes.menuInGame, BehindTheScenes.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.5, 0.1, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.4, 0.1, true);
         let scenes = [
             // { scene: intro, name: "Einleitung"},
             // { scene: coverChapterOne, name: "Kapitel" },
@@ -523,7 +524,7 @@ var BehindTheScenes;
             // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
             // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
             // { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
-            // { id: "roofRight", scene: roofRight, name: "" },
+            { id: "roofRight", scene: BehindTheScenes.roofRight, name: "" },
             // { id: "roofWrong", scene: roofWrong, name: "" },
             { id: "roofRightEpilogue", scene: BehindTheScenes.roofRightEpilogue, name: "" },
             { id: "roofWrongEpilogue", scene: BehindTheScenes.roofWrongEpilogue, name: "" },
@@ -781,7 +782,7 @@ var BehindTheScenes;
             }
         };
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.5, 0.1, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.7, 0.1, true);
         BehindTheScenes.updateNotes();
         await BehindTheScenes.ƒS.Location.show(BehindTheScenes.chapterCovers.chapter);
         await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
@@ -3401,11 +3402,13 @@ var BehindTheScenes;
                     await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistDontLetGo.Protagonist.T0000);
                     await BehindTheScenes.ƒS.update(0.5);
                     await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-                    await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
                     await BehindTheScenes.ƒS.update(0.5);
                     await BehindTheScenes.ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0000);
                     await BehindTheScenes.ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0001);
                     await BehindTheScenes.ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0002);
+                    await BehindTheScenes.ƒS.update(0.5);
+                    await BehindTheScenes.ƒS.Speech.clear();
+                    await BehindTheScenes.ƒS.Speech.hide();
                     await BehindTheScenes.ƒS.update(0.5);
                     return "roofRightEpilogue";
                     break;
@@ -3414,12 +3417,15 @@ var BehindTheScenes;
         }
         else {
             await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0000);
             await BehindTheScenes.ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0001);
             await BehindTheScenes.ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.clear();
+            await BehindTheScenes.ƒS.Speech.hide();
             await BehindTheScenes.ƒS.update(0.5);
             return "roofRightEpilogue";
         }
@@ -3548,6 +3554,7 @@ var BehindTheScenes;
         }
         await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
         BehindTheScenes.ƒS.Speech.clear();
+        BehindTheScenes.ƒS.Speech.hide();
         await BehindTheScenes.ƒS.update(0.5);
         BehindTheScenes.removeFallingLeaves();
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.birds, 0, 3, true);
@@ -3572,7 +3579,8 @@ var BehindTheScenes;
         };
         let isFavorite = BehindTheScenes.findFavorite();
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.5, 0.1, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0, 0.0, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0.5, 0.1, true);
         BehindTheScenes.updateNotes();
         await BehindTheScenes.ƒS.Location.show(BehindTheScenes.chapterCovers.chapter);
         await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);

@@ -378,12 +378,15 @@ namespace BehindTheScenes {
                     await ƒS.update(0.5);
 
                     await ƒS.Character.hide(characters.protagonist);
-                    await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
                     await ƒS.update(0.5);
 
                     await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0000);
                     await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0001);
                     await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0002);
+                    await ƒS.update(0.5);
+
+                    await ƒS.Speech.clear();
+                    await ƒS.Speech.hide();
                     await ƒS.update(0.5);
 
                     return "roofRightEpilogue";
@@ -394,14 +397,18 @@ namespace BehindTheScenes {
             // you tell kira who the culprit is
         } else {
             await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+            await ƒS.update(0.5);
 
             await ƒS.Character.hide(characters.protagonist);
-            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
 
             await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0000);
             await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0001);
             await ƒS.Speech.tell(null, narratorTextDontLetGo.Narrator.T0002);
+            await ƒS.update(0.5);
+
+            await ƒS.Speech.clear();
+            await ƒS.Speech.hide();
             await ƒS.update(0.5);
 
             return "roofRightEpilogue";
