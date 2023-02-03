@@ -732,7 +732,7 @@ var BehindTheScenes;
 var BehindTheScenes;
 (function (BehindTheScenes) {
     async function roofRightEpilogue() {
-        let isFavorite = "Lucia";
+        let isFavorite = BehindTheScenes.findFavorite();
         let protagonistText = {
             Protagonist: {
                 T0001: "Wir haben wirklich schönes Wetter heute. Ein toller Tag zum Faulenzen.",

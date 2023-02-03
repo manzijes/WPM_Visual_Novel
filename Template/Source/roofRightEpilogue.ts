@@ -1,7 +1,7 @@
 namespace BehindTheScenes {
     export async function roofRightEpilogue(): ƒS.SceneReturn {
 
-        let isFavorite = "Lucia";
+        let isFavorite = findFavorite();
 
         let protagonistText = {
             Protagonist: {
