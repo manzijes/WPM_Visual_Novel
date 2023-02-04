@@ -621,20 +621,8 @@ var BehindTheScenes;
                 <td>Mixkit, https://mixkit.co/free-sound-effects/bell/</td>\
             </tr>\
             <tr>\
-                <td>Birds singing</td>\
-                <td>, </td>\
-            </tr>\
-            <tr>\
-                <td>Button</td>\
-                <td>Universfield, https://pixabay.com/de/sound-effects/button-124476/</td>\
-            </tr>\
-            <tr>\
-                <td>Menü-Button</td>\
-                <td>,</td>\
-            </tr>\
-            <tr>\
-                <td>Shutter</td>\
-                <td>,</td>\
+                <td>Spring Birds Raw (New Jersey)</td>\
+                <td>hargissssound, https://freesound.org/people/hargissssound/</td>\
             </tr>\
             <tr>\
                 <td>Nightmare</td>\
@@ -693,7 +681,7 @@ var BehindTheScenes;
         let shortcuts = "<h1>Shortcuts</h1>\
         <table>\
           <tr>\
-            <td>Menu (open/close)</td>\
+            <td>Menu ein-/ausblenden</td>\
             <td>M</td>\
           </tr>\
           <tr>\
@@ -705,15 +693,15 @@ var BehindTheScenes;
             <td>Ctrl - Cmd – F </td>\
           </tr>\
           <tr>\
-            <td>Save</td>\
+            <td>peichern</td>\
             <td>S</td>\
           </tr>\
           <tr>\
-            <td>Load</td>\
+            <td>Laden</td>\
             <td>L</td>\
           </tr>\
           <tr>\
-          <td>Notes ein-/ausblenden</td>\
+          <td>Notizen ein-/ausblenden</td>\
           <td>N</td>\
         </tr>\
         </table>\
@@ -724,15 +712,15 @@ var BehindTheScenes;
     ;
     // MENU
     BehindTheScenes.menuInGame = {
-        save: "Save",
-        load: "Load",
+        save: "Speichern",
+        load: "Laden",
         // close: "Close",
         credits: "Credits",
         shortcuts: "Shortcuts",
         toggleSound: "Sound",
         turnUpVolume: "+",
         turnDownVolume: "-",
-        toggleSuspects: "Notes",
+        toggleSuspects: "Notizen",
         toggleAquiredPages: "Indizien"
     };
     // true = offen; false = geschlossen
