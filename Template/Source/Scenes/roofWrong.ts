@@ -11,7 +11,7 @@ namespace BehindTheScenes {
         if (dataForSave.choseLucia) {
             chosenCulprit = "Lucia"
         } else {
-            chosenCulprit = "Solas"
+            chosenCulprit = "Lucia"
         }
 
         let protagonistText = {
@@ -23,7 +23,8 @@ namespace BehindTheScenes {
                 T0005: "Oh nein... Die Sonne geht bereits unter. Der Schultag ist so gut wie zu Ende.",
                 T0006: "Der wahre Täter ist noch da draußen. Das bedeutet wohl, dass Kira die Premiere absagen wird. Ich habe versagt...",
                 T0007: "Aber ich habe Kira enttäuscht. Ich habe ihr versprochen, den Saboteur zu finden. Jetzt ist es zu spät, der Tag ist um.",
-                T0008: "Danke, " + chosenCulprit + "."
+                T0008: "Danke, " + chosenCulprit + "...",
+                T0009: "Trotzdem... Ich komme mir vor wie ein riesen Idiot."
             }
         };
 
@@ -45,7 +46,7 @@ namespace BehindTheScenes {
                 T0003: "Tut mir leid, aber ich bin nicht die Täterin. Ich liebe den Theaterclub. Das ist die Wahrheit.",
                 T0004: "Ich verstehe ja, dass du mich verdächtigst. Aber du irrst dich.",
                 T0005: "Sei bitte nicht so hart zu dir... I-Ich bin sicher, du hast dein Bestes gegeben.",
-                T0006: "Kira wird das verstehen. Sie wird dir sicher nicht böse sein. I-Ich weiß, dass ich es nicht bin."
+                T0006: "Kira wird das verstehen. Sie wird dir sicher nicht böse sein."
             }
         };
 
@@ -58,7 +59,7 @@ namespace BehindTheScenes {
             }
         };
 
-        await ƒS.Location.show(locations.corridorDay);
+        await ƒS.Location.show(locations.roof);
         addFallingLeaves();
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
@@ -85,9 +86,9 @@ namespace BehindTheScenes {
             showSolasMeter();
             await ƒS.update(0.5);
 
-            dataForSave.solasScore -= 5;
             await ƒS.Speech.tell(characters.solas, solasText.Solas.T0001);
             await ƒS.update(0.5);
+            dataForSave.solasScore -= 5;
             await ƒS.Speech.tell(characters.solas, solasText.Solas.T0002);
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.solas, solasText.Solas.T0003);
@@ -117,7 +118,7 @@ namespace BehindTheScenes {
             await ƒS.Character.hide(characters.solas);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.scared, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0004);
             await ƒS.update(0.5);
@@ -126,11 +127,15 @@ namespace BehindTheScenes {
             await ƒS.Location.show(locations.roofTwilight);
             await ƒS.update(2.5);
 
+            await ƒS.Character.hide(characters.protagonist);
             await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.sad, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0005);
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0006);
+            await ƒS.update(0.5);
+
+            await ƒS.Character.hide(characters.protagonist);
             await ƒS.update(0.5);
 
             await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
@@ -143,7 +148,7 @@ namespace BehindTheScenes {
             await ƒS.Character.hide(characters.solas);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.scared, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0007);
             await ƒS.update(0.5);
@@ -161,9 +166,11 @@ namespace BehindTheScenes {
             await ƒS.Character.hide(characters.solas);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.scared, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0008);
+            await ƒS.update(0.5);
+            await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0009);
             await ƒS.update(0.5);
 
             await ƒS.Character.hide(characters.protagonist);
@@ -171,13 +178,13 @@ namespace BehindTheScenes {
 
             // Lucia Version
         } else {
-            await ƒS.Character.show(characters.lucia, characters.lucia.pose.surprised, ƒS.positionPercent(75, 97));
+            await ƒS.Character.show(characters.lucia, characters.lucia.pose.unhappy, ƒS.positionPercent(75, 97));
             showLuciaMeter();
             await ƒS.update(0.5);
 
-            dataForSave.luciaScore -= 5;
             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0001);
             await ƒS.update(0.5);
+            dataForSave.luciaScore -= 5;
             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0002);
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0003);
@@ -197,7 +204,7 @@ namespace BehindTheScenes {
             await ƒS.Character.hide(characters.protagonist);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
+            await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
             showLuciaMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0004);
@@ -207,18 +214,16 @@ namespace BehindTheScenes {
             await ƒS.Character.hide(characters.lucia);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.scared, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0004);
-            await ƒS.update(0.5);
-
-            await ƒS.Character.hide(characters.protagonist);
             await ƒS.update(0.5);
 
             // TWILIGHT SET
             await ƒS.Location.show(locations.roofTwilight);
             await ƒS.update(2.5);
 
+            await ƒS.Character.hide(characters.protagonist);
             await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.sad, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0005);
@@ -229,7 +234,7 @@ namespace BehindTheScenes {
             await ƒS.Character.hide(characters.protagonist);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
+            await ƒS.Character.show(characters.lucia, characters.lucia.pose.unhappy, ƒS.positionPercent(75, 97));
             showLuciaMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0005);
@@ -239,7 +244,7 @@ namespace BehindTheScenes {
             await ƒS.Character.hide(characters.lucia);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.scared, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0007);
             await ƒS.update(0.5);
@@ -247,7 +252,7 @@ namespace BehindTheScenes {
             await ƒS.Character.hide(characters.protagonist);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
+            await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
             showLuciaMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0006);
@@ -257,10 +262,13 @@ namespace BehindTheScenes {
             await ƒS.Character.hide(characters.lucia);
             await ƒS.update(0.5);
 
-            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.neutral, ƒS.positionPercent(25, 97));
+            await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.scared, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0008);
             await ƒS.update(0.5);
+            await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0009);
+            await ƒS.update(0.5);
+
 
             await ƒS.Character.hide(characters.protagonist);
             await ƒS.update(0.5);
@@ -271,6 +279,12 @@ namespace BehindTheScenes {
         await ƒS.update(0.5);
         await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
         await ƒS.update(0.5);
+
+        await ƒS.Speech.clear();
+        await ƒS.Speech.hide();
+        await ƒS.update(0.5);
+
+        removeFallingLeaves();
 
         return "roofWrongEpilogue";
 

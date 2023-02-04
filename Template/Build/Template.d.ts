@@ -180,6 +180,9 @@ declare namespace BehindTheScenes {
                 surprised: string;
                 unsure: string;
                 upset: string;
+                happy: string;
+                smiling2: string;
+                unhappy: string;
             };
         };
         solas: {

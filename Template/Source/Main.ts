@@ -191,6 +191,9 @@ namespace BehindTheScenes {
         surprised: "Images/Characters/Lucia/lucia-surprised.png",
         unsure: "Images/Characters/Lucia/lucia-unsure.png",
         upset: "Images/Characters/Lucia/lucia-upset.png",
+        happy: "Images/Characters/Lucia/lucia-happy.png",
+        smiling2: "Images/Characters/Lucia/lucia-smiling-2.png",
+        unhappy: "Images/Characters/Lucia/lucia-unhappy.png",
       }
     },
     solas: {
@@ -553,7 +556,7 @@ namespace BehindTheScenes {
       // { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
 
       // { id: "roofRight", scene: roofRight, name: "" },
-      // { id: "roofWrong", scene: roofWrong, name: "" },
+      { id: "roofWrong", scene: roofWrong, name: "" },
 
       // { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },
       { id: "roofWrongEpilogue", scene: roofWrongEpilogue, name: "" },

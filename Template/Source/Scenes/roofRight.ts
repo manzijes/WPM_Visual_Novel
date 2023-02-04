@@ -369,6 +369,8 @@ namespace BehindTheScenes {
                     ƒS.Speech.hide();
                     await ƒS.update(0.5);
 
+                    removeFallingLeaves();
+
                     return "yourTitle";
 
                     break;
@@ -388,6 +390,8 @@ namespace BehindTheScenes {
                     await ƒS.Speech.clear();
                     await ƒS.Speech.hide();
                     await ƒS.update(0.5);
+
+                    removeFallingLeaves();
 
                     return "roofRightEpilogue";
 
@@ -410,6 +414,8 @@ namespace BehindTheScenes {
             await ƒS.Speech.clear();
             await ƒS.Speech.hide();
             await ƒS.update(0.5);
+
+            removeFallingLeaves();
 
             return "roofRightEpilogue";
         }

@@ -342,7 +342,7 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.hide(characters.lucia);
-            await ƒS.Character.show(characters.lucia, characters.lucia.pose.smiling, ƒS.positionPercent(75, 97));
+            await ƒS.Character.show(characters.lucia, characters.lucia.pose.smiling2, ƒS.positionPercent(75, 97));
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0003);
             await ƒS.update(0.5);
