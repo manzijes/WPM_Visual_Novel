@@ -22,11 +22,9 @@ var BehindTheScenes;
         spookyMusic: "Audio/Music/nightmare.mp3",
         splashMusic: "Audio/Music/hillofwind.mp3",
         ending: "Audio/Music/pond.mp3",
-        thinking: "Audio/Music/limit-70.mp3",
         // ambiance
         birds: "Audio/Ambiance/springBirds.wav",
         // SFX
-        drop: "Audio/SFX/drop.mp3",
         schoolBell: "Audio/SFX/schoolBell.wav",
         sparkle: "Audio/SFX/sparkle.mp3",
         pageflip: "Audio/SFX/pageflip.wav",
@@ -34,7 +32,6 @@ var BehindTheScenes;
         flashlight: "Audio/SFX/flashlight.wav",
         select: "Audio/SFX/select.wav",
         selectDialog: "Audio/SFX/selectdialog.wav",
-        typing: "Audio/SFX/phone.wav",
         femalegasp: "Audio/SFX/femalegasp.mp3",
         shutter: "Audio/SFX/shutter.mp3",
         aua: "Audio/SFX/aua.wav",
@@ -548,13 +545,6 @@ var BehindTheScenes;
 })(BehindTheScenes || (BehindTheScenes = {}));
 var BehindTheScenes;
 (function (BehindTheScenes) {
-    async function Scene() {
-        console.log("FudgeStory Template Scene starting");
-    }
-    BehindTheScenes.Scene = Scene;
-})(BehindTheScenes || (BehindTheScenes = {}));
-var BehindTheScenes;
-(function (BehindTheScenes) {
     //  MENU - Audio functions
     BehindTheScenes.volume = 1.0;
     BehindTheScenes.volumeBeforeMute = 1.0;
@@ -632,11 +622,19 @@ var BehindTheScenes;
             </tr>\
             <tr>\
                 <td>Birds singing</td>\
-                <td>DCPoke, https://freesound.org/people/DCPoke/sounds/387978/</td>\
+                <td>, </td>\
             </tr>\
             <tr>\
                 <td>Button</td>\
                 <td>Universfield, https://pixabay.com/de/sound-effects/button-124476/</td>\
+            </tr>\
+            <tr>\
+                <td>Menü-Button</td>\
+                <td>,</td>\
+            </tr>\
+            <tr>\
+                <td>Shutter</td>\
+                <td>,</td>\
             </tr>\
             <tr>\
                 <td>Nightmare</td>\
@@ -816,602 +814,8 @@ var BehindTheScenes;
 })(BehindTheScenes || (BehindTheScenes = {}));
 var BehindTheScenes;
 (function (BehindTheScenes) {
-    async function roofRightEpilogue() {
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.7, 0.1, true);
-        BehindTheScenes.updateNotes();
-        let isFavorite = BehindTheScenes.findFavorite();
-        let protagonistText = {
-            Protagonist: {
-                T0001: "Wir haben wirklich schönes Wetter heute. Ein toller Tag zum Faulenzen.",
-                T0002: "Nanu? Ach, du bist es, Kira.",
-                T0003: "Nanu? Ach, du bist es, Solas.",
-                T0004: "Nanu? Ach, du bist es, Lucia.",
-                T0005: "Ich habe gerne geholfen."
-            }
-        };
-        let protagonistToKiraText = {
-            Protagonist: {
-                T0001: "Mich einladen?",
-                T0002: "Vielen Dank, Kira. Ich werde kommen."
-            }
-        };
-        let protagonistToFavText = {
-            Protagonist: {
-                T0001: "Nicht? Was wolltest du dann?",
-                T0002: "Vielen Dank, " + isFavorite + ". Ich werde kommen.",
-            }
-        };
-        let narratorText = {
-            Narrator: {
-                T0000_a: "Zum Epilog...",
-                T0000: "Am nächsten Tag verbringst du die Mittagspause wie immer draußen auf dem Hof.",
-                T0001: "Hey, du.",
-                T0002: "Kira winkt dir zum Abschied und du spürst ein glückliches Lächeln auf deinem Gesicht.",
-                T0002_b: isFavorite + " winkt dir zum Abschied und du spürst ein glückliches Lächeln auf deinem Gesicht.",
-                T000end: "Ende."
-            }
-        };
-        let kiraText = {
-            Kira: {
-                T0001: "Ich wollte mich noch einmal bei dir bedanken. Heute Abend findet die Premiere statt. Alle sind schon ganz aufgeregt.",
-                T0001_b: "Verzeih' mir, wenn ich mich irre, aber ich hatte den Eindruck, du hättest Atlas gemocht. Und er hat dich auch gemocht, das weiß ich. Du bist vermutlich genauso enttäuscht von ihm wie ich. Wie dem auch sei...",
-                T0002: "Wenn du noch nichts vorhast... Naja... Ich würde dich gerne einladen!",
-                T0003: "Ja, komm bitte zur Premiere. Hier ist eine Eintrittskarte für die erste Reihe. Der Platz ist direkt neben meinem. Es würde mich sehr freuen, wenn du da wärst.",
-                T0004: "Toll! Dann sehe ich dich dort. Bis heute Abend!"
-            }
-        };
-        let favText = {
-            isFavorite: {
-                T0000: "Ja, ich bins.",
-                T0001: "Heute Abend findet die Premiere statt und alle sind schon ganz aufgeregt. Das haben wir nur dir zu verdanken.",
-                T0002: "Das ist aber eigentlich nicht der Grund, warum ich mit dir reden wollte...",
-                T0003: "Ich würde dich gerne zur Premiere einladen. Hier ist eine Eintrittskarte für die erste Reihe... Es würde mich sehr freuen, wenn du da wärst.",
-                T0004: "Wirklich? Toll! Dann sehe ich dich dort. Bis heute Abend!"
-            }
-        };
-        await BehindTheScenes.ƒS.Location.show(BehindTheScenes.chapterCovers.chapter);
-        await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
-        let pages = "<h1>Epilog</h1>";
-        let close = { done: "Weiter" };
-        let choice;
-        BehindTheScenes.ƒS.Text.setClass("coverTitle");
-        do {
-            BehindTheScenes.ƒS.Text.print(pages);
-            choice = await BehindTheScenes.ƒS.Menu.getInput(close, "pageclose");
-        } while (choice != close.done);
-        BehindTheScenes.ƒS.Text.close();
-        BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.pageflip, 0.5, false);
-        //  SCENE
-        await BehindTheScenes.ƒS.Location.show(BehindTheScenes.locations.schoolOutsideDay);
-        await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
-        BehindTheScenes.addFallingLeaves();
-        await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
-        await BehindTheScenes.ƒS.update(0.5);
-        BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.birds, 0.6, true);
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happy, BehindTheScenes.ƒS.positionPercent(25, 97));
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0001);
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Speech.tell("???", narratorText.Narrator.T0001);
-        await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-        await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
-        await BehindTheScenes.ƒS.update(0.5);
-        if (isFavorite == "Atlas") {
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0005);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0001_b);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToKiraText.Protagonist.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToKiraText.Protagonist.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0004);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
-            await BehindTheScenes.ƒS.update(0.5);
-        }
-        else if (isFavorite == "Solas") {
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0005);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToFavText.Protagonist.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToFavText.Protagonist.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0004);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002_b);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
-            await BehindTheScenes.ƒS.update(0.5);
-        }
-        else {
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0004);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showLuciaMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideLuciaMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0005);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showLuciaMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideLuciaMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToFavText.Protagonist.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showLuciaMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideLuciaMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToFavText.Protagonist.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showLuciaMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0004);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002_b);
-            // hideLuciaMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
-            await BehindTheScenes.ƒS.update(0.5);
-        }
-        await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T000end);
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Speech.clear();
-        // await ƒS.Speech.hide();
-        await BehindTheScenes.ƒS.update(0.5);
-        BehindTheScenes.removeFallingLeaves();
-        return "yourTitle";
-    }
-    BehindTheScenes.roofRightEpilogue = roofRightEpilogue;
-})(BehindTheScenes || (BehindTheScenes = {}));
-var BehindTheScenes;
-(function (BehindTheScenes) {
-    async function roofWrongEpilogue() {
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.7, 0.1, true);
-        BehindTheScenes.updateNotes();
-        let isFavorite = BehindTheScenes.findFavorite();
-        let protagonistText = {
-            Protagonist: {
-                T0001: "Ich komme mir immer noch ziemlich dumm vor, weil ich den Täter nicht schnappen konnte.",
-                T0002: "Nanu? Ach, du bist es, " + isFavorite + "."
-            }
-        };
-        let narratorText = {
-            Narrator: {
-                T0000: "Am nächsten Tag verbringst du die Mittagspause wie immer draußen auf dem Hof.",
-                T0001: "Hey, du.",
-                T0002: isFavorite + " überreicht dir ein Melonenbrötchen.",
-                T000end: "Ende."
-            }
-        };
-        let protagonistToAtlas = {
-            Protagonist: {
-                T0001: "Kommt darauf an, was du willst.",
-                T0002: "Ich dachte, du kommst in Frieden?",
-                T0003: "Du gibst mir ein Melonenbrötchen...?",
-                T0004: "Ich verstehe...",
-                T0004b: "Danke, Atlas.",
-                T0005: "Hm...",
-                T0006: "Ja, das denke ich auch."
-            }
-        };
-        let protagonistToSolas = {
-            Protagonist: {
-                T0001: "Ach ja? Obwohl ich dich verdächtigt habe?",
-                T0001b: "Ich finde es auch schön, dich zu sehen, aber... Mir ist das alles ein bisschen peinlich.",
-                T0002: "Ich bezweifle, dass es einen nächsten Fall geben wird. Aber...",
-                T0003: "Danke, Solas.",
-            }
-        };
-        let protagonistToLucia = {
-            Protagonist: {
-                T0001: "Ach ja? Obwohl ich dich verdächtigt habe?",
-                T0001b: "Ich finde es auch schön, dich zu sehen, aber... Mir ist das alles ein bisschen peinlich.",
-                T0002: "Du... hast Recht.",
-                T0003: "Ich bin dankbar dafür, dich getroffen zu haben."
-            }
-        };
-        let atlasText = {
-            Atlas: {
-                T0001: "Ja, ich bin es. Freust du dich etwa nicht, mich zu sehen?",
-                T0002: "Keine Sorge, ich komme in Frieden.",
-                T0002b: "Weißt du, ich habe gehört, dass die Premiere abgesagt wurde. Wenn ich du wäre, würde ich mir ziemlich blöd vorkommen.",
-                T0003: "Das tue ich auch, wirklich. Tatsächlich bin ich hier, um dich aufzuheitern. Hier, nimm das.",
-                T0004: "Du hast so ein bitteres Gesicht gemacht.",
-                T0005: "...",
-                T0006: "Weißt du, ich glaube... Wer auch immer der wahre Täter war, es tut ihm sicher leid.",
-                T0007: "Er hat wohl bekommen, was er wollte, oder? Aber vielleicht hätte er etwas anderes gebraucht. Wie auch immer... Ich weiß nicht, was ich rede."
-            }
-        };
-        let solasText = {
-            Solas: {
-                T0001: "Ja, ich bin es. Schön, dich zu sehen.",
-                T0002: "Naja... Dumm gelaufen, wie die Sache ausgegangen ist. Aber am Ende des Tages geht es jedem von uns gut. Darauf kommt es an.",
-                T0003: "Ich finde, du hast deine Sache trotzdem gut gemacht. Du bist durch die Flure spaziert wie eine echte Detektivin. Den nächsten Fall knackst du sicher!",
-                T0004: "Das ist alles, was ich sehen wollte. Du lächelst."
-            }
-        };
-        let luciaText = {
-            Lucia: {
-                T0001: "J-Ja. Hallo nochmal. Schön, dich zu sehen.",
-                T0002: "Mach dich nicht verrückt wegen der Sache mit dem Theaterclub. Du kannst nicht ändern, wie es gelaufen ist... Deswegen musst du einfach nach vorne blicken.",
-                T0003: "Sieh es positiv... Wäre das alles nicht passiert, dann hätten wir uns nie kennengelernt.",
-                T0004: "W-Wirklich?",
-                T0005: "Ich... Ich bin auch dankbar."
-            }
-        };
-        await BehindTheScenes.ƒS.Location.show(BehindTheScenes.chapterCovers.chapter);
-        await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
-        let pages = "<h1>Epilog</h1>";
-        let close = { done: "Weiter" };
-        let choice;
-        BehindTheScenes.ƒS.Text.setClass("coverTitle");
-        do {
-            BehindTheScenes.ƒS.Text.print(pages);
-            choice = await BehindTheScenes.ƒS.Menu.getInput(close, "pageclose");
-        } while (choice != close.done);
-        BehindTheScenes.ƒS.Text.close();
-        BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.pageflip, 0.5, false);
-        //  SCENE
-        await BehindTheScenes.ƒS.Location.show(BehindTheScenes.locations.schoolOutsideDay);
-        await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
-        BehindTheScenes.addFallingLeaves();
-        await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
-        await BehindTheScenes.ƒS.update(0.5);
-        BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.birds, 0.6, true);
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.scared, BehindTheScenes.ƒS.positionPercent(25, 97));
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0001);
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Speech.tell("???", narratorText.Narrator.T0001);
-        await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-        await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0002);
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-        await BehindTheScenes.ƒS.update(0.5);
-        // Atlas version
-        if (isFavorite == "Atlas") {
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.unhappy, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showAtlasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideAtlasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.playful, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showAtlasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0002b);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideAtlasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.angry, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.smiling, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showAtlasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideAtlasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.smiling, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showAtlasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0004);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideAtlasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0004);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0004b);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.unhappy, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showAtlasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0005);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0006);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0007);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideAtlasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0005);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.benevolent, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0006);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            // Solas Version
-        }
-        else if (isFavorite == "Solas") {
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.solas, solasText.Solas.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.scared, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            if (BehindTheScenes.dataForSave.choseSolas) {
-                await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToSolas.Protagonist.T0001);
-                await BehindTheScenes.ƒS.update(0.5);
-            }
-            else {
-                await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToSolas.Protagonist.T0001b);
-                await BehindTheScenes.ƒS.update(0.5);
-            }
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.solas, solasText.Solas.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.solas, solasText.Solas.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToSolas.Protagonist.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToSolas.Protagonist.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.solas, solasText.Solas.T0004);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
-            await BehindTheScenes.ƒS.update(0.5);
-            // Lucia Version
-        }
-        else {
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0001);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.scared, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            if (BehindTheScenes.dataForSave.choseLucia) {
-                await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToLucia.Protagonist.T0001);
-                await BehindTheScenes.ƒS.update(0.5);
-            }
-            else {
-                await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToLucia.Protagonist.T0001b);
-                await BehindTheScenes.ƒS.update(0.5);
-            }
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.smiling2, BehindTheScenes.ƒS.positionPercent(75, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToLucia.Protagonist.T0002);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToLucia.Protagonist.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
-            // showSolasMeter();
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0004);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.smiling, BehindTheScenes.ƒS.positionPercent(75, 97));
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0005);
-            await BehindTheScenes.ƒS.update(0.5);
-            // hideSolasMeter();
-            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
-            await BehindTheScenes.ƒS.update(0.5);
-        }
-        await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T000end);
-        await BehindTheScenes.ƒS.update(0.5);
-        await BehindTheScenes.ƒS.Speech.clear();
-        // await ƒS.Speech.hide();
-        await BehindTheScenes.ƒS.update(0.5);
-        BehindTheScenes.removeFallingLeaves();
-        return "yourTitle";
-    }
-    BehindTheScenes.roofWrongEpilogue = roofWrongEpilogue;
-})(BehindTheScenes || (BehindTheScenes = {}));
-var BehindTheScenes;
-(function (BehindTheScenes) {
     async function beta() {
-        // name the girl
-        BehindTheScenes.dataForSave.nameGirl = await BehindTheScenes.ƒS.Speech.getInput();
-        await BehindTheScenes.ƒS.update(0.5);
-        BehindTheScenes.characters.girl.name = BehindTheScenes.dataForSave.nameGirl;
+        // space for testing snippets
     }
     BehindTheScenes.beta = beta;
 })(BehindTheScenes || (BehindTheScenes = {}));
@@ -3780,6 +3184,269 @@ var BehindTheScenes;
 })(BehindTheScenes || (BehindTheScenes = {}));
 var BehindTheScenes;
 (function (BehindTheScenes) {
+    async function roofRightEpilogue() {
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.7, 0.1, true);
+        BehindTheScenes.updateNotes();
+        let isFavorite = BehindTheScenes.findFavorite();
+        let protagonistText = {
+            Protagonist: {
+                T0001: "Wir haben wirklich schönes Wetter heute. Ein toller Tag zum Faulenzen.",
+                T0002: "Nanu? Ach, du bist es, Kira.",
+                T0003: "Nanu? Ach, du bist es, Solas.",
+                T0004: "Nanu? Ach, du bist es, Lucia.",
+                T0005: "Ich habe gerne geholfen."
+            }
+        };
+        let protagonistToKiraText = {
+            Protagonist: {
+                T0001: "Mich einladen?",
+                T0002: "Vielen Dank, Kira. Ich werde kommen."
+            }
+        };
+        let protagonistToFavText = {
+            Protagonist: {
+                T0001: "Nicht? Was wolltest du dann?",
+                T0002: "Vielen Dank, " + isFavorite + ". Ich werde kommen.",
+            }
+        };
+        let narratorText = {
+            Narrator: {
+                T0000_a: "Zum Epilog...",
+                T0000: "Am nächsten Tag verbringst du die Mittagspause wie immer draußen auf dem Hof.",
+                T0001: "Hey, du.",
+                T0002: "Kira winkt dir zum Abschied und du spürst ein glückliches Lächeln auf deinem Gesicht.",
+                T0002_b: isFavorite + " winkt dir zum Abschied und du spürst ein glückliches Lächeln auf deinem Gesicht.",
+                T000end: "Ende."
+            }
+        };
+        let kiraText = {
+            Kira: {
+                T0001: "Ich wollte mich noch einmal bei dir bedanken. Heute Abend findet die Premiere statt. Alle sind schon ganz aufgeregt.",
+                T0001_b: "Verzeih' mir, wenn ich mich irre, aber ich hatte den Eindruck, du hättest Atlas gemocht. Und er hat dich auch gemocht, das weiß ich. Du bist vermutlich genauso enttäuscht von ihm wie ich. Wie dem auch sei...",
+                T0002: "Wenn du noch nichts vorhast... Naja... Ich würde dich gerne einladen!",
+                T0003: "Ja, komm bitte zur Premiere. Hier ist eine Eintrittskarte für die erste Reihe. Der Platz ist direkt neben meinem. Es würde mich sehr freuen, wenn du da wärst.",
+                T0004: "Toll! Dann sehe ich dich dort. Bis heute Abend!"
+            }
+        };
+        let favText = {
+            isFavorite: {
+                T0000: "Ja, ich bins.",
+                T0001: "Heute Abend findet die Premiere statt und alle sind schon ganz aufgeregt. Das haben wir nur dir zu verdanken.",
+                T0002: "Das ist aber eigentlich nicht der Grund, warum ich mit dir reden wollte...",
+                T0003: "Ich würde dich gerne zur Premiere einladen. Hier ist eine Eintrittskarte für die erste Reihe... Es würde mich sehr freuen, wenn du da wärst.",
+                T0004: "Wirklich? Toll! Dann sehe ich dich dort. Bis heute Abend!"
+            }
+        };
+        await BehindTheScenes.ƒS.Location.show(BehindTheScenes.chapterCovers.chapter);
+        await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
+        let pages = "<h1>Epilog</h1>";
+        let close = { done: "Weiter" };
+        let choice;
+        BehindTheScenes.ƒS.Text.setClass("coverTitle");
+        do {
+            BehindTheScenes.ƒS.Text.print(pages);
+            choice = await BehindTheScenes.ƒS.Menu.getInput(close, "pageclose");
+        } while (choice != close.done);
+        BehindTheScenes.ƒS.Text.close();
+        BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.pageflip, 0.5, false);
+        //  SCENE
+        await BehindTheScenes.ƒS.Location.show(BehindTheScenes.locations.schoolOutsideDay);
+        await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
+        BehindTheScenes.addFallingLeaves();
+        await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await BehindTheScenes.ƒS.update(0.5);
+        BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.birds, 0.6, true);
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happy, BehindTheScenes.ƒS.positionPercent(25, 97));
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0001);
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Speech.tell("???", narratorText.Narrator.T0001);
+        await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+        await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
+        await BehindTheScenes.ƒS.update(0.5);
+        if (isFavorite == "Atlas") {
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0005);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0001_b);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToKiraText.Protagonist.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToKiraText.Protagonist.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0004);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
+            await BehindTheScenes.ƒS.update(0.5);
+        }
+        else if (isFavorite == "Solas") {
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0005);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToFavText.Protagonist.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToFavText.Protagonist.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0004);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002_b);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
+            await BehindTheScenes.ƒS.update(0.5);
+        }
+        else {
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0004);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showLuciaMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideLuciaMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0005);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showLuciaMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideLuciaMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToFavText.Protagonist.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showLuciaMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideLuciaMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToFavText.Protagonist.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showLuciaMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0004);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002_b);
+            // hideLuciaMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
+            await BehindTheScenes.ƒS.update(0.5);
+        }
+        await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T000end);
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Speech.clear();
+        // await ƒS.Speech.hide();
+        await BehindTheScenes.ƒS.update(0.5);
+        BehindTheScenes.removeFallingLeaves();
+        return "yourTitle";
+    }
+    BehindTheScenes.roofRightEpilogue = roofRightEpilogue;
+})(BehindTheScenes || (BehindTheScenes = {}));
+var BehindTheScenes;
+(function (BehindTheScenes) {
     async function roofWrong() {
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0.5, 0.1, true);
@@ -4018,6 +3685,334 @@ var BehindTheScenes;
         return "roofWrongEpilogue";
     }
     BehindTheScenes.roofWrong = roofWrong;
+})(BehindTheScenes || (BehindTheScenes = {}));
+var BehindTheScenes;
+(function (BehindTheScenes) {
+    async function roofWrongEpilogue() {
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.7, 0.1, true);
+        BehindTheScenes.updateNotes();
+        let isFavorite = BehindTheScenes.findFavorite();
+        let protagonistText = {
+            Protagonist: {
+                T0001: "Ich komme mir immer noch ziemlich dumm vor, weil ich den Täter nicht schnappen konnte.",
+                T0002: "Nanu? Ach, du bist es, " + isFavorite + "."
+            }
+        };
+        let narratorText = {
+            Narrator: {
+                T0000: "Am nächsten Tag verbringst du die Mittagspause wie immer draußen auf dem Hof.",
+                T0001: "Hey, du.",
+                T0002: isFavorite + " überreicht dir ein Melonenbrötchen.",
+                T000end: "Ende."
+            }
+        };
+        let protagonistToAtlas = {
+            Protagonist: {
+                T0001: "Kommt darauf an, was du willst.",
+                T0002: "Ich dachte, du kommst in Frieden?",
+                T0003: "Du gibst mir ein Melonenbrötchen...?",
+                T0004: "Ich verstehe...",
+                T0004b: "Danke, Atlas.",
+                T0005: "Hm...",
+                T0006: "Ja, das denke ich auch."
+            }
+        };
+        let protagonistToSolas = {
+            Protagonist: {
+                T0001: "Ach ja? Obwohl ich dich verdächtigt habe?",
+                T0001b: "Ich finde es auch schön, dich zu sehen, aber... Mir ist das alles ein bisschen peinlich.",
+                T0002: "Ich bezweifle, dass es einen nächsten Fall geben wird. Aber...",
+                T0003: "Danke, Solas.",
+            }
+        };
+        let protagonistToLucia = {
+            Protagonist: {
+                T0001: "Ach ja? Obwohl ich dich verdächtigt habe?",
+                T0001b: "Ich finde es auch schön, dich zu sehen, aber... Mir ist das alles ein bisschen peinlich.",
+                T0002: "Du... hast Recht.",
+                T0003: "Ich bin dankbar dafür, dich getroffen zu haben."
+            }
+        };
+        let atlasText = {
+            Atlas: {
+                T0001: "Ja, ich bin es. Freust du dich etwa nicht, mich zu sehen?",
+                T0002: "Keine Sorge, ich komme in Frieden.",
+                T0002b: "Weißt du, ich habe gehört, dass die Premiere abgesagt wurde. Wenn ich du wäre, würde ich mir ziemlich blöd vorkommen.",
+                T0003: "Das tue ich auch, wirklich. Tatsächlich bin ich hier, um dich aufzuheitern. Hier, nimm das.",
+                T0004: "Du hast so ein bitteres Gesicht gemacht.",
+                T0005: "...",
+                T0006: "Weißt du, ich glaube... Wer auch immer der wahre Täter war, es tut ihm sicher leid.",
+                T0007: "Er hat wohl bekommen, was er wollte, oder? Aber vielleicht hätte er etwas anderes gebraucht. Wie auch immer... Ich weiß nicht, was ich rede."
+            }
+        };
+        let solasText = {
+            Solas: {
+                T0001: "Ja, ich bin es. Schön, dich zu sehen.",
+                T0002: "Naja... Dumm gelaufen, wie die Sache ausgegangen ist. Aber am Ende des Tages geht es jedem von uns gut. Darauf kommt es an.",
+                T0003: "Ich finde, du hast deine Sache trotzdem gut gemacht. Du bist durch die Flure spaziert wie eine echte Detektivin. Den nächsten Fall knackst du sicher!",
+                T0004: "Das ist alles, was ich sehen wollte. Du lächelst."
+            }
+        };
+        let luciaText = {
+            Lucia: {
+                T0001: "J-Ja. Hallo nochmal. Schön, dich zu sehen.",
+                T0002: "Mach dich nicht verrückt wegen der Sache mit dem Theaterclub. Du kannst nicht ändern, wie es gelaufen ist... Deswegen musst du einfach nach vorne blicken.",
+                T0003: "Sieh es positiv... Wäre das alles nicht passiert, dann hätten wir uns nie kennengelernt.",
+                T0004: "W-Wirklich?",
+                T0005: "Ich... Ich bin auch dankbar."
+            }
+        };
+        await BehindTheScenes.ƒS.Location.show(BehindTheScenes.chapterCovers.chapter);
+        await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
+        let pages = "<h1>Epilog</h1>";
+        let close = { done: "Weiter" };
+        let choice;
+        BehindTheScenes.ƒS.Text.setClass("coverTitle");
+        do {
+            BehindTheScenes.ƒS.Text.print(pages);
+            choice = await BehindTheScenes.ƒS.Menu.getInput(close, "pageclose");
+        } while (choice != close.done);
+        BehindTheScenes.ƒS.Text.close();
+        BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.pageflip, 0.5, false);
+        //  SCENE
+        await BehindTheScenes.ƒS.Location.show(BehindTheScenes.locations.schoolOutsideDay);
+        await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
+        BehindTheScenes.addFallingLeaves();
+        await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0000);
+        await BehindTheScenes.ƒS.update(0.5);
+        BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.birds, 0.6, true);
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.scared, BehindTheScenes.ƒS.positionPercent(25, 97));
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0001);
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Speech.tell("???", narratorText.Narrator.T0001);
+        await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+        await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0002);
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+        await BehindTheScenes.ƒS.update(0.5);
+        // Atlas version
+        if (isFavorite == "Atlas") {
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.unhappy, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showAtlasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideAtlasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.playful, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showAtlasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0002b);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideAtlasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.angry, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.smiling, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showAtlasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideAtlasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.surprised, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.smiling, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showAtlasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0004);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideAtlasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0004);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0004b);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.unhappy, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showAtlasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0005);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0006);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0007);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideAtlasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0005);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.benevolent, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToAtlas.Protagonist.T0006);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            // Solas Version
+        }
+        else if (isFavorite == "Solas") {
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.solas, solasText.Solas.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.scared, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            if (BehindTheScenes.dataForSave.choseSolas) {
+                await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToSolas.Protagonist.T0001);
+                await BehindTheScenes.ƒS.update(0.5);
+            }
+            else {
+                await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToSolas.Protagonist.T0001b);
+                await BehindTheScenes.ƒS.update(0.5);
+            }
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.solas, solasText.Solas.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.solas, solasText.Solas.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToSolas.Protagonist.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToSolas.Protagonist.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.solas, BehindTheScenes.characters.solas.pose.happy, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.solas, solasText.Solas.T0004);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
+            await BehindTheScenes.ƒS.update(0.5);
+            // Lucia Version
+        }
+        else {
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0001);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.scared, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            if (BehindTheScenes.dataForSave.choseLucia) {
+                await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToLucia.Protagonist.T0001);
+                await BehindTheScenes.ƒS.update(0.5);
+            }
+            else {
+                await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToLucia.Protagonist.T0001b);
+                await BehindTheScenes.ƒS.update(0.5);
+            }
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.smiling2, BehindTheScenes.ƒS.positionPercent(75, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.neutral, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToLucia.Protagonist.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistToLucia.Protagonist.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+            // showSolasMeter();
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0004);
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.smiling, BehindTheScenes.ƒS.positionPercent(75, 97));
+            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0005);
+            await BehindTheScenes.ƒS.update(0.5);
+            // hideSolasMeter();
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
+            await BehindTheScenes.ƒS.update(0.5);
+        }
+        await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T000end);
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Speech.clear();
+        // await ƒS.Speech.hide();
+        await BehindTheScenes.ƒS.update(0.5);
+        BehindTheScenes.removeFallingLeaves();
+        return "yourTitle";
+    }
+    BehindTheScenes.roofWrongEpilogue = roofWrongEpilogue;
 })(BehindTheScenes || (BehindTheScenes = {}));
 var BehindTheScenes;
 (function (BehindTheScenes) {

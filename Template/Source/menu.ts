@@ -81,11 +81,19 @@ namespace BehindTheScenes {
             </tr>\
             <tr>\
                 <td>Birds singing</td>\
-                <td>DCPoke, https://freesound.org/people/DCPoke/sounds/387978/</td>\
+                <td>, </td>\
             </tr>\
             <tr>\
                 <td>Button</td>\
                 <td>Universfield, https://pixabay.com/de/sound-effects/button-124476/</td>\
+            </tr>\
+            <tr>\
+                <td>Menü-Button</td>\
+                <td>,</td>\
+            </tr>\
+            <tr>\
+                <td>Shutter</td>\
+                <td>,</td>\
             </tr>\
             <tr>\
                 <td>Nightmare</td>\

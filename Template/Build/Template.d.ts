@@ -18,9 +18,7 @@ declare namespace BehindTheScenes {
         spookyMusic: string;
         splashMusic: string;
         ending: string;
-        thinking: string;
         birds: string;
-        drop: string;
         schoolBell: string;
         sparkle: string;
         pageflip: string;
@@ -28,7 +26,6 @@ declare namespace BehindTheScenes {
         flashlight: string;
         select: string;
         selectDialog: string;
-        typing: string;
         femalegasp: string;
         shutter: string;
         aua: string;
@@ -243,9 +240,6 @@ declare namespace BehindTheScenes {
     };
 }
 declare namespace BehindTheScenes {
-    function Scene(): ƒS.SceneReturn;
-}
-declare namespace BehindTheScenes {
     let volume: number;
     let volumeBeforeMute: number;
     function incrementSound(): void;
@@ -269,12 +263,6 @@ declare namespace BehindTheScenes {
     let menuOpen: boolean;
     function buttonFunctionalities(_option: string): Promise<void>;
     function hndKeyPress(_event: KeyboardEvent): Promise<void>;
-}
-declare namespace BehindTheScenes {
-    function roofRightEpilogue(): ƒS.SceneReturn;
-}
-declare namespace BehindTheScenes {
-    function roofWrongEpilogue(): ƒS.SceneReturn;
 }
 declare namespace BehindTheScenes {
     function beta(): ƒS.SceneReturn;
@@ -316,7 +304,13 @@ declare namespace BehindTheScenes {
     function roofRight(): ƒS.SceneReturn;
 }
 declare namespace BehindTheScenes {
+    function roofRightEpilogue(): ƒS.SceneReturn;
+}
+declare namespace BehindTheScenes {
     function roofWrong(): ƒS.SceneReturn;
+}
+declare namespace BehindTheScenes {
+    function roofWrongEpilogue(): ƒS.SceneReturn;
 }
 declare namespace BehindTheScenes {
     function yourConclusion(): ƒS.SceneReturn;

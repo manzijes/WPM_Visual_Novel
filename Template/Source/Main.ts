@@ -23,11 +23,9 @@ namespace BehindTheScenes {
     spookyMusic: "Audio/Music/nightmare.mp3",
     splashMusic: "Audio/Music/hillofwind.mp3",
     ending: "Audio/Music/pond.mp3",
-    thinking: "Audio/Music/limit-70.mp3",
     // ambiance
     birds: "Audio/Ambiance/springBirds.wav",
     // SFX
-    drop: "Audio/SFX/drop.mp3",
     schoolBell: "Audio/SFX/schoolBell.wav",
     sparkle: "Audio/SFX/sparkle.mp3",
     pageflip: "Audio/SFX/pageflip.wav",
@@ -35,7 +33,6 @@ namespace BehindTheScenes {
     flashlight: "Audio/SFX/flashlight.wav",
     select: "Audio/SFX/select.wav",
     selectDialog: "Audio/SFX/selectdialog.wav",
-    typing: "Audio/SFX/phone.wav",
     femalegasp: "Audio/SFX/femalegasp.mp3",
     shutter: "Audio/SFX/shutter.mp3",
     aua: "Audio/SFX/aua.wav",
