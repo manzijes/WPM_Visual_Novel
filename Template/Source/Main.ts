@@ -555,7 +555,7 @@ namespace BehindTheScenes {
       // { id: "roofRight", scene: roofRight, name: "" },
       // { id: "roofWrong", scene: roofWrong, name: "" },
 
-      { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },
+      // { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },
       { id: "roofWrongEpilogue", scene: roofWrongEpilogue, name: "" },
 
       { id: "yourTitle", scene: yourTitle, name: "Du erhältst einen Titel abhängig von deiner Spielweise" }

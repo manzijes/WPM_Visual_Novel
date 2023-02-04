@@ -49,10 +49,10 @@ namespace BehindTheScenes {
         ƒS.Text.close();
 
 
-        // Spiel neustarten oder fenster schließen
+        // Spiel neustarten
 
         let backToStart = {
-            Restart: "Nochmal spielen."
+            Restart: "Neustart."
         }
 
         let loopCount: number = 0;

@@ -1,6 +1,10 @@
 namespace BehindTheScenes {
     export async function roofRightEpilogue(): ƒS.SceneReturn {
 
+        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
+        ƒS.Sound.fade(sound.ending, 0.7, 0.1, true);
+        updateNotes();
+
         let isFavorite = findFavorite();
 
         let protagonistText = {
@@ -61,10 +65,6 @@ namespace BehindTheScenes {
             }
         }
 
-        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
-        ƒS.Sound.fade(sound.ending, 0.7, 0.1, true);
-        updateNotes();
-
         await ƒS.Location.show(chapterCovers.chapter);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
@@ -80,6 +80,7 @@ namespace BehindTheScenes {
 
          ƒS.Sound.play(sound.pageflip, 0.5, false);
 
+        //  SCENE
         await ƒS.Location.show(locations.schoolOutsideDay);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
         addFallingLeaves();
@@ -170,14 +171,14 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.show(characters.solas, characters.solas.pose.happy, ƒS.positionPercent(75, 97));
-            showSolasMeter();
+            // showSolasMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
             await ƒS.update(0.5);
 
-            hideSolasMeter();
+            // hideSolasMeter();
             await ƒS.Character.hide(characters.solas);
             await ƒS.update(0.5);
 
@@ -189,12 +190,12 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-            showSolasMeter();
+            // showSolasMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0002);
             await ƒS.update(0.5);
 
-            hideSolasMeter();
+            // hideSolasMeter();
             await ƒS.Character.hide(characters.solas);
             await ƒS.update(0.5);
 
@@ -206,12 +207,12 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-            showSolasMeter();
+            // showSolasMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
             await ƒS.update(0.5);
 
-            hideSolasMeter();
+            // hideSolasMeter();
             await ƒS.Character.hide(characters.solas);
             await ƒS.update(0.5);
 
@@ -223,14 +224,14 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.show(characters.solas, characters.solas.pose.neutral, ƒS.positionPercent(75, 97));
-            showSolasMeter();
+            // showSolasMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0004);
             await ƒS.update(0.5);
 
             await ƒS.Speech.tell(null, narratorText.Narrator.T0002_b);
 
-            hideSolasMeter();
+            // hideSolasMeter();
             await ƒS.Character.hide(characters.solas);
             await ƒS.update(0.5);
         
@@ -241,14 +242,14 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
-            showLuciaMeter();
+            // showLuciaMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0000);
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0001);
             await ƒS.update(0.5);
 
-            hideLuciaMeter();
+            // hideLuciaMeter();
             await ƒS.Character.hide(characters.lucia);
             await ƒS.update(0.5);
 
@@ -260,12 +261,12 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
-            showLuciaMeter();
+            // showLuciaMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0002);
             await ƒS.update(0.5);
 
-            hideLuciaMeter();
+            // hideLuciaMeter();
             await ƒS.Character.hide(characters.lucia);
             await ƒS.update(0.5);
 
@@ -277,12 +278,12 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
-            showLuciaMeter();
+            // showLuciaMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
             await ƒS.update(0.5);
 
-            hideLuciaMeter();
+            // hideLuciaMeter();
             await ƒS.Character.hide(characters.lucia);
             await ƒS.update(0.5);
 
@@ -294,14 +295,14 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.show(characters.lucia, characters.lucia.pose.neutral, ƒS.positionPercent(75, 97));
-            showLuciaMeter();
+            // showLuciaMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0004);
             await ƒS.update(0.5);
 
             await ƒS.Speech.tell(null, narratorText.Narrator.T0002_b);
 
-            hideLuciaMeter();
+            // hideLuciaMeter();
             await ƒS.Character.hide(characters.lucia);
             await ƒS.update(0.5);
         }
@@ -310,6 +311,7 @@ namespace BehindTheScenes {
         await ƒS.update(0.5);
 
         await ƒS.Speech.clear();
+        // await ƒS.Speech.hide();
         await ƒS.update(0.5);
 
         removeFallingLeaves();

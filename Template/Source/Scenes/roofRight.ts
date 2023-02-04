@@ -355,7 +355,7 @@ namespace BehindTheScenes {
                     await ƒS.Character.hide(characters.protagonist);
                     await ƒS.update(0.5);
 
-                    // change normal theme to spooky music
+                    // change normal theme to ending music
                     ƒS.Sound.fade(sound.mainMusic, 0, 4);
                     ƒS.Sound.fade(sound.ending, 0.7, 2, true);
 
