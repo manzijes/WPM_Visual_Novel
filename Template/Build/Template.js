@@ -512,21 +512,21 @@ var BehindTheScenes;
         BehindTheScenes.gameMenu = BehindTheScenes.ƒS.Menu.create(BehindTheScenes.menuInGame, BehindTheScenes.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.4, 0.1, true);
         let scenes = [
-            // { scene: intro, name: "Einleitung"},
-            // { scene: coverChapterOne, name: "Kapitel" },
-            // { scene: motive, name: "Treffe die Verdächtigen" },
-            // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
-            // { scene: coverChapterTwo, name: "Kapitel" },
-            // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
-            // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
-            // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
-            // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
-            // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
-            // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
-            // { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
-            // { id: "roofRight", scene: roofRight, name: "" },
+            { scene: BehindTheScenes.intro, name: "Einleitung" },
+            { scene: BehindTheScenes.coverChapterOne, name: "Kapitel" },
+            { scene: BehindTheScenes.motive, name: "Treffe die Verdächtigen" },
+            { scene: BehindTheScenes.lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
+            { scene: BehindTheScenes.coverChapterTwo, name: "Kapitel" },
+            { scene: BehindTheScenes.girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+            { scene: BehindTheScenes.lookForKey, name: "Suche nach Lucias Schlüssel" },
+            { id: "kiraGivesHint", scene: BehindTheScenes.kiraGivesHint, name: "Kira gibt einen Hinweis" },
+            { id: "luciaGivesHint", scene: BehindTheScenes.luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+            { id: "confrontSolasAfterKira", scene: BehindTheScenes.confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+            { id: "confrontSolasAfterLucia", scene: BehindTheScenes.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+            { scene: BehindTheScenes.yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
+            { id: "roofRight", scene: BehindTheScenes.roofRight, name: "" },
             { id: "roofWrong", scene: BehindTheScenes.roofWrong, name: "" },
-            // { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },
+            { id: "roofRightEpilogue", scene: BehindTheScenes.roofRightEpilogue, name: "" },
             { id: "roofWrongEpilogue", scene: BehindTheScenes.roofWrongEpilogue, name: "" },
             { id: "yourTitle", scene: BehindTheScenes.yourTitle, name: "Du erhältst einen Titel abhängig von deiner Spielweise" }
         ];
@@ -1269,7 +1269,7 @@ var BehindTheScenes;
                 T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und erfreust dich an der Nachmittagssonne.",
                 T0002: "Du drehst dich um und erblickst ein Mädchen, das dir bekannt vorkommt. Sie geht nicht in deine Klasse, also woher...?",
                 T0003: "Du schaust zu, wie Kira im Schulgebäude verschwindet.",
-                T0004: "Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin! Du kannst es ab jetzt im Menü unter 'Notes' einblenden und ausblenden. Dann kannst du auch gleich einen ersten Blick auf deine Indizien-Sammlung werfen..."
+                T0004: "Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin! Du kannst es ab jetzt im Menü unter 'Notizen' oder mit 'N' ein- und ausblenden. Dann kannst du auch gleich einen ersten Blick auf deine Indizien-Sammlung werfen..."
             }
         };
         let kiraText = {

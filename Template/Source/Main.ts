@@ -536,26 +536,26 @@ namespace BehindTheScenes {
     ƒS.Sound.fade(sound.splashMusic, 0.4, 0.1, true);
 
     let scenes: ƒS.Scenes = [
-      // { scene: intro, name: "Einleitung"},
-      // { scene: coverChapterOne, name: "Kapitel" },
-      // { scene: motive, name: "Treffe die Verdächtigen" },
-      // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
-      // { scene: coverChapterTwo, name: "Kapitel" },
-      // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
-      // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
+      { scene: intro, name: "Einleitung"},
+      { scene: coverChapterOne, name: "Kapitel" },
+      { scene: motive, name: "Treffe die Verdächtigen" },
+      { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
+      { scene: coverChapterTwo, name: "Kapitel" },
+      { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+      { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
 
-      // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
-      // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+      { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
+      { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
 
-      // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
-      // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+      { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+      { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
 
-      // { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
+      { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
 
-      // { id: "roofRight", scene: roofRight, name: "" },
+      { id: "roofRight", scene: roofRight, name: "" },
       { id: "roofWrong", scene: roofWrong, name: "" },
 
-      // { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },
+      { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },
       { id: "roofWrongEpilogue", scene: roofWrongEpilogue, name: "" },
 
       { id: "yourTitle", scene: yourTitle, name: "Du erhältst einen Titel abhängig von deiner Spielweise" }
