@@ -41,19 +41,104 @@ namespace BehindTheScenes {
         element.classList.toggle("hidden");
     }
 
-    export function showCredits(): void {
+    export async function showCredits() {
         ƒS.Text.setClass("credits hint");
-        let credits =
-            "<h1>Credits</h1>\
+        let credits: string[] =
+            ["<h1>Bilder</h1>\
+            <table>\
+            <tr>\
+                <td>Character Sprites</td>\
+                <td>Sutemo<br>https://sutemo.itch.io/ <br>https://www.deviantart.com/stereo-mono <br>https://ko-fi.com/sutemo</td>\
+            </tr>\
+            <br>\
+            <tr>\
+                <td>Background Artworks</td>\
+                <td>彩 雅介<br>https://www.pixiv.net/member.php?id=698864</td>\
+            </tr>\
+            <tr>\
+                <td>Notebook-Seite</td>\
+                <td>Piotr Siedlecki<br>https://www.publicdomainpictures.net/de/view-image.php?image=40205&picture=notebook-seite</td>\
+            </tr>\
+            </table>\
+            ",
+                "<h1>Sounds</h1>\
+            <table>\
+            <tr>\
+                <td>Flashlight</td>\
+                <td>Lunardrive, https://freesound.org/people/Lunardrive/sounds/48979/</td>\
+            </tr>\
+            <tr>\
+                <td>Pageflip</td>\
+                <td>qubodup, https://freesound.org/people/qubodup/sounds/454707/</td>\
+            </tr>\
+            <tr>\
+                <td>Breaker</td>\
+                <td>Deathscyp, https://freesound.org/people/Deathscyp/sounds/404049/</td>\
+            </tr>\
+            <tr>\
+                <td>Home standard ding dong</td>\
+                <td>Mixkit, https://mixkit.co/free-sound-effects/bell/</td>\
+            </tr>\
+            <tr>\
+                <td>Birds singing</td>\
+                <td>DCPoke, https://freesound.org/people/DCPoke/sounds/387978/</td>\
+            </tr>\
+            <tr>\
+                <td>Button</td>\
+                <td>Universfield, https://pixabay.com/de/sound-effects/button-124476/</td>\
+            </tr>\
+            <tr>\
+                <td>Nightmare</td>\
+                <td>Alexander Nakarada, https://cloudnovel.net/RoyaltyFreeMusic/music/nightmare</td>\
+            </tr>\
+            <tr>\
+                <td>Inspiration</td>\
+                <td>Rafael Krux, https://cloudnovel.net/RoyaltyFreeMusic/music/inspiration</td>\
+             </tr>\
+             <tr>\
+                <td>Hill of Wind</td>\
+                <td>SamFree, https://en.wikipedia.org/wiki/Samfree</td>\
+            </tr>\
+            </table>\
+            ",
+                "<h1>Codepens</h1>\
             <table>\
             <tr>\
                 <td>Falling Leaves CSS</td>\
                 <td>Aaron Griffin, https://codepen.io/uurrnn/pen/WNLVdN</td>\
             </tr>\
+            <tr>\
+            <td>Scotch Tape Effect</td>\
+            <td>Alexander Stirn, https://codepen.io/binarykiwi/pen/BbOoPy</td>\
+        </tr>\
+            <tr>\
+                <td>Mouse Cursor Flashlight</td>\
+                <td>tomhodgins, https://codepen.io/tomhodgins/pen/egWjBb</td>\
+            </tr>\
             </table>\
-          ";
-        ƒS.Text.print(credits);
-    };
+            "
+            ];
+        let flip = { back: "Zurück", next: "Weiter", done: "x" };
+        let choice: string;
+        let current: number = 0;
+        do {
+            ƒS.Text.print(credits[current]);
+            choice = await ƒS.Menu.getInput(flip, "flip");
+
+            switch (choice) {
+                case flip.back:
+                    current = Math.max(0, current - 1);
+                    ƒS.Sound.play(sound.pageflip, 0.5, false);
+                    break;
+                case flip.next:
+                    current = Math.min(2, current + 1);
+                    ƒS.Sound.play(sound.pageflip, 0.5, false);
+                    break;
+            }
+        } while (choice != flip.done);
+        ƒS.Sound.play(sound.selectDialog, 1.5, false);
+        ƒS.Text.close();
+    }
 
     export function showShortcuts(): void {
         ƒS.Text.setClass("shortcuts hint");
@@ -80,6 +165,10 @@ namespace BehindTheScenes {
             <td>Load</td>\
             <td>L</td>\
           </tr>\
+          <tr>\
+          <td>Notes ein-/ausblenden</td>\
+          <td>N</td>\
+        </tr>\
         </table>\
         ";
         ƒS.Text.print(shortcuts);
@@ -161,16 +250,11 @@ namespace BehindTheScenes {
             case ƒ.KEYBOARD_CODE.L:
                 await ƒS.Progress.load();
                 break;
-            // case ƒ.KEYBOARD_CODE.F9:
-            //     if (dataForSave.toggleSuspectsButton == true) {
-            //         showSuspects();
-            //     }
-            //     break;
-            // case ƒ.KEYBOARD_CODE.F8:
-            //     if (dataForSave.toggleSuspectsButton == true) {
-            //         showAquiredPages();
-            //     }
-            //     break;
+            case ƒ.KEYBOARD_CODE.N:
+                if (dataForSave.toggleSuspectsButton == true) {
+                    showSuspects();
+                }
+                break;
             case ƒ.KEYBOARD_CODE.M:
                 if (menuOpen) {
                     console.log("Schließen");

@@ -46,6 +46,20 @@ scene {
   width: 100%;
 }
 
+tr {
+  position: relative;
+  display: block;
+  padding-bottom: 1em;
+}
+
+tr:last-of-type{
+  padding-bottom: 0;
+}
+
+td:first-of-type {
+  min-width: 11vw;
+}
+
 dialog[type=splash] {
   margin: 0px;
   padding: 0px;
