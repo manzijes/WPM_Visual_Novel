@@ -1083,8 +1083,7 @@ var BehindTheScenes;
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.7, 0.1, true);
         BehindTheScenes.updateNotes();
-        // let isFavorite = findFavorite();
-        let isFavorite = "Lucia";
+        let isFavorite = BehindTheScenes.findFavorite();
         let protagonistText = {
             Protagonist: {
                 T0001: "Ich komme mir immer noch ziemlich dumm vor, weil ich den Täter nicht schnappen konnte.",
@@ -3791,7 +3790,7 @@ var BehindTheScenes;
             chosenCulprit = "Lucia";
         }
         else {
-            chosenCulprit = "Lucia";
+            chosenCulprit = "Solas";
         }
         let protagonistText = {
             Protagonist: {

@@ -11,7 +11,7 @@ namespace BehindTheScenes {
         if (dataForSave.choseLucia) {
             chosenCulprit = "Lucia"
         } else {
-            chosenCulprit = "Lucia"
+            chosenCulprit = "Solas"
         }
 
         let protagonistText = {

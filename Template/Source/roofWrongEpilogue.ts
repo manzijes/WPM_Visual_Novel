@@ -5,8 +5,7 @@ namespace BehindTheScenes {
         ƒS.Sound.fade(sound.ending, 0.7, 0.1, true);
         updateNotes();
 
-        // let isFavorite = findFavorite();
-        let isFavorite = "Lucia";
+        let isFavorite = findFavorite();
 
         let protagonistText = {
             Protagonist: {
