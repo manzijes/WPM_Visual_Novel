@@ -486,6 +486,8 @@ namespace BehindTheScenes {
                     await ƒS.update(0.5);
                     await ƒS.Speech.tell(characters.solas, solasText.Solas.T0006);
 
+                    closeSuspects();
+
                     let diaryPage: string = '\
                         <div class="content">\
                             <div class="chatcontainer">\
@@ -794,6 +796,8 @@ namespace BehindTheScenes {
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.Character.show(characters.lucia, characters.lucia.pose.unsure, ƒS.positionPercent(75, 97));
                             dataForSave.luciaScore += 5;
+
+                            closeSuspects();
 
                             let diaryPage: string = "<div class='diaryPage'>\
                             <p>Mein Tagebuch,</p>\

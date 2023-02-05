@@ -230,6 +230,7 @@ var BehindTheScenes;
     }
     BehindTheScenes.simulateCameraFlash = simulateCameraFlash;
     async function showAquiredPages() {
+        BehindTheScenes.closeSuspects();
         let pages = ['<div class="aquiredPagesWrapper"><h1>Indizien</h1><p>Im Laufe des Spiels erhältst du verschiedene Indizien, die du hier im Menü jederzeit aufrufen kannst.</p><p>Klick einfach weiter, um sie dir noch einmal anzuschauen.</p></div>'];
         let current = 0;
         let numberAquired = 0;
@@ -528,20 +529,20 @@ var BehindTheScenes;
         BehindTheScenes.gameMenu = BehindTheScenes.ƒS.Menu.create(BehindTheScenes.menuInGame, BehindTheScenes.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.4, 0.1, true);
         let scenes = [
-            // { scene: intro, name: "Einleitung"},
-            // { scene: coverChapterOne, name: "Kapitel" },
-            // { scene: motive, name: "Treffe die Verdächtigen" },
-            // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
-            // { scene: coverChapterTwo, name: "Kapitel" },
-            // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
-            // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
-            // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
-            // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
-            // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
-            // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
-            // { id: "yourConclusion", scene: yourConclusion, name: "Wer ist der Täter" },
-            // { id: "roofRight", scene: roofRight, name: "Richtiger Täter" },
-            // { id: "roofWrong", scene: roofWrong, name: "Falscher Täter" },
+            { scene: BehindTheScenes.intro, name: "Einleitung" },
+            { scene: BehindTheScenes.coverChapterOne, name: "Kapitel" },
+            { scene: BehindTheScenes.motive, name: "Treffe die Verdächtigen" },
+            { scene: BehindTheScenes.lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
+            { scene: BehindTheScenes.coverChapterTwo, name: "Kapitel" },
+            { scene: BehindTheScenes.girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+            { scene: BehindTheScenes.lookForKey, name: "Suche nach Lucias Schlüssel" },
+            { id: "kiraGivesHint", scene: BehindTheScenes.kiraGivesHint, name: "Kira gibt einen Hinweis" },
+            { id: "luciaGivesHint", scene: BehindTheScenes.luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+            { id: "confrontSolasAfterKira", scene: BehindTheScenes.confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+            { id: "confrontSolasAfterLucia", scene: BehindTheScenes.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+            { id: "yourConclusion", scene: BehindTheScenes.yourConclusion, name: "Wer ist der Täter" },
+            { id: "roofRight", scene: BehindTheScenes.roofRight, name: "Richtiger Täter" },
+            { id: "roofWrong", scene: BehindTheScenes.roofWrong, name: "Falscher Täter" },
             { id: "roofRightEpilogue", scene: BehindTheScenes.roofRightEpilogue, name: "" },
             { id: "roofWrongEpilogue", scene: BehindTheScenes.roofWrongEpilogue, name: "" },
             { id: "yourTitle", scene: BehindTheScenes.yourTitle, name: "Du erhältst einen Titel abhängig von deiner Spielweise" }
@@ -599,6 +600,18 @@ var BehindTheScenes;
         element.classList.toggle("hidden");
     }
     BehindTheScenes.showSuspects = showSuspects;
+    function closeSuspects() {
+        let toggleSuspects = document.getElementById("toggleSuspects");
+        let suspects = document.getElementById("suspects");
+        if (suspects.classList.contains("hidden")) {
+            // do nothing
+        }
+        else {
+            suspects.classList.add("hidden");
+            toggleSuspects.classList.remove("active");
+        }
+    }
+    BehindTheScenes.closeSuspects = closeSuspects;
     async function showCredits() {
         BehindTheScenes.ƒS.Text.setClass("credits hint");
         let credits = ["<h1>Bilder</h1>\
@@ -852,7 +865,7 @@ var BehindTheScenes;
                 T0004: "Ich verstehe, dass mich das mit der Handschrift belastet. So wie ich das sehe, gibt es nur zwei Möglichkeiten.",
                 T0005: "Möglichkeit 1: Jemand der anderen beiden hat meine Handschrift imitiert, um mir die Sache anzuhängen. Doch wer käme dafür infrage?",
                 T0006: "Möglichkeit 2: Ich versuche gerade, dich zu manipulieren. Ein letzter Verzweiflungsakt, nachdem du mich überführt hast.",
-                T0007: "Niccoló Machiavelli hat einmal gesagt: 'Jeder sieht wie du zu sein scheinst, wenige fühlen heraus wie du bist.' Ich glaube, er meinte damit... Wir können einander nicht ins Herz schauen. Darin liegt die eigentliche Tragödie.",
+                T0007: 'Machiavelli hat einmal gesagt: "Jeder sieht wie du zu sein scheinst, wenige fühlen heraus wie du bist." Ich glaube, er meinte damit... Wir können einander nicht ins Herz schauen. Darin liegt die eigentliche Tragödie.',
                 T0009: "Ich muss jetzt weiter. Bis bald."
             }
         };
@@ -1120,7 +1133,8 @@ var BehindTheScenes;
         BehindTheScenes.updateNotes();
         await BehindTheScenes.ƒS.Location.show(BehindTheScenes.chapterCovers.chapter);
         await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
-        let pages = "<h1>Kapitel 1: Motive</h1><h5>Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen oder Indizien hinzugefügt.</h5><h5>Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!</h5>";
+        BehindTheScenes.closeSuspects();
+        let pages = "<h1>Kapitel 1: Motive</h1><h5>Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage des Theaterstücks auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen oder Indizien hinzugefügt.</h5><h5>Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!</h5>";
         let close = { done: "Weiter" };
         let choice;
         BehindTheScenes.ƒS.Text.setClass("coverTitle");
@@ -1141,6 +1155,7 @@ var BehindTheScenes;
         BehindTheScenes.updateNotes();
         await BehindTheScenes.ƒS.Location.show(BehindTheScenes.chapterCovers.chapter);
         await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
+        BehindTheScenes.closeSuspects();
         let pages = "<h1>Kapitel 2: Hinweise</h1><h5>Der nächste Tag ist angebrochen und die Zeit drängt. Du hast bereits einen ersten Eindruck gewonnen, weiter so!</h5><h5>Dein nächster Schritt wird es sein, Hinweise zu sammeln, die dich zum richtigen Täter führen. Am Ende dieses Kapitels wirst du deine Entscheidung treffen.</h5>";
         let close = { done: "Weiter" };
         let choice;
@@ -1283,7 +1298,7 @@ var BehindTheScenes;
         };
         let narratorText = {
             Narrator: {
-                T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und erfreust dich an der Nachmittagssonne.",
+                T0001: "Die Glocke zur Pause schlägt. Endlich! Du schlenderst nach draußen und erfreust dich an der Sonne.",
                 T0002: "Du drehst dich um und erblickst ein Mädchen, das dir bekannt vorkommt. Sie geht nicht in deine Klasse, also woher...?",
                 T0003: "Du schaust zu, wie Kira im Schulgebäude verschwindet.",
                 T0004: "Du hast ein Notizheft angelegt. Sehr vorbildlich, du Musterschülerin! Du kannst es ab jetzt im Menü unter 'Notizen' oder mit 'N' ein- und ausblenden. Dann kannst du auch gleich einen ersten Blick auf deine Indizien-Sammlung werfen..."
@@ -1562,7 +1577,7 @@ var BehindTheScenes;
 (function (BehindTheScenes) {
     async function lightsOut() {
         // how long are the lights out (in seconds)?
-        let waitSeconds = 30;
+        let waitSeconds = 20;
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0.5, 0.1, true);
         BehindTheScenes.updateNotes();
@@ -1666,7 +1681,7 @@ var BehindTheScenes;
         let length = classes.length;
         // get switch img
         let img = document.getElementById("switch");
-        // assign random class (therefore position)
+        // assign random position
         img.classList.add(classes[Math.floor(Math.random() * length)]);
         // make visible
         img.hidden = false;
@@ -1700,6 +1715,7 @@ var BehindTheScenes;
         await BehindTheScenes.ƒS.update(0.5);
         setLights("turnOnFlashlight");
         await new Promise(resolve => setTimeout(resolve, waitSeconds * 1000));
+        BehindTheScenes.ƒS.Speech.clear();
         // remove light switch
         let switchImg = document.getElementById("switch");
         switchImg.remove();
@@ -1728,6 +1744,7 @@ var BehindTheScenes;
         await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.unsure, BehindTheScenes.ƒS.positionPercent(75, 97));
         await BehindTheScenes.ƒS.update(0.5);
         await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0004);
+        BehindTheScenes.closeSuspects();
         let diaryPage = "<div class='warningPage'>\
         <p>Meine Möchtegern-Detektive,</p>\
         <p>lasst das Scooby-D<bold>oo</bold>-Spiel besser sein.</p>\
@@ -2502,6 +2519,7 @@ var BehindTheScenes;
                     BehindTheScenes.showSolasMeter();
                     await BehindTheScenes.ƒS.update(0.5);
                     await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.solas, solasText.Solas.T0006);
+                    BehindTheScenes.closeSuspects();
                     let diaryPage = '\
                         <div class="content">\
                             <div class="chatcontainer">\
@@ -2766,6 +2784,7 @@ var BehindTheScenes;
                             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
                             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.unsure, BehindTheScenes.ƒS.positionPercent(75, 97));
                             BehindTheScenes.dataForSave.luciaScore += 5;
+                            BehindTheScenes.closeSuspects();
                             let diaryPage = "<div class='diaryPage'>\
                             <p>Mein Tagebuch,</p>\
                             <p>ich muss zugeben, dass ich frustriert bin. Sollen meine Bemühungen umsonst gewesen sein?</p>\

@@ -262,6 +262,7 @@ declare namespace BehindTheScenes {
     function decrementSound(): void;
     function toggleSound(): void;
     function showSuspects(): void;
+    function closeSuspects(): void;
     function showCredits(): Promise<void>;
     function showShortcuts(): void;
     let menuInGame: {

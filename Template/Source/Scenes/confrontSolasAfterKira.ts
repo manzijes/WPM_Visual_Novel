@@ -29,7 +29,7 @@ namespace BehindTheScenes {
                 T0004: "Ich verstehe, dass mich das mit der Handschrift belastet. So wie ich das sehe, gibt es nur zwei Möglichkeiten.",
                 T0005: "Möglichkeit 1: Jemand der anderen beiden hat meine Handschrift imitiert, um mir die Sache anzuhängen. Doch wer käme dafür infrage?",
                 T0006: "Möglichkeit 2: Ich versuche gerade, dich zu manipulieren. Ein letzter Verzweiflungsakt, nachdem du mich überführt hast.",
-                T0007: "Niccoló Machiavelli hat einmal gesagt: 'Jeder sieht wie du zu sein scheinst, wenige fühlen heraus wie du bist.' Ich glaube, er meinte damit... Wir können einander nicht ins Herz schauen. Darin liegt die eigentliche Tragödie.",
+                T0007: 'Machiavelli hat einmal gesagt: "Jeder sieht wie du zu sein scheinst, wenige fühlen heraus wie du bist." Ich glaube, er meinte damit... Wir können einander nicht ins Herz schauen. Darin liegt die eigentliche Tragödie.',
                 T0009: "Ich muss jetzt weiter. Bis bald."
             }
         };

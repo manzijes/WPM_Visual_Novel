@@ -8,6 +8,8 @@ namespace BehindTheScenes {
         await ƒS.Location.show(chapterCovers.chapter);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
+        closeSuspects();
+
         let pages = "<h1>Kapitel 2: Hinweise</h1><h5>Der nächste Tag ist angebrochen und die Zeit drängt. Du hast bereits einen ersten Eindruck gewonnen, weiter so!</h5><h5>Dein nächster Schritt wird es sein, Hinweise zu sammeln, die dich zum richtigen Täter führen. Am Ende dieses Kapitels wirst du deine Entscheidung treffen.</h5>";
          let close = { done: "Weiter" };
          let choice: string;

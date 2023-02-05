@@ -2,7 +2,7 @@ namespace BehindTheScenes {
     export async function lightsOut(): ƒS.SceneReturn {
 
         // how long are the lights out (in seconds)?
-        let waitSeconds = 30;
+        let waitSeconds = 20;
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
         ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
@@ -120,7 +120,7 @@ namespace BehindTheScenes {
         let length = classes.length;
         // get switch img
         let img = document.getElementById("switch");
-        // assign random class (therefore position)
+        // assign random position
         img.classList.add(classes[Math.floor(Math.random() * length)]);
         // make visible
         img.hidden = false;
@@ -158,6 +158,8 @@ namespace BehindTheScenes {
 
         await new Promise(resolve => setTimeout(resolve, waitSeconds * 1000));
 
+        ƒS.Speech.clear();
+
         // remove light switch
         let switchImg = document.getElementById("switch");
         switchImg.remove();
@@ -194,6 +196,8 @@ namespace BehindTheScenes {
         await ƒS.Character.show(characters.kira, characters.kira.pose.unsure, ƒS.positionPercent(75, 97));
         await ƒS.update(0.5);
         await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0004);
+
+        closeSuspects();
 
         let diaryPage: string = "<div class='warningPage'>\
         <p>Meine Möchtegern-Detektive,</p>\

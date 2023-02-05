@@ -41,6 +41,17 @@ namespace BehindTheScenes {
         element.classList.toggle("hidden");
     }
 
+    export function closeSuspects(): void {
+        let toggleSuspects = document.getElementById("toggleSuspects");
+        let suspects = document.getElementById("suspects");
+        if(suspects.classList.contains("hidden")){
+            // do nothing
+        } else{
+            suspects.classList.add("hidden");
+            toggleSuspects.classList.remove("active");
+        }
+    }
+
     export async function showCredits() {
         ƒS.Text.setClass("credits hint");
         let credits: string[] =

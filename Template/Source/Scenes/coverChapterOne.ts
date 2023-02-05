@@ -8,7 +8,9 @@ namespace BehindTheScenes {
         await ƒS.Location.show(chapterCovers.chapter);
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
-        let pages = "<h1>Kapitel 1: Motive</h1><h5>Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen oder Indizien hinzugefügt.</h5><h5>Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!</h5>";
+        closeSuspects();
+
+        let pages = "<h1>Kapitel 1: Motive</h1><h5>Der erste Schritt deiner Nachforschungen wird es sein, die Verdächtigen zu befragen und mögliche Motive für die Sabotage des Theaterstücks auszumachen. Sobald du eine wertvolle Information erhältst, wird sie automatisch zu deinen Notizen oder Indizien hinzugefügt.</h5><h5>Wenn du mit anderen interagierst, kann es passieren, dass du ihnen basierend auf deinen Antworten oder Entscheidungen mehr oder weniger sympathisch wirst. Aber keine Angst, Kira mag dich immer!</h5>";
          let close = { done: "Weiter" };
          let choice: string;
          ƒS.Text.setClass("coverTitle");
