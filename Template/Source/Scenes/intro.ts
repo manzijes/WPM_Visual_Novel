@@ -250,13 +250,13 @@ namespace BehindTheScenes {
         ƒS.Speech.hide();
 
         await ƒS.Speech.tell(null, narratorText.Narrator.T0004);
-
-        ƒS.Speech.clear();
-        ƒS.Speech.hide();
         
         removeFallingLeaves();
         ƒS.Sound.fade(sound.birds, 0, 3, true); 
 
+        ƒS.Speech.clear();
+        ƒS.Speech.hide();
+        await ƒS.update();
 
     }
 }

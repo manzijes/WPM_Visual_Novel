@@ -11,7 +11,7 @@ namespace BehindTheScenes {
         let protagonistText = {
             Protagonist: {
                 T0001: "Wir haben wirklich schönes Wetter heute. Ein toller Tag zum Faulenzen.",
-                
+
                 T0002: "Nanu? Ach, du bist es, Kira.",
                 T0003: "Nanu? Ach, du bist es, Solas.",
                 T0004: "Nanu? Ach, du bist es, Lucia.",
@@ -70,16 +70,16 @@ namespace BehindTheScenes {
         await ƒS.update(transition.fizzle.duration, transition.fizzle.alpha, transition.fizzle.edge);
 
         let pages = "<h1>Epilog</h1>"
-         let close = { done: "Weiter" };
-         let choice: string;
-         ƒS.Text.setClass("coverTitle");
-         do {
-             ƒS.Text.print(pages);
-             choice = await ƒS.Menu.getInput(close, "pageclose");
-         } while (choice != close.done);
-         ƒS.Text.close();
+        let close = { done: "Weiter" };
+        let choice: string;
+        ƒS.Text.setClass("coverTitle");
+        do {
+            ƒS.Text.print(pages);
+            choice = await ƒS.Menu.getInput(close, "pageclose");
+        } while (choice != close.done);
+        ƒS.Text.close();
 
-         ƒS.Sound.play(sound.pageflip, 0.5, false);
+        ƒS.Sound.play(sound.pageflip, 0.5, false);
 
         //  SCENE
         await ƒS.Location.show(locations.schoolOutsideDay);
@@ -104,7 +104,7 @@ namespace BehindTheScenes {
         await ƒS.update(0.5);
 
 
-        if(isFavorite == "Atlas"){
+        if (isFavorite == "Atlas") {
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0002);
             await ƒS.update(0.5);
             await ƒS.Character.hide(characters.protagonist);
@@ -144,6 +144,14 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.kira, kiraText.Kira.T0003);
             await ƒS.update(0.5);
+
+            // ITEM
+            await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            await ƒS.update(0.5);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            await ƒS.Character.hide(items.ticket);
+            await ƒS.update(0.5);
+
             await ƒS.Character.hide(characters.kira);
             await ƒS.update(0.5);
 
@@ -163,9 +171,9 @@ namespace BehindTheScenes {
 
             await ƒS.Character.hide(characters.kira);
             await ƒS.update(0.5);
-            
 
-        } else if(isFavorite == "Solas"){
+
+        } else if (isFavorite == "Solas") {
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0003);
             await ƒS.update(0.5);
             await ƒS.Character.hide(characters.protagonist);
@@ -213,6 +221,13 @@ namespace BehindTheScenes {
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
             await ƒS.update(0.5);
 
+            // ITEM
+            await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            await ƒS.update(0.5);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            await ƒS.Character.hide(items.ticket);
+            await ƒS.update(0.5);
+
             // hideSolasMeter();
             await ƒS.Character.hide(characters.solas);
             await ƒS.update(0.5);
@@ -235,8 +250,8 @@ namespace BehindTheScenes {
             // hideSolasMeter();
             await ƒS.Character.hide(characters.solas);
             await ƒS.update(0.5);
-        
-        } else{
+
+        } else {
             await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0004);
             await ƒS.update(0.5);
             await ƒS.Character.hide(characters.protagonist);
@@ -282,6 +297,13 @@ namespace BehindTheScenes {
             // showLuciaMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
+            await ƒS.update(0.5);
+
+            // ITEM
+            await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            await ƒS.update(0.5);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            await ƒS.Character.hide(items.ticket);
             await ƒS.update(0.5);
 
             // hideLuciaMeter();

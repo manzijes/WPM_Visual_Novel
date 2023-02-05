@@ -100,9 +100,17 @@ namespace BehindTheScenes {
 
             switch (optionsPlacesToSearchElement) {
                 case optionsPlacesToSearch.behindDeskRIGHT:
+
+                    await ƒS.Character.show(items.key, items.key.pose.center, ƒS.positionPercent(50, 50));
+                    await ƒS.update(0.5);
+
                     await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0015);
                     await ƒS.update(0.5);
                     dataForSave.foundKey = true;
+
+                    await ƒS.Character.hide(items.key);
+                    await ƒS.update(0.5);
+
                     loopCount = 5;
                     delete optionsPlacesToSearch.behindDeskRIGHT;
                     break;

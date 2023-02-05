@@ -110,8 +110,24 @@ namespace BehindTheScenes {
   export let items = {
     key: {
       name: "key",
-      description: "Lucias Schlüssel",
-      image: "Images/Items/key.png"
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose:{
+        center: "Images/Items/key.png"
+      } 
+    },
+    ticket: {
+      name: "ticket",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose:{
+        center: "Images/Items/ticket.png"
+      } 
+    },
+    melonpan: {
+      name: "melonpan",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose:{
+        center: "Images/Items/melonpan.png"
+      } 
     }
   }
 
@@ -451,12 +467,12 @@ namespace BehindTheScenes {
   }
 
   // animation tutorial
-  export function animation(): ƒS.AnimationDefinition {
+  export function fromCenterToCenter(): ƒS.AnimationDefinition {
     return {
-      start: { translation: ƒS.positions.bottomleft, rotation: -20, scaling: new ƒS.Position(0.5, 1.5) },
-      end: { translation: ƒS.positions.bottomright, rotation: 20, scaling: new ƒS.Position(1.5, 0.5) },
-      duration: 1,
-      playmode: ƒS.ANIMATION_PLAYMODE.LOOP
+      start: { translation: ƒS.positions.center, scaling: new ƒS.Position(0.5, 0.5) },
+      end: { translation: ƒS.positions.center, scaling: new ƒS.Position(0.5, 0.5) },
+      duration: 2,
+      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE,
     };
   }
 
@@ -536,24 +552,24 @@ namespace BehindTheScenes {
     ƒS.Sound.fade(sound.splashMusic, 0.4, 0.1, true);
 
     let scenes: ƒS.Scenes = [
-      { scene: intro, name: "Einleitung"},
-      { scene: coverChapterOne, name: "Kapitel" },
-      { scene: motive, name: "Treffe die Verdächtigen" },
-      { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
-      { scene: coverChapterTwo, name: "Kapitel" },
-      { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
-      { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
+      // { scene: intro, name: "Einleitung"},
+      // { scene: coverChapterOne, name: "Kapitel" },
+      // { scene: motive, name: "Treffe die Verdächtigen" },
+      // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
+      // { scene: coverChapterTwo, name: "Kapitel" },
+      // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+      // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
 
-      { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
-      { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+      // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
+      // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
 
-      { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
-      { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+      // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+      // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
 
-      { id: "yourConclusion", scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
+      // { id: "yourConclusion", scene: yourConclusion, name: "Wer ist der Täter" },
 
-      { id: "roofRight", scene: roofRight, name: "" },
-      { id: "roofWrong", scene: roofWrong, name: "" },
+      // { id: "roofRight", scene: roofRight, name: "Richtiger Täter" },
+      // { id: "roofWrong", scene: roofWrong, name: "Falscher Täter" },
 
       { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },
       { id: "roofWrongEpilogue", scene: roofWrongEpilogue, name: "" },

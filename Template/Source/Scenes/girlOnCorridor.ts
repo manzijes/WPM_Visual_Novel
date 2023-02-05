@@ -132,7 +132,7 @@ namespace BehindTheScenes {
         // close
         ƒS.Speech.clear();
         ƒS.Speech.hide();
-        await ƒS.update(0.5);
+        await ƒS.update();
 
     }
 }

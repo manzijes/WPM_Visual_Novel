@@ -367,8 +367,9 @@ namespace BehindTheScenes {
                     await ƒS.Speech.tell(null, narratorTextAtlasFavorit.Narrator.T0003);
                     await ƒS.update(0.5);
 
+                    ƒS.Speech.clear();
                     ƒS.Speech.hide();
-                    await ƒS.update(0.5);
+                    await ƒS.update();
 
                     removeFallingLeaves();
 
@@ -390,7 +391,7 @@ namespace BehindTheScenes {
 
                     await ƒS.Speech.clear();
                     await ƒS.Speech.hide();
-                    await ƒS.update(0.5);
+                    await ƒS.update(0);
 
                     removeFallingLeaves();
 
@@ -414,7 +415,7 @@ namespace BehindTheScenes {
 
             await ƒS.Speech.clear();
             await ƒS.Speech.hide();
-            await ƒS.update(0.5);
+            await ƒS.update();
 
             removeFallingLeaves();
 

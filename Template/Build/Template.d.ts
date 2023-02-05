@@ -100,8 +100,24 @@ declare namespace BehindTheScenes {
     let items: {
         key: {
             name: string;
-            description: string;
-            image: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                center: string;
+            };
+        };
+        ticket: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                center: string;
+            };
+        };
+        melonpan: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                center: string;
+            };
         };
     };
     let characters: {
@@ -204,7 +220,7 @@ declare namespace BehindTheScenes {
     function updateNotes(): void;
     function removeFallingLeaves(): void;
     function addFallingLeaves(): void;
-    function animation(): ƒS.AnimationDefinition;
+    function fromCenterToCenter(): ƒS.AnimationDefinition;
     function showSolasMeter(): void;
     function hideSolasMeter(): void;
     function showAtlasMeter(): void;

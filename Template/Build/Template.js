@@ -106,8 +106,24 @@ var BehindTheScenes;
     BehindTheScenes.items = {
         key: {
             name: "key",
-            description: "Lucias Schlüssel",
-            image: "Images/Items/key.png"
+            origin: BehindTheScenes.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                center: "Images/Items/key.png"
+            }
+        },
+        ticket: {
+            name: "ticket",
+            origin: BehindTheScenes.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                center: "Images/Items/ticket.png"
+            }
+        },
+        melonpan: {
+            name: "melonpan",
+            origin: BehindTheScenes.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                center: "Images/Items/melonpan.png"
+            }
         }
     };
     BehindTheScenes.characters = {
@@ -435,15 +451,15 @@ var BehindTheScenes;
     }
     BehindTheScenes.addFallingLeaves = addFallingLeaves;
     // animation tutorial
-    function animation() {
+    function fromCenterToCenter() {
         return {
-            start: { translation: BehindTheScenes.ƒS.positions.bottomleft, rotation: -20, scaling: new BehindTheScenes.ƒS.Position(0.5, 1.5) },
-            end: { translation: BehindTheScenes.ƒS.positions.bottomright, rotation: 20, scaling: new BehindTheScenes.ƒS.Position(1.5, 0.5) },
-            duration: 1,
-            playmode: BehindTheScenes.ƒS.ANIMATION_PLAYMODE.LOOP
+            start: { translation: BehindTheScenes.ƒS.positions.center, scaling: new BehindTheScenes.ƒS.Position(0.5, 0.5) },
+            end: { translation: BehindTheScenes.ƒS.positions.center, scaling: new BehindTheScenes.ƒS.Position(0.5, 0.5) },
+            duration: 2,
+            playmode: BehindTheScenes.ƒS.ANIMATION_PLAYMODE.PLAYONCE,
         };
     }
-    BehindTheScenes.animation = animation;
+    BehindTheScenes.fromCenterToCenter = fromCenterToCenter;
     // visibility solas meter
     function showSolasMeter() {
         document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
@@ -512,20 +528,20 @@ var BehindTheScenes;
         BehindTheScenes.gameMenu = BehindTheScenes.ƒS.Menu.create(BehindTheScenes.menuInGame, BehindTheScenes.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.4, 0.1, true);
         let scenes = [
-            { scene: BehindTheScenes.intro, name: "Einleitung" },
-            { scene: BehindTheScenes.coverChapterOne, name: "Kapitel" },
-            { scene: BehindTheScenes.motive, name: "Treffe die Verdächtigen" },
-            { scene: BehindTheScenes.lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
-            { scene: BehindTheScenes.coverChapterTwo, name: "Kapitel" },
-            { scene: BehindTheScenes.girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
-            { scene: BehindTheScenes.lookForKey, name: "Suche nach Lucias Schlüssel" },
-            { id: "kiraGivesHint", scene: BehindTheScenes.kiraGivesHint, name: "Kira gibt einen Hinweis" },
-            { id: "luciaGivesHint", scene: BehindTheScenes.luciaGivesHint, name: "Lucia gibt einen Hinweis" },
-            { id: "confrontSolasAfterKira", scene: BehindTheScenes.confrontSolasAfterKira, name: "Konfrontation mit Solas" },
-            { id: "confrontSolasAfterLucia", scene: BehindTheScenes.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
-            { id: "yourConclusion", scene: BehindTheScenes.yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
-            { id: "roofRight", scene: BehindTheScenes.roofRight, name: "" },
-            { id: "roofWrong", scene: BehindTheScenes.roofWrong, name: "" },
+            // { scene: intro, name: "Einleitung"},
+            // { scene: coverChapterOne, name: "Kapitel" },
+            // { scene: motive, name: "Treffe die Verdächtigen" },
+            // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
+            // { scene: coverChapterTwo, name: "Kapitel" },
+            // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+            // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
+            // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
+            // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+            // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+            // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+            // { id: "yourConclusion", scene: yourConclusion, name: "Wer ist der Täter" },
+            // { id: "roofRight", scene: roofRight, name: "Richtiger Täter" },
+            // { id: "roofWrong", scene: roofWrong, name: "Falscher Täter" },
             { id: "roofRightEpilogue", scene: BehindTheScenes.roofRightEpilogue, name: "" },
             { id: "roofWrongEpilogue", scene: BehindTheScenes.roofWrongEpilogue, name: "" },
             { id: "yourTitle", scene: BehindTheScenes.yourTitle, name: "Du erhältst einen Titel abhängig von deiner Spielweise" }
@@ -1251,7 +1267,7 @@ var BehindTheScenes;
         // close
         BehindTheScenes.ƒS.Speech.clear();
         BehindTheScenes.ƒS.Speech.hide();
-        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.update();
     }
     BehindTheScenes.girlOnCorridor = girlOnCorridor;
 })(BehindTheScenes || (BehindTheScenes = {}));
@@ -1459,10 +1475,11 @@ var BehindTheScenes;
         BehindTheScenes.ƒS.Speech.clear();
         BehindTheScenes.ƒS.Speech.hide();
         await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0004);
-        BehindTheScenes.ƒS.Speech.clear();
-        BehindTheScenes.ƒS.Speech.hide();
         BehindTheScenes.removeFallingLeaves();
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.birds, 0, 3, true);
+        BehindTheScenes.ƒS.Speech.clear();
+        BehindTheScenes.ƒS.Speech.hide();
+        await BehindTheScenes.ƒS.update();
     }
     BehindTheScenes.intro = intro;
 })(BehindTheScenes || (BehindTheScenes = {}));
@@ -1851,9 +1868,13 @@ var BehindTheScenes;
             BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.selectDialog, 1.5, false);
             switch (optionsPlacesToSearchElement) {
                 case optionsPlacesToSearch.behindDeskRIGHT:
+                    await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.key, BehindTheScenes.items.key.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+                    await BehindTheScenes.ƒS.update(0.5);
                     await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0015);
                     await BehindTheScenes.ƒS.update(0.5);
                     BehindTheScenes.dataForSave.foundKey = true;
+                    await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.key);
+                    await BehindTheScenes.ƒS.update(0.5);
                     loopCount = 5;
                     delete optionsPlacesToSearch.behindDeskRIGHT;
                     break;
@@ -3132,8 +3153,9 @@ var BehindTheScenes;
                     await BehindTheScenes.ƒS.update(0.5);
                     await BehindTheScenes.ƒS.Speech.tell(null, narratorTextAtlasFavorit.Narrator.T0003);
                     await BehindTheScenes.ƒS.update(0.5);
+                    BehindTheScenes.ƒS.Speech.clear();
                     BehindTheScenes.ƒS.Speech.hide();
-                    await BehindTheScenes.ƒS.update(0.5);
+                    await BehindTheScenes.ƒS.update();
                     BehindTheScenes.removeFallingLeaves();
                     return "yourTitle";
                     break;
@@ -3149,7 +3171,7 @@ var BehindTheScenes;
                     await BehindTheScenes.ƒS.update(0.5);
                     await BehindTheScenes.ƒS.Speech.clear();
                     await BehindTheScenes.ƒS.Speech.hide();
-                    await BehindTheScenes.ƒS.update(0.5);
+                    await BehindTheScenes.ƒS.update(0);
                     BehindTheScenes.removeFallingLeaves();
                     return "roofRightEpilogue";
                     break;
@@ -3167,7 +3189,7 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.clear();
             await BehindTheScenes.ƒS.Speech.hide();
-            await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.update();
             BehindTheScenes.removeFallingLeaves();
             return "roofRightEpilogue";
         }
@@ -3294,6 +3316,12 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0003);
             await BehindTheScenes.ƒS.update(0.5);
+            // ITEM
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            await BehindTheScenes.ƒS.update(0.5);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
+            await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
@@ -3349,6 +3377,12 @@ var BehindTheScenes;
             // showSolasMeter();
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            // ITEM
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            await BehindTheScenes.ƒS.update(0.5);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
             await BehindTheScenes.ƒS.update(0.5);
             // hideSolasMeter();
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
@@ -3408,6 +3442,12 @@ var BehindTheScenes;
             // showLuciaMeter();
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
+            await BehindTheScenes.ƒS.update(0.5);
+            // ITEM
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            await BehindTheScenes.ƒS.update(0.5);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
             await BehindTheScenes.ƒS.update(0.5);
             // hideLuciaMeter();
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
@@ -3673,7 +3713,7 @@ var BehindTheScenes;
         await BehindTheScenes.ƒS.update(0.5);
         await BehindTheScenes.ƒS.Speech.clear();
         await BehindTheScenes.ƒS.Speech.hide();
-        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.update();
         BehindTheScenes.removeFallingLeaves();
         return "roofWrongEpilogue";
     }
@@ -3697,7 +3737,7 @@ var BehindTheScenes;
             Narrator: {
                 T0000: "Am nächsten Tag verbringst du die Mittagspause wie immer draußen auf dem Hof.",
                 T0001: "Hey, du.",
-                T0002: isFavorite + " überreicht dir ein Melonenbrötchen.",
+                T0002: "Atlas überreicht dir ein Melonenbrötchen.",
                 T000end: "Ende."
             }
         };
@@ -3829,7 +3869,12 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0003);
             await BehindTheScenes.ƒS.update(0.5);
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.melonpan, BehindTheScenes.items.melonpan.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+            await BehindTheScenes.ƒS.update(0.5);
+            // ITEM
+            await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.melonpan);
             await BehindTheScenes.ƒS.update(0.5);
             // hideAtlasMeter();
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
