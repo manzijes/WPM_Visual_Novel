@@ -523,7 +523,7 @@ var BehindTheScenes;
             { id: "luciaGivesHint", scene: BehindTheScenes.luciaGivesHint, name: "Lucia gibt einen Hinweis" },
             { id: "confrontSolasAfterKira", scene: BehindTheScenes.confrontSolasAfterKira, name: "Konfrontation mit Solas" },
             { id: "confrontSolasAfterLucia", scene: BehindTheScenes.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
-            { scene: BehindTheScenes.yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
+            { id: "yourConclusion", scene: BehindTheScenes.yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
             { id: "roofRight", scene: BehindTheScenes.roofRight, name: "" },
             { id: "roofWrong", scene: BehindTheScenes.roofWrong, name: "" },
             { id: "roofRightEpilogue", scene: BehindTheScenes.roofRightEpilogue, name: "" },
@@ -980,7 +980,7 @@ var BehindTheScenes;
                 T0003: "Und?",
                 T0004: "Hmm... Wie meinst du das?",
                 T0005_bad: "Ich werde nicht schlau aus dir.",
-                T0005_good: "Ich glaube, ich verstehe.",
+                T0005_excellent: "Ich glaube, ich verstehe.",
                 T0006: "Bis bald."
             }
         };
@@ -1092,6 +1092,7 @@ var BehindTheScenes;
         BehindTheScenes.hideSolasMeter();
         await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
         await BehindTheScenes.ƒS.update(0.5);
+        return "yourConclusion";
     }
     BehindTheScenes.confrontSolasAfterLucia = confrontSolasAfterLucia;
 })(BehindTheScenes || (BehindTheScenes = {}));
@@ -1314,6 +1315,7 @@ var BehindTheScenes;
         };
         BehindTheScenes.addFallingLeaves();
         BehindTheScenes.ƒS.Speech.hide();
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
         BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.schoolBell, 0.5, false);
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0.5, 0.1, true);
         await BehindTheScenes.ƒS.Location.show(BehindTheScenes.locations.schoolOutsideTwilight);
@@ -1457,6 +1459,8 @@ var BehindTheScenes;
         BehindTheScenes.ƒS.Speech.clear();
         BehindTheScenes.ƒS.Speech.hide();
         await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0004);
+        BehindTheScenes.ƒS.Speech.clear();
+        BehindTheScenes.ƒS.Speech.hide();
         BehindTheScenes.removeFallingLeaves();
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.birds, 0, 3, true);
     }
@@ -2834,6 +2838,7 @@ var BehindTheScenes;
                 T0004: "Und zu guter Letzt... Ich bin ein guter Menschenkenner. Solas wirkte aufrichtig, als er sein Mitgefühl mit der Kostümschneiderin äußerte.",
             }
         };
+        // conclusion DiaryNoKey
         let conclusionNoDiaryNoKey = {
             Protagonist: {
                 T0001: "Der Täter hatte uns eine Warnung zukommen lassen. Es sah erst so aus, als gehöre die darauf Handschrift zu Solas...",
@@ -2953,7 +2958,7 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, conclusionDiaryKey.Protagonist.T0004);
             await BehindTheScenes.ƒS.update(0.5);
         }
-        else if (BehindTheScenes.dataForSave.atlasDiary == false && BehindTheScenes.dataForSave.foundKey == false) {
+        else if (BehindTheScenes.dataForSave.atlasDiary == false && BehindTheScenes.dataForSave.foundKey == false || BehindTheScenes.dataForSave.atlasDiary == true && BehindTheScenes.dataForSave.foundKey == false) {
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.protagonist);
             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.serious, BehindTheScenes.ƒS.positionPercent(25, 97));
             await BehindTheScenes.ƒS.update(0.5);
@@ -3173,6 +3178,7 @@ var BehindTheScenes;
 (function (BehindTheScenes) {
     async function roofRightEpilogue() {
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0, 0.0, true);
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.7, 0.1, true);
         BehindTheScenes.updateNotes();
         let isFavorite = BehindTheScenes.findFavorite();
@@ -3677,6 +3683,7 @@ var BehindTheScenes;
 (function (BehindTheScenes) {
     async function roofWrongEpilogue() {
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0, 0.0, true);
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.ending, 0.7, 0.1, true);
         BehindTheScenes.updateNotes();
         let isFavorite = BehindTheScenes.findFavorite();
@@ -4121,8 +4128,11 @@ var BehindTheScenes;
         if (BehindTheScenes.dataForSave.letCulpritGo && isFavorite == "Atlas") {
             pages = "<h1>Bonnie (und Clyde)</h1><h2>Du dachtest dir so: Partners in crime, let's go. Aber bist schon ein Verräter...</h2>";
         }
-        else if (BehindTheScenes.dataForSave.letCulpritGo == false && isFavorite == "Atlas") {
+        else if (BehindTheScenes.dataForSave.letCulpritGo == false && isFavorite == "Atlas" && BehindTheScenes.dataForSave.choseAtlas == true) {
             pages = "<h1>Loyal bis zum Ende</h1><h2>Du hast Kira nicht im Stich gelassen. In ihren Augen wirst du immer eine Heldin sein.</h2>";
+        }
+        else if (BehindTheScenes.dataForSave.letCulpritGo == false && isFavorite == "Atlas" && BehindTheScenes.dataForSave.choseAtlas == false) {
+            pages = "<h1>Keep your friends close...</h1><h2>...but your enemies closer.</h2>";
         }
         else if (isFavorite == "Solas") {
             pages = "<h1>Die Muse</h1><h2>Du scheinst etwas für Künstler übrig zu haben... Oder hast du nur verwirrt zu allem genickt, was Solas gesagt hat?</h2>";

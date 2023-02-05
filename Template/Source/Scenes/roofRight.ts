@@ -21,6 +21,7 @@ namespace BehindTheScenes {
             }
         };
 
+        // conclusion DiaryNoKey
         let conclusionNoDiaryNoKey = {
             Protagonist: {
                 T0001: "Der Täter hatte uns eine Warnung zukommen lassen. Es sah erst so aus, als gehöre die darauf Handschrift zu Solas...",
@@ -157,7 +158,7 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.protagonist, conclusionDiaryKey.Protagonist.T0004);
             await ƒS.update(0.5);
-        } else if (dataForSave.atlasDiary == false && dataForSave.foundKey == false) {
+        } else if (dataForSave.atlasDiary == false && dataForSave.foundKey == false || dataForSave.atlasDiary == true && dataForSave.foundKey == false) {
             await ƒS.Character.hide(characters.protagonist);
             await ƒS.Character.show(characters.protagonist, characters.protagonist.pose.serious, ƒS.positionPercent(25, 97));
             await ƒS.update(0.5);

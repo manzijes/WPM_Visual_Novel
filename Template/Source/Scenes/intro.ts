@@ -66,6 +66,7 @@ namespace BehindTheScenes {
 
         ƒS.Speech.hide();
 
+        ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
         ƒS.Sound.play(sound.schoolBell, 0.5, false); 
         ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true); 
 
@@ -250,8 +251,12 @@ namespace BehindTheScenes {
 
         await ƒS.Speech.tell(null, narratorText.Narrator.T0004);
 
+        ƒS.Speech.clear();
+        ƒS.Speech.hide();
+        
         removeFallingLeaves();
         ƒS.Sound.fade(sound.birds, 0, 3, true); 
+
 
     }
 }

@@ -550,7 +550,7 @@ namespace BehindTheScenes {
       { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
       { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
 
-      { scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
+      { id: "yourConclusion", scene: yourConclusion, name: "Du entscheidest, wen du für den Täter hältst." },
 
       { id: "roofRight", scene: roofRight, name: "" },
       { id: "roofWrong", scene: roofWrong, name: "" },

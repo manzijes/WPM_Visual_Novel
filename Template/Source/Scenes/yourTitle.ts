@@ -27,9 +27,12 @@ namespace BehindTheScenes {
 
         if (dataForSave.letCulpritGo && isFavorite == "Atlas") {
             pages = "<h1>Bonnie (und Clyde)</h1><h2>Du dachtest dir so: Partners in crime, let's go. Aber bist schon ein Verräter...</h2>";
-        } else if (dataForSave.letCulpritGo == false && isFavorite == "Atlas") {
+        } else if (dataForSave.letCulpritGo == false && isFavorite == "Atlas" && dataForSave.choseAtlas == true) {
             pages = "<h1>Loyal bis zum Ende</h1><h2>Du hast Kira nicht im Stich gelassen. In ihren Augen wirst du immer eine Heldin sein.</h2>";
-        } else if (isFavorite == "Solas") {
+        } else if (dataForSave.letCulpritGo == false && isFavorite == "Atlas" && dataForSave.choseAtlas == false) {
+            pages = "<h1>Keep your friends close...</h1><h2>...but your enemies closer.</h2>";
+        } 
+        else if (isFavorite == "Solas") {
             pages = "<h1>Die Muse</h1><h2>Du scheinst etwas für Künstler übrig zu haben... Oder hast du nur verwirrt zu allem genickt, was Solas gesagt hat?</h2>";
         } else {
             pages = "<h1>Gutes Herz</h1><h2>Du magst das Girl next door! It's not everyone's favorite, but it's yours. And you're totally chill about it.</h2>";

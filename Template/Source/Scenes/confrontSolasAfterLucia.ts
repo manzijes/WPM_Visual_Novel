@@ -12,7 +12,7 @@ namespace BehindTheScenes {
                 T0003: "Und?",
                 T0004: "Hmm... Wie meinst du das?",
                 T0005_bad: "Ich werde nicht schlau aus dir.",
-                T0005_good: "Ich glaube, ich verstehe.",
+                T0005_excellent: "Ich glaube, ich verstehe.",
                 T0006: "Bis bald."
             }
         };
@@ -146,5 +146,7 @@ namespace BehindTheScenes {
         hideSolasMeter();
         await ƒS.Character.hide(characters.solas);
         await ƒS.update(0.5);
+
+        return "yourConclusion";
     }
 }

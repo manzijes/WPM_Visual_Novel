@@ -2,6 +2,7 @@ namespace BehindTheScenes {
     export async function roofRightEpilogue(): ƒS.SceneReturn {
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
+        ƒS.Sound.fade(sound.mainMusic, 0, 0.0, true);
         ƒS.Sound.fade(sound.ending, 0.7, 0.1, true);
         updateNotes();
 
