@@ -282,7 +282,7 @@ namespace BehindTheScenes {
 
         await ƒS.Speech.clear();
         await ƒS.Speech.hide();
-        await ƒS.update();
+        await ƒS.update(0.5);
 
         removeFallingLeaves();
 

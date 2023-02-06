@@ -423,7 +423,7 @@ namespace BehindTheScenes {
     }
     if (dataForSave.atlasOpportunity == true) {
       let atlasOpportunity = document.getElementById("atlasOpportunity");
-      atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur ( " + dataForSave.nameGirl + " ) gibt Atlas ein Alibi.";
+      atlasOpportunity.innerHTML = "Das zickige Mädchen auf dem Flur ( " + dataForSave.nameGirl + " ) gibt Atlas ein Alibi.";
     }
     if (dataForSave.lookedForKey == true) {
       let whatAboutKey = document.getElementById("whatAboutKey");

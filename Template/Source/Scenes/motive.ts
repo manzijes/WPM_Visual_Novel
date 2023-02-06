@@ -179,6 +179,7 @@ namespace BehindTheScenes {
 
         await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+        await ƒS.update(0.5);
 
         let loopCount: number = 0;
         let loopLength: number = Object.keys(startTalk).length;
@@ -884,6 +885,7 @@ namespace BehindTheScenes {
         }
 
         ƒS.Sound.fade(sound.mainMusic, 0, 3, true);
+        await ƒS.update(0.5);
 
     }
 }

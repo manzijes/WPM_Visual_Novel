@@ -83,6 +83,7 @@ namespace BehindTheScenes {
         await ƒS.update(0.5);
         
         await ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+        await ƒS.update(0.5);
 
         return "confrontSolasAfterKira";
 

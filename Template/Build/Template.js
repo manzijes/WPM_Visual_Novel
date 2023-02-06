@@ -404,7 +404,7 @@ var BehindTheScenes;
         }
         if (BehindTheScenes.dataForSave.atlasOpportunity == true) {
             let atlasOpportunity = document.getElementById("atlasOpportunity");
-            atlasOpportunity.innerHTML = "Das Mädchen auf dem Flur ( " + BehindTheScenes.dataForSave.nameGirl + " ) gibt Atlas ein Alibi.";
+            atlasOpportunity.innerHTML = "Das zickige Mädchen auf dem Flur ( " + BehindTheScenes.dataForSave.nameGirl + " ) gibt Atlas ein Alibi.";
         }
         if (BehindTheScenes.dataForSave.lookedForKey == true) {
             let whatAboutKey = document.getElementById("whatAboutKey");
@@ -1144,6 +1144,7 @@ var BehindTheScenes;
         } while (choice != close.done);
         BehindTheScenes.ƒS.Text.close();
         BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.pageflip, 0.5, false);
+        await BehindTheScenes.ƒS.update(0.5);
     }
     BehindTheScenes.coverChapterOne = coverChapterOne;
 })(BehindTheScenes || (BehindTheScenes = {}));
@@ -1166,6 +1167,7 @@ var BehindTheScenes;
         } while (choice != close.done);
         BehindTheScenes.ƒS.Text.close();
         BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.pageflip, 0.5, false);
+        await BehindTheScenes.ƒS.update(0.5);
     }
     BehindTheScenes.coverChapterTwo = coverChapterTwo;
 })(BehindTheScenes || (BehindTheScenes = {}));
@@ -1282,7 +1284,7 @@ var BehindTheScenes;
         // close
         BehindTheScenes.ƒS.Speech.clear();
         BehindTheScenes.ƒS.Speech.hide();
-        await BehindTheScenes.ƒS.update();
+        await BehindTheScenes.ƒS.update(0.5);
     }
     BehindTheScenes.girlOnCorridor = girlOnCorridor;
 })(BehindTheScenes || (BehindTheScenes = {}));
@@ -1494,7 +1496,7 @@ var BehindTheScenes;
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.birds, 0, 3, true);
         BehindTheScenes.ƒS.Speech.clear();
         BehindTheScenes.ƒS.Speech.hide();
-        await BehindTheScenes.ƒS.update();
+        await BehindTheScenes.ƒS.update(0.5);
     }
     BehindTheScenes.intro = intro;
 })(BehindTheScenes || (BehindTheScenes = {}));
@@ -1569,6 +1571,7 @@ var BehindTheScenes;
         await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
         await BehindTheScenes.ƒS.update(0.5);
         await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
+        await BehindTheScenes.ƒS.update(0.5);
         return "confrontSolasAfterKira";
     }
     BehindTheScenes.kiraGivesHint = kiraGivesHint;
@@ -2261,6 +2264,7 @@ var BehindTheScenes;
         await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
         await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0001);
         await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
+        await BehindTheScenes.ƒS.update(0.5);
         let loopCount = 0;
         let loopLength = Object.keys(startTalk).length;
         while (loopCount < loopLength) {
@@ -2856,6 +2860,7 @@ var BehindTheScenes;
             loopCount++;
         }
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0, 3, true);
+        await BehindTheScenes.ƒS.update(0.5);
     }
     BehindTheScenes.motive = motive;
 })(BehindTheScenes || (BehindTheScenes = {}));
@@ -3174,7 +3179,7 @@ var BehindTheScenes;
                     await BehindTheScenes.ƒS.update(0.5);
                     BehindTheScenes.ƒS.Speech.clear();
                     BehindTheScenes.ƒS.Speech.hide();
-                    await BehindTheScenes.ƒS.update();
+                    await BehindTheScenes.ƒS.update(0.5);
                     BehindTheScenes.removeFallingLeaves();
                     return "yourTitle";
                     break;
@@ -3190,7 +3195,7 @@ var BehindTheScenes;
                     await BehindTheScenes.ƒS.update(0.5);
                     await BehindTheScenes.ƒS.Speech.clear();
                     await BehindTheScenes.ƒS.Speech.hide();
-                    await BehindTheScenes.ƒS.update(0);
+                    await BehindTheScenes.ƒS.update(0.5);
                     BehindTheScenes.removeFallingLeaves();
                     return "roofRightEpilogue";
                     break;
@@ -3208,7 +3213,7 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.clear();
             await BehindTheScenes.ƒS.Speech.hide();
-            await BehindTheScenes.ƒS.update();
+            await BehindTheScenes.ƒS.update(0.5);
             BehindTheScenes.removeFallingLeaves();
             return "roofRightEpilogue";
         }
@@ -3732,7 +3737,7 @@ var BehindTheScenes;
         await BehindTheScenes.ƒS.update(0.5);
         await BehindTheScenes.ƒS.Speech.clear();
         await BehindTheScenes.ƒS.Speech.hide();
-        await BehindTheScenes.ƒS.update();
+        await BehindTheScenes.ƒS.update(0.5);
         BehindTheScenes.removeFallingLeaves();
         return "roofWrongEpilogue";
     }

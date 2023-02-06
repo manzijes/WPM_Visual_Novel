@@ -22,7 +22,7 @@ namespace BehindTheScenes {
          ƒS.Text.close();
 
         ƒS.Sound.play(sound.pageflip, 0.5, false);
-
+        await ƒS.update(0.5);
         }
     
 }
