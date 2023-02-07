@@ -5,7 +5,7 @@ namespace BehindTheScenes {
         let waitSeconds = 20;
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
-        ƒS.Sound.fade(sound.mainMusic, 0.5, 0.1, true);
+        ƒS.Sound.fade(sound.mainMusic, 0.5, 5, true);
         updateNotes();
 
         // control lights in scene

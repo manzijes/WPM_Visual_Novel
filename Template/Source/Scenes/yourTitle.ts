@@ -30,7 +30,7 @@ namespace BehindTheScenes {
         } else if (dataForSave.letCulpritGo == false && isFavorite == "Atlas" && dataForSave.choseAtlas == true) {
             pages = "<h1>Loyal bis zum Ende</h1><h2>Du hast Kira nicht im Stich gelassen. In ihren Augen wirst du immer eine Heldin sein.</h2>";
         } else if (dataForSave.letCulpritGo == false && isFavorite == "Atlas" && dataForSave.choseAtlas == false) {
-            pages = "<h1>Keep your friends close...</h1><h2>...but your enemies closer.</h2>";
+            pages = "<h1>Keep your friends close...</h1><h2>...but your enemies closer. Dir sind da wohl ein paar Sachen entgangen.</h2>";
         } 
         else if (isFavorite == "Solas") {
             pages = "<h1>Die Muse</h1><h2>Du scheinst etwas für Künstler übrig zu haben... Oder hast du nur verwirrt zu allem genickt, was Solas gesagt hat?</h2>";

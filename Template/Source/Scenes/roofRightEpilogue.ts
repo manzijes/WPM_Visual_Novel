@@ -147,6 +147,7 @@ namespace BehindTheScenes {
 
             // ITEM
             await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await ƒS.Character.hide(items.ticket);
@@ -223,6 +224,7 @@ namespace BehindTheScenes {
 
             // ITEM
             await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await ƒS.Character.hide(items.ticket);
@@ -301,6 +303,7 @@ namespace BehindTheScenes {
 
             // ITEM
             await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await ƒS.Character.hide(items.ticket);

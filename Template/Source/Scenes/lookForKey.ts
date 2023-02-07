@@ -102,6 +102,7 @@ namespace BehindTheScenes {
                 case optionsPlacesToSearch.behindDeskRIGHT:
 
                     await ƒS.Character.show(items.key, items.key.pose.center, ƒS.positionPercent(50, 50));
+                    ƒS.Sound.play(sound.sparkle, 0.5, false); 
                     await ƒS.update(0.5);
 
                     await ƒS.Speech.tell(characters.protagonist, protagonistText.Protagonist.T0015);

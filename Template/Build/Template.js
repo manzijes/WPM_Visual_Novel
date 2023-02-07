@@ -1582,7 +1582,7 @@ var BehindTheScenes;
         // how long are the lights out (in seconds)?
         let waitSeconds = 20;
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
-        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0.5, 0.1, true);
+        BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0.5, 5, true);
         BehindTheScenes.updateNotes();
         // control lights in scene
         function setLights(action) {
@@ -1889,6 +1889,7 @@ var BehindTheScenes;
             switch (optionsPlacesToSearchElement) {
                 case optionsPlacesToSearch.behindDeskRIGHT:
                     await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.key, BehindTheScenes.items.key.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+                    BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
                     await BehindTheScenes.ƒS.update(0.5);
                     await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.protagonist, protagonistText.Protagonist.T0015);
                     await BehindTheScenes.ƒS.update(0.5);
@@ -3342,6 +3343,7 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.update(0.5);
             // ITEM
             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
@@ -3404,6 +3406,7 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.update(0.5);
             // ITEM
             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
@@ -3469,6 +3472,7 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.update(0.5);
             // ITEM
             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
@@ -3894,6 +3898,7 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0003);
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.melonpan, BehindTheScenes.items.melonpan.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002);
             await BehindTheScenes.ƒS.update(0.5);
@@ -4201,7 +4206,7 @@ var BehindTheScenes;
             pages = "<h1>Loyal bis zum Ende</h1><h2>Du hast Kira nicht im Stich gelassen. In ihren Augen wirst du immer eine Heldin sein.</h2>";
         }
         else if (BehindTheScenes.dataForSave.letCulpritGo == false && isFavorite == "Atlas" && BehindTheScenes.dataForSave.choseAtlas == false) {
-            pages = "<h1>Keep your friends close...</h1><h2>...but your enemies closer.</h2>";
+            pages = "<h1>Keep your friends close...</h1><h2>...but your enemies closer. Dir sind da wohl ein paar Sachen entgangen.</h2>";
         }
         else if (isFavorite == "Solas") {
             pages = "<h1>Die Muse</h1><h2>Du scheinst etwas für Künstler übrig zu haben... Oder hast du nur verwirrt zu allem genickt, was Solas gesagt hat?</h2>";

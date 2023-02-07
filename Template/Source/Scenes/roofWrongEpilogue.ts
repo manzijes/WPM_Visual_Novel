@@ -180,6 +180,7 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             await ƒS.Character.show(items.melonpan, items.melonpan.pose.center, ƒS.positionPercent(50, 50));
+            ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
 
             await ƒS.Speech.tell(null, narratorText.Narrator.T0002);
