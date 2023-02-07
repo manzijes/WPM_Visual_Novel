@@ -2,7 +2,7 @@ namespace BehindTheScenes {
     export async function lightsOut(): ƒS.SceneReturn {
 
         // how long are the lights out (in seconds)?
-        let waitSeconds = 20;
+        let waitSeconds = 25;
 
         ƒS.Sound.fade(sound.splashMusic, 0, 0.0, true);
         ƒS.Sound.fade(sound.mainMusic, 0.5, 5, true);

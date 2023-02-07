@@ -1580,7 +1580,7 @@ var BehindTheScenes;
 (function (BehindTheScenes) {
     async function lightsOut() {
         // how long are the lights out (in seconds)?
-        let waitSeconds = 20;
+        let waitSeconds = 25;
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0, 0.0, true);
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0.5, 5, true);
         BehindTheScenes.updateNotes();
