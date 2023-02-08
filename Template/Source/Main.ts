@@ -573,8 +573,8 @@ namespace BehindTheScenes {
       { id: "roofRight", scene: roofRight, name: "Richtiger Täter" },
       { id: "roofWrong", scene: roofWrong, name: "Falscher Täter" },
 
-      { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "" },
-      { id: "roofWrongEpilogue", scene: roofWrongEpilogue, name: "" },
+      { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "Epilog Richtiger Täter" },
+      { id: "roofWrongEpilogue", scene: roofWrongEpilogue, name: "Epilog Falscher Täter" },
 
       { id: "yourTitle", scene: yourTitle, name: "Du erhältst einen Titel abhängig von deiner Spielweise" }
     ];

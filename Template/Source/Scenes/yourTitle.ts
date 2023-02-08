@@ -25,16 +25,20 @@ namespace BehindTheScenes {
         // set title
         let pages: string = "";
 
-        if (dataForSave.letCulpritGo && isFavorite == "Atlas") {
+        if (dataForSave.letCulpritGo == true && isFavorite == "Atlas" && dataForSave.choseAtlas == true) {
             pages = "<h1>Bonnie (und Clyde)</h1><h2>Du dachtest dir so: Partners in crime, let's go. Aber bist schon ein Verräter...</h2>";
         } else if (dataForSave.letCulpritGo == false && isFavorite == "Atlas" && dataForSave.choseAtlas == true) {
             pages = "<h1>Loyal bis zum Ende</h1><h2>Du hast Kira nicht im Stich gelassen. In ihren Augen wirst du immer eine Heldin sein.</h2>";
         } else if (dataForSave.letCulpritGo == false && isFavorite == "Atlas" && dataForSave.choseAtlas == false) {
             pages = "<h1>Keep your friends close...</h1><h2>...but your enemies closer. Dir sind da wohl ein paar Sachen entgangen.</h2>";
         } 
-        else if (isFavorite == "Solas") {
+        else if (isFavorite == "Solas" && dataForSave.choseSolas == false) {
             pages = "<h1>Die Muse</h1><h2>Du scheinst etwas für Künstler übrig zu haben... Oder hast du nur verwirrt zu allem genickt, was Solas gesagt hat?</h2>";
-        } else {
+        }   
+        else if (isFavorite == "Solas" && dataForSave.choseSolas == true || isFavorite == "Lucia" && dataForSave.choseLucia == true) {
+            pages = "<h1>Trust Issues</h1><h2>Du verdächtigst deinen Favoriten und liegst dann auch noch falsch? Peinlich.</h2>";
+        } 
+        else if (isFavorite == "Lucia" && dataForSave.choseLucia == false) {
             pages = "<h1>Gutes Herz</h1><h2>Du magst das Girl next door! It's not everyone's favorite, but it's yours. And you're totally chill about it.</h2>";
         }
 
