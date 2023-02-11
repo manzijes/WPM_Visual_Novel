@@ -451,16 +451,16 @@ var BehindTheScenes;
         scene.appendChild(div);
     }
     BehindTheScenes.addFallingLeaves = addFallingLeaves;
-    // animation tutorial
-    function fromCenterToCenter() {
+    // animations
+    function itemAnimation() {
         return {
-            start: { translation: BehindTheScenes.ƒS.positions.center, scaling: new BehindTheScenes.ƒS.Position(0.5, 0.5) },
-            end: { translation: BehindTheScenes.ƒS.positions.center, scaling: new BehindTheScenes.ƒS.Position(0.5, 0.5) },
+            start: { translation: BehindTheScenes.ƒS.positionPercent(50, 0) },
+            end: { translation: BehindTheScenes.ƒS.positionPercent(50, 50) },
             duration: 2,
-            playmode: BehindTheScenes.ƒS.ANIMATION_PLAYMODE.PLAYONCE,
+            playmode: BehindTheScenes.ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
     }
-    BehindTheScenes.fromCenterToCenter = fromCenterToCenter;
+    BehindTheScenes.itemAnimation = itemAnimation;
     // visibility solas meter
     function showSolasMeter() {
         document.getElementsByName("solasScore").forEach(meterStuffSolas => meterStuffSolas.hidden = false);
@@ -3342,7 +3342,8 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0003);
             await BehindTheScenes.ƒS.update(0.5);
             // ITEM
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            await BehindTheScenes.ƒS.Character.animate(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.itemAnimation());
             BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
@@ -3405,7 +3406,8 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
             await BehindTheScenes.ƒS.update(0.5);
             // ITEM
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            await BehindTheScenes.ƒS.Character.animate(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.itemAnimation());
             BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
@@ -3471,7 +3473,8 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
             await BehindTheScenes.ƒS.update(0.5);
             // ITEM
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            await BehindTheScenes.ƒS.Character.animate(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.itemAnimation());
             BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
@@ -3896,8 +3899,7 @@ var BehindTheScenes;
             // showAtlasMeter();
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
-            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.melonpan, BehindTheScenes.items.melonpan.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            await BehindTheScenes.ƒS.Character.animate(BehindTheScenes.items.melonpan, BehindTheScenes.items.melonpan.pose.center, BehindTheScenes.itemAnimation());
             BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002);

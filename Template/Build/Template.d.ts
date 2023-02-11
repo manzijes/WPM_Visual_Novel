@@ -220,7 +220,7 @@ declare namespace BehindTheScenes {
     function updateNotes(): void;
     function removeFallingLeaves(): void;
     function addFallingLeaves(): void;
-    function fromCenterToCenter(): ƒS.AnimationDefinition;
+    function itemAnimation(): ƒS.AnimationDefinition;
     function showSolasMeter(): void;
     function hideSolasMeter(): void;
     function showAtlasMeter(): void;

@@ -468,13 +468,14 @@ namespace BehindTheScenes {
     scene.appendChild(div);
   }
 
-  // animation tutorial
-  export function fromCenterToCenter(): ƒS.AnimationDefinition {
+  // animations
+
+  export function itemAnimation(): ƒS.AnimationDefinition {
     return {
-      start: { translation: ƒS.positions.center, scaling: new ƒS.Position(0.5, 0.5) },
-      end: { translation: ƒS.positions.center, scaling: new ƒS.Position(0.5, 0.5) },
+      start: { translation: ƒS.positionPercent(50, 0) },
+      end: { translation: ƒS.positionPercent(50, 50) },
       duration: 2,
-      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE,
+      playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
     };
   }
 

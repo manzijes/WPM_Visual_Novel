@@ -146,7 +146,8 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             // ITEM
-            await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
             ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
@@ -223,7 +224,8 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             // ITEM
-            await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
             ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
@@ -302,7 +304,8 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             // ITEM
-            await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
             ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
