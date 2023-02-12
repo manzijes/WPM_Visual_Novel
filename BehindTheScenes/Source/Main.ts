@@ -555,24 +555,24 @@ namespace BehindTheScenes {
     ƒS.Sound.fade(sound.splashMusic, 0.4, 0.1, true);
 
     let scenes: ƒS.Scenes = [
-      // { scene: intro, name: "Einleitung"},
-      // { scene: coverChapterOne, name: "Kapitel" },
-      // { scene: motive, name: "Treffe die Verdächtigen" },
-      // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
-      // { scene: coverChapterTwo, name: "Kapitel" },
-      // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
-      // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
+      { scene: intro, name: "Einleitung"},
+      { scene: coverChapterOne, name: "Kapitel" },
+      { scene: motive, name: "Treffe die Verdächtigen" },
+      { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
+      { scene: coverChapterTwo, name: "Kapitel" },
+      { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+      { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
 
-      // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
-      // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+      { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
+      { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
 
-      // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
-      // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+      { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+      { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
 
-      // { id: "yourConclusion", scene: yourConclusion, name: "Wer ist der Täter" },
+      { id: "yourConclusion", scene: yourConclusion, name: "Wer ist der Täter" },
 
-      // { id: "roofRight", scene: roofRight, name: "Richtiger Täter" },
-      // { id: "roofWrong", scene: roofWrong, name: "Falscher Täter" },
+      { id: "roofRight", scene: roofRight, name: "Richtiger Täter" },
+      { id: "roofWrong", scene: roofWrong, name: "Falscher Täter" },
 
       { id: "roofRightEpilogue", scene: roofRightEpilogue, name: "Epilog Richtiger Täter" },
       { id: "roofWrongEpilogue", scene: roofWrongEpilogue, name: "Epilog Falscher Täter" },
