@@ -529,6 +529,7 @@ var BehindTheScenes;
         BehindTheScenes.gameMenu = BehindTheScenes.ƒS.Menu.create(BehindTheScenes.menuInGame, BehindTheScenes.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.4, 0.1, true);
         let scenes = [
+            // { scene: beta, name: "Testing"},
             { scene: BehindTheScenes.intro, name: "Einleitung" },
             { scene: BehindTheScenes.coverChapterOne, name: "Kapitel" },
             { scene: BehindTheScenes.motive, name: "Treffe die Verdächtigen" },
@@ -832,7 +833,21 @@ var BehindTheScenes;
 var BehindTheScenes;
 (function (BehindTheScenes) {
     async function beta() {
-        // space for testing snippets
+        let kiraText = {
+            Kira: {
+                T0001: "Ich wollte mich noch einmal bei dir bedanken. Heute Abend findet die Premiere statt. Alle sind schon ganz aufgeregt."
+            }
+        };
+        await BehindTheScenes.ƒS.Location.show(BehindTheScenes.locations.schoolOutsideDay);
+        await BehindTheScenes.ƒS.update(BehindTheScenes.transition.fizzle.duration, BehindTheScenes.transition.fizzle.alpha, BehindTheScenes.transition.fizzle.edge);
+        await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.kira, BehindTheScenes.characters.kira.pose.neutral, BehindTheScenes.ƒS.positionPercent(75, 97));
+        await BehindTheScenes.ƒS.update(0.5);
+        await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0001);
+        await BehindTheScenes.ƒS.update(0.5);
+        // ITEM
+        await BehindTheScenes.ƒS.Character.animate(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.itemAnimation());
+        await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
+        await BehindTheScenes.ƒS.update(1);
     }
     BehindTheScenes.beta = beta;
 })(BehindTheScenes || (BehindTheScenes = {}));

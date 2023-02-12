@@ -555,6 +555,7 @@ namespace BehindTheScenes {
     ƒS.Sound.fade(sound.splashMusic, 0.4, 0.1, true);
 
     let scenes: ƒS.Scenes = [
+      // { scene: beta, name: "Testing"},
       { scene: intro, name: "Einleitung"},
       { scene: coverChapterOne, name: "Kapitel" },
       { scene: motive, name: "Treffe die Verdächtigen" },
