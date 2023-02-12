@@ -3,22 +3,22 @@
 	"tasks": [
 		{
 			"type": "typescript",
-			"tsconfig": "Template/tsconfig.json",
+			"tsconfig": "BehindTheScenes/tsconfig.json",
 			"problemMatcher": [
 				"$tsc"
 			],
 			"group": "build",
-			"label": "tsc: build - Template/tsconfig.json"
+			"label": "tsc: build - BehindTheScenes/tsconfig.json"
 		},
 		{
 			"type": "typescript",
-			"tsconfig": "Template/tsconfig.json",
+			"tsconfig": "BehindTheScenes/tsconfig.json",
 			"option": "watch",
 			"problemMatcher": [
 				"$tsc-watch"
 			],
 			"group": "build",
-			"label": "tsc: watch - Template/tsconfig.json"
+			"label": "tsc: watch - BehindTheScenes/tsconfig.json"
 		}
 	]
 }
