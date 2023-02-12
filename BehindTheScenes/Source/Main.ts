@@ -85,26 +85,11 @@ namespace BehindTheScenes {
   };
 
   export let chapterCovers = {
-    chapterOne: {
-      name: "chapterOne",
-      background: "Images/Backgrounds/Kapitel/chapter-one.png",
-      foreground: ""
-    },
-    chapterTwo: {
-      name: "chapterTwo",
-      background: "Images/Backgrounds/Kapitel/chapter-two.png",
-      foreground: ""
-    },
     chapter: {
       name: "chapter",
       background: "Images/Backgrounds/Kapitel/chapter-lilac.png",
       foreground: ""
-    },
-    epilogue: {
-      name: "epilogue",
-      background: "Images/Backgrounds/Kapitel/epilogue.png",
-      foreground: ""
-    },
+    }
   }
 
   export let items = {

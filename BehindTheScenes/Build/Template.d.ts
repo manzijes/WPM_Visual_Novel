@@ -76,22 +76,7 @@ declare namespace BehindTheScenes {
         };
     };
     let chapterCovers: {
-        chapterOne: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
-        chapterTwo: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
         chapter: {
-            name: string;
-            background: string;
-            foreground: string;
-        };
-        epilogue: {
             name: string;
             background: string;
             foreground: string;
