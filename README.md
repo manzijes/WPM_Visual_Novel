@@ -19,4 +19,4 @@ A FUDGE module for the easy development of interactive stories, visual novels an
 - [Zum Spiel](https://manzijes.github.io/WPM_Visual_Novel/BehindTheScenes/Index.html)
 - [Konzept](https://github.com/manzijes/WPM_Visual_Novel/blob/main/Konzept)
 - [Code](https://github.com/manzijes/WPM_Visual_Novel/tree/main/BehindTheScenes)
-- [ZIP]()
+- [ZIP](https://github.com/manzijes/WPM_Visual_Novel/archive/refs/heads/main.zip)
