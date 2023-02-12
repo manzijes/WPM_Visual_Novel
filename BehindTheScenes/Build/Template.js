@@ -529,20 +529,20 @@ var BehindTheScenes;
         BehindTheScenes.gameMenu = BehindTheScenes.ƒS.Menu.create(BehindTheScenes.menuInGame, BehindTheScenes.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.4, 0.1, true);
         let scenes = [
-            { scene: BehindTheScenes.intro, name: "Einleitung" },
-            { scene: BehindTheScenes.coverChapterOne, name: "Kapitel" },
-            { scene: BehindTheScenes.motive, name: "Treffe die Verdächtigen" },
-            { scene: BehindTheScenes.lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
-            { scene: BehindTheScenes.coverChapterTwo, name: "Kapitel" },
-            { scene: BehindTheScenes.girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
-            { scene: BehindTheScenes.lookForKey, name: "Suche nach Lucias Schlüssel" },
-            { id: "kiraGivesHint", scene: BehindTheScenes.kiraGivesHint, name: "Kira gibt einen Hinweis" },
-            { id: "luciaGivesHint", scene: BehindTheScenes.luciaGivesHint, name: "Lucia gibt einen Hinweis" },
-            { id: "confrontSolasAfterKira", scene: BehindTheScenes.confrontSolasAfterKira, name: "Konfrontation mit Solas" },
-            { id: "confrontSolasAfterLucia", scene: BehindTheScenes.confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
-            { id: "yourConclusion", scene: BehindTheScenes.yourConclusion, name: "Wer ist der Täter" },
-            { id: "roofRight", scene: BehindTheScenes.roofRight, name: "Richtiger Täter" },
-            { id: "roofWrong", scene: BehindTheScenes.roofWrong, name: "Falscher Täter" },
+            // { scene: intro, name: "Einleitung"},
+            // { scene: coverChapterOne, name: "Kapitel" },
+            // { scene: motive, name: "Treffe die Verdächtigen" },
+            // { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
+            // { scene: coverChapterTwo, name: "Kapitel" },
+            // { scene: girlOnCorridor, name: "Ein Mädchen stoppt dich auf dem Flur" },
+            // { scene: lookForKey, name: "Suche nach Lucias Schlüssel" },
+            // { id: "kiraGivesHint", scene: kiraGivesHint, name: "Kira gibt einen Hinweis" },
+            // { id: "luciaGivesHint", scene: luciaGivesHint, name: "Lucia gibt einen Hinweis" },
+            // { id: "confrontSolasAfterKira", scene: confrontSolasAfterKira, name: "Konfrontation mit Solas" },
+            // { id: "confrontSolasAfterLucia", scene: confrontSolasAfterLucia, name: "Konfrontation mit Solas" },
+            // { id: "yourConclusion", scene: yourConclusion, name: "Wer ist der Täter" },
+            // { id: "roofRight", scene: roofRight, name: "Richtiger Täter" },
+            // { id: "roofWrong", scene: roofWrong, name: "Falscher Täter" },
             { id: "roofRightEpilogue", scene: BehindTheScenes.roofRightEpilogue, name: "Epilog Richtiger Täter" },
             { id: "roofWrongEpilogue", scene: BehindTheScenes.roofWrongEpilogue, name: "Epilog Falscher Täter" },
             { id: "yourTitle", scene: BehindTheScenes.yourTitle, name: "Du erhältst einen Titel abhängig von deiner Spielweise" }
@@ -3342,13 +3342,12 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.kira, kiraText.Kira.T0003);
             await BehindTheScenes.ƒS.update(0.5);
             // ITEM
-            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
-            await BehindTheScenes.ƒS.Character.animate(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.itemAnimation());
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            // await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
             BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
-            await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.kira);
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.protagonist, BehindTheScenes.characters.protagonist.pose.happyEyesClosed, BehindTheScenes.ƒS.positionPercent(25, 97));
@@ -3404,15 +3403,14 @@ var BehindTheScenes;
             // showSolasMeter();
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
-            await BehindTheScenes.ƒS.update(0.5);
+            // await ƒS.update(0.5);
             // ITEM
-            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
-            await BehindTheScenes.ƒS.Character.animate(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.itemAnimation());
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            // await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
             BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
-            await BehindTheScenes.ƒS.update(0.5);
             // hideSolasMeter();
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.solas);
             await BehindTheScenes.ƒS.update(0.5);
@@ -3473,13 +3471,12 @@ var BehindTheScenes;
             await BehindTheScenes.ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
             await BehindTheScenes.ƒS.update(0.5);
             // ITEM
-            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
-            await BehindTheScenes.ƒS.Character.animate(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.itemAnimation());
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.ticket, BehindTheScenes.items.ticket.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            // await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
             BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.items.ticket);
-            await BehindTheScenes.ƒS.update(0.5);
             // hideLuciaMeter();
             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
             await BehindTheScenes.ƒS.update(0.5);
@@ -3899,7 +3896,8 @@ var BehindTheScenes;
             // showAtlasMeter();
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0003);
-            await BehindTheScenes.ƒS.Character.animate(BehindTheScenes.items.melonpan, BehindTheScenes.items.melonpan.pose.center, BehindTheScenes.itemAnimation());
+            await BehindTheScenes.ƒS.Character.show(BehindTheScenes.items.melonpan, BehindTheScenes.items.melonpan.pose.center, BehindTheScenes.ƒS.positionPercent(50, 50));
+            // await ƒS.Character.animate(items.melonpan, items.melonpan.pose.center, itemAnimation());
             BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.sparkle, 0.5, false);
             await BehindTheScenes.ƒS.update(0.5);
             await BehindTheScenes.ƒS.Speech.tell(null, narratorText.Narrator.T0002);

@@ -178,7 +178,8 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
             await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0003);
 
-            await ƒS.Character.animate(items.melonpan, items.melonpan.pose.center, itemAnimation());
+            await ƒS.Character.show(items.melonpan, items.melonpan.pose.center, ƒS.positionPercent(50, 50));
+            // await ƒS.Character.animate(items.melonpan, items.melonpan.pose.center, itemAnimation());
             ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
 

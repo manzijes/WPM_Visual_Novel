@@ -146,13 +146,12 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             // ITEM
-            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
-            await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
+            await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            // await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
             ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await ƒS.Character.hide(items.ticket);
-            await ƒS.update(0.5);
 
             await ƒS.Character.hide(characters.kira);
             await ƒS.update(0.5);
@@ -221,16 +220,15 @@ namespace BehindTheScenes {
             // showSolasMeter();
             await ƒS.update(0.5);
             await ƒS.Speech.tell(isFavorite, favText.isFavorite.T0003);
-            await ƒS.update(0.5);
+            // await ƒS.update(0.5);
 
             // ITEM
-            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
-            await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
+            await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            // await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
             ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await ƒS.Character.hide(items.ticket);
-            await ƒS.update(0.5);
 
             // hideSolasMeter();
             await ƒS.Character.hide(characters.solas);
@@ -304,13 +302,12 @@ namespace BehindTheScenes {
             await ƒS.update(0.5);
 
             // ITEM
-            // await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
-            await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
+            await ƒS.Character.show(items.ticket, items.ticket.pose.center, ƒS.positionPercent(50, 50));
+            // await ƒS.Character.animate(items.ticket, items.ticket.pose.center, itemAnimation());
             ƒS.Sound.play(sound.sparkle, 0.5, false); 
             await ƒS.update(0.5);
             await new Promise(resolve => setTimeout(resolve, 2000));
             await ƒS.Character.hide(items.ticket);
-            await ƒS.update(0.5);
 
             // hideLuciaMeter();
             await ƒS.Character.hide(characters.lucia);
