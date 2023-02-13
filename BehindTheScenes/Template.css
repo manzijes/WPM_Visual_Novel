@@ -883,6 +883,9 @@ meter{
 }
 
 @media screen and (max-width: 1200px){
+  .pageclose, .flip{
+    width: 75%;
+  }
   html, body{
     font-size: 14px;
   }
