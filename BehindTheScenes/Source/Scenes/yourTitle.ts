@@ -71,7 +71,7 @@ namespace BehindTheScenes {
                 case backToStart.Restart:
                     if (confirm("Spiel neustarten?")) {
                         loopCount++;
-                        window.location.href="../Template/Template.html"
+                        return "intro";
                     }
                     break;
             }

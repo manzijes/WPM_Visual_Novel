@@ -515,7 +515,7 @@ var BehindTheScenes;
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.4, 0.1, true);
         let scenes = [
             // { scene: beta, name: "Testing"},
-            { scene: BehindTheScenes.intro, name: "Einleitung" },
+            { id: "intro", scene: BehindTheScenes.intro, name: "Einleitung" },
             { scene: BehindTheScenes.coverChapterOne, name: "Kapitel" },
             { scene: BehindTheScenes.motive, name: "Treffe die Verdächtigen" },
             { scene: BehindTheScenes.lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
@@ -4237,7 +4237,7 @@ var BehindTheScenes;
                 case backToStart.Restart:
                     if (confirm("Spiel neustarten?")) {
                         loopCount++;
-                        window.location.href = "../Template/Template.html";
+                        return "intro";
                     }
                     break;
             }

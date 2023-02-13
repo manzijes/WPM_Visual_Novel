@@ -476,7 +476,7 @@ background-color: white;
 .warningPageWrapper bold, .warningPageWrapper-flip bold {
   font-family: "HandwritingAtlas";
   font-weight: bold;
-  font-size: 28px;
+  font-size: 33px;
 }
 
 
@@ -913,7 +913,7 @@ meter{
     height: 50px;
   }
   .warningPageWrapper bold, .warningPageWrapper-flip bold {
-    font-size: 20px !important;
+    font-size: 24px !important;
   }
   dialog[type=splash]>img#FudgeStoryLogo{
     max-width: 200px;

@@ -541,7 +541,7 @@ namespace BehindTheScenes {
 
     let scenes: ƒS.Scenes = [
       // { scene: beta, name: "Testing"},
-      { scene: intro, name: "Einleitung"},
+      { id: "intro", scene: intro, name: "Einleitung"},
       { scene: coverChapterOne, name: "Kapitel" },
       { scene: motive, name: "Treffe die Verdächtigen" },
       { scene: lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
