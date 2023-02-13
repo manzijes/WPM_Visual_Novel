@@ -881,6 +881,46 @@ meter{
 }
 }
 
+@media screen and (max-width: 1200px){
+  html, body{
+    font-size: 14px;
+  }
+  .allhints p, .smartphone p{
+    font-size: 14px;
+  }
+  .diaryPage p{
+    font-size: 20px;
+  }
+  speech content{
+    font-size: 14px;
+    margin: 5px;
+  }
+  speech{
+    min-height: unset;
+  }
+  speech name{
+    font-size: 14px;
+    margin: 5px;
+  }
+  dialog.menuInGame{
+    gap: 10px;
+  }
+  dialog.menuInGame button{
+    font-size: 14px;
+  }
+  .suspects#suspects{
+    max-width: 75%;
+    padding: 15px;
+    max-height: 95%;
+  }
+  .title, .suspects h4{
+    font-size: 20px;
+  }
+  .suspects p, #suspects .portrait p{
+    font-size: 16px;
+  }
+}
+
 @media screen and (max-width: 768px), (max-width: 1000px) and (orientation: landscape){
   *, speech content, speech name, dialog.menuInGame button{
     font-size: 12px !important;
