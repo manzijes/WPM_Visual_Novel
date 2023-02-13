@@ -261,7 +261,7 @@ dialog.menuInGame {
   z-index: 99999999999999;
   padding: 15px;
   height: 100vh;
-    overflow: scroll;
+    overflow: auto;
 }
 
 dialog.menuInGame button {
