@@ -7,10 +7,7 @@ namespace BehindTheScenes {
 
         let isFavorite = findFavorite();
 
-        // drei fälle für die erklärung:
-        // diary true und key true
-        // diary false und key false
-        // diary false und key true ODER diary true und key false
+        // three possible conclusions:
 
         let conclusionDiaryKey = {
             Protagonist: {
@@ -21,7 +18,7 @@ namespace BehindTheScenes {
             }
         };
 
-        // conclusion DiaryNoKey
+        // conclusion DiaryNoKey and...
         let conclusionNoDiaryNoKey = {
             Protagonist: {
                 T0001: "Der Täter hatte uns eine Warnung zukommen lassen. Es sah erst so aus, als gehöre die darauf Handschrift zu Solas...",

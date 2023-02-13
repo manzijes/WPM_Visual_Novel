@@ -41,27 +41,27 @@ var BehindTheScenes;
     BehindTheScenes.locations = {
         schoolOutsideDay: {
             name: "schoolOutsideDay",
-            background: "Images/Backgrounds/school-outside-day.jpg",
+            background: "Images/Backgrounds/schoolOutsideDay.jpg",
             foreground: ""
         },
         schoolOutsideTwilight: {
             name: "schoolOutsideTwilight",
-            background: "Images/Backgrounds/school-outside-twilight.jpg",
+            background: "Images/Backgrounds/schoolOutsideTwilight.jpg",
             foreground: ""
         },
         corridorDay: {
             name: "corridorDay",
-            background: "Images/Backgrounds/corridor-day.jpg",
+            background: "Images/Backgrounds/corridorDay.jpg",
             foreground: ""
         },
         corridorDay2: {
             name: "corridorDay2",
-            background: "Images/Backgrounds/corridor-day-2.png",
+            background: "Images/Backgrounds/corridorDayTwo.png",
             foreground: ""
         },
         classroomDay: {
             name: "classroomDay",
-            background: "Images/Backgrounds/classroom-day.jpg",
+            background: "Images/Backgrounds/classroomDay.jpg",
             foreground: ""
         },
         library: {
@@ -70,15 +70,15 @@ var BehindTheScenes;
         },
         roof: {
             name: "roof",
-            background: "Images/Backgrounds/roof-day.jpg"
+            background: "Images/Backgrounds/roofDay.jpg"
         },
         roofTwilight: {
             name: "roofTwilight",
-            background: "Images/Backgrounds/roof-twilight.jpg"
+            background: "Images/Backgrounds/roofTwilight.jpg"
         },
         stairs: {
             name: "stairs",
-            background: "Images/Backgrounds/stairs-day.jpg"
+            background: "Images/Backgrounds/stairsDay.jpg"
         }
     };
     BehindTheScenes.chapterCovers = {
@@ -2872,10 +2872,7 @@ var BehindTheScenes;
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.mainMusic, 0.5, 0.1, true);
         BehindTheScenes.updateNotes();
         let isFavorite = BehindTheScenes.findFavorite();
-        // drei fälle für die erklärung:
-        // diary true und key true
-        // diary false und key false
-        // diary false und key true ODER diary true und key false
+        // three possible conclusions:
         let conclusionDiaryKey = {
             Protagonist: {
                 T0001: "Lucia erwies sich als vertrauenswürdig. Sie gab mir den Tipp, dass dein Alibi zum Himmel stinkt.",
@@ -2884,7 +2881,7 @@ var BehindTheScenes;
                 T0004: "Und zu guter Letzt... Ich bin ein guter Menschenkenner. Solas wirkte aufrichtig, als er sein Mitgefühl mit der Kostümschneiderin äußerte.",
             }
         };
-        // conclusion DiaryNoKey
+        // conclusion DiaryNoKey and...
         let conclusionNoDiaryNoKey = {
             Protagonist: {
                 T0001: "Der Täter hatte uns eine Warnung zukommen lassen. Es sah erst so aus, als gehöre die darauf Handschrift zu Solas...",

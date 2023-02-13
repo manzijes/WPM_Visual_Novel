@@ -43,27 +43,27 @@ namespace BehindTheScenes {
   export let locations = {
     schoolOutsideDay: {
       name: "schoolOutsideDay",
-      background: "Images/Backgrounds/school-outside-day.jpg",
+      background: "Images/Backgrounds/schoolOutsideDay.jpg",
       foreground: ""
     },
     schoolOutsideTwilight: {
       name: "schoolOutsideTwilight",
-      background: "Images/Backgrounds/school-outside-twilight.jpg",
+      background: "Images/Backgrounds/schoolOutsideTwilight.jpg",
       foreground: ""
     },
     corridorDay: {
       name: "corridorDay",
-      background: "Images/Backgrounds/corridor-day.jpg",
+      background: "Images/Backgrounds/corridorDay.jpg",
       foreground: ""
     },
     corridorDay2: {
       name: "corridorDay2",
-      background: "Images/Backgrounds/corridor-day-2.png",
+      background: "Images/Backgrounds/corridorDayTwo.png",
       foreground: ""
     },
     classroomDay: {
       name: "classroomDay",
-      background: "Images/Backgrounds/classroom-day.jpg",
+      background: "Images/Backgrounds/classroomDay.jpg",
       foreground: ""
     },
     library: {
@@ -72,15 +72,15 @@ namespace BehindTheScenes {
     },
     roof: {
       name: "roof",
-      background: "Images/Backgrounds/roof-day.jpg"
+      background: "Images/Backgrounds/roofDay.jpg"
     },
     roofTwilight: {
       name: "roofTwilight",
-      background: "Images/Backgrounds/roof-twilight.jpg"
+      background: "Images/Backgrounds/roofTwilight.jpg"
     },
     stairs: {
       name: "stairs",
-      background: "Images/Backgrounds/stairs-day.jpg"
+      background: "Images/Backgrounds/stairsDay.jpg"
     }
   };
 
