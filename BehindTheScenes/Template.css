@@ -996,4 +996,10 @@ meter{
     max-width: 200px;
     right: unset;
   }
+  .smartphone p{
+    font-size: 0.65rem;
+  }
+  .diaryPage p {
+    font-size: 1rem;
+}
 }
