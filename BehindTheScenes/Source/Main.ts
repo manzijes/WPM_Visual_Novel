@@ -87,7 +87,7 @@ namespace BehindTheScenes {
   export let chapterCovers = {
     chapter: {
       name: "chapter",
-      background: "Images/Backgrounds/Kapitel/chapter-lilac.png",
+      background: "Images/Backgrounds/chapters/chapter.png",
       foreground: ""
     }
   }
