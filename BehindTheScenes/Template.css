@@ -891,6 +891,12 @@ meter{
   .diaryPage p{
     font-size: 20px;
   }
+  .warningPageWrapper bold, .warningPageWrapper-flip bold{
+    font-size: 25px;
+  }
+  .coverDialog h1, .aquiredPagesWrapper h1{
+    font-size: 26px;
+  }
   speech content{
     font-size: 14px;
     margin: 5px;
