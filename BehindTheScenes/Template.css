@@ -886,6 +886,12 @@ meter{
   html, body{
     font-size: 14px;
   }
+  dialog.dialogoptions button:not(.dialogoptions button:first-of-type){
+    margin-top: 10px;
+  }
+  dialog.dialogoptions{
+    padding: 10px;
+  }
   img#switch{
     scale: 0.5;
   }
