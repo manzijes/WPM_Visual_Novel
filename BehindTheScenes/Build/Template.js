@@ -497,7 +497,7 @@ var BehindTheScenes;
         luciaMotive: false,
         luciaOpportunity: false,
         // meterbars
-        atlasScore: 20,
+        atlasScore: 30,
         luciaScore: 50,
         solasScore: 50,
         warningNote: false,
