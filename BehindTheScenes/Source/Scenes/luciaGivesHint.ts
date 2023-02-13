@@ -76,7 +76,7 @@ namespace BehindTheScenes {
         switch (optionsLuciaInfoElement) {
             case optionsLuciaInfo.good:
 
-                dataForSave.luciaScore += 4;
+                dataForSave.luciaScore += 3;
 
                 break;
             case optionsLuciaInfo.bad:

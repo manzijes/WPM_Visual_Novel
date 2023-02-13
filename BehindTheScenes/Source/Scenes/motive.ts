@@ -257,7 +257,7 @@ namespace BehindTheScenes {
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.playful, ƒS.positionPercent(75, 97));
                             showAtlasMeter();
-                            dataForSave.atlasScore += 10;
+                            dataForSave.atlasScore += 14;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_good);
                             await ƒS.update(0.5);
@@ -266,7 +266,7 @@ namespace BehindTheScenes {
                             await ƒS.Character.hide(characters.atlas);
                             await ƒS.Character.show(characters.atlas, characters.atlas.pose.angry, ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterChildren => meterChildren.hidden = false);
-                            dataForSave.atlasScore -= 10;
+                            dataForSave.atlasScore -= 9;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.atlas, atlasText.Atlas.T0004_bad);
                             await ƒS.update(0.5);
@@ -690,7 +690,7 @@ namespace BehindTheScenes {
                         case optionsLuciaBooks.good:
                             await ƒS.Character.hide(characters.lucia);
                             await ƒS.Character.show(characters.lucia, characters.lucia.pose.smiling, ƒS.positionPercent(75, 97));
-                            dataForSave.luciaScore += 10;
+                            dataForSave.luciaScore += 7;
                             await ƒS.update(0.5);
                             await ƒS.Speech.tell(characters.lucia, luciaText.Lucia.T0004_good);
                             await ƒS.update(0.5);

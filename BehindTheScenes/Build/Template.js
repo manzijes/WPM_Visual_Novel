@@ -2050,7 +2050,7 @@ var BehindTheScenes;
         BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.selectDialog, 1.5, false);
         switch (optionsLuciaInfoElement) {
             case optionsLuciaInfo.good:
-                BehindTheScenes.dataForSave.luciaScore += 4;
+                BehindTheScenes.dataForSave.luciaScore += 3;
                 break;
             case optionsLuciaInfo.bad:
                 BehindTheScenes.dataForSave.luciaScore -= 4;
@@ -2329,7 +2329,7 @@ var BehindTheScenes;
                             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
                             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.playful, BehindTheScenes.ƒS.positionPercent(75, 97));
                             BehindTheScenes.showAtlasMeter();
-                            BehindTheScenes.dataForSave.atlasScore += 10;
+                            BehindTheScenes.dataForSave.atlasScore += 14;
                             await BehindTheScenes.ƒS.update(0.5);
                             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0004_good);
                             await BehindTheScenes.ƒS.update(0.5);
@@ -2338,7 +2338,7 @@ var BehindTheScenes;
                             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.atlas);
                             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.atlas, BehindTheScenes.characters.atlas.pose.angry, BehindTheScenes.ƒS.positionPercent(75, 97));
                             document.getElementsByName("atlasScore").forEach(meterChildren => meterChildren.hidden = false);
-                            BehindTheScenes.dataForSave.atlasScore -= 10;
+                            BehindTheScenes.dataForSave.atlasScore -= 9;
                             await BehindTheScenes.ƒS.update(0.5);
                             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.atlas, atlasText.Atlas.T0004_bad);
                             await BehindTheScenes.ƒS.update(0.5);
@@ -2701,7 +2701,7 @@ var BehindTheScenes;
                         case optionsLuciaBooks.good:
                             await BehindTheScenes.ƒS.Character.hide(BehindTheScenes.characters.lucia);
                             await BehindTheScenes.ƒS.Character.show(BehindTheScenes.characters.lucia, BehindTheScenes.characters.lucia.pose.smiling, BehindTheScenes.ƒS.positionPercent(75, 97));
-                            BehindTheScenes.dataForSave.luciaScore += 10;
+                            BehindTheScenes.dataForSave.luciaScore += 7;
                             await BehindTheScenes.ƒS.update(0.5);
                             await BehindTheScenes.ƒS.Speech.tell(BehindTheScenes.characters.lucia, luciaText.Lucia.T0004_good);
                             await BehindTheScenes.ƒS.update(0.5);
