@@ -885,7 +885,28 @@ meter{
   html, body{
     font-size: 14px;
   }
-  .allhints p, .smartphone p{
+  img#switch{
+    scale: 0.5;
+  }
+  .smartphone{
+    height: 100%;
+    overflow: scroll;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    font-size: 12px;
+    width: 50%;
+  }
+  .allhints{
+    max-width: 75%;
+  }
+  .chatcontainer{
+    margin: 5px;
+    padding: 5px;
+  }
+  .allhints .smartphone p{
+    font-size: 12px;
+  }
+  .allhints p{
     font-size: 14px;
   }
   .diaryPage p{
