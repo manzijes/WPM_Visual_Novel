@@ -255,12 +255,13 @@ dialog.menuInGame {
   right: 0;
   flex-direction: column;
   display: flex;
-  flex-wrap: wrap;
   border: none;
   background: none;
   gap: 15px;
   z-index: 99999999999999;
   padding: 15px;
+  height: 100vh;
+    overflow: scroll;
 }
 
 dialog.menuInGame button {
