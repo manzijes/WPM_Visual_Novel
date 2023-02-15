@@ -514,9 +514,8 @@ var BehindTheScenes;
         BehindTheScenes.gameMenu = BehindTheScenes.ƒS.Menu.create(BehindTheScenes.menuInGame, BehindTheScenes.buttonFunctionalities, "menuInGame"); //hier CSS Klasse angeben
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.4, 0.1, true);
         let scenes = [
-            // { scene: beta, name: "Testing"},
-            // { id: "intro", scene: intro, name: "Einleitung"},
-            // { scene: coverChapterOne, name: "Kapitel" },
+            { id: "intro", scene: BehindTheScenes.intro, name: "Einleitung" },
+            { scene: BehindTheScenes.coverChapterOne, name: "Kapitel" },
             { scene: BehindTheScenes.motive, name: "Treffe die Verdächtigen" },
             { scene: BehindTheScenes.lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
             { scene: BehindTheScenes.coverChapterTwo, name: "Kapitel" },
