@@ -880,7 +880,7 @@ meter{
 }
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1400px){
   .pageclose, .flip{
     width: 75%;
   }
@@ -898,27 +898,27 @@ meter{
   }
   .smartphone{
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
     border-top-width: 10px;
     border-bottom-width: 10px;
     font-size: 12px;
-    width: 50%;
+    width: 80%;
   }
   .allhints{
-    max-width: 75%;
+    max-width: 100%;
   }
   .chatcontainer{
     margin: 5px;
     padding: 5px;
   }
   .allhints .smartphone p{
-    font-size: 12px;
+    font-size: 1rem;
   }
   .allhints p{
-    font-size: 14px;
+    font-size: 12px;
   }
   .diaryPage p{
-    font-size: 20px;
+    font-size: 16px;
   }
   .warningPageWrapper bold, .warningPageWrapper-flip bold{
     font-size: 25px;
