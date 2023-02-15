@@ -523,15 +523,8 @@ namespace BehindTheScenes {
                     </div>';
 
                     ƒS.Text.setClass("smartphone blendin");
-                    let close = { done: "x" };
-                    let choice: string;
-                    do {
-                        ƒS.Text.print(diaryPage);
-                        choice = await ƒS.Menu.getInput(close, "pageclose");
-                    } while (choice != close.done);
-                    ƒS.Sound.play(sound.selectDialog, 1.5, false);
-                    ƒS.Text.close();
-                    await ƒS.update(0.5);
+                    ƒS.Text.print(diaryPage);
+                    await ƒS.Speech.tell(null, "...");
 
                     dataForSave.luciaMotive = true;
                     updateNotes();
@@ -810,16 +803,9 @@ namespace BehindTheScenes {
                             </div>";
 
                             ƒS.Text.setClass("diaryPageWrapper blendin");
-                            let close = { done: "x" };
-                            let choice: string;
-                            do {
-                                ƒS.Text.print(diaryPage);
-                                choice = await ƒS.Menu.getInput(close, "pageclose");
-                            } while (choice != close.done);
-                            ƒS.Sound.play(sound.selectDialog, 1.5, false);
-                            ƒS.Text.close();
-
-                            await ƒS.update(0.5);
+                            ƒS.Text.print(diaryPage);
+                          
+                            await ƒS.Speech.tell(null, "...");
 
                             dataForSave.atlasMotive = true;
                             dataForSave.atlasDiary = true;

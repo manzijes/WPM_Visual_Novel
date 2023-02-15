@@ -485,14 +485,12 @@ background-color: white;
   width: 60%;
   border: none;
   padding: 0;
-  overflow: hidden;
   border-radius: 5px;
 }
 .diaryPageWrapper-flip{
   width: auto;
   border: none;
   padding: 0;
-  overflow: hidden;
   border-radius: 5px;
 }
 

@@ -515,8 +515,8 @@ var BehindTheScenes;
         BehindTheScenes.ƒS.Sound.fade(BehindTheScenes.sound.splashMusic, 0.4, 0.1, true);
         let scenes = [
             // { scene: beta, name: "Testing"},
-            { id: "intro", scene: BehindTheScenes.intro, name: "Einleitung" },
-            { scene: BehindTheScenes.coverChapterOne, name: "Kapitel" },
+            // { id: "intro", scene: intro, name: "Einleitung"},
+            // { scene: coverChapterOne, name: "Kapitel" },
             { scene: BehindTheScenes.motive, name: "Treffe die Verdächtigen" },
             { scene: BehindTheScenes.lightsOut, name: "Im Theaterraum gehen die Lichter aus" },
             { scene: BehindTheScenes.coverChapterTwo, name: "Kapitel" },
@@ -2558,15 +2558,8 @@ var BehindTheScenes;
                             </div>\
                     </div>';
                     BehindTheScenes.ƒS.Text.setClass("smartphone blendin");
-                    let close = { done: "x" };
-                    let choice;
-                    do {
-                        BehindTheScenes.ƒS.Text.print(diaryPage);
-                        choice = await BehindTheScenes.ƒS.Menu.getInput(close, "pageclose");
-                    } while (choice != close.done);
-                    BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.selectDialog, 1.5, false);
-                    BehindTheScenes.ƒS.Text.close();
-                    await BehindTheScenes.ƒS.update(0.5);
+                    BehindTheScenes.ƒS.Text.print(diaryPage);
+                    await BehindTheScenes.ƒS.Speech.tell(null, "...");
                     BehindTheScenes.dataForSave.luciaMotive = true;
                     BehindTheScenes.updateNotes();
                     BehindTheScenes.hideSolasMeter();
@@ -2799,15 +2792,8 @@ var BehindTheScenes;
                             <p style='text-align: right'>Gezeichnet, Atlas.</p>\
                             </div>";
                             BehindTheScenes.ƒS.Text.setClass("diaryPageWrapper blendin");
-                            let close = { done: "x" };
-                            let choice;
-                            do {
-                                BehindTheScenes.ƒS.Text.print(diaryPage);
-                                choice = await BehindTheScenes.ƒS.Menu.getInput(close, "pageclose");
-                            } while (choice != close.done);
-                            BehindTheScenes.ƒS.Sound.play(BehindTheScenes.sound.selectDialog, 1.5, false);
-                            BehindTheScenes.ƒS.Text.close();
-                            await BehindTheScenes.ƒS.update(0.5);
+                            BehindTheScenes.ƒS.Text.print(diaryPage);
+                            await BehindTheScenes.ƒS.Speech.tell(null, "...");
                             BehindTheScenes.dataForSave.atlasMotive = true;
                             BehindTheScenes.dataForSave.atlasDiary = true;
                             BehindTheScenes.updateNotes();
